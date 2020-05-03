@@ -9,4 +9,10 @@ eventNewPlayer = function(playerName)
 	players_insert(players.dead, playerName)
 
 	tfm.exec.lowerSyncDelay(playerName)
+
+	for _, power in next, powers do
+		if power.bind then
+			power.bind(playerCache)
+		end
+	end
 end

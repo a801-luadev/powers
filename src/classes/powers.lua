@@ -9,18 +9,24 @@ do
 			level = level,
 
 			effect = nil,
+			bind = nil,
+
 			damage = 0,
 			selfDamage = 0,
 
 			useLimit = -1,
 			useCooldown = 1000,
 
-			imageData = nil
+			imageData = nil,
+
+			bindKeys = nil,
+			keySequence = nil,
+			lenKeySequence = nil
 		}, Power)
 	end
 
-	Power.setEffect = function(self, effect)
-		self.effect = effect
+	Power.setEffect = function(self, f)
+		self.effect = f
 		return self
 	end
 
@@ -29,18 +35,44 @@ do
 		return self
 	end
 
-	Power.selfDamage = function(self, selfDamage)
-		self.selfDamage = selfDamage
+	Power.selfDamage = function(self, damage)
+		self.selfDamage = damage
 		return self
 	end
 
-	Power.setUseLimit = function(self, useLimit)
-		self.useLimit = useLimit
+	Power.setUseLimit = function(self, limit)
+		self.useLimit = limit
 		return self
 	end
 
-	Power.useCooldown = function(self, useCooldown)
-		self.useCooldown = useCooldown * 1000
+	Power.useCooldown = function(self, cooldown)
+		self.useCooldown = cooldown * 1000
+		return self
+	end
+
+	Power.setBind = function(self, ...)
+		if not key then
+			self.bind = system.bindMouse
+		else
+			self.bindKeys = { ... }
+			local totalKeys = #self.bindKeys
+			self.bind = function(playerName)
+				for k = 1, totalKeys do
+					system.bindKeyboard(playerName, self.bindKeys[k], true)
+				end
+			end
+		end
+		return self
+	end
+
+	Power.setKeySequence = function(self, ...)
+		self.keySequence = (... and { ... } or self.bindKeys)
+		self.lenKeySequence = { _count = #self.keySequence }
+
+		for s = 1, self.lenKeySequence._count do
+			self.lenKeySequence[s] = #self.keySequence[s]
+		end
+
 		return self
 	end
 

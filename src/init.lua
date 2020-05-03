@@ -1,6 +1,9 @@
 for playerName in next, tfm.get.room.playerList do
 	eventNewPlayer(playerName)
+	tfm.exec.setPlayerScore(playerName, 0)
 end
+
+system.disableChatCommandDisplay()
 
 tfm.exec.disableAutoShaman()
 tfm.exec.disableAutoScore()

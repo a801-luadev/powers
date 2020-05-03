@@ -7,3 +7,6 @@ local module = {
 }
 
 local playerCache = { }
+
+local isLowQuality = false
+local lowQualityCounter = 0
