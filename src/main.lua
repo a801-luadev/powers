@@ -19,3 +19,7 @@ local movePlayer = tfm.exec.movePlayer
 local removeObject = tfm.exec.removeObject
 local time = os.time
 local unpack = table.unpack
+
+local rad = math.rad
+local sin = math.sin
+local cos = math.cos

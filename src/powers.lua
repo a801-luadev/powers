@@ -29,7 +29,7 @@ powers.lightSpeed = Power
 
 		-- Particles
 		direction = (isFacingRight and 15 or -15)
-		for i = 1, 6, (isLowQuality and 6/4 or 1) do
+		for i = 1, 6, (isLowQuality and 1.5 or 1) do
 			displayParticle(35, x, y, direction, i*(i < 4 and -1 or 1))
 		end
 	end)
@@ -52,7 +52,7 @@ powers.ray = Power
 		local xSpeed = .2*direction
 		local xAcceleration = .3*direction
 		local r = 10
-		for i = 1, 10, (isLowQuality and 10/4 or 1) do
+		for i = 1, 10, (isLowQuality and 2.5 or 1) do
 			r = r * .75
 			displayParticle(9, x - (-30 + i + r)*direction, y, i*xSpeed, 0, xAcceleration)
 		end
@@ -66,15 +66,50 @@ powers.ray = Power
 	end)
 
 -- Level 10
-powers.wormHole = Power
-	.new("wormHole", powerTypes.def, 10, {
-		icon = "155d055f8d0.png",
-		x = 300,
-		y = 105
-	})
-	:setUseCooldown(1.5)
-	:setBind(2)
-	:setKeySequence({ 1, 2 })
+do
+	local particles = { 0, 4, 11 }
+	local totalParticles = #particles
+
+	local auxSpeedRad = rad(18)
+	local spiral = function(x, y, angle)
+		angle = rad(angle)
+
+		local particleId, auxSpeed, auxRad = 0
+		for i = 1, 40, (isLowQuality and 2 or 1) do
+			auxSpeed = i * .1
+
+			if particleId == totalParticles then
+				particleId = 1
+			end
+			particleId = particleId + 1
+
+			auxRad = angle + auxSpeedRad*i
+
+			displayParticle(particles[particleId], x, y, auxSpeed * -cos(auxRad),
+				auxSpeed * sin(auxRad))
+		end
+	end
+
+	powers.wormHole = Power
+		.new("wormHole", powerTypes.def, 10, {
+			icon = "155d055f8d0.png",
+			x = 300,
+			y = 105
+		})
+		:setUseCooldown(1.5)
+		:setBind(2)
+		:setKeySequence({ 1, 2 })
+		:setEffect(function(playerName, x, y, isFacingRight)
+			local direction = (isFacingRight and 200 or -200)
+
+			-- Move player
+			movePlayer(playerName, x + direction, y, false, 0, -50, true)
+
+			-- Particles
+			spiral(x, y, 180)
+			spiral(x + direction, y, 90)
+		end)
+end
 
 powers.doubleJump = Power
 	.new("doubleJump", powerTypes.def, 10, {
