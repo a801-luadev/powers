@@ -78,10 +78,7 @@ do
 		for i = 1, 40, (isLowQuality and 2 or 1) do
 			auxSpeed = i * .1
 
-			if particleId == totalParticles then
-				particleId = 1
-			end
-			particleId = particleId + 1
+			particleId = particleId%totalParticles + 1
 
 			auxRad = angle + auxSpeedRad*i
 
