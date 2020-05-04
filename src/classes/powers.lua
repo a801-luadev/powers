@@ -86,16 +86,17 @@ do
 	Power.trigger = function(self, playerName, _cache, _time, _x, _y)
 		_cache = _cache or playerCache[playerName]
 
-		if _cache.remainingUses <= 0 then
+		local powers = _cache.powers[self.name]
+		if powers.remainingUses <= 0 then
 			return false
 		end
 
 		_time = _time or time()
-		if _cache.cooldown > _time then
+		if powers.cooldown > _time then
 			return false
 		end
 
-		_cache.remainingUses = _cache.remainingUses - 1
+		powers.remainingUses = powers.remainingUses - 1
 
 		if not _x then
 			local playerData = tfm.get.room.playerList[playerName]

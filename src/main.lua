@@ -11,6 +11,8 @@ local playerCache = { }
 local isLowQuality = false
 local lowQualityCounter = 0
 
+local refreshedTimer = false
+
 local addShamanObject = tfm.exec.addShamanObject
 local displayParticle = tfm.exec.displayParticle
 local movePlayer = tfm.exec.movePlayer

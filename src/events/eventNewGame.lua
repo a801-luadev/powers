@@ -2,6 +2,8 @@ eventNewGame = function()
 	players.dead = { _count = 0 }
 	players.alive = table_copy(players.room)
 
+	refreshedTimer = false
+
 	local currentTime = os.time()
 	for playerName in next, players.alive do
 		playerName = playerCache[playerName]
