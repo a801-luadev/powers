@@ -11,8 +11,8 @@ do
 			effect = nil,
 			bind = nil,
 
-			damage = 0,
-			selfDamage = 0,
+			damage = nil,
+			selfDamage = nil,
 
 			useLimit = -1,
 			useCooldown = 1000,
@@ -81,5 +81,39 @@ do
 			remainingUses = self.useLimit,
 			cooldown = currentTime + self.useCooldown
 		}
+	end
+
+	Power.trigger = function(self, playerName, _cache, _time, _x, _y)
+		_cache = _cache or playerCache[playerName]
+
+		if _cache.remainingUses <= 0 then
+			return false
+		end
+
+		_time = _time or time()
+		if _cache.cooldown > _time then
+			return false
+		end
+
+		_cache.remainingUses = _cache.remainingUses - 1
+
+		if not _x then
+			local playerData = tfm.get.room.playerList[playerName]
+			_x, _y = playerData.x, playerData.y
+		end
+
+		local args
+		if self.effect then
+			args = { self.effect(playerName, _x, _y, _cache.isFacingRight) }
+			if self.damage then
+				damagePlayers(playerName, self.damage, unpack(args))
+			end
+		end
+
+		if self.selfDamage then
+			damage(playerName, self.selfDamage, _cache)
+		end
+
+		return true
 	end
 end

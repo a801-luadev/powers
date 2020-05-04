@@ -28,8 +28,11 @@ local players_remove = function(where, playerName)
 	end
 end
 
-local inRectangle = function(x, y, x1, x2, y1, y2)
-	return (x >= x1 and x <= x2) and (y >= y1 and y <= y2)
+local inRectangle = function(x, y, rx, rw, ry, rh, rightDirection)
+	return (rightDirection
+		and (x >= rx and x <= (rx + rw))
+		or (x >= (rx - rw) and x <= rx)
+	) and (y >= ry and y <= (ry + rh))
 end
 
 local getPlayersOnFilter = function(except, filter, ...)
@@ -40,10 +43,21 @@ local getPlayersOnFilter = function(except, filter, ...)
 		if playerName ~= except then
 			player = tfm.get.room.playerList[playerName]
 			if filter(player.x, player.y, ...) then
-				data[playerName] = player
+				data[playerName] = playerCache[playerName]
 			end
 		end
 	end
 
 	return data
+end
+
+local damage = function(playerName, damage, _cache)
+	_cache = _cache or playerCache[playerName]
+	_cache.health = _cache.health - damage
+end
+
+local damagePlayers = function(except, damage, filter, x, y, ...)
+	for name, cache in next, getPlayersOnFilter(except, filter, ...) do
+		damage(name, damage, cache)
+	end
 end

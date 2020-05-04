@@ -11,5 +11,6 @@ tfm.exec.disableAutoNewGame()
 tfm.exec.disableAutoTimeLeft()
 tfm.exec.disableAfkDeath()
 tfm.exec.disablePhysicalConsumables()
+tfm.exec.disableDebugCommand()
 
 tfm.exec.setRoomMaxPlayers(module.max_players)

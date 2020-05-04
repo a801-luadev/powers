@@ -1,6 +1,8 @@
 eventNewPlayer = function(playerName)
 	if not playerCache[playerName] then
 		playerCache[playerName] = {
+			health = 0,
+			isFacingRight = true,
 			powers = { }
 		}
 	end

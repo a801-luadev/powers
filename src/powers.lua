@@ -8,7 +8,7 @@ local powers = { }
 
 -- Level 0
 powers.lightSpeed = Power
-	.new(powerTypes.def, 0, {
+	.new("lightSpeed", powerTypes.def, 0, {
 		icon = "155d0565587.png",
 		x = 275,
 		y = 108
@@ -16,30 +16,26 @@ powers.lightSpeed = Power
 	:setUseCooldown(1.5)
 	:setBind(0, 2)
 	:setKeySequence({ 0, 0 }, { 2, 2 })
-	:setEffect(function(pName, pData, pCache)
-		local isFacingRight = pCache.isFacingRight
-		local x, y = pData.x, pData.y
-
+	:setEffect(function(playerName, x, y, isFacingRight)
 		-- Move players
 		local direction = (isFacingRight and 30 or -30)
-		for name, data in next, getPlayersOnFilter(pName, inRectangle,
-			(isFacingRight and x or (x - 255)),
-			y - 60, (isFacingRight and (x + 255) or x), y + 60) do
-			tfm.exec.movePlayer(name, 0, 0, true, direction)
+		for playerName in next, getPlayersOnFilter(playerName, inRectangle, x, y - 60, 255, 120,
+			isFacingRight) do
+			movePlayer(playerName, 0, 0, true, direction)
 		end
 
 		-- Move player
-		tfm.exec.movePlayer(pName, x + (isFacingRight and 255 or -255), y)
+		movePlayer(playerName, x + (isFacingRight and 255 or -255), y)
 
 		-- Particles
 		direction = (isFacingRight and 15 or -15)
-		for i = 1, 6, (isLowQuality and 6/2 or 1) do
-			tfm.exec.displayParticle(35, x, y, direction, i * (i < 4 and -1 or 1))
+		for i = 1, 6, (isLowQuality and 6/4 or 1) do
+			displayParticle(35, x, y, direction, i*(i < 4 and -1 or 1))
 		end
 	end)
 
 powers.ray = Power
-	.new(powerTypes.atk, 0, {
+	.new("ray", powerTypes.atk, 0, {
 		icon = "155d0567651.png",
 		x = 265,
 		y = 125
@@ -48,10 +44,30 @@ powers.ray = Power
 	:setUseCooldown(1)
 	:setBind(string.byte(' '))
 	:setKeySequence()
+	:setEffect(function(playerName, x, y, isFacingRight)
+		local direction = (isFacingRight and 1 or -1)
+		y = y - 10
+
+		-- Particles
+		local xSpeed = .2*direction
+		local xAcceleration = .3*direction
+		local r = 10
+		for i = 1, 10, (isLowQuality and 10/4 or 1) do
+			r = r * .75
+			displayParticle(9, x - (-30 + i + r)*direction, y, i*xSpeed, 0, xAcceleration)
+		end
+
+		-- Collision
+		timer.start(removeObject, 6000, 1,
+			addShamanObject(6000, x + 40*direction, y, 0, 9*direction))
+
+		-- Damage
+		return inRectangle, x, y - 10, 120, 40, isFacingRight
+	end)
 
 -- Level 10
 powers.wormHole = Power
-	.new(powerTypes.def, 10, {
+	.new("wormHole", powerTypes.def, 10, {
 		icon = "155d055f8d0.png",
 		x = 300,
 		y = 105
@@ -61,7 +77,7 @@ powers.wormHole = Power
 	:setKeySequence({ 1, 2 })
 
 powers.doubleJump = Power
-	.new(powerTypes.def, 10, {
+	.new("doubleJump", powerTypes.def, 10, {
 		icon = "155d0560b19.png",
 		x = 310,
 		y = 110
@@ -72,7 +88,7 @@ powers.doubleJump = Power
 
 -- Level 20
 powers.helix = Power
-	.new(powerTypes.def, 20, {
+	.new("helix", powerTypes.def, 20, {
 		icon = "155d056201e.png",
 		x = 300,
 		y = 105
@@ -82,7 +98,7 @@ powers.helix = Power
 	:setKeySequence()
 
 powers.dome = Power
-	.new(powerTypes.atk, 20, {
+	.new("dome", powerTypes.atk, 20, {
 		icon = "155d05689b8.png",
 		x = 295,
 		y = 105
@@ -93,7 +109,7 @@ powers.dome = Power
 
 -- Level 30
 powers.lightning = Power
-	.new(powerTypes.atk, 30, {
+	.new("lightning", powerTypes.atk, 30, {
 		icon = "155d05699c9.png",
 		x = 325,
 		y = 105
@@ -105,7 +121,7 @@ powers.lightning = Power
 
 -- Level 40
 powers.superNova = Power
-	.new(powerTypes.atk, 40, {
+	.new("superNova", powerTypes.atk, 40, {
 		icon = "155d055d277.png",
 		x = 288,
 		y = 105
@@ -119,7 +135,7 @@ powers.superNova = Power
 
 -- Level 50
 powers.hulkSmash = Power
-	.new(powerTypes.atk, 50, {
+	.new("hulkSmash", powerTypes.atk, 50, {
 		icon = "155d055e49f.png",
 		x = 295,
 		y = 105
@@ -131,7 +147,7 @@ powers.hulkSmash = Power
 	:setKeySequence({3, 3})
 
 powers.deathHug = Power
-	.new(powerTypes.atk, 50, {
+	.new("deathHug", powerTypes.atk, 50, {
 		icon = "155d0566680.png",
 		x = 295,
 		y = 105
@@ -141,7 +157,7 @@ powers.deathHug = Power
 
 -- Level 60
 powers.anomaly = Power
-	.new(powerTypes.divine, 60, {
+	.new("anomaly", powerTypes.divine, 60, {
 		icon = "155d05645e0.png",
 		x = 270,
 		y = 130
@@ -151,7 +167,7 @@ powers.anomaly = Power
 
 -- Level 70
 powers.deathRay = Power
-	.new(powerTypes.atk, 70, {
+	.new("deathRay", powerTypes.atk, 70, {
 		icon = "155d05633dc.png",
 		x = 270,
 		y = 140
