@@ -121,6 +121,12 @@ do
 	local particles = { 2, 11, 2 }
 	local totalParticles = #particles
 
+	local spring = function(x, y)
+		for i = 1, 10, (isLowQuality and 2 or 1) do
+			displayParticle(particles[(i%totalParticles + 1)], x + cos(i)*10, y, 0, -i * .3)
+		end
+	end
+
 	powers.doubleJump = Power
 		.new("doubleJump", powerTypes.def, 10, {
 			icon = "155d0560b19.png",
@@ -135,9 +141,7 @@ do
 			movePlayer(playerName, 0, 0, true, 0 -50, false)
 
 			-- Particles
-			for i = 1, 10, (isLowQuality and 2 or 1) do
-				displayParticle(particles[(i%totalParticles + 1)], x + cos(i)*10, y, 0, -i * .3)
-			end
+			spring(x, y)
 		end)
 end
 
@@ -237,73 +241,96 @@ do
 end
 
 -- Level 30
-powers.lightning = Power
-	.new("lightning", powerTypes.atk, 30, {
-		icon = "155d05699c9.png",
-		x = 325,
-		y = 105
-	})
-	:setDamage(10)
-	:setUseLimit(10)
-	:setUseCooldown(5)
-	:setBind()
+do
+	local particles = { 2, 11 }
+	local totalParticles = #particles
+
+	local lightning = function(x, y)
+		local yPos, rand = 0
+		local init = random(500)
+		for i = init, init + 125, 5 do
+			yPos = yPos + random(3, 5)
+			displayParticle(particles[i%totalParticles + 1], x + cos(i)*random(3, 6), y + yPos)
+		end
+	end
+
+	powers.lightning = Power
+		.new("lightning", powerTypes.atk, 30, {
+			icon = "155d05699c9.png",
+			x = 325,
+			y = 105
+		})
+		:setDamage(10)
+		:setUseLimit(10)
+		:setUseCooldown(5)
+		:setBind()
+		:setEffect(function(playerName, x, y, isFacingRight)
+			-- Particles
+			lightning(x, y)
+
+			-- Damage
+			y = y + 100
+			explosion(x, y, 30, 60)
+			return pythagoras, x, y, 60
+		end)
+end
 
 -- Level 40
-powers.superNova = Power
-	.new("superNova", powerTypes.atk, 40, {
-		icon = "155d055d277.png",
-		x = 288,
-		y = 105
-	})
-	:setDamage(20)
-	:selfDamage(5)
-	:setUseLimit(6)
-	:setUseCooldown(6)
-	:setBind(17)
-	:setKeySequence()
+	powers.superNova = Power
+		.new("superNova", powerTypes.atk, 40, {
+			icon = "155d055d277.png",
+			x = 288,
+			y = 105
+		})
+		:setDamage(20)
+		:selfDamage(5)
+		:setUseLimit(6)
+		:setUseCooldown(6)
+		:setBind(17)
+		:setKeySequence()
 
 -- Level 50
-powers.hulkSmash = Power
-	.new("hulkSmash", powerTypes.atk, 50, {
-		icon = "155d055e49f.png",
-		x = 295,
-		y = 105
-	})
-	:setDamage(20)
-	:setUseLimit(10)
-	:setUseCooldown(8)
-	:setBind(3)
-	:setKeySequence({3, 3})
+	powers.hulkSmash = Power
+		.new("hulkSmash", powerTypes.atk, 50, {
+			icon = "155d055e49f.png",
+			x = 295,
+			y = 105
+		})
+		:setDamage(20)
+		:setUseLimit(10)
+		:setUseCooldown(8)
+		:setBind(3)
+		:setKeySequence({3, 3})
 
-powers.deathHug = Power
-	.new("deathHug", powerTypes.atk, 50, {
-		icon = "155d0566680.png",
-		x = 295,
-		y = 105
-	})
-	:setUseLimit(1)
-	:setUseCooldown(15)
+	powers.deathHug = Power
+		.new("deathHug", powerTypes.atk, 50, {
+			icon = "155d0566680.png",
+			x = 295,
+			y = 105
+		})
+		:setUseLimit(1)
+		:setUseCooldown(15)
 
 -- Level 60
-powers.anomaly = Power
-	.new("anomaly", powerTypes.divine, 60, {
-		icon = "155d05645e0.png",
-		x = 270,
-		y = 130
-	})
-	:setUseLimit(1)
-	:setUseCooldown(10)
+	powers.anomaly = Power
+		.new("anomaly", powerTypes.divine, 60, {
+			icon = "155d05645e0.png",
+			x = 270,
+			y = 130
+		})
+		:setUseLimit(1)
+		:setUseCooldown(10)
 
 -- Level 70
-powers.deathRay = Power
-	.new("deathRay", powerTypes.atk, 70, {
-		icon = "155d05633dc.png",
-		x = 270,
-		y = 140
-	})
-	:setDamage(50)
-	:selfDamage(10)
-	:setUseLimit(1)
-	:setUseCooldown(10)
-	:setBind(string.byte('P'))
-	:setKeySequence()
+	powers.deathRay = Power
+		.new("deathRay", powerTypes.atk, 70, {
+			icon = "155d05633dc.png",
+			x = 270,
+			y = 140
+		})
+		:setDamage(50)
+		:selfDamage(10)
+		:setUseLimit(1)
+		:setUseCooldown(10)
+		:setBind(string.byte('P'))
+		:setKeySequence()

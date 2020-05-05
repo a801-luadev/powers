@@ -6,9 +6,10 @@ local movePlayer      = tfm.exec.movePlayer
 local removeObject    = tfm.exec.removeObject
 
 -- Mathematics
-local rad = math.rad
-local sin = math.sin
-local cos = math.cos
+local cos    = math.cos
+local rad    = math.rad
+local random = math.random
+local sin    = math.sin
 
 -- Others
 local time   = os.time
