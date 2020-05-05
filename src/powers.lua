@@ -7,63 +7,74 @@ local powerTypes = {
 local powers = { }
 
 -- Level 0
-powers.lightSpeed = Power
-	.new("lightSpeed", powerTypes.def, 0, {
-		icon = "155d0565587.png",
-		x = 275,
-		y = 108
-	})
-	:setUseCooldown(1.5)
-	:setBind(0, 2)
-	:setKeySequence({ 0, 0 }, { 2, 2 })
-	:setEffect(function(playerName, x, y, isFacingRight)
-		-- Move players
-		local direction = (isFacingRight and 30 or -30)
-		for playerName in next, getPlayersOnFilter(playerName, inRectangle, x, y - 60, 255, 120,
-			isFacingRight) do
-			movePlayer(playerName, 0, 0, true, direction)
-		end
-
-		-- Move player
-		movePlayer(playerName, x + (isFacingRight and 255 or -255), y)
-
-		-- Particles
-		direction = (isFacingRight and 15 or -15)
+do
+	local wind = function(x, y, direction)
 		for i = 1, 6, (isLowQuality and 1.5 or 1) do
-			displayParticle(35, x, y, direction, i*(i < 4 and -1 or 1))
+			displayParticle(35, x, y, direction, i * (i < 4 and -1 or 1))
 		end
-	end)
+	end
 
-powers.ray = Power
-	.new("ray", powerTypes.atk, 0, {
-		icon = "155d0567651.png",
-		x = 265,
-		y = 125
-	})
-	:setDamage(5)
-	:setUseCooldown(1)
-	:setBind(string.byte(' '))
-	:setKeySequence()
-	:setEffect(function(playerName, x, y, isFacingRight)
-		local direction = (isFacingRight and 1 or -1)
-		y = y - 10
+	powers.lightSpeed = Power
+		.new("lightSpeed", powerTypes.def, 0, {
+			icon = "155d0565587.png",
+			x = 275,
+			y = 108
+		})
+		:setUseCooldown(1.5)
+		:setBind(0, 2)
+		:setKeySequence({ 0, 0 }, { 2, 2 })
+		:setEffect(function(playerName, x, y, isFacingRight)
+			-- Move player
+			movePlayer(playerName, x + (isFacingRight and 255 or -255), y)
 
-		-- Particles
-		local xSpeed = .2*direction
-		local xAcceleration = .3*direction
+			-- Move players
+			local direction = (isFacingRight and 30 or -30)
+			for playerName in next, getPlayersOnFilter(playerName, inRectangle, x, y - 60, 255, 120,
+				isFacingRight) do
+				movePlayer(playerName, 0, 0, true, direction)
+			end
+
+			-- Particles
+			wind(x, y, (isFacingRight and 15 or -15))
+		end)
+end
+
+do
+	local beam = function(x, y, direction)
+		local xSpeed = .2 * direction
+		local xAcceleration = .3 * direction
 		local r = 10
 		for i = 1, 10, (isLowQuality and 2.5 or 1) do
 			r = r * .75
 			displayParticle(9, x - (-30 + i + r)*direction, y, i*xSpeed, 0, xAcceleration)
 		end
+	end
 
-		-- Collision
-		timer.start(removeObject, 6000, 1,
-			addShamanObject(6000, x + 40*direction, y, 0, 9*direction))
+	powers.ray = Power
+		.new("ray", powerTypes.atk, 0, {
+			icon = "155d0567651.png",
+			x = 265,
+			y = 125
+		})
+		:setDamage(5)
+		:setUseCooldown(1)
+		:setBind(string.byte(' '))
+		:setKeySequence()
+		:setEffect(function(playerName, x, y, isFacingRight)
+			local direction = (isFacingRight and 1 or -1)
+			y = y - 10
 
-		-- Damage
-		return inRectangle, x, y - 10, 120, 40, isFacingRight
-	end)
+			-- Particles
+			beam(x, y, direction)
+
+			-- Collision
+			timer.start(removeObject, 6000, 1,
+				addShamanObject(6000, x + 40*direction, y, 0, 9 * direction))
+
+			-- Damage
+			return inRectangle, x, y - 10, 120, 40, isFacingRight
+		end)
+end
 
 -- Level 10
 do
@@ -74,15 +85,13 @@ do
 	local spiral = function(x, y, angle)
 		angle = rad(angle)
 
-		local particleId, auxSpeed, auxRad = 0
+		local auxSpeed, auxRad = 0
 		for i = 1, 40, (isLowQuality and 2 or 1) do
 			auxSpeed = i * .1
 
-			particleId = particleId%totalParticles + 1
-
 			auxRad = angle + auxSpeedRad*i
 
-			displayParticle(particles[particleId], x, y, auxSpeed * -cos(auxRad),
+			displayParticle(particles[(i%totalParticles + 1)], x, y, auxSpeed * cos(auxRad),
 				auxSpeed * sin(auxRad))
 		end
 	end
@@ -100,44 +109,132 @@ do
 			local direction = (isFacingRight and 200 or -200)
 
 			-- Move player
-			movePlayer(playerName, x + direction, y, false, 0, -50, true)
+			movePlayer(playerName, x + direction, y, false, 0, -50, false)
 
 			-- Particles
-			spiral(x, y, 180)
+			spiral(x, y, 270)
 			spiral(x + direction, y, 90)
 		end)
 end
 
-powers.doubleJump = Power
-	.new("doubleJump", powerTypes.def, 10, {
-		icon = "155d0560b19.png",
-		x = 310,
-		y = 110
-	})
-	:setUseCooldown(3)
-	:setBind(1)
-	:setKeySequence({ 1, 1 })
+do
+	local particles = { 2, 11, 2 }
+	local totalParticles = #particles
+
+	powers.doubleJump = Power
+		.new("doubleJump", powerTypes.def, 10, {
+			icon = "155d0560b19.png",
+			x = 310,
+			y = 110
+		})
+		:setUseCooldown(3)
+		:setBind(1)
+		:setKeySequence({ 1, 1 })
+		:setEffect(function(playerName, x, y, isFacingRight)
+			-- Move player
+			movePlayer(playerName, 0, 0, true, 0 -50, false)
+
+			-- Particles
+			for i = 1, 10, (isLowQuality and 2 or 1) do
+				displayParticle(particles[(i%totalParticles + 1)], x + cos(i)*10, y, 0, -i * .3)
+			end
+		end)
+end
 
 -- Level 20
-powers.helix = Power
-	.new("helix", powerTypes.def, 20, {
-		icon = "155d056201e.png",
-		x = 300,
-		y = 105
-	})
-	:setUseCooldown(2.5)
-	:setBind(16)
-	:setKeySequence()
+do
+	local particles = { 2, 0, 0, 2 }
+	local totalParticles = #particles
 
-powers.dome = Power
-	.new("dome", powerTypes.atk, 20, {
-		icon = "155d05689b8.png",
-		x = 295,
-		y = 105
-	})
-	:setDamage(5)
-	:setUseLimit(15)
-	:setUseCooldown(4)
+	local auxSpeedRad = rad(18)
+	local spiral = function(x, y, angle, direction)
+		angle = rad(angle)
+
+		local xAcceleration = .4 * direction
+		local yAcceleration = -.2
+
+		local auxXSpeed, auxYSpeed, auxCosRad, auxSinRad = 0, 0
+		for i = 1, 40, (isLowQuality and 2 or 1) do
+			auxYSpeed = i * .1
+			auxXSpeed = auxYSpeed * direction
+
+			auxCosRad = angle + auxSpeedRad*i
+			auxSinRad = angle - auxSpeedRad*i
+
+			displayParticle(particles[(i%totalParticles + 1)], x + i*direction, y - i,
+				auxXSpeed * cos(auxCosRad), auxYSpeed * sin(auxSinRad), xAcceleration,
+				yAcceleration)
+		end
+	end
+
+	powers.helix = Power
+		.new("helix", powerTypes.def, 20, {
+			icon = "155d056201e.png",
+			x = 300,
+			y = 105
+		})
+		:setUseCooldown(2.5)
+		:setBind(16)
+		:setKeySequence()
+		:setEffect(function(playerName, x, y, isFacingRight)
+			local direction = (isFacingRight and 1 or -1)
+
+			-- Move player
+			movePlayer(playerName, 0, 0, true, 100 * direction, -115, false)
+
+			-- Particles
+			spiral(x, y, 200, direction)
+		end)
+end
+
+do
+	local circle = function(x, y, dimension)
+		local xPos, yPos
+		for i = 90, 110, (isLowQuality and 1.75 or 1) do
+			xPos = cos(i) * dimension
+			yPos = sin(i) * dimension
+			displayParticle(2, x + xPos, y + yPos)
+		end
+
+		local yTop = y - dimension
+		local yBottom = y + dimension
+
+		local xLeft = x - dimension
+		local xRight = x + dimension
+
+		dimension = dimension / 100
+
+		local bottomRight, topLeft
+		for i = 1, 5, (isLowQuality and 2 or 1) do
+			bottomRight = i * dimension
+			topLeft = -i * dimension
+			displayParticle(11, x, yTop, 0, bottomRight)
+			displayParticle(11, x, yBottom, 0, topLeft)
+			displayParticle(11, xLeft, y, bottomRight)
+			displayParticle(11, xRight, y, topLeft)
+		end
+	end
+
+	powers.dome = Power
+		.new("dome", powerTypes.atk, 20, {
+			icon = "155d05689b8.png",
+			x = 295,
+			y = 105
+			})
+		:setDamage(5)
+		:setUseLimit(15)
+		:setUseCooldown(4)
+		:setEffect(function(playerName, x, y, isFacingRight)
+			local dimension = 80
+
+			-- Particles
+			circle(x, y, dimension)
+
+			-- Damage
+			explosion(x, y, -40, dimension)
+			return pythagoras, x, y, dimension
+		end)
+end
 
 -- Level 30
 powers.lightning = Power

@@ -35,6 +35,15 @@ local inRectangle = function(x, y, rx, rw, ry, rh, rightDirection)
 	) and (y >= ry and y <= (ry + rh))
 end
 
+local pythagoras = function(x, y, cx, cy, cr)
+	x = x - cx
+	x = x * x
+	y = y - cy
+	y = y * y
+	cr = cr * cr
+	return x + y < cr
+end
+
 local getPlayersOnFilter = function(except, filter, ...)
 	local data = { }
 
@@ -57,7 +66,7 @@ local damage = function(playerName, damage, _cache)
 end
 
 local damagePlayers = function(except, damage, filter, x, y, ...)
-	for name, cache in next, getPlayersOnFilter(except, filter, ...) do
+	for name, cache in next, getPlayersOnFilter(except, filter, x, y, ...) do
 		damage(name, damage, cache)
 	end
 end
