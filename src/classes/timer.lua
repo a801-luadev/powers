@@ -2,21 +2,19 @@ local timer
 do
 	timer = { }
 
-	timer.start = function(callback, ms, times, args)
+	timer.start = function(callback, ms, times, ...)
 		local t = timer._timers
 		t._count = t._count + 1
 
 		t[t._count] = {
 			id = t._count,
 			callback = callback,
-			args = args,
+			args = { ... },
 			defaultMilliseconds = ms,
 			milliseconds = ms,
 			times = times
 		}
-		if type(args) == "table" then
-			args.self = t[t._count]
-		end
+		args.self = t[t._count]
 
 		return t._count
 	end
@@ -40,7 +38,7 @@ do
 					t.milliseconds = t.defaultMilliseconds
 					t.times = t.times - 1
 
-					t.callback(t.args)
+					t.callback(unpack(t.args))
 
 					if t.times == 0 then
 						timer.delete(i)

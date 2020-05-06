@@ -60,7 +60,7 @@ do
 		:setUseCooldown(1)
 		:setBind(string.byte(' '))
 		:setKeySequence()
-		:setEffect(function(playerName, x, y, isFacingRight)
+		:setEffect(function(_, x, y, isFacingRight)
 			local direction = (isFacingRight and 1 or -1)
 			y = y - 10
 
@@ -136,7 +136,7 @@ do
 		:setUseCooldown(3)
 		:setBind(1)
 		:setKeySequence({ 1, 1 })
-		:setEffect(function(playerName, x, y, isFacingRight)
+		:setEffect(function(playerName, x, y)
 			-- Move player
 			movePlayer(playerName, 0, 0, true, 0 -50, false)
 
@@ -228,7 +228,7 @@ do
 		:setDamage(5)
 		:setUseLimit(15)
 		:setUseCooldown(4)
-		:setEffect(function(playerName, x, y, isFacingRight)
+		:setEffect(function(_, x, y)
 			local dimension = 80
 
 			-- Particles
@@ -272,7 +272,7 @@ do
 		:setUseLimit(10)
 		:setUseCooldown(5)
 		:setBind()
-		:setEffect(function(playerName, x, y, isFacingRight)
+		:setEffect(function(_, x, y)
 			-- Particles
 			lightning(x, y)
 
@@ -322,7 +322,7 @@ do
 		:setUseCooldown(6)
 		:setBind(17)
 		:setKeySequence()
-		:setEffect(function(playerName, x, y, isFacingRight)
+		:setEffect(function(_, x, y, isFacingRight)
 			local direction = (isFacingRight and 50 or -50)
 			x = x + direction
 			y = y + direction
@@ -337,6 +337,19 @@ do
 end
 
 -- Level 50
+do
+	local smashDamage = function(playerName)
+		local rand = random(50, 100)
+		movePlayer(playerName, 0, 0, true, 0, -rand, true)
+		return rand > 69
+	end
+
+	local dust = function(x, y)
+		for i = 1, 10, (isLowQuality and 2 or 10) do
+			displayParticle(3, x + cos(i) * 100, y + random(-30, 30))
+		end
+	end
+
 	powers.hulkSmash = Power
 		.new("hulkSmash", powerTypes.atk, 50, {
 			icon = "155d055e49f.png",
@@ -348,7 +361,22 @@ end
 		:setUseCooldown(8)
 		:setBind(3)
 		:setKeySequence({3, 3})
+		:setEffect(function(playerName, x, y, _, self)
+			-- Super jump
+			movePlayer(playerName, 0, 0, true, 0, -110, true)
+			-- Super smash
+			timer.start(movePlayer, 500, 1, playerName, 0, 0, true, 0, 400, false)
+			-- Damage
+			timer.start(self.damagePlayers, 800, 1, self, playerName, { smashDamage, inRectangle,
+				x - 100, y - 60, 200, 120, true }, damagePlayersWithAction)
+			-- Particles
+			timer.start(dust, 800, 1)
 
+			return false -- Damage is performed in effect
+		end)
+end
+
+do
 	powers.deathHug = Power
 		.new("deathHug", powerTypes.atk, 50, {
 			icon = "155d0566680.png",
@@ -357,6 +385,10 @@ end
 		})
 		:setUseLimit(1)
 		:setUseCooldown(15)
+		:setEffect(function()
+
+		end)
+end
 
 -- Level 60
 	powers.anomaly = Power

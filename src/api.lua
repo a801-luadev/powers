@@ -70,3 +70,11 @@ local damagePlayers = function(except, damage, filter, x, y, ...)
 		damage(name, damage, cache)
 	end
 end
+
+local damagePlayersWithAction = function(except, damage, action, filter, x, y, ...)
+	for name, cache in next, getPlayersOnFilter(except, filter, x, y, ...) do
+		if action(name) then
+			damage(name, damage, cache)
+		end
+	end
+end

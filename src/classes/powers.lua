@@ -83,6 +83,12 @@ do
 		}
 	end
 
+	Power.damagePlayers = function(self, playerName, args, _method)
+		if self.damage then
+			(_method or damagePlayers)(playerName, self.damage, unpack(args))
+		end
+	end
+
 	Power.trigger = function(self, playerName, _cache, _time, _x, _y)
 		_cache = _cache or playerCache[playerName]
 
@@ -103,16 +109,15 @@ do
 			_x, _y = playerData.x, playerData.y
 		end
 
-		local args
 		if self.effect then
-			args = { self.effect(playerName, _x, _y, _cache.isFacingRight) }
-			if self.damage then
-				damagePlayers(playerName, self.damage, unpack(args))
+			local args = { self.effect(playerName, _x, _y, _cache.isFacingRight, self) }
+			if args[1] then -- return false to perform the damage inside the effect
+				self:damagePlayers(playerName, args)
 			end
 		end
 
 		if self.selfDamage then
-			damage(playerName, self.selfDamage, _cache)
+			damage(playerName, self.selfDamage, cache)
 		end
 
 		return true
