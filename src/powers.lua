@@ -385,7 +385,7 @@ do
 		})
 		:setUseLimit(1)
 		:setUseCooldown(15)
-		:setEffect(function()
+		:setEffect(function(playerName, x, y, isFacingRight, self, cache)
 
 		end)
 end

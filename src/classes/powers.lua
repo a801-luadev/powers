@@ -110,14 +110,14 @@ do
 		end
 
 		if self.effect then
-			local args = { self.effect(playerName, _x, _y, _cache.isFacingRight, self) }
+			local args = { self.effect(playerName, _x, _y, _cache.isFacingRight, self, _cache) }
 			if args[1] then -- return false to perform the damage inside the effect
 				self:damagePlayers(playerName, args)
 			end
 		end
 
 		if self.selfDamage then
-			damage(playerName, self.selfDamage, cache)
+			damage(playerName, self.selfDamage, _cache)
 		end
 
 		return true
