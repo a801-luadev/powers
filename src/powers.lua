@@ -247,9 +247,17 @@ do
 
 	local lightning = function(x, y)
 		local yPos, rand = 0
+
+		local randMin, randMax
+		if isLowQuality then
+			randMin, randMax = 5, 7
+		else
+			randMin, randMax = 3, 5
+		end
+
 		local init = random(500)
-		for i = init, init + 125, (isLowQuality and 10 or 5) do
-			yPos = yPos + random(3, 5)
+		for i = init, init + 125, randMax do
+			yPos = yPos + random(randMin, randMax)
 			displayParticle(particles[i%totalParticles + 1], x + cos(i)*random(3, 6), y + yPos)
 		end
 	end
