@@ -372,21 +372,7 @@ do
 			-- Particles
 			timer.start(dust, 800, 1)
 
-			return false -- Damage is performed in effect
-		end)
-end
-
-do
-	powers.deathHug = Power
-		.new("deathHug", powerTypes.atk, 50, {
-			icon = "155d0566680.png",
-			x = 295,
-			y = 105
-		})
-		:setUseLimit(1)
-		:setUseCooldown(15)
-		:setEffect(function(playerName, x, y, isFacingRight, self, cache)
-
+			return false
 		end)
 end
 

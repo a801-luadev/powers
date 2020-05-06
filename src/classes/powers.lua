@@ -89,7 +89,7 @@ do
 		end
 	end
 
-	Power.trigger = function(self, playerName, _cache, _time, _x, _y)
+	Power.trigger = function(self, playerName, _cache, _time, _x, _y, _ignorePosition, ...)
 		_cache = _cache or playerCache[playerName]
 
 		local powers = _cache.powers[self.name]
@@ -104,13 +104,15 @@ do
 
 		powers.remainingUses = powers.remainingUses - 1
 
-		if not _x then
+		if not (_ignorePosition or _x) then
 			local playerData = tfm.get.room.playerList[playerName]
 			_x, _y = playerData.x, playerData.y
 		end
 
 		if self.effect then
-			local args = { self.effect(playerName, _x, _y, _cache.isFacingRight, self, _cache) }
+			local args = {
+				self.effect(playerName, _x, _y, _cache.isFacingRight, self, _cache, ...)
+			}
 			if args[1] then -- return false to perform the damage inside the effect
 				self:damagePlayers(playerName, args)
 			end
