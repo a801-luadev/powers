@@ -248,7 +248,7 @@ do
 	local lightning = function(x, y)
 		local yPos, rand = 0
 		local init = random(500)
-		for i = init, init + 125, 5 do
+		for i = init, init + 125, (isLowQuality and 10 or 5) do
 			yPos = yPos + random(3, 5)
 			displayParticle(particles[i%totalParticles + 1], x + cos(i)*random(3, 6), y + yPos)
 		end
@@ -276,6 +276,32 @@ do
 end
 
 -- Level 40
+do
+	local auxSpeedRad = rad(18)
+	local doubleSpiral = function(x, y, xAngleRight, xAngleLeft, yAngle)
+		xAngleRight = rad(xAngleRight)
+		xAngleLeft = rad(xAngleLeft)
+		yAngle = rad(yAngle)
+
+		local auxSpeed, auxCosRadLeft, auxCosRadRight, auxSinRad = 0
+		local particle
+
+		for i = 1, 38, (isLowQuality and 4 or 2) do
+			auxSpeed = i * .1
+
+			auxCosRadRight = xAngleRight + auxSpeedRad*i
+			auxCosRadLeft = xAngleLeft - auxSpeedRad*i
+
+			auxSinRad = yAngle - auxSpeedRad*i
+			auxSinRad = auxSpeed * sin(auxSinRad)
+
+			particle = (i < 3 and 13 or i < 20 and 11 or 2)
+
+			displayParticle(particle, x, y, auxSpeed * cos(auxCosRadRight), auxSinRad)
+			displayParticle(particle, x, y, auxSpeed * cos(auxCosRadLeft), auxSinRad)
+		end
+	end
+
 	powers.superNova = Power
 		.new("superNova", powerTypes.atk, 40, {
 			icon = "155d055d277.png",
@@ -288,6 +314,19 @@ end
 		:setUseCooldown(6)
 		:setBind(17)
 		:setKeySequence()
+		:setEffect(function(playerName, x, y, isFacingRight)
+			local direction = (isFacingRight and 50 or -50)
+			x = x + direction
+			y = y + direction
+
+			-- Particles
+			doubleSpiral(x, y, 120, 60, 120)
+
+			-- Damage
+			explosion(x, y, 50, 110)
+			return pythagoras, x, y, 70
+		end)
+end
 
 -- Level 50
 	powers.hulkSmash = Power
