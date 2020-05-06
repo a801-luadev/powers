@@ -3,7 +3,8 @@ eventNewPlayer = function(playerName)
 		playerCache[playerName] = {
 			health = 0,
 			isFacingRight = true,
-			powers = { }
+			powers = { },
+			extraHealth = 0
 		}
 	end
 

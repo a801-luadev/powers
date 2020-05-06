@@ -2,8 +2,8 @@ local Power = { }
 do
 	Power.__index = Powers
 
-	Power.new = function(name, type, level, imageData)
-		return setmetatable({
+	Power.new = function(name, type, level, imageData, extraData, resetableData)
+		local self = {
 			name = name,
 			type = type,
 			level = level,
@@ -14,15 +14,25 @@ do
 			damage = nil,
 			selfDamage = nil,
 
-			useLimit = -1,
+			defaultUseLimit = (type == powerType.divine and 1 or -1),
+			useLimit = nil,
 			useCooldown = 1000,
 
 			imageData = nil,
 
 			bindKeys = nil,
 			keySequence = nil,
-			lenKeySequence = nil
-		}, Power)
+			lenKeySequence = nil,
+
+			resetableData = resetableData
+		}
+		self.useLimit = self.defaultUseLimit
+
+		if extraData then
+			table_add(self, extraData)
+		end
+
+		return setmetatable(self, Power)
 	end
 
 	Power.setEffect = function(self, f)
@@ -42,6 +52,7 @@ do
 
 	Power.setUseLimit = function(self, limit)
 		self.useLimit = limit
+		self.defaultUseLimit = limit
 		return self
 	end
 
@@ -76,8 +87,16 @@ do
 		return self
 	end
 
+	Power.reset = function(self)
+		self.useLimit = self.defaultUseLimit
+		if self.resetableData then
+			table_add(self, self.resetableData, true)
+		end
+		return self
+	end
+
 	Power.getNewPlayerData = function(self, currentTime)
-		return {
+		return self.type ~= powerType.divine and {
 			remainingUses = self.useLimit,
 			cooldown = currentTime + self.useCooldown
 		}
@@ -87,22 +106,28 @@ do
 		if self.damage then
 			(_method or damagePlayers)(playerName, self.damage, unpack(args))
 		end
+		return self
 	end
 
-	Power.trigger = function(self, playerName, _cache, _time, _x, _y, _ignorePosition, ...)
-		_cache = _cache or playerCache[playerName]
-
-		local powers = _cache.powers[self.name]
-		if powers.remainingUses <= 0 then
-			return false
-		end
+	local canTrigger = function(self, src, _time)
+		local power = src[self.name]
+		if power.remainingUses <= 0 then return end
 
 		_time = _time or time()
-		if powers.cooldown > _time then
+		if power.cooldown > _time then return end
+
+		power.remainingUses = power.remainingUses - 1
+
+		return power
+	end
+
+	Power.triggerRegular = function(self, playerName, _cache, _time, _x, _y, _ignorePosition, ...)
+		_cache = _cache or playerCache[playerName]
+
+		local power = canTrigger(self, _cache.powers, _time)
+		if not power then
 			return false
 		end
-
-		powers.remainingUses = powers.remainingUses - 1
 
 		if not (_ignorePosition or _x) then
 			local playerData = tfm.get.room.playerList[playerName]
@@ -123,5 +148,26 @@ do
 		end
 
 		return true
+	end
+
+	Power.triggerDivine = function(self, _time, _x, _y)
+		local power = canTrigger(self, powers, _time)
+		if not power then
+			return false
+		end
+
+		if self.effect then
+			self.effect(self, _x, _y, ...)
+		end
+
+		return true
+	end
+
+	Power.trigger = function(self, ...)
+		if self.type == powerType.divine then
+			return self:triggerDivine(...)
+		else
+			return self:triggerRegular(...)
+		end
 	end
 end

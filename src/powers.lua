@@ -1,9 +1,3 @@
-local powerTypes = {
-	def = 0,
-	atk = 1,
-	divine = 2
-}
-
 local powers = { }
 
 -- Level 0
@@ -15,7 +9,7 @@ do
 	end
 
 	powers.lightSpeed = Power
-		.new("lightSpeed", powerTypes.def, 0, {
+		.new("lightSpeed", powerType.def, 0, {
 			icon = "155d0565587.png",
 			x = 275,
 			y = 108
@@ -29,9 +23,9 @@ do
 
 			-- Move players
 			local direction = (isFacingRight and 30 or -30)
-			for playerName in next, getPlayersOnFilter(playerName, inRectangle, x, y - 60, 255, 120,
+			for name in next, getPlayersOnFilter(playerName, inRectangle, x, y - 60, 255, 120,
 				isFacingRight) do
-				movePlayer(playerName, 0, 0, true, direction)
+				movePlayer(name, 0, 0, true, direction)
 			end
 
 			-- Particles
@@ -51,7 +45,7 @@ do
 	end
 
 	powers.ray = Power
-		.new("ray", powerTypes.atk, 0, {
+		.new("ray", powerType.atk, 0, {
 			icon = "155d0567651.png",
 			x = 265,
 			y = 125
@@ -68,8 +62,8 @@ do
 			beam(x, y, direction)
 
 			-- Collision
-			timer.start(removeObject, 6000, 1,
-				addShamanObject(6000, x + 40*direction, y, 0, 9 * direction))
+			timer.start(removeObject, 6000, 1, addShamanObject(6000, x + 40*direction, y, 0,
+				9 * direction))
 
 			-- Damage
 			return inRectangle, x, y - 10, 120, 40, isFacingRight
@@ -97,7 +91,7 @@ do
 	end
 
 	powers.wormHole = Power
-		.new("wormHole", powerTypes.def, 10, {
+		.new("wormHole", powerType.def, 10, {
 			icon = "155d055f8d0.png",
 			x = 300,
 			y = 105
@@ -128,7 +122,7 @@ do
 	end
 
 	powers.doubleJump = Power
-		.new("doubleJump", powerTypes.def, 10, {
+		.new("doubleJump", powerType.def, 10, {
 			icon = "155d0560b19.png",
 			x = 310,
 			y = 110
@@ -172,7 +166,7 @@ do
 	end
 
 	powers.helix = Power
-		.new("helix", powerTypes.def, 20, {
+		.new("helix", powerType.def, 20, {
 			icon = "155d056201e.png",
 			x = 300,
 			y = 105
@@ -220,7 +214,7 @@ do
 	end
 
 	powers.dome = Power
-		.new("dome", powerTypes.atk, 20, {
+		.new("dome", powerType.atk, 20, {
 			icon = "155d05689b8.png",
 			x = 295,
 			y = 105
@@ -263,7 +257,7 @@ do
 	end
 
 	powers.lightning = Power
-		.new("lightning", powerTypes.atk, 30, {
+		.new("lightning", powerType.atk, 30, {
 			icon = "155d05699c9.png",
 			x = 325,
 			y = 105
@@ -311,7 +305,7 @@ do
 	end
 
 	powers.superNova = Power
-		.new("superNova", powerTypes.atk, 40, {
+		.new("superNova", powerType.atk, 40, {
 			icon = "155d055d277.png",
 			x = 288,
 			y = 105
@@ -351,7 +345,7 @@ do
 	end
 
 	powers.hulkSmash = Power
-		.new("hulkSmash", powerTypes.atk, 50, {
+		.new("hulkSmash", powerType.atk, 50, {
 			icon = "155d055e49f.png",
 			x = 295,
 			y = 105
@@ -377,18 +371,131 @@ do
 end
 
 -- Level 60
-	powers.anomaly = Power
-		.new("anomaly", powerTypes.divine, 60, {
+do
+	local anomaly = function(self, newItems, timer)
+		if timer.times == 0 then
+			canTriggerPowers = true
+
+			removeTextArea(textAreaId.gravitationalAnomaly)
+
+			for i = 1, self.despawnLen do
+				removeObject(self.despawnObjects[i])
+			end
+			-- It will be reset in the next round, divine powers can only be used once.
+			-- Setting it to nil will avoid creating an unnecessary table, and will call the GC.
+			self.despawnObjects = nil
+
+			local cache
+			for playerName in next, players.alive do
+				cache = playerCache[playerName]
+				if cache.extraHealth > 0 then
+					addExtraHealth(playerName, cache)
+				end
+			end
+		else
+			self.opacity = self.opacity - self.opacityFrame
+
+			-- Prevents clicking
+			addTextArea(textAreaId.gravitationalAnomaly, '', nil, -1500, -1500, 3000, 3000, 1, 1,
+				self.opacity, true)
+
+			-- Spawns random objects
+			for i = 1, newItems do
+				self.despawnObjects[self.despawnLen + i] = addShamanObject(
+					table_random(self.spawnableObjects), random(5, 795), random(30, 380),
+					random(360), random(-7, 7), random(-5, 5))
+			end
+			self.despawnLen = self.despawnLen + newItems
+
+			-- Explosion
+			local expX, expY, expR = random(15, 785), random(30, 380), random(150, 500)
+			explosion(expX, expY, random(-40, 40), expR)
+
+			-- Extra life
+			if random(8) == random(8) then
+				local rand
+				for name, cache in next, getPlayersOnFilter(nil, pythagoras, expX, expY, expR) do
+					rand = random(1, self.totalPlusIds)
+					cache.extraHealth = cache.extraHealth + self.availableHealthPoints[rand]
+					displayParticle(self.availablePlusIds[rand], expX, expY, 0, 0, 0, 0, name)
+				end
+			end
+		end
+	end
+
+	powers.gravitationalAnomaly = Power
+		.new("gravitationalAnomaly", powerType.divine, 60, {
 			icon = "155d05645e0.png",
 			x = 270,
 			y = 130
+		}, {
+			spawnableObjects = {
+				enum_shamanObject.littleBox,
+				enum_shamanObject.box,
+				enum_shamanObject.littleBoard,
+				enum_shamanObject.board,
+				enum_shamanObject.ball,
+				enum_shamanObject.trampoline,
+				enum_shamanObject.anvil,
+				enum_shamanObject.cannon,
+				enum_shamanObject.bomb,
+				enum_shamanObject.balloon,
+				enum_shamanObject.rune,
+				enum_shamanObject.chicken,
+				enum_shamanObject.snowBall,
+				enum_shamanObject.cupidonArrow,
+				enum_shamanObject.apple,
+				enum_shamanObject.sheep,
+				enum_shamanObject.littleBoardIce,
+				enum_shamanObject.littleBoardChocolate,
+				enum_shamanObject.iceCube,
+				enum_shamanObject.cloud,
+				enum_shamanObject.bubble,
+				enum_shamanObject.tinyBoard,
+				enum_shamanObject.companionCube,
+				enum_shamanObject.stableRune,
+				enum_shamanObject.balloonFish,
+				enum_shamanObject.longBoard,
+				enum_shamanObject.triangle,
+				enum_shamanObject.sBoard,
+				enum_shamanObject.rock,
+				enum_shamanObject.pumpkinBall,
+				enum_shamanObject.tombstone,
+				enum_shamanObject.paperBall,
+				96, -- Mouse cube
+				97 -- Energy orb
+			},
+			availablePlusIds = {
+				enum_particle.plus1,
+				enum_particle.plus10,
+				enum_particle.plus12,
+				enum_particle.plus14,
+				enum_particle.plus16
+			},
+			availableHealthPoints = {
+				[1] = 1,
+				[2] = 10,
+				[3] = 12,
+				[4] = 14,
+				[5] = 16
+			},
+			totalPlusIds = 5,
+			opacityFrame = 0.05
+		}, {
+			opacity = 1,
+			despawnObjects = { },
+			despawnLen = 0
 		})
-		:setUseLimit(1)
-		:setUseCooldown(10)
+		:setUseCooldown(25)
+		:setEffect(function(self)
+			canTriggerPowers = false
+			timer.start(anomaly, 500, 1/self.opacityFrame * 500, self, (isLowQuality and 1 or 3))
+		end)
+end
 
 -- Level 70
 	powers.deathRay = Power
-		.new("deathRay", powerTypes.atk, 70, {
+		.new("deathRay", powerType.atk, 70, {
 			icon = "155d05633dc.png",
 			x = 270,
 			y = 140

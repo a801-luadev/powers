@@ -15,17 +15,33 @@ local players = {
 local players_insert = function(where, playerName)
 	if not where[playerName] then
 		where._count = where._count + 1
-		where[where._count] = playerName
-		where[playerName] = where._count
+		--where[where._count] = playerName
+		where[playerName] = playerName--where._count
 	end
 end
 
 local players_remove = function(where, playerName)
 	if where[playerName] then
 		where._count = where._count - 1
-		where[where[playerName]] = nil
+		--where[where[playerName]] = nil
 		where[playerName] = nil
 	end
+end
+
+local table_add
+table_add = function(src, tbl, deep)
+	for k, v in next, tbl do
+		if deep and type(v) == "table" then
+			src[k] = { }
+			table_add(src[k], v, deep)
+		else
+			src[k] = v
+		end
+	end
+end
+
+local table_random = function(tbl)
+	return tbl[random(#tbl)]
 end
 
 local inRectangle = function(x, y, rx, rw, ry, rh, rightDirection)
@@ -77,4 +93,8 @@ local damagePlayersWithAction = function(except, damage, action, filter, x, y, .
 			damage(name, damage, cache)
 		end
 	end
+end
+
+local addExtraHealth = function(playerName, cache)
+
 end

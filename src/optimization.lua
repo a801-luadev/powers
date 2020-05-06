@@ -5,6 +5,9 @@ local explosion       = tfm.exec.explosion
 local movePlayer      = tfm.exec.movePlayer
 local removeObject    = tfm.exec.removeObject
 
+local addTextArea = ui.addTextArea
+local removeTextArea = ui.removeTextArea
+
 -- Mathematics
 local cos    = math.cos
 local rad    = math.rad
