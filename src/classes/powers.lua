@@ -109,12 +109,16 @@ do
 		return self
 	end
 
-	local canTrigger = function(self, src, _time)
+	local canTrigger = function(self, src, _time, _playerCache)
 		local power = src[self.name]
 		if power.remainingUses <= 0 then return end
 
 		_time = _time or time()
-		if power.cooldown > _time then return end
+		if power.cooldown > _time or
+			(_playerCache and _playerCache.powerCooldown > _time) then return end
+		if _playerCache then
+			_playerCache.powerCooldown = _time + 200
+		end
 
 		power.remainingUses = power.remainingUses - 1
 
@@ -124,7 +128,7 @@ do
 	Power.triggerRegular = function(self, playerName, _cache, _time, _x, _y, _ignorePosition, ...)
 		_cache = _cache or playerCache[playerName]
 
-		local power = canTrigger(self, _cache.powers, _time)
+		local power = canTrigger(self, _cache.powers, _time, _cache)
 		if not power then
 			return false
 		end

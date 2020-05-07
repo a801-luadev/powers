@@ -4,7 +4,8 @@ eventNewPlayer = function(playerName)
 			health = 0,
 			isFacingRight = true,
 			powers = { },
-			extraHealth = 0
+			extraHealth = 0,
+			powerCooldown = 0
 		}
 	end
 

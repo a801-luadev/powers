@@ -26,8 +26,9 @@ do
 
 			playerName = playerCache[playerName]
 			playerName.health = 100
-			playerName.isFacingRight = true
+			playerName.isFacingRight = not tfm.get.room.mirroredMap
 			playerName.extraHealth = 0
+			playerName.powerCooldown = 0
 
 			playerName = playerName.powers
 			for name, obj in next, powers do
@@ -35,5 +36,7 @@ do
 			end
 		end
 		resetPlayersDefaultSize = false
+
+		removeTextArea(textAreaId.gravitationalAnomaly)
 	end
 end
