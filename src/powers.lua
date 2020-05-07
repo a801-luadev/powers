@@ -494,6 +494,37 @@ do
 end
 
 -- Level 70
+do
+	local ray = function(x, y, width, height, direction)
+		width = width * direction
+
+		local ySin = 0
+		local xPos = x
+		local yPos = 0
+		local xSpeed = 0
+		local ySpeed = 0
+
+		local xDirection = .1 * direction
+
+		for i = 0, 12 do
+			displayParticle(9, xPos, y + yPos, xSpeed, -ySpeed)
+
+			i = i + 1
+			ySin = sin(i)
+			xPos = x + i*width
+			yPos = ySin*height
+			xSpeed = i * xDirection
+			ySpeed = ySin * .55
+
+			displayParticle(2, xPos, y - yPos, xSpeed, ySpeed)
+		end
+
+		xSpeed = width/2 + direction
+		for i = 1, 2 do
+			displayParticle(13, x, y, xSpeed)
+		end
+	end
+
 	powers.deathRay = Power
 		.new("deathRay", powerType.atk, 70, {
 			icon = "155d05633dc.png",
@@ -506,3 +537,11 @@ end
 		:setUseCooldown(10)
 		:setBind(string.byte('P'))
 		:setKeySequence()
+		:setEffect(function(_, x, y, isFacingRight)
+			-- Particles
+			ray(x, y, 10, 8, (isFacingRight and 1 or -1))
+
+			-- Damage
+			return inRectangle, x, y - 40, 170, 80, isFacingRight
+		end)
+end

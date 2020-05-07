@@ -44,7 +44,7 @@ local table_random = function(tbl)
 	return tbl[random(#tbl)]
 end
 
-local inRectangle = function(x, y, rx, rw, ry, rh, rightDirection)
+local inRectangle = function(x, y, rx, ry, rw, rh, rightDirection)
 	return (rightDirection
 		and (x >= rx and x <= (rx + rw))
 		or (x >= (rx - rw) and x <= rx)
