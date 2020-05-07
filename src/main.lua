@@ -11,6 +11,7 @@ local playerCache = { }
 local isLowQuality = false
 local lowQualityCounter = 0
 
-local refreshedTimers = false
+local hasRefreshedTimers = false
 
 local canTriggerPowers = false
+local resetPlayersDefaultSize = false

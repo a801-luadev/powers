@@ -20,6 +20,10 @@ do
 
 		local currentTime = os.time()
 		for playerName in next, players.alive do
+			if resetPlayersDefaultSize then
+				changePlayerSize(playerName, 1)
+			end
+
 			playerName = playerCache[playerName]
 			playerName.health = 100
 			playerName.isFacingRight = true
@@ -30,5 +34,6 @@ do
 				playerName[name] = obj:getNewPlayerData(currentTime)
 			end
 		end
+		resetPlayersDefaultSize = false
 	end
 end

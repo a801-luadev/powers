@@ -531,8 +531,8 @@ do
 			x = 270,
 			y = 140
 		})
-		:setDamage(50)
-		:selfDamage(10)
+		:setDamage(30)
+		:selfDamage(15)
 		:setUseLimit(1)
 		:setUseCooldown(10)
 		:setBind(string.byte('P'))
@@ -543,5 +543,35 @@ do
 
 			-- Damage
 			return inRectangle, x, y - 40, 170, 80, isFacingRight
+		end)
+end
+
+-- Level 80
+do
+	local changeSize = function(self, timer)
+		if timer.times == 0 then
+			for name in next, players.alive do
+				changePlayerSize(name, 1)
+			end
+			resetPlayersDefaultSize = false
+		else
+			for name in next, players.alive do
+				changePlayerSize(name, random(5, 35) / 10)
+			end
+		end
+	end
+
+	powers.changeSize = Power
+		.new("changeSize", powerType.divine, 80, {
+			icon = '',
+			x = 0,
+			y = 0
+		}, {
+			seconds = 10
+		})
+		:setUseCooldown(25)
+		:setEffect(function(self)
+			resetPlayersDefaultSize = true
+			timer.start(changeSize, 500, self.seconds * 1000, self)
 		end)
 end
