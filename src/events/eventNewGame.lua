@@ -7,7 +7,7 @@ do
 		players.dead = { _count = 0 }
 		players.alive = table_copy(players.room)
 
-		refreshedTimers = false
+		hasRefreshedTimers = false
 		canTriggerPowers = false
 
 		timer.start(enablePowersTriggers, 3000, 1)

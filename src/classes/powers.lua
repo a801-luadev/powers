@@ -99,7 +99,7 @@ do
 		return self.type ~= powerType.divine and {
 			remainingUses = self.useLimit,
 			cooldown = currentTime + self.useCooldown
-		}
+		} or nil
 	end
 
 	Power.damagePlayers = function(self, playerName, args, _method)
