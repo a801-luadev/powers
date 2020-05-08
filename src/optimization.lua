@@ -1,4 +1,7 @@
 -- Transformice
+local bindMouse    = system.bindMouse
+local bindKeyboard = system.bindKeyboard
+
 local addShamanObject  = tfm.exec.addShamanObject
 local changePlayerSize = tfm.exec.changePlayerSize
 local displayParticle  = tfm.exec.displayParticle

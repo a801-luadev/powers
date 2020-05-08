@@ -86,6 +86,14 @@ end
 
 -------------------------------------------------
 
+local playerCanTriggerEvent = function(playerName)
+	local data = tfm.get.room.playerList[playerName]
+
+	return canTriggerPowers and not data.isDead
+end
+
+-------------------------------------------------
+
 local getPlayersOnFilter = function(except, filter, ...)
 	local data = { }
 

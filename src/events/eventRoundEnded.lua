@@ -1,10 +1,6 @@
 eventRoundEnded = function()
-	hasTriggeredRoundEnd = true
-
-	if not hasRefreshedTimers then
-		hasRefreshedTimers = true
-		timer.refresh()
-	end
+	canTriggerPowers = false
+	timer.refresh()
 
 	for name, cache in next, playerCache do
 		if resetPlayersDefaultSize then

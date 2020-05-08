@@ -12,7 +12,6 @@ local isLowQuality = false
 local lowQualityCounter = 0
 
 local hasTriggeredRoundEnd = false
-local hasRefreshedTimers = false
 
 local canTriggerPowers = false
 local resetPlayersDefaultSize = false

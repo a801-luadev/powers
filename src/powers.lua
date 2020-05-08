@@ -16,7 +16,7 @@ do
 		})
 		:setUseCooldown(1.5)
 		:setBind(0, 2)
-		:setKeySequence({ 0, 0 }, { 2, 2 })
+		:setKeySequence({ { 0, 0 }, { 2, 2 } })
 		:setEffect(function(playerName, x, y, isFacingRight)
 			-- Move player
 			movePlayer(playerName, x + (isFacingRight and 255 or -255), y)
@@ -53,7 +53,6 @@ do
 		:setDamage(5)
 		:setUseCooldown(1)
 		:setBind(string.byte(' '))
-		:setKeySequence()
 		:setEffect(function(_, x, y, isFacingRight)
 			local direction = (isFacingRight and 1 or -1)
 			y = y - 10
@@ -98,7 +97,7 @@ do
 		})
 		:setUseCooldown(1.5)
 		:setBind(2)
-		:setKeySequence({ 1, 2 })
+		:setKeySequence({ { 1, 2 } })
 		:setEffect(function(playerName, x, y, isFacingRight)
 			local direction = (isFacingRight and 200 or -200)
 
@@ -129,7 +128,7 @@ do
 		})
 		:setUseCooldown(3)
 		:setBind(1)
-		:setKeySequence({ 1, 1 })
+		:setKeySequence({ { 1, 1 } })
 		:setEffect(function(playerName, x, y)
 			-- Move player
 			movePlayer(playerName, 0, 0, true, 0 -50, false)
@@ -172,8 +171,7 @@ do
 			y = 105
 		})
 		:setUseCooldown(2.5)
-		:setBind(16)
-		:setKeySequence()
+		:setBind(16) -- Shift
 		:setEffect(function(playerName, x, y, isFacingRight)
 			local direction = (isFacingRight and 1 or -1)
 
@@ -314,8 +312,7 @@ do
 		:selfDamage(5)
 		:setUseLimit(6)
 		:setUseCooldown(6)
-		:setBind(17)
-		:setKeySequence()
+		:setBind(17) -- Control
 		:setEffect(function(_, x, y, isFacingRight)
 			local direction = (isFacingRight and 50 or -50)
 			x = x + direction
@@ -354,7 +351,7 @@ do
 		:setUseLimit(10)
 		:setUseCooldown(8)
 		:setBind(3)
-		:setKeySequence({3, 3})
+		:setKeySequence({ { 3, 3 } })
 		:setEffect(function(playerName, x, y, _, self)
 			-- Super jump
 			movePlayer(playerName, 0, 0, true, 0, -110, true)
@@ -537,7 +534,7 @@ do
 		:setUseLimit(1)
 		:setUseCooldown(10)
 		:setBind(string.byte('P'))
-		:setKeySequence()
+		--:setKeySequence()
 		:setEffect(function(_, x, y, isFacingRight)
 			-- Particles
 			ray(x, y, 10, 8, (isFacingRight and 1 or -1))

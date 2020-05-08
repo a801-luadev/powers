@@ -9,7 +9,6 @@ do
 		players.alive = table_copy(players.room)
 		players._count.alive = players._count.room
 
-		hasRefreshedTimers = false
 		canTriggerPowers = false
 
 		timer.start(enablePowersTriggers, 3000, 1)

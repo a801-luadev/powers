@@ -6,7 +6,8 @@ eventNewPlayer = function(playerName)
 			powers = { },
 			extraHealth = 0,
 			powerCooldown = 0,
-			soulMate = nil
+			soulMate = nil,
+			keySequence = KeySequence.new()
 		}
 	end
 
@@ -17,7 +18,7 @@ eventNewPlayer = function(playerName)
 
 	for _, power in next, powers do
 		if power.bind then
-			power.bind(playerCache)
+			power:bindControl(playerName)
 		end
 	end
 end

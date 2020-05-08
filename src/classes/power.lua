@@ -9,22 +9,24 @@ do
 			level = level,
 
 			effect = nil,
-			bind = nil,
-
-			damage = nil,
-			selfDamage = nil,
 
 			defaultUseLimit = (type == powerType.divine and 1 or -1),
 			useLimit = nil,
 			useCooldown = 1000,
-			probability = nil,
+			triggerPossibility = nil,
+
+			damage = nil,
+			selfDamage = nil,
+
+			bindControl = nil,
+			keysToBind = nil,
+			totalKeysToBind = nil,
+
+			triggererKey = nil,
+			keySequences = nil,
+			totalKeySequences = nil
 
 			imageData = nil,
-
-			bindKeys = nil,
-			keySequence = nil,
-			lenKeySequence = nil,
-
 			resetableData = resetableData
 		}
 		self.useLimit = self.defaultUseLimit
@@ -62,34 +64,48 @@ do
 		return self
 	end
 
+	local bindClick = function(_, playerName)
+		bindMouse(playerName, true)
+	end
+
+	local bindKeys = function(self, playerName)
+		local keysToBind = self.keysToBind
+		for k = 1, self.totalKeysToBind do
+			bindKeyboard(playerName, keysToBind[k], true, true)
+		end
+	end
+
 	Power.setBind = function(self, ...)
-		if not key then
-			self.bind = system.bindMouse
+		if not ... then
+			self.bindControl = bindClick
 		else
-			self.bindKeys = { ... }
-			local totalKeys = #self.bindKeys
-			self.bind = function(playerName)
-				for k = 1, totalKeys do
-					system.bindKeyboard(playerName, self.bindKeys[k], true)
-				end
-			end
+			local keysToBind = { ... }
+			self.keysToBind = keysToBind
+			self.totalKeysToBind = #keysToBind
+			self.triggererKey = keysToBind[1] -- No keystroke sequence if it is a single key
+
+			self.bindControl = bindKeys
 		end
 		return self
 	end
 
-	Power.setKeySequence = function(self, ...)
-		self.keySequence = (... and { ... } or self.bindKeys)
-		self.lenKeySequence = { _count = #self.keySequence }
+	Power.setKeySequence = function(self, keySequences)
+		self.triggererKey = nil
 
-		for s = 1, self.lenKeySequence._count do
-			self.lenKeySequence[s] = #self.keySequence[s]
+		local totalKeySequences = #keySequences
+		self.totalKeySequences = totalKeySequences
+
+		for i = 1, totalKeySequences do
+			keySequences[i] = KeySequence.new(keySequences[i]):invertQueue()
 		end
+		self.keySequences = keySequences
 
 		return self
 	end
 
-	Power.setProbability = function(self, probability)
-		self.probability = probability
+	Power.setProbability = function(self, triggerPossibility)
+		-- Inverse probability, less means higher chances
+		self.triggerPossibility = triggerPossibility
 		return self
 	end
 
@@ -117,7 +133,7 @@ do
 
 	local canTrigger = function(self, src, _time, _playerCache)
 		local power = src[self.name]
-		if power.remainingUses <= 0 then return end
+		if power.remainingUses == 0 then return end -- x < 0 means infinity
 
 		_time = _time or time()
 		if power.cooldown > _time or
@@ -126,8 +142,8 @@ do
 			_playerCache.powerCooldown = _time + 200
 		end
 
-		if self.probability then
-			if random(self.probability) ~= random(self.probability) then return end
+		if self.triggerPossibility then
+			if random(self.triggerPossibility) ~= random(self.triggerPossibility) then return end
 		end
 
 		power.remainingUses = power.remainingUses - 1
