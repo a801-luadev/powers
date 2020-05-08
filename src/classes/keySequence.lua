@@ -45,22 +45,22 @@ do
 		return self
 	end
 
-	KeySequence.isEqual = function(src, comp)
-		local srcLen = src._count
-		if srcLen < comp._count then -- consider changing < to ~= in the future
+	KeySequence.isEqual = function(self, compKs)
+		local srcLen = self._count
+		if srcLen < compKs._count then -- consider changing < to ~= in the future
 			return false
 		end
 		srcLen = srcLen + 1
 
-		local srcQueue, compQueue = src.queue, comp.queue
-		for i = 1, comp._count do
-			-- Note that comp must be invertQueue'ed
+		local srcQueue, compQueue = self.queue, compKs.queue
+		for i = 1, compKs._count do
+			-- Note that compKs must be invertQueue'ed
 			if compQueue[i] ~= srcQueue[srcLen - i] then
 				return false
 			end
 		end
 
-		src:release()
+		self:release()
 
 		return true
 	end
