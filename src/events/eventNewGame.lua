@@ -4,8 +4,10 @@ do
 	end
 
 	eventNewGame = function()
-		players.dead = { _count = 0 }
+		players.dead = { }
+		players._count.dead = 0
 		players.alive = table_copy(players.room)
+		players._count.alive = players._count.room
 
 		hasRefreshedTimers = false
 		canTriggerPowers = false
@@ -20,15 +22,12 @@ do
 
 		local currentTime = os.time()
 		for playerName in next, players.alive do
-			if resetPlayersDefaultSize then
-				changePlayerSize(playerName, 1)
-			end
-
 			playerName = playerCache[playerName]
 			playerName.health = 100
 			playerName.isFacingRight = not tfm.get.room.mirroredMap
 			playerName.extraHealth = 0
 			playerName.powerCooldown = 0
+			playerName.soulMate = nil
 
 			playerName = playerName.powers
 			for name, obj in next, powers do
@@ -38,5 +37,7 @@ do
 		resetPlayersDefaultSize = false
 
 		removeTextArea(textAreaId.gravitationalAnomaly)
+
+		hasTriggeredRoundEnd = false
 	end
 end

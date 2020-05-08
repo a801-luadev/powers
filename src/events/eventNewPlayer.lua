@@ -5,12 +5,13 @@ eventNewPlayer = function(playerName)
 			isFacingRight = true,
 			powers = { },
 			extraHealth = 0,
-			powerCooldown = 0
+			powerCooldown = 0,
+			soulMate = nil
 		}
 	end
 
-	players_insert(players.room, playerName)
-	players_insert(players.dead, playerName)
+	players_insert("room", playerName)
+	players_insert("dead", playerName)
 
 	tfm.exec.lowerSyncDelay(playerName)
 

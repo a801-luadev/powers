@@ -389,7 +389,7 @@ do
 			for playerName in next, players.alive do
 				cache = playerCache[playerName]
 				if cache.extraHealth > 0 then
-					addExtraHealth(playerName, cache)
+					addHealth(playerName, cache)
 				end
 			end
 		else
@@ -573,5 +573,39 @@ do
 		:setEffect(function(self)
 			resetPlayersDefaultSize = true
 			timer.start(changeSize, 500, self.seconds * 1000, self)
+		end)
+end
+
+-- Level 100
+do
+	powers.raiseOfTheDead = Power
+		.new("raiseOfTheDead", powerType.divine, 100, {
+			icon = '',
+			x = 0,
+			y = 0
+		}, {
+			seconds = 10,
+			playerHealthPoints = 35,
+			minDeadMice = 2
+		})
+		:setUseCooldown(45)
+		:setEffect(function(self)
+			if players._count.dead < self.minDeadMice then return end
+			local deadMice = players.dead
+
+			-- Respawns dead mice
+			local firstPlayer = next(deadMice, nil)
+			local player = firstPlayer
+			local lastName
+
+			while player do
+				respawnPlayer(player)
+				addHealth(player, playerCache[player], self.playerHealthPoints)
+
+				lastPlayer = player
+				player = next(deadMice, player)
+
+				linkMice((player or firstPlayer), lastPlayer, true)
+			end
 		end)
 end

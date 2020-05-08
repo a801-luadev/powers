@@ -1,3 +1,3 @@
 eventPlayerLeft = function(playerName)
-	players_remove(players.room, playerName)
+	players_remove("room", playerName)
 end

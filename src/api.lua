@@ -1,31 +1,36 @@
+local players = {
+	room  = { },
+	alive = { },
+	dead  = { },
+	_count = {
+		room = 0,
+		alive = 0,
+		dead = 0
+	}
+}
+
+local players_insert = function(where, playerName)
+	if not players[where][playerName] then
+		players._count[where] = players._count[where] + 1
+		players[where][playerName] = playerName
+	end
+end
+
+local players_remove = function(where, playerName)
+	if players[where][playerName] then
+		players._count[where] = players._count[where] - 1
+		players[where][playerName] = nil
+	end
+end
+
+-------------------------------------------------
+
 local table_copy = function(list)
 	local out = { }
 	for k, v in next, list do
 		out[k] = v
 	end
 	return out
-end
-
-local players = {
-	room  = { _count = 0 },
-	alive = { _count = 0 },
-	dead  = { _count = 0 }
-}
-
-local players_insert = function(where, playerName)
-	if not where[playerName] then
-		where._count = where._count + 1
-		--where[where._count] = playerName
-		where[playerName] = playerName--where._count
-	end
-end
-
-local players_remove = function(where, playerName)
-	if where[playerName] then
-		where._count = where._count - 1
-		--where[where[playerName]] = nil
-		where[playerName] = nil
-	end
 end
 
 local table_add
@@ -44,6 +49,25 @@ local table_random = function(tbl)
 	return tbl[random(#tbl)]
 end
 
+-------------------------------------------------
+
+do
+	local link = linkMice
+	linkMice = function(p1, p2, linked)
+		if linked then
+			playerCache[p1].soulMate = p2
+			playerCache[p2].soulMate = p1
+		else
+			playerCache[p1].soulMate = nil
+			playerCache[p2].soulMate = nil
+		end
+
+		return link(p1, p2, linked)
+	end
+end
+
+-------------------------------------------------
+
 local inRectangle = function(x, y, rx, ry, rw, rh, rightDirection)
 	return (rightDirection
 		and (x >= rx and x <= (rx + rw))
@@ -59,6 +83,8 @@ local pythagoras = function(x, y, cx, cy, cr)
 	cr = cr * cr
 	return x + y < cr
 end
+
+-------------------------------------------------
 
 local getPlayersOnFilter = function(except, filter, ...)
 	local data = { }
@@ -79,6 +105,8 @@ end
 local damage = function(playerName, damage, _cache)
 	_cache = _cache or playerCache[playerName]
 	_cache.health = _cache.health - damage
+
+	-- TODO
 end
 
 local damagePlayers = function(except, damage, filter, x, y, ...)
@@ -95,6 +123,12 @@ local damagePlayersWithAction = function(except, damage, action, filter, x, y, .
 	end
 end
 
-local addExtraHealth = function(playerName, cache)
+local addHealth = function(playerName, cache, hp)
+	hp = hp or 0
+	if cache.extraHealth > 0 then
+		hp = hp + cache.extraHealth
+		cache.extraHealth = 0
+	end
 
+	-- TODO
 end
