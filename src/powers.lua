@@ -487,6 +487,7 @@ do
 			despawnLen = 0
 		})
 		:setUseCooldown(25)
+		:setProbability(60)
 		:setEffect(function(self)
 			canTriggerPowers = false
 			timer.start(anomaly, 500, 1/self.opacityFrame * 500, self, (isLowQuality and 1 or 3))
@@ -570,6 +571,7 @@ do
 			seconds = 10
 		})
 		:setUseCooldown(25)
+		:setProbability(50)
 		:setEffect(function(self)
 			resetPlayersDefaultSize = true
 			timer.start(changeSize, 500, self.seconds * 1000, self)
@@ -589,6 +591,7 @@ do
 			minDeadMice = 2
 		})
 		:setUseCooldown(45)
+		:setProbability(100)
 		:setEffect(function(self)
 			if players._count.dead < self.minDeadMice then return end
 			local deadMice = players.dead

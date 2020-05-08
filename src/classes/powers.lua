@@ -17,6 +17,7 @@ do
 			defaultUseLimit = (type == powerType.divine and 1 or -1),
 			useLimit = nil,
 			useCooldown = 1000,
+			probability = nil,
 
 			imageData = nil,
 
@@ -87,6 +88,11 @@ do
 		return self
 	end
 
+	Power.setProbability = function(self, probability)
+		self.probability = probability
+		return self
+	end
+
 	Power.reset = function(self)
 		self.useLimit = self.defaultUseLimit
 		if self.resetableData then
@@ -118,6 +124,10 @@ do
 			(_playerCache and _playerCache.powerCooldown > _time) then return end
 		if _playerCache then
 			_playerCache.powerCooldown = _time + 200
+		end
+
+		if self.probability then
+			if random(self.probability) ~= random(self.probability) then return end
 		end
 
 		power.remainingUses = power.remainingUses - 1
