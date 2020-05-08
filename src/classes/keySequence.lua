@@ -2,17 +2,17 @@ local KeySequence = { }
 do
 	KeySequence.__index = KeySequence
 
-	KeySequence.new = function(self, queue)
+	KeySequence.new = function(queue)
 		return setmetatable({
 			queue = (queue or { }),
 			_count = (queue and #queue or 0),
 			_nextStrokeTolerance = 0
-		}, self)
+		}, KeySequence)
 	end
 
 	local checkQueue = function(self)
 		local time = time()
-		if time > self._nextStrokeTolerance then
+		if self._count > 1 and time > self._nextStrokeTolerance then
 			self._count = 0
 			self._nextStrokeTolerance = 0
 			self.queue = { }
@@ -47,13 +47,14 @@ do
 
 	KeySequence.isEqual = function(src, comp)
 		local srcLen = src._count
-		if srcLen < comp._count then
+		if srcLen < comp._count then -- consider changing < to ~= in the future
 			return false
 		end
 		srcLen = srcLen + 1
 
 		local srcQueue, compQueue = src.queue, comp.queue
 		for i = 1, comp._count do
+			-- Note that comp must be invertQueue'ed
 			if compQueue[i] ~= srcQueue[srcLen - i] then
 				return false
 			end

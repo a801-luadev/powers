@@ -21,6 +21,7 @@ local random = math.random
 local sin    = math.sin
 
 -- Others
-local next   = next
-local time   = os.time
-local unpack = table.unpack
+local next         = next
+local setmetatable = setmetatable
+local time         = os.time
+local unpack       = table.unpack
