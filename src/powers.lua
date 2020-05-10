@@ -264,7 +264,7 @@ do
 		:setDamage(10)
 		:setUseLimit(10)
 		:setUseCooldown(5)
-		:setBind()
+		:setClickRange(200)
 		:setEffect(function(_, x, y)
 			-- Particles
 			lightning(x, y)

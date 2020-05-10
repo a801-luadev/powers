@@ -38,6 +38,8 @@ do
 			keySequences = nil,
 			totalKeySequences = nil,
 
+			clickRange = nil,
+
 			messagePattern = nil,
 
 			imageData = nil,
@@ -78,10 +80,6 @@ do
 		return self
 	end
 
-	local bindClick = function(_, playerName)
-		bindMouse(playerName, true)
-	end
-
 	local bindKeys = function(self, playerName)
 		local keysToBind = self.keysToBind
 		for k = 1, self.totalKeysToBind do
@@ -89,37 +87,45 @@ do
 		end
 	end
 
+	local bindClick = function(_, playerName)
+		bindMouse(playerName, true)
+	end
+
+	local setEventType = funtion(type)
+		local count = Power.__eventCount
+		local type = Power[type]
+		count[type] = count[type] + 1
+		type.data[count[type]] = self
+	end
+
 	Power.setBind = function(self, ...)
-		-- ... = nil = mouse
 		-- ... = int = keyboard
 		-- ... = str = chat msg
 		local selfType
 
-		if not ... then
-			self.bindControl = bindClick
-			selfType = "__mouse"
+		local firstArg = (...)
+		if type(firstArg) == "string" then
+			self.messagePattern = firstArg
+			selfType = "__chatMessage"
 		else
-			local firstArg = (...)
-			if type(firstArg) == "string" then
-				self.messagePattern = firstArg
-				selfType = "__chatMessage"
-			else
-				self.keysToBind = { ... }
-				self.totalKeysToBind = #self.keysToBind
-				self.triggererKey = firstArg -- No keystroke sequence if it is a single key
+			self.keysToBind = { ... }
+			self.totalKeysToBind = #self.keysToBind
+			self.triggererKey = firstArg -- No keystroke sequence if it is a single key
 
-				self.bindControl = bindKeys
+			self.bindControl = bindKeys
 
-				selfType = "__keyboard"
-			end
+			selfType = "__keyboard"
 		end
 
-		local count = Power.__eventCount
-		selfType = Power[selfType]
-		count[selfType] = count[selfType] + 1
-		selfType.data[count[selfType]] = self
+		setEventType(selfType)
 
 		return self
+	end
+
+	Power.setClickRange = function(self, range)
+		self.clickRange = range
+		self.bindControl = bindClick
+		setEventType("__mouse")
 	end
 
 	Power.setKeySequence = function(self, keySequences)
@@ -213,7 +219,7 @@ do
 		return true
 	end
 
-	Power.triggerDivine = function(self, _time, _x, _y)
+	Power.triggerDivine = function(self, _x, _y, _time) -- _time must be the 3rd argument
 		local power = canTrigger(self, powers, _time)
 		if not power then
 			return false

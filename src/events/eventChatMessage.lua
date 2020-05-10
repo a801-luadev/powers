@@ -10,7 +10,7 @@ eventChatMessage = function(playerName, message)
 
 		-- Not internal, must be explicit
 		if find(message, power.messagePattern) then
-			return power:trigger(playerName, cache, time, nil, nil, true)
+			return power:trigger(playerName, cache, time)
 		end
 	end
 end
