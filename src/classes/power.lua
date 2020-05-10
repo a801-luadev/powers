@@ -2,6 +2,17 @@ local Power = { }
 do
 	Power.__index = Powers
 
+	-- References
+	Power.__mouse  = { }
+	Power.__keyboard    = { }
+	Power.__chatMessage = { }
+
+	Power.__eventCount  = {
+		__mouse       = 0,
+		__keyboard    = 0,
+		__chatMessage = 0
+	}
+
 	Power.new = function(name, type, level, imageData, extraData, resetableData)
 		local self = {
 			name = name,
@@ -19,12 +30,15 @@ do
 			selfDamage = nil,
 
 			bindControl = nil,
+
 			keysToBind = nil,
 			totalKeysToBind = nil,
 
 			triggererKey = nil,
 			keySequences = nil,
-			totalKeySequences = nil
+			totalKeySequences = nil,
+
+			messagePattern = nil,
 
 			imageData = nil,
 			resetableData = resetableData
@@ -76,16 +90,35 @@ do
 	end
 
 	Power.setBind = function(self, ...)
+		-- ... = nil = mouse
+		-- ... = int = keyboard
+		-- ... = str = chat msg
+		local selfType
+
 		if not ... then
 			self.bindControl = bindClick
+			selfType = "__mouse"
 		else
-			local keysToBind = { ... }
-			self.keysToBind = keysToBind
-			self.totalKeysToBind = #keysToBind
-			self.triggererKey = keysToBind[1] -- No keystroke sequence if it is a single key
+			local firstArg = (...)
+			if type(firstArg) == "string" then
+				self.messagePattern = firstArg
+				selfType = "__chatMessage"
+			else
+				self.keysToBind = { ... }
+				self.totalKeysToBind = #self.keysToBind
+				self.triggererKey = firstArg -- No keystroke sequence if it is a single key
 
-			self.bindControl = bindKeys
+				self.bindControl = bindKeys
+
+				selfType = "__keyboard"
+			end
 		end
+
+		local count = Power.__eventCount
+		selfType = Power[selfType]
+		count[selfType] = count[selfType] + 1
+		selfType.data[count[selfType]] = self
+
 		return self
 	end
 
