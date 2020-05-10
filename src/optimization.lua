@@ -27,4 +27,5 @@ local find = string.find
 local next         = next
 local setmetatable = setmetatable
 local time         = os.time
+local type         = type
 local unpack       = table.unpack

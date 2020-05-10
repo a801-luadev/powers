@@ -219,14 +219,15 @@ do
 		return true
 	end
 
-	Power.triggerDivine = function(self, _x, _y, _time) -- _time must be the 3rd argument
+	-- It has weird arguments because of @trigger that uses the same parameters of @triggerRegular
+	Power.triggerDivine = function(self, _, _, _time, _, _, _, ...)
 		local power = canTrigger(self, powers, _time)
 		if not power then
 			return false
 		end
 
 		if self.effect then
-			self.effect(self, _x, _y, ...)
+			self.effect(self, ...)
 		end
 
 		return true
