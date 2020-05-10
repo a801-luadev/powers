@@ -20,6 +20,9 @@ local rad    = math.rad
 local random = math.random
 local sin    = math.sin
 
+-- String
+local find = string.find
+
 -- Others
 local next         = next
 local setmetatable = setmetatable

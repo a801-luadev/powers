@@ -220,6 +220,7 @@ do
 		:setDamage(5)
 		:setUseLimit(15)
 		:setUseCooldown(4)
+		:setBind("^PRO+TE+CTO+S$")
 		:setEffect(function(_, x, y)
 			local dimension = 80
 
