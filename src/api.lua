@@ -114,7 +114,12 @@ local damage = function(playerName, damage, _cache)
 	_cache = _cache or playerCache[playerName]
 	_cache.health = _cache.health - damage
 
-	-- TODO
+	if _cache.health <= 0 then
+		killPlayer(playerName)
+		removeLifeBar(playerName)
+	else
+		updateLifeBar(playerName, _cache.health)
+	end
 end
 
 local damagePlayers = function(except, damage, filter, x, y, ...)
@@ -137,6 +142,7 @@ local addHealth = function(playerName, cache, hp)
 		hp = hp + cache.extraHealth
 		cache.extraHealth = 0
 	end
+	cache.health = cache.health + hp
 
-	-- TODO
+	updateLifeBar(playerName, cache.health)
 end

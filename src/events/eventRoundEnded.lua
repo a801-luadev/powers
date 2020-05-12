@@ -11,4 +11,6 @@ eventRoundEnded = function()
 			linkMice(name, cache.soulMate, false)
 		end
 	end
+
+	removeTextArea(textAreaId.gravitationalAnomaly)
 end

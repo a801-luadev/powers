@@ -35,7 +35,7 @@ do
 		end
 		resetPlayersDefaultSize = false
 
-		removeTextArea(textAreaId.gravitationalAnomaly)
+		updateLifeBar(nil, 100)
 
 		hasTriggeredRoundEnd = false
 	end

@@ -14,11 +14,14 @@ eventNewPlayer = function(playerName)
 	players_insert("room", playerName)
 	players_insert("dead", playerName)
 
-	tfm.exec.lowerSyncDelay(playerName)
+	lowerSyncDelay(playerName)
 
 	for _, power in next, powers do
 		if power.bind then
 			power:bindControl(playerName)
 		end
 	end
+
+	-- Displayed once because the image is never removed
+	displayLifeBar(playerName)
 end
