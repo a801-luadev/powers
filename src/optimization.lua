@@ -15,6 +15,7 @@ local respawnPlayer    = tfm.exec.respawnPlayer
 local addTextArea    = ui.addTextArea
 local removeTextArea = ui.removeTextArea
 local addImage       = tfm.exec.addImage
+local removeImage    = tfm.exec.removeImage
 
 local lowerSyncDelay = tfm.exec.lowerSyncDelay
 
