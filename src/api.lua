@@ -49,21 +49,20 @@ local table_random = function(tbl)
 	return tbl[random(#tbl)]
 end
 
--------------------------------------------------
-
-do
-	local link = linkMice
-	linkMice = function(p1, p2, linked)
-		if linked then
-			playerCache[p1].soulMate = p2
-			playerCache[p2].soulMate = p1
-		else
-			playerCache[p1].soulMate = nil
-			playerCache[p2].soulMate = nil
-		end
-
-		return link(p1, p2, linked)
+local table_shuffle = function(tbl)
+	local rand
+	for i = #tbl, 1, -1 do
+		rand = random(i)
+		tbl[i], tbl[rand] = tbl[rand], tbl[i]
 	end
+end
+
+local table_set = function(tbl)
+	local out = { }
+	for i = 1, #tbl do
+		out[tbl[i]] = true
+	end
+	return out
 end
 
 -------------------------------------------------
@@ -82,6 +81,44 @@ local pythagoras = function(x, y, cx, cy, cr)
 	y = y * y
 	cr = cr * cr
 	return x + y < cr
+end
+
+-------------------------------------------------
+
+local str_split = function(str, pattern, raw)
+	local out, counter = { }, 0
+
+	local strPos = 1
+	local i, j
+	while true do
+		i, j = find(str, pattern, strPos, raw)
+		if not i then break end
+		counter = counter + 1
+		out[counter] = sub(str, strPos, i - 1)
+
+		strPos = j + 1
+	end
+	counter = counter + 1
+	out[counter] = sub(str, strPos)
+
+	return out, counter
+end
+
+-------------------------------------------------
+
+do
+	local link = linkMice
+	linkMice = function(p1, p2, linked)
+		if linked then
+			playerCache[p1].soulMate = p2
+			playerCache[p2].soulMate = p1
+		else
+			playerCache[p1].soulMate = nil
+			playerCache[p2].soulMate = nil
+		end
+
+		return link(p1, p2, linked)
+	end
 end
 
 -------------------------------------------------
@@ -145,4 +182,54 @@ local addHealth = function(playerName, cache, hp)
 	cache.health = cache.health + hp
 
 	updateLifeBar(playerName, cache.health)
+end
+
+-------------------------------------------------
+
+local isMapCode = function(x)
+	if sub(x, 1, 1) == '@' then
+		x = sub(x, 2)
+	end
+
+	local str = x
+	x = tonumber(x)
+	return (not not x and #str > 3), x
+end
+
+-------------------------------------------------
+
+local collectionMetatable
+do
+	local __meta, __call, __newindex
+
+	__call = function(self, index, data, ...)
+		local f = data[index]
+		f = f and self[f]
+
+		local args
+		if self.__init then
+			args = { self.__init(data, ...) }
+		else
+			args = { ... }
+		end
+		if f then
+			f(index + 1, data, unpack(args))
+		end
+	end
+
+	__newindex = function(self, index, value)
+		if type(value) == "table" then
+			value = collectionMetatable(value)
+		end
+		rawset(self, index, value)
+	end
+
+	__meta = {
+		__newindex = __newindex,
+		__call = __call
+	}
+
+	collectionMetatable = function(tbl)
+		return setmetatable(tbl, __meta)
+	end
 end

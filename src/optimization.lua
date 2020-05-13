@@ -19,6 +19,11 @@ local removeImage    = tfm.exec.removeImage
 
 local lowerSyncDelay = tfm.exec.lowerSyncDelay
 
+local chatMessage    = tfm.exec.chatMessage
+local newGame        = tfm.exec.newGame
+
+local saveFile = system.saveFile
+
 -- Mathematics
 local cos    = math.cos
 local rad    = math.rad
@@ -26,11 +31,19 @@ local random = math.random
 local sin    = math.sin
 
 -- String
-local find = string.find
+local find   = string.find
+local format = string.format
+local sub    = string.sub
+
+-- Table
+local table_concat = table.concat
+local table_remove = table.remove
 
 -- Others
 local next         = next
+local rawset       = rawset
 local setmetatable = setmetatable
 local time         = os.time
+local tonumber     = tonumber
 local type         = type
 local unpack       = table.unpack
