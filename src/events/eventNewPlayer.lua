@@ -7,7 +7,10 @@ eventNewPlayer = function(playerName)
 			extraHealth = 0,
 			powerCooldown = 0,
 			soulMate = nil,
-			keySequence = KeySequence.new()
+			keySequence = KeySequence.new(),
+			totalInterfaceTextareas = 0,
+			totalInterfaceImages = 0,
+			interfaceImages = { }
 		}
 	end
 
