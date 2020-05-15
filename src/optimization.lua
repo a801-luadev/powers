@@ -36,6 +36,9 @@ local sin    = math.sin
 local byte   = string.byte
 local find   = string.find
 local format = string.format
+local gmatch = string.gmatch
+local gsub   = string.gsub
+local match  = string.match
 local sub    = string.sub
 
 -- Table

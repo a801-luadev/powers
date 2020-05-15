@@ -19,15 +19,15 @@ do
 	end
 
 	local extractPlayerData = function(self, dataStr)
-		local i, module, j = string.match(dataStr, "()" .. self.moduleID .. "=(%b{})()")
+		local i, module, j = match(dataStr, "()" .. self.moduleID .. "=(%b{})()")
 		if i then
-			return module, (string.sub(dataStr, 1, i - 1) .. string.sub(dataStr, j + 1))
+			return module, (sub(dataStr, 1, i - 1) .. sub(dataStr, j + 1))
 		end
 		return nil, dataStr
 	end
 
 	local replaceComma = function(str)
-		return string.gsub(str, ',', '\0')
+		return gsub(str, ',', '\0')
 	end
 
 	local getDataNameById = function(structure, index)
@@ -43,13 +43,13 @@ do
 	strToTable = function(str)
 		local out, index = { }, 0
 
-		str = string.gsub(str, "%b{}", replaceComma)
+		str = gsub(str, "%b{}", replaceComma)
 
 		local tbl
-		for value in string.gmatch(str, "[^,]+") do
-			value = string.gsub(value, "%z", ',')
+		for value in gmatch(str, "[^,]+") do
+			value = gsub(value, "%z", ',')
 
-			tbl = string.match(value, "^{(.-)}$")
+			tbl = match(value, "^{(.-)}$")
 
 			index = index + 1
 			if tbl then
@@ -70,13 +70,13 @@ do
 				value = valueDefault
 			end
 		elseif valueType == "table" then
-			value = string.match(value or '', "^{(.-)}$")
+			value = match(value or '', "^{(.-)}$")
 			value = value and strToTable(value) or valueDefault
 		else
 			if valueType == "number" then
 				value = tonumber(value)
 			elseif valueType == "string" and value then
-				value = string.match(value, "^\"(.-)\"$")
+				value = match(value, "^\"(.-)\"$")
 			end
 			value = value or valueDefault
 		end
@@ -90,10 +90,10 @@ do
 
 		local dataIndex = 1
 		if #moduleData > 0 then
-			moduleData = string.gsub(moduleData, "%b{}", replaceComma)
+			moduleData = gsub(moduleData, "%b{}", replaceComma)
 
-			for value in string.gmatch(moduleData, "[^,]+") do
-				value = string.gsub(value, "%z", ',')
+			for value in gmatch(moduleData, "[^,]+") do
+				value = gsub(value, "%z", ',')
 
 				valueName = getDataNameById(structure, dataIndex)
 				playerData[valueName] = getDataValue(value, structure[valueName].type, valueName,
@@ -124,7 +124,7 @@ do
 			module = "{}"
 		end
 
-		handleModuleData(self, playerName, self.structure, string.sub(module, 2, -2))
+		handleModuleData(self, playerName, self.structure, sub(module, 2, -2))
 
 		return self
 	end
@@ -166,7 +166,7 @@ do
 			str[index] = ''
 		end
 
-		return table.concat(str)
+		return table_concat(str)
 	end
 
 	local dataToStr = function(self, playerName)
@@ -214,7 +214,7 @@ do
 			str[index + 1] = '}'
 		end
 
-		return table.concat(str)
+		return table_concat(str)
 	end
 
 	DataHandler.dumpPlayer = function(self, playerName)
