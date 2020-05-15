@@ -5,6 +5,6 @@ eventChatCommand = function(playerName, command)
 	-- Owner commands
 	if playerName == module.author then
 		local cmdTrigger = ownerCommands[command[1]]
-		return cmdTrigger and cmdTrigger(2, command, playerName, rawcmd)
+		return cmdTrigger and cmdTrigger(playerName, command, rawcmd)
 	end
 end
