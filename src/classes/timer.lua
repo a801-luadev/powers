@@ -1,7 +1,5 @@
-local timer
+local timer = { }
 do
-	timer = { }
-
 	timer.start = function(callback, ms, times, ...)
 		local t = timer._timers
 		t._count = t._count + 1

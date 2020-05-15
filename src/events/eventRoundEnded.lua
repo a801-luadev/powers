@@ -11,6 +11,7 @@ eventRoundEnded = function()
 			linkMice(name, cache.soulMate, false)
 		end
 	end
+	resetPlayersDefaultSize = false
 
 	removeTextArea(textAreaId.gravitationalAnomaly)
 end

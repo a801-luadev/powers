@@ -11,6 +11,7 @@ local linkMice         = tfm.exec.linkMice
 local movePlayer       = tfm.exec.movePlayer
 local removeObject     = tfm.exec.removeObject
 local respawnPlayer    = tfm.exec.respawnPlayer
+local setPlayerScore   = tfm.exec.setPlayerScore
 
 local addTextArea    = ui.addTextArea
 local removeTextArea = ui.removeTextArea
@@ -22,7 +23,8 @@ local lowerSyncDelay = tfm.exec.lowerSyncDelay
 local chatMessage    = tfm.exec.chatMessage
 local newGame        = tfm.exec.newGame
 
-local saveFile = system.saveFile
+local saveFile       = system.saveFile
+local savePlayerData = system.savePlayerData
 
 -- Mathematics
 local cos    = math.cos
@@ -31,6 +33,7 @@ local random = math.random
 local sin    = math.sin
 
 -- String
+local byte   = string.byte
 local find   = string.find
 local format = string.format
 local sub    = string.sub

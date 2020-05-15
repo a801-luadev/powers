@@ -1,6 +1,6 @@
 for playerName in next, tfm.get.room.playerList do
 	eventNewPlayer(playerName)
-	tfm.exec.setPlayerScore(playerName, 0)
+	setPlayerScore(playerName, 0)
 end
 
 system.disableChatCommandDisplay()
@@ -13,4 +13,7 @@ tfm.exec.disableAfkDeath()
 tfm.exec.disablePhysicalConsumables()
 tfm.exec.disableDebugCommand()
 
+tfm.exec.setRoomPassword('') -- Disables PW if it is enabled by glitch
 tfm.exec.setRoomMaxPlayers(module.max_players)
+
+math.randomseed(time())

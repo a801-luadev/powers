@@ -1,3 +1,7 @@
+local isOfficialRoom = byte(tfm.get.room.name, 2) ~= 3
+
+-------------------------------------------------
+
 local players = {
 	room  = { },
 	alive = { },

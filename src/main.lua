@@ -15,3 +15,6 @@ local hasTriggeredRoundEnd = false
 
 local canTriggerPowers = false
 local resetPlayersDefaultSize = false
+
+local totalPlayersInRound = 0
+local canSaveData = false

@@ -4,13 +4,16 @@ do
 	end
 
 	eventNewGame = function()
+		canLoadNextMap, nextMapLoadTentatives = false, 0
+		setNextMapIndex()
+
 		players.dead = { }
 		players._count.dead = 0
 		players.alive = table_copy(players.room)
-		players._count.alive = players._count.room
+		totalPlayersInRound = players._count.room
+		players._count.alive = totalPlayersInRound
 
 		canTriggerPowers = false
-
 		timer.start(enablePowersTriggers, 3000, 1)
 
 		for name, obj in next, powers do
@@ -19,7 +22,7 @@ do
 			end
 		end
 
-		local currentTime = os.time()
+		local currentTime = time()
 		for playerName in next, players.alive do
 			playerName = playerCache[playerName]
 			playerName.health = 100
@@ -33,10 +36,11 @@ do
 				playerName[name] = obj:getNewPlayerData(currentTime)
 			end
 		end
-		resetPlayersDefaultSize = false
 
 		updateLifeBar(nil, 100)
 
 		hasTriggeredRoundEnd = false
+
+		canSaveData = (isOfficialRoom and totalPlayersInRound >= module.min_players)
 	end
 end
