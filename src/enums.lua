@@ -38,17 +38,17 @@ local enum_particle = tfm.enum.particle
 -------------------------------------------------
 
 local levelColors = {
-	[1] = 0xFFC125,
-	[2] = 0xFFC125,
-	[3] = 0xFFC125,
-	[4] = 0xFFC125,
-	[5] = 0xFFC125,
-	[6] = 0xFFC125,
-	[7] = 0xFFC125,
-	[8] = 0xFFC125,
-	[9] = 0xFFC125,
-	[10] = 0xFFC125,
-	[11] = 0xFFC125,
-	[12] = 0xFFC125,
-	[13] = 0xFFC125
+	[1] = 0xFFA500,
+	[2] = 0x4187B1,
+	[3] = 0x66CDAA,
+	[4] = 0xFEDA7A,
+	[5] = 0xDA70D6,
+	[6] = 0x4F94CD,
+	[7] = 0x9370DB,
+	[8] = 0x48D1CC,
+	[9] = 0x9ACD32,
+	[10] = 0x1C1313,
+	[11] = 0x7C1C29,
+	[12] = 0xD7ECFF,
+	[13] = 0x8B658B
 }

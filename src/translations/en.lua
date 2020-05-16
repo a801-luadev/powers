@@ -10,12 +10,12 @@ translations.en = {
 
 	-- Level names
 	level = {
-		[1] = "Apprentice",
-		[2] = "Professor",
-		[3] = "Researcher",
-		[4] = { "Wizard", "Wizardess" },
-		[5] = "Master",
-		[6] = "Titan",
+		[1] = "Mutant",
+		[2] = "Necromancer",
+		[3] = "Scientist",
+		[4] = "Titan",
+		[5] = { "Wizard", "Wizardess" },
+		[6] = "Reality Controller",
 		[7] = { "Lord of Spells", "Lady of Spells" },
 		[8] = "Shamanic Summoner",
 		[9] = "The Pestilence Horseman",

@@ -41,6 +41,7 @@ eventNewGame = function()
 	hasTriggeredRoundEnd = false
 
 	canSaveData = (isOfficialRoom and totalPlayersInRound >= module.min_players)
-
-	timer.start(giveExperience, module.extra_xp_in_round_seconds, 1)
+	if canSaveData then
+		timer.start(giveExperience, module.extra_xp_in_round_seconds, 1)
+	end
 end

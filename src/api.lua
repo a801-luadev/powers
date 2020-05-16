@@ -207,7 +207,6 @@ local enablePowersTrigger = function()
 end
 
 local giveExperience = function()
-	if not canSaveData then return end
 	for playerName in next, players.alive do
 		playerData:set(playerName, "xp", module.extra_xp_in_round, true):save(playerName)
 	end

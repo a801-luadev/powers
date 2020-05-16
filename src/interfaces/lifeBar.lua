@@ -4,8 +4,8 @@ end
 
 local updateLifeBar = function(playerName, health)
 	-- w = 100 -> 780 \ hp -> w = 100w = 780hp = 780hp/100 = 7.8hp
-	addTextArea(textAreaId.lifeBar, '', playerName, 10, 25, 7.8 * health, 1, 0xB69EFD, 0xB69EFD, .5,
-		true)
+	addTextArea(textAreaId.lifeBar, '', playerName, 10, 25, 7.8 * health, 1, 0xB69EFD, 0xB69EFD,
+		.75, true)
 end
 
 local removeLifeBar = function(playerName)
