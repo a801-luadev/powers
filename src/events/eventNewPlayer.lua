@@ -10,7 +10,8 @@ eventNewPlayer = function(playerName)
 			keySequence = KeySequence.new(),
 			totalInterfaceTextareas = 0,
 			totalInterfaceImages = 0,
-			interfaceImages = { }
+			interfaceImages = { },
+			hasPlayerData = false
 		}
 	end
 

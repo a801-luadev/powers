@@ -230,8 +230,13 @@ do
 		return self.playerData[playerName][valueName]
 	end
 
-	DataHandler.set = function(self, playerName, valueName, newValue)
-		self.playerData[playerName][valueName] = newValue
+	DataHandler.set = function(self, playerName, valueName, newValue, sum)
+		playerName = self.playerData[playerName]
+		if sum then
+			playerName[valueName] = playerName[valueName] + newValue
+		else
+			playerName[valueName] = newValue
+		end
 		return self
 	end
 

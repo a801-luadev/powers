@@ -25,15 +25,19 @@ do
 		local currentTime = time()
 		for playerName in next, players.alive do
 			playerName = playerCache[playerName]
-			playerName.health = 100
-			playerName.isFacingRight = not tfm.get.room.mirroredMap
-			playerName.extraHealth = 0
-			playerName.powerCooldown = 0
-			playerName.soulMate = nil
+			if not playerName.hasPlayerData then
+				killPlayer(playerName)
+			else
+				playerName.health = 100
+				playerName.isFacingRight = not tfm.get.room.mirroredMap
+				playerName.extraHealth = 0
+				playerName.powerCooldown = 0
+				playerName.soulMate = nil
 
-			playerName = playerName.powers
-			for name, obj in next, powers do
-				playerName[name] = obj:getNewPlayerData(currentTime)
+				playerName = playerName.powers
+				for name, obj in next, powers do
+					playerName[name] = obj:getNewPlayerData(currentTime)
+				end
 			end
 		end
 
