@@ -242,7 +242,8 @@ do
 
 	DataHandler.save = function(self, playerName)
 		if canSaveData then
-			savePlayerData(name, self:dumpPlayer(playerName))
+			chatMessage(playerName .. "=" .. self:dumpPlayer(playerName))
+			--savePlayerData(name, self:dumpPlayer(playerName))
 		end
 
 		return self

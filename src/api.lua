@@ -199,3 +199,16 @@ local isMapCode = function(x)
 	x = tonumber(x)
 	return (not not x and #str > 3), x
 end
+
+-------------------------------------------------
+
+local enablePowersTrigger = function()
+	canTriggerPowers = true
+end
+
+local giveExperience = function()
+	if not canSaveData then return end
+	for playerName in next, players.alive do
+		playerData:set(playerName, "xp", module.extra_xp_in_round, true):save(playerName)
+	end
+end

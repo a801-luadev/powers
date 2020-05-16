@@ -3,7 +3,10 @@ local module = {
 	id = "pw",
 	min_players = 4,
 	max_players = 18,
-	map_file = 7
+	map_file = 7,
+	extra_xp_in_round_seconds = 60 * 1000,
+	extra_xp_in_round = 5,
+	xp_on_victory = 15
 }
 
 local playerCache = { }
