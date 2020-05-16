@@ -34,3 +34,21 @@ local interfaceBackground = {
 
 local enum_shamanObject = tfm.enum.shamanObject
 local enum_particle = tfm.enum.particle
+
+-------------------------------------------------
+
+local levelColors = {
+	[1] = 0xFFC125,
+	[2] = 0xFFC125,
+	[3] = 0xFFC125,
+	[4] = 0xFFC125,
+	[5] = 0xFFC125,
+	[6] = 0xFFC125,
+	[7] = 0xFFC125,
+	[8] = 0xFFC125,
+	[9] = 0xFFC125,
+	[10] = 0xFFC125,
+	[11] = 0xFFC125,
+	[12] = 0xFFC125,
+	[13] = 0xFFC125
+}

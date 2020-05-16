@@ -25,6 +25,8 @@ eventNewPlayer = function(playerName)
 		end
 	end
 
+	loadPlayerData(playerName)
+
 	-- Displayed once because the image is never removed
 	displayLifeBar(playerName)
 end

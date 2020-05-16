@@ -25,6 +25,7 @@ local newGame        = tfm.exec.newGame
 
 local saveFile       = system.saveFile
 local savePlayerData = system.savePlayerData
+local loadPlayerData = system.loadPlayerData
 
 -- Mathematics
 local cos    = math.cos
