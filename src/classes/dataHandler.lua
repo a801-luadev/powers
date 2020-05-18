@@ -120,11 +120,7 @@ do
 		local module, otherData = extractPlayerData(self, data)
 		self.otherPlayerData[playerName] = otherData
 
-		if not module then
-			module = "{}"
-		end
-
-		handleModuleData(self, playerName, self.structure, sub(module, 2, -2))
+		handleModuleData(self, playerName, self.structure, (module and sub(module, 2, -2) or ''))
 
 		return self
 	end

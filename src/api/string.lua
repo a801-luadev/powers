@@ -1,3 +1,16 @@
+local str_getBytes = function(str)
+	local len = #str
+	if len > 8000 then -- avoids 'string slice too long'
+		local out = { }
+		for i = 1, len do
+			out[i] = byte(str, i, i)
+		end
+		return out
+	else
+		return { byte(str, 1, -1) }
+	end
+end
+
 local str_split = function(str, pattern, raw)
 	local out, counter = { }, 0
 

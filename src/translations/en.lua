@@ -4,8 +4,8 @@ translations.en = {
 	ownerAnnounce = "<B>[#powers] %s</B>",
 
 	-- Maps
-	addMap = "<BL>The map <J>@%s</J> has been added to the local map queue.",
-	remMap = "<BL>The map <J>@%s</J> has been removed from the local map queue.",
+	addMap = "<BL>The map <J>@%s</J> was added to the local map queue.",
+	remMap = "<BL>The map <J>@%s</J> was removed from the local map queue.",
 	totalMaps = "<BL>Total maps: <J>#%s</J>: %s",
 
 	-- Level names
@@ -24,4 +24,8 @@ translations.en = {
 		[12] = "The Death Horseman",
 		[13] = "The Void"
 	}
+
+	-- Winner
+	noWinner = "No one won the round.",
+	mentionWinner = "%s won the round!"
 }

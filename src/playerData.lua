@@ -7,12 +7,16 @@ local playerData = DataHandler.new(module.id, {
 		index = 2,
 		default = 0
 	},
-	xp = {
+	kills = {
 		index = 3,
+		default = 0
+	},
+	xp = {
+		index = 4,
 		default = 21
 	},
 	badges = {
-		index = 4,
+		index = 5,
 		default = 0
 	}
 })

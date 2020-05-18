@@ -9,6 +9,8 @@ local module = {
 	xp_on_victory = 15
 }
 
+local isOfficialRoom = byte(tfm.get.room.name, 2) ~= 3
+
 local playerCache = { }
 
 local isLowQuality = false
@@ -19,5 +21,4 @@ local hasTriggeredRoundEnd = false
 local canTriggerPowers = false
 local resetPlayersDefaultSize = false
 
-local totalPlayersInRound = 0
 local canSaveData = false

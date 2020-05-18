@@ -15,8 +15,8 @@ eventNewPlayer = function(playerName)
 		}
 	end
 
+	players_insert("lobby", playerName)
 	players_insert("room", playerName)
-	players_insert("dead", playerName)
 
 	lowerSyncDelay(playerName)
 

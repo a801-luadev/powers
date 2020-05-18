@@ -35,6 +35,7 @@ local sin    = math.sin
 
 -- String
 local byte   = string.byte
+local char   = string.char
 local find   = string.find
 local format = string.format
 local gmatch = string.gmatch
@@ -45,6 +46,13 @@ local sub    = string.sub
 -- Table
 local table_concat = table.concat
 local table_remove = table.remove
+
+-- Bit32
+local band   = bit32.band
+local bor    = bit32.bor
+local bxor   = bit32.bxor
+local lshift = bit32.lshift
+local rshift = bit32.rshift
 
 -- Others
 local next         = next
