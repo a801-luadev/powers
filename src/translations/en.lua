@@ -23,7 +23,7 @@ translations.en = {
 		[11] = "The War Horseman",
 		[12] = "The Death Horseman",
 		[13] = "The Void"
-	}
+	},
 
 	-- Winner
 	noWinner = "No one won the round.",

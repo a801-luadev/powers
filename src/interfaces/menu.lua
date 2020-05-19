@@ -32,13 +32,13 @@ do
 
 		if lastMenuIndex then
 			-- Remove highlight color of the last tab
-			updateTextArea(_cache.menuTabId + lastMenuIndex, format(tabStr, '', lastMenuIndex,
-				getText.menuTitles[lastMenuIndex]), playerName)
+			updateTextArea(_cache.menuTabId + lastMenuIndex, "<N>" .. format(tabStr, '',
+				lastMenuIndex, getText.menuTitles[lastMenuIndex]), playerName)
 		end
 
 		-- Highlights new tab
 		updateTextArea(_cache.menuTabId + menuIndex, format(tabStr, "<J>", menuIndex,
-			getText.menuTitles[menuIndex], playerName)
+			getText.menuTitles[menuIndex]), playerName)
 
 		-- Main menu
 		updateTextArea(_cache.menuContentId, getText.menuContent[menuIndex], playerName)
