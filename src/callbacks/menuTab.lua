@@ -6,7 +6,7 @@ do
 		if cache.menuIndex == callback then return end
 
 		cache.lastMenuIndex = cache.menuIndex
-		cache.menuIndex = callback[2] * 1
+		cache.menuIndex = callback
 
 		updateMenu(playerName, cache)
 	end

@@ -18,7 +18,8 @@ do
 			_cache.interfaceImages[_cache.totalInterfaceImages] = addImage(
 				interfaceBackground[w][h], imageTargets.interfaceBackground, x, y, playerName)
 
-			addTextArea(interfaceId, text, playerName, x, y, w, h, 1, 1, 0, true)
+			addTextArea(interfaceId, text, playerName, x + 10, y + 10, w - 20, h - 20, 1, 1, 0,
+				true)
 			_cache.totalInterfaceTextareas = _cache.totalInterfaceTextareas + 1
 
 			return interfaceId

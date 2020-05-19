@@ -10,7 +10,7 @@ do
 		local menuTabId, tmpTabId
 		for t = 1, #getText.menuTitles do
 			tmpTabId = displayPrettyUI(format(tabStr, (t == menuIndex and "<J>" or ''), t,
-				getText.menuTitles[t]), 620, 65 + t*40, 120, 30, playerName, _cache, 1, 3, 2)
+				getText.menuTitles[t]), 615, 65 + t*40, 120, 30, playerName, _cache, 1, 3, 2)
 
 			if t == 1 then
 				menuTabId = tmpTabId

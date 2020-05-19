@@ -1,6 +1,6 @@
 local Power = { }
 do
-	Power.__index = Powers
+	Power.__index = Power
 
 	-- References
 	Power.__mouse  = { }
@@ -75,7 +75,7 @@ do
 		return self
 	end
 
-	Power.useCooldown = function(self, cooldown)
+	Power.setUseCooldown = function(self, cooldown)
 		self.useCooldown = cooldown * 1000
 		return self
 	end
@@ -91,11 +91,11 @@ do
 		bindMouse(playerName, true)
 	end
 
-	local setEventType = funtion(type)
+	local setEventType = function(type)
 		local count = Power.__eventCount
-		local type = Power[type]
+		local power = Power[type]
 		count[type] = count[type] + 1
-		type.data[count[type]] = self
+		power[count[type]] = self
 	end
 
 	Power.setBind = function(self, ...)
@@ -126,6 +126,8 @@ do
 		self.clickRange = range
 		self.bindControl = bindClick
 		setEventType("__mouse")
+
+		return self
 	end
 
 	Power.setKeySequence = function(self, keySequences)

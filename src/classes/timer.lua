@@ -47,12 +47,10 @@ do
 	end
 
 	timer.refresh = function()
-		return {
-			_timers = {
-				_count = 0,
-				_deleted = 0
-			}
+		timer._timers = {
+			_count = 0,
+			_deleted = 0
 		}
 	end
-	timer = timer.refresh()
+	timer.refresh()
 end

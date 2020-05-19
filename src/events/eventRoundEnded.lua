@@ -1,5 +1,7 @@
 eventRoundEnded = function()
+	hasTriggeredRoundEnd = true
 	canTriggerPowers = false
+
 	-- Clears all current times
 	timer.refresh()
 
