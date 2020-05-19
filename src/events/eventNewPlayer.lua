@@ -1,17 +1,27 @@
 eventNewPlayer = function(playerName)
 	if not playerCache[playerName] then
 		playerCache[playerName] = {
+			hasPlayerData = false,
+
 			health = 0,
-			isFacingRight = true,
-			powers = { },
 			extraHealth = 0,
+
+			isFacingRight = true,
+
+			powers = { },
 			powerCooldown = 0,
-			soulMate = nil,
 			keySequence = KeySequence.new(),
+
+			soulMate = nil,
+
 			totalInterfaceTextareas = 0,
 			totalInterfaceImages = 0,
 			interfaceImages = { },
-			hasPlayerData = false
+
+			menuIndex = 1,
+			lastMenuIndex = nil,
+			menuContentId = nil,
+			menuTabId = nil
 		}
 	end
 

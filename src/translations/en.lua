@@ -27,5 +27,19 @@ translations.en = {
 
 	-- Winner
 	noWinner = "No one won the round.",
-	mentionWinner = "%s won the round!"
+	mentionWinner = "%s won the round!",
+
+	-- Menu
+	menuTitles = {
+		[1] = "Title 1",
+		[2] = "Title 2",
+		[3] = "Title 3",
+		[4] = "Title 4"
+	},
+	menuContent = {
+		[1] = "Content 1",
+		[2] = "Content 2",
+		[3] = "Content 3",
+		[4] = "Content 4"
+	}
 }

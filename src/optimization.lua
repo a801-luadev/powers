@@ -15,6 +15,7 @@ local setPlayerScore   = tfm.exec.setPlayerScore
 
 local addTextArea    = ui.addTextArea
 local removeTextArea = ui.removeTextArea
+local updateTextArea = ui.updateTextArea
 local addImage       = tfm.exec.addImage
 local removeImage    = tfm.exec.removeImage
 
