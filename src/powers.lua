@@ -96,8 +96,8 @@ do
 			y = 105
 		})
 		:setUseCooldown(1.5)
-		:setBind(2)
-		:setKeySequence({ { 1, 2 } })
+		:setBind(1, 3)
+		:setKeySequence({ { 1, 3 }, { 3, 1 } })
 		:setEffect(function(playerName, x, y, isFacingRight)
 			local direction = (isFacingRight and 200 or -200)
 
@@ -131,7 +131,7 @@ do
 		:setKeySequence({ { 1, 1 } })
 		:setEffect(function(playerName, x, y)
 			-- Move player
-			movePlayer(playerName, 0, 0, true, 0 -50, false)
+			movePlayer(playerName, 0, 0, true, 0, -50, false)
 
 			-- Particles
 			spring(x, y)
@@ -264,7 +264,7 @@ do
 		:setDamage(10)
 		:setUseLimit(10)
 		:setUseCooldown(5)
-		:setClickRange(200)
+		:setClickRange(100)
 		:setEffect(function(_, x, y)
 			-- Particles
 			lightning(x, y)
@@ -310,7 +310,7 @@ do
 			y = 105
 		})
 		:setDamage(20)
-		:selfDamage(5)
+		:setSelfDamage(5)
 		:setUseLimit(6)
 		:setUseCooldown(6)
 		:setBind(17) -- Control
@@ -362,7 +362,7 @@ do
 			timer.start(self.damagePlayers, 800, 1, self, playerName, { smashDamage, inRectangle,
 				x - 100, y - 60, 200, 120, true }, damagePlayersWithAction)
 			-- Particles
-			timer.start(dust, 800, 1)
+			timer.start(dust, 800, 1, x, y)
 
 			return false
 		end)
@@ -531,7 +531,7 @@ do
 			y = 140
 		})
 		:setDamage(30)
-		:selfDamage(15)
+		:setSelfDamage(15)
 		:setUseLimit(1)
 		:setUseCooldown(10)
 		:setBind(string.byte('P'))

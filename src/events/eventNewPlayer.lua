@@ -31,7 +31,7 @@ eventNewPlayer = function(playerName)
 	lowerSyncDelay(playerName)
 
 	for _, power in next, powers do
-		if power.bind then
+		if power.bindControl then
 			power:bindControl(playerName)
 		end
 	end

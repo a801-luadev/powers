@@ -64,7 +64,7 @@ do
 		return self
 	end
 
-	Power.selfDamage = function(self, damage)
+	Power.setSelfDamage = function(self, damage)
 		self.selfDamage = damage
 		return self
 	end
@@ -91,7 +91,7 @@ do
 		bindMouse(playerName, true)
 	end
 
-	local setEventType = function(type)
+	local setEventType = function(self, type)
 		local count = Power.__eventCount
 		local power = Power[type]
 		count[type] = count[type] + 1
@@ -110,14 +110,15 @@ do
 		else
 			self.keysToBind = { ... }
 			self.totalKeysToBind = #self.keysToBind
-			self.triggererKey = firstArg -- No keystroke sequence if it is a single key
-
+			if self.totalKeysToBind == 1 then
+				self.triggererKey = firstArg -- No keystroke sequence if it is a single key
+			end
 			self.bindControl = bindKeys
 
 			selfType = "__keyboard"
 		end
 
-		setEventType(selfType)
+		setEventType(self, selfType)
 
 		return self
 	end
@@ -125,7 +126,7 @@ do
 	Power.setClickRange = function(self, range)
 		self.clickRange = range
 		self.bindControl = bindClick
-		setEventType("__mouse")
+		setEventType(self, "__mouse")
 
 		return self
 	end
@@ -215,7 +216,7 @@ do
 		end
 
 		if self.selfDamage then
-			damage(playerName, self.selfDamage, _cache)
+			damagePlayer(playerName, self.selfDamage, _cache)
 		end
 
 		return true
