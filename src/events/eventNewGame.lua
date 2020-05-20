@@ -1,5 +1,7 @@
 eventNewGame = function()
-	canLoadNextMap, nextMapLoadTentatives = false, 0
+	ignoreRoundData = false
+
+	nextMapLoadTentatives = 0
 	setNextMapIndex()
 
 	-- Resets players

@@ -1,3 +1,5 @@
+system.loadFile(module.map_file)
+
 for playerName in next, tfm.get.room.playerList do
 	eventNewPlayer(playerName)
 	setPlayerScore(playerName, 0)

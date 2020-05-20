@@ -9,6 +9,8 @@ local tree = {
 	"classes/dataHandler.lua",
 	"playerData.lua",
 
+	"api/DEBUG.lua",
+
 	"api/math.lua",
 	"api/string.lua",
 	"api/table.lua",
@@ -30,12 +32,11 @@ local tree = {
 	"interfaces/abstract/prettyUI.lua",
 	"interfaces/menu.lua",
 
+	"events/eventFileLoaded.lua",
+
 	"events/eventNewPlayer.lua",
 	"events/eventPlayerDataLoaded.lua",
 	"events/eventPlayerLeft.lua",
-
-	"maps.lua",
-	"events/eventFileLoaded.lua",
 
 	"commands/commands.lua",
 	"commands/help.lua",
@@ -48,8 +49,8 @@ local tree = {
 	"events/eventTextAreaCallback.lua",
 
 	"events/eventNewGame.lua",
-	"events/eventLoop.lua",
 	"events/eventRoundEnded.lua",
+	"events/eventLoop.lua",
 	"events/eventPlayerDied.lua",
 	"events/eventPlayerRespawn.lua",
 

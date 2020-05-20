@@ -11,6 +11,7 @@ local linkMice         = tfm.exec.linkMice
 local movePlayer       = tfm.exec.movePlayer
 local removeObject     = tfm.exec.removeObject
 local respawnPlayer    = tfm.exec.respawnPlayer
+local setGameTime      = tfm.exec.setGameTime
 local setPlayerScore   = tfm.exec.setPlayerScore
 
 local addTextArea    = ui.addTextArea

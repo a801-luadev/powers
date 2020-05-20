@@ -1,7 +1,10 @@
 eventFileLoaded = function(id, data)
-	-- Map load
-	data = str_split(data, '@', true)
-	mapHashes = table_set(data)
-	table_shuffle(data)
-	totalCurrentMaps = #data
+	-- Load all maps
+	maps = str_split(data, '@', true, tonumber)
+	mapHashes = table_set(maps)
+	table_shuffle(maps)
+	totalCurrentMaps = #maps
+
+	-- Init first map
+	setGameTime(0)
 end

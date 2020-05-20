@@ -22,3 +22,21 @@ local isMapCode = function(x)
 	x = tonumber(x)
 	return (not not x and #str > 3), x
 end
+
+local setNextMapIndex = function()
+	currentMap = currentMap + 1
+	if currentMap == totalCurrentMaps then
+		table_shuffle(maps)
+		currentMap = 1
+	end
+end
+
+local nextMap = function()
+	nextMapLoadTentatives = nextMapLoadTentatives + 1
+	if nextMapLoadTentatives == 4 then
+		nextMapLoadTentatives = 0
+		setNextMapIndex()
+	end
+
+	newGame(maps[currentMap])
+end

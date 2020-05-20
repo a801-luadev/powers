@@ -4,10 +4,11 @@ do
 		local t = timer._timers
 		t._count = t._count + 1
 
+		local args = { ... }
 		t[t._count] = {
 			id = t._count,
 			callback = callback,
-			args = { ... },
+			args = args,
 			defaultMilliseconds = ms,
 			milliseconds = ms,
 			times = times

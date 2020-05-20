@@ -2,8 +2,13 @@ eventRoundEnded = function()
 	hasTriggeredRoundEnd = true
 	canTriggerPowers = false
 
-	-- Clears all current times
+	-- Clears all current timers
 	timer.refresh()
+
+	-- Resets divine powers
+	removeTextArea(textAreaId.gravitationalAnomaly)
+
+	if ignoreRoundData then return end
 
 	local alivePlayers, lobbyPlayers = players.alive, players.lobby
 	local winners, winnerCount = { }, 0
@@ -33,9 +38,6 @@ eventRoundEnded = function()
 		end
 	end
 	resetPlayersDefaultSize = false
-
-	-- Resets divine powers
-	removeTextArea(textAreaId.gravitationalAnomaly)
 
 	-- Announce winner
 	if winnerCount > 0 then

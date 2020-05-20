@@ -22,3 +22,9 @@ local canTriggerPowers = false
 local resetPlayersDefaultSize = false
 
 local canSaveData = false
+
+local maps, totalCurrentMaps, mapHashes = { }, 0
+local currentMap = 0
+local nextMapLoadTentatives = 0
+
+local ignoreRoundData = true

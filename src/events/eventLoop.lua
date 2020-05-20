@@ -1,17 +1,9 @@
 eventLoop = function(currentTime, remainingTime)
-	if remainingTime < 500 or players._count.alive <= 1 then
+	if remainingTime < 500 then --< DEBUG <--or players._count.alive <= 1 then
 		if not hasTriggeredRoundEnd then
 			eventRoundEnded()
 		end
-		if canLoadNextMap then
-			nextMapLoadTentatives = nextMapLoadTentatives + 1
-			if nextMapLoadTentatives == 4 then
-				nextMapLoadTentatives = 0
-				setNextMapIndex()
-			end
-			newGame(maps[currentMap])
-		end
-		return
+		return nextMap()
 	end
 	timer.loop()
 end
