@@ -13,7 +13,7 @@ do
 			milliseconds = ms,
 			times = times
 		}
-		args.self = t[t._count]
+		args[#args + 1] = t[t._count]
 
 		return t._count
 	end

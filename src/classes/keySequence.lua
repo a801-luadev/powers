@@ -17,7 +17,7 @@ do
 			self._nextStrokeTolerance = 0
 			self.queue = { }
 		else
-			self._nextStrokeTolerance = time + 300
+			self._nextStrokeTolerance = time + 200
 		end
 	end
 

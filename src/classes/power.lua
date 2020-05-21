@@ -196,8 +196,7 @@ do
 	Power.triggerRegular = function(self, playerName, _cache, _time, _x, _y, _ignorePosition, ...)
 		_cache = _cache or playerCache[playerName]
 
-		local power = canTrigger(self, _cache.powers, _time, _cache)
-		if not power then
+		if not canTrigger(self, _cache.powers, _time, _cache) then
 			return false
 		end
 
@@ -224,8 +223,7 @@ do
 
 	-- It has weird arguments because of @trigger that uses the same parameters of @triggerRegular
 	Power.triggerDivine = function(self, _, _, _time, _, _, _, ...)
-		local power = canTrigger(self, powers, _time)
-		if not power then
+		if not canTrigger(self, powers, _time) then
 			return false
 		end
 

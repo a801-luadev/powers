@@ -3,10 +3,8 @@ do
 	linkMice = function(p1, p2, linked)
 		if linked then
 			playerCache[p1].soulMate = p2
-			playerCache[p2].soulMate = p1
 		else
 			playerCache[p1].soulMate = nil
-			playerCache[p2].soulMate = nil
 		end
 
 		return link(p1, p2, linked)

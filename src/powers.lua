@@ -16,14 +16,14 @@ do
 		})
 		:setUseCooldown(1.5)
 		:setBind(0, 2)
-		:setKeySequence({ { 0, 0 }, { 2, 2 } })
+		:setKeySequence({ { 0, 0, 0 }, { 2, 2, 2 } })
 		:setEffect(function(playerName, x, y, isFacingRight)
 			-- Move player
-			movePlayer(playerName, x + (isFacingRight and 255 or -255), y)
+			movePlayer(playerName, x + (isFacingRight and 200 or -200), y)
 
 			-- Move players
 			local direction = (isFacingRight and 30 or -30)
-			for name in next, getPlayersOnFilter(playerName, inRectangle, x, y - 60, 255, 120,
+			for name in next, getPlayersOnFilter(playerName, inRectangle, x, y - 60, 200, 120,
 				isFacingRight) do
 				movePlayer(name, 0, 0, true, direction)
 			end
@@ -35,7 +35,7 @@ end
 
 do
 	local beam = function(x, y, direction)
-		local xSpeed = .2 * direction
+		local xSpeed = .25 * direction
 		local xAcceleration = .3 * direction
 		local r = 10
 		for i = 1, 10, (isLowQuality and 2.5 or 1) do
@@ -61,7 +61,7 @@ do
 			beam(x, y, direction)
 
 			-- Collision
-			timer.start(removeObject, 6000, 1, addShamanObject(6000, x + 40*direction, y, 0,
+			timer.start(removeObject, 1000, 1, addShamanObject(6000, x + 40*direction, y, 0,
 				9 * direction))
 
 			-- Damage
@@ -264,7 +264,7 @@ do
 		:setDamage(10)
 		:setUseLimit(10)
 		:setUseCooldown(5)
-		:setClickRange(100)
+		:setClickRange(150)
 		:setEffect(function(_, x, y)
 			-- Particles
 			lightning(x, y)
@@ -317,7 +317,7 @@ do
 		:setEffect(function(_, x, y, isFacingRight)
 			local direction = (isFacingRight and 50 or -50)
 			x = x + direction
-			y = y + direction
+			y = y - 50
 
 			-- Particles
 			doubleSpiral(x, y, 120, 60, 120)
@@ -337,7 +337,7 @@ do
 	end
 
 	local dust = function(x, y)
-		for i = 1, 10, (isLowQuality and 2 or 10) do
+		for i = 1, 10, (isLowQuality and 2 or 1) do
 			displayParticle(3, x + cos(i) * 100, y + random(-30, 30))
 		end
 	end
@@ -349,6 +349,7 @@ do
 			y = 105
 		})
 		:setDamage(20)
+		:setSelfDamage(5)
 		:setUseLimit(10)
 		:setUseCooldown(8)
 		:setBind(3)
@@ -359,10 +360,10 @@ do
 			-- Super smash
 			timer.start(movePlayer, 500, 1, playerName, 0, 0, true, 0, 400, false)
 			-- Damage
-			timer.start(self.damagePlayers, 800, 1, self, playerName, { smashDamage, inRectangle,
+			timer.start(self.damagePlayers, 1000, 1, self, playerName, { smashDamage, inRectangle,
 				x - 100, y - 60, 200, 120, true }, damagePlayersWithAction)
 			-- Particles
-			timer.start(dust, 800, 1, x, y)
+			timer.start(dust, 1000, 1, x, y)
 
 			return false
 		end)
@@ -488,7 +489,7 @@ do
 		:setProbability(60)
 		:setEffect(function(self)
 			canTriggerPowers = false
-			timer.start(anomaly, 500, 1/self.opacityFrame * 500, self, (isLowQuality and 1 or 3))
+			timer.start(anomaly, 500, 1/self.opacityFrame, self, (isLowQuality and 1 or 3))
 		end)
 end
 
@@ -549,7 +550,7 @@ end
 do
 	local changeSize = function(self, timer)
 		if timer.times == 0 then
-			for name in next, players.alive do
+			for name in next, players.room do
 				changePlayerSize(name, 1)
 			end
 			resetPlayersDefaultSize = false
@@ -572,7 +573,7 @@ do
 		:setProbability(50)
 		:setEffect(function(self)
 			resetPlayersDefaultSize = true
-			timer.start(changeSize, 500, self.seconds * 1000, self)
+			timer.start(changeSize, 500, self.seconds * 2, self)
 		end)
 end
 
