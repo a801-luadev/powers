@@ -74,7 +74,7 @@ do
 			value = value and strToTable(value) or valueDefault
 		else
 			if valueType == "number" then
-				value = tonumber(value, 16)
+				value = value and tonumber(value, 16)
 			elseif valueType == "string" and value then
 				value = match(value, "^\"(.-)\"$")
 			end

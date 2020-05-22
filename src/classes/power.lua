@@ -23,6 +23,7 @@ do
 
 			defaultUseLimit = (type == powerType.divine and 1 or -1),
 			useLimit = nil,
+			defaultUseCooldown = 1000,
 			useCooldown = 1000,
 			triggerPossibility = nil,
 
@@ -76,7 +77,8 @@ do
 	end
 
 	Power.setUseCooldown = function(self, cooldown)
-		self.useCooldown = cooldown * 1000
+		self.defaultUseCooldown = cooldown * 1000
+		self.useCooldown = self.defaultUseCooldown
 		return self
 	end
 
@@ -153,6 +155,7 @@ do
 
 	Power.reset = function(self)
 		self.useLimit = self.defaultUseLimit
+		self.useCooldown = time() + self.defaultUseCooldown
 		if self.resetableData then
 			table_add(self, self.resetableData, true)
 		end
@@ -173,30 +176,24 @@ do
 		return self
 	end
 
-	local canTrigger = function(self, src, _time, _playerCache)
-		local power = src[self.name]
-		if power.remainingUses == 0 then return end -- x < 0 means infinity
+	local canTriggerRegular = function(self, cache, _time)
+		local playerPowerData = cache.powers[self.name]
+		if playerPowerData.remainingUses == 0 then return end -- x < 0 means infinity
 
 		_time = _time or time()
-		if power.cooldown > _time or
-			(_playerCache and _playerCache.powerCooldown > _time) then return end
-		if _playerCache then
-			_playerCache.powerCooldown = _time + 200
-		end
+		if playerPowerData.cooldown > _time then return end
+		playerPowerData.cooldown = _time + self.useCooldown
+		cache.powerCooldown = _time + 200 -- General cooldown
 
-		if self.triggerPossibility then
-			if random(self.triggerPossibility) ~= random(self.triggerPossibility) then return end
-		end
+		playerPowerData.remainingUses = playerPowerData.remainingUses - 1
 
-		power.remainingUses = power.remainingUses - 1
-
-		return power
+		return true
 	end
 
 	Power.triggerRegular = function(self, playerName, _cache, _time, _x, _y, _ignorePosition, ...)
 		_cache = _cache or playerCache[playerName]
 
-		if not canTrigger(self, _cache.powers, _time, _cache) then
+		if not canTriggerRegular(self, _cache, _time) then
 			return false
 		end
 
@@ -221,9 +218,27 @@ do
 		return true
 	end
 
+	local canTriggerDivine = function(self, _time)
+		local playerPowerData = powers[self.name]
+		if playerPowerData.useLimit == 0 then return end -- x < 0 means infinity
+
+		_time = _time or time()
+		if playerPowerData.useCooldown > _time then return end
+		playerPowerData.useCooldown = _time + 5000 -- Wait a bit before trying again if on failure
+
+		if self.triggerPossibility then
+			if random(self.triggerPossibility) ~= random(self.triggerPossibility) then return end
+		end
+
+		playerPowerData.useCooldown = _time + self.defaultUseCooldown
+		playerPowerData.useLimit = playerPowerData.useLimit - 1
+
+		return true
+	end
+
 	-- It has weird arguments because of @trigger that uses the same parameters of @triggerRegular
 	Power.triggerDivine = function(self, _, _, _time, _, _, _, ...)
-		if not canTrigger(self, powers, _time) then
+		if not canTriggerDivine(self, _time) then
 			return false
 		end
 

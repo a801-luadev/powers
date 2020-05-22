@@ -1,8 +1,6 @@
 eventMouse = function(playerName, x, y)
-	if not playerCanTriggerEvent(playerName) then return end
-
-	local time = time()
-	local cache = playerCache[playerName]
+	local time, cache = playerCanTriggerEvent(playerName)
+	if not time then return end
 
 	local playerX, playerY = tfm.get.room.playerList[playerName]
 	playerX, playerY = playerX.x, playerX.y

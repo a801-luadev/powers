@@ -1,5 +1,6 @@
 eventKeyboard = function(playerName, key, isDown, x, y)
-	if not playerCanTriggerEvent(playerName) then return end
+	local time = playerCanTriggerEvent(playerName, true)
+	if not time then return end
 
 	local cache = playerCache[playerName]
 	if key == 0 then
@@ -10,8 +11,6 @@ eventKeyboard = function(playerName, key, isDown, x, y)
 
 	local playerKs = cache.keySequence
 	playerKs:insert(key)
-
-	local time = time()
 
 	local matchCombo = false
 	local src = Power.__keyboard

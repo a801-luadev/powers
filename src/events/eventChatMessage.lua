@@ -1,8 +1,6 @@
 eventChatMessage = function(playerName, message)
-	if not playerCanTriggerEvent(playerName) then return end
-
-	local time = time()
-	local cache = playerCache[playerName]
+	local time, cache = playerCanTriggerEvent(playerName)
+	if not time then return end
 
 	local src = Power.__chatMessage
 	for power = 1, Power.__eventCount.__chatMessage do

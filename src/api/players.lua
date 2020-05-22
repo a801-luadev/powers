@@ -37,10 +37,15 @@ local enablePowersTrigger = function()
 	canTriggerPowers = true
 end
 
-local playerCanTriggerEvent = function(playerName)
-	local data = tfm.get.room.playerList[playerName]
+local playerCanTriggerEvent = function(playerName, noCooldown)
+	local time = time()
+	local cache = playerCache[playerName]
 
-	return canTriggerPowers and not data.isDead
+	if not noCooldown and cache.powerCooldown > time then return end
+
+	if canTriggerPowers and not tfm.get.room.playerList[playerName].isDead then
+		return time, cache
+	end
 end
 
 local giveExperience = function()

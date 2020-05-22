@@ -13,6 +13,8 @@ local isOfficialRoom = byte(tfm.get.room.name, 2) ~= 3
 
 local playerCache = { }
 
+local powers = { }
+
 local isLowQuality = false
 local lowQualityCounter = 0
 

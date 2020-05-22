@@ -1,5 +1,3 @@
-local powers = { }
-
 -- Level 0
 do
 	local wind = function(x, y, direction)
