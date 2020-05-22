@@ -88,6 +88,6 @@ end
 fileData = table.concat(fileData, "\n\n")
 
 writeFile("last_build.lua", fileData)
-writeFile("builds/" .. os.date("%m-%d-%y") .. ".lua", fileData)
+--writeFile("builds/" .. os.date("%m-%d-%y") .. ".lua", fileData)
 
 print("Done")

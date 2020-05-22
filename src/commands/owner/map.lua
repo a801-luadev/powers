@@ -48,7 +48,7 @@ do
 	argMethod["rem"] = function(validMaps,  totalMaps)
 		local map
 		for i = 1, totalMaps do
-			map = validMaps[isMapCode]
+			map = validMaps[i]
 			if mapHashes[map] then
 				for m = 1, totalCurrentMaps do
 					if maps[m] == map then
@@ -66,7 +66,7 @@ do
 
 	-- Displays the map queue
 	noArgMethod["ls"] = function(playerName)
-		chatMessage(format(getText.totalMaps, totalCurrentMaps, table_concat(maps, ", ")),
+		chatMessage(format(getText.totalMaps, totalCurrentMaps, "@" .. table_concat(maps, ", @")),
 			playerName)
 	end
 

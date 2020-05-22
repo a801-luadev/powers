@@ -74,7 +74,7 @@ do
 			value = value and strToTable(value) or valueDefault
 		else
 			if valueType == "number" then
-				value = tonumber(value)
+				value = tonumber(value, 16)
 			elseif valueType == "string" and value then
 				value = match(value, "^\"(.-)\"$")
 			end
@@ -180,7 +180,7 @@ do
 
 			if valueType == "number" then
 				index = index + 1
-				str[index] = value
+				str[index] = format("%x", value)
 			elseif valueType == "string" then
 				index = index + 1
 				str[index] = '"'
