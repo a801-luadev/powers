@@ -546,7 +546,7 @@ end
 
 -- Level 80
 do
-	local changeSize = function(self, timer)
+	local beanstalk = function(self, timer)
 		if timer.times == 0 then
 			for name in next, players.room do
 				changePlayerSize(name, 1)
@@ -559,8 +559,8 @@ do
 		end
 	end
 
-	powers.changeSize = Power
-		.new("changeSize", powerType.divine, 80, {
+	powers.beanstalk = Power
+		.new("beanstalk", powerType.divine, 80, {
 			icon = '',
 			x = 0,
 			y = 0
@@ -571,7 +571,7 @@ do
 		:setProbability(50)
 		:setEffect(function(self)
 			resetPlayersDefaultSize = true
-			timer.start(changeSize, 500, self.seconds * 2, self)
+			timer.start(beanstalk, 500, self.seconds * 2, self)
 		end)
 end
 

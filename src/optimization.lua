@@ -29,6 +29,10 @@ local saveFile       = system.saveFile
 local savePlayerData = system.savePlayerData
 local loadPlayerData = system.loadPlayerData
 
+-- Enums
+local enum_shamanObject = tfm.enum.shamanObject
+local enum_particle     = tfm.enum.particle
+
 -- Mathematics
 local cos    = math.cos
 local rad    = math.rad
