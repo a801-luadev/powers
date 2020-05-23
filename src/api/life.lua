@@ -32,7 +32,9 @@ local damagePlayersWithAction = function(except, damage, action, filter, x, y, .
 		if (not action and true or action(name))
 			and damagePlayer(name, damage, cache) then -- Has died
 			hasKilled = true
-			playerData:set(except, "kills", 1, true)
+			playerData
+				:set(except, "kills", 1, true)
+				:set(except, "xp", module.xp_on_kill, true)
 		end
 	end
 	if hasKilled then

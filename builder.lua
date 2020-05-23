@@ -22,6 +22,8 @@ local tree = {
 	"interfaces/lifeBar.lua",
 	"api/life.lua",
 
+	"api/xp.lua",
+
 	--"classes/byteArray.lua",
 	"classes/keySequence.lua",
 	"classes/timer.lua",

@@ -38,6 +38,7 @@ local cos    = math.cos
 local rad    = math.rad
 local random = math.random
 local sin    = math.sin
+local sqrt   = math.sqrt
 
 -- String
 local byte   = string.byte

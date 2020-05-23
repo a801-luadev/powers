@@ -2,6 +2,7 @@ eventNewPlayer = function(playerName)
 	if not playerCache[playerName] then
 		playerCache[playerName] = {
 			hasPlayerData = false,
+			level = 1,
 
 			health = 0,
 			extraHealth = 0,

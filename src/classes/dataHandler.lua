@@ -126,34 +126,37 @@ do
 	end
 
 	local tblToStr
+	local transformType = function(valueType, index, str, value)
+		if valueType == "number" then
+			index = index + 1
+			str[index] = format("%x", value)
+		elseif valueType == "string" then
+			index = index + 1
+			str[index] = '"'
+			index = index + 1
+			str[index] = value
+			index = index + 1
+			str[index] = '"'
+		elseif valueType == "boolean" then
+			index = index + 1
+			str[index] = (value and '1' or '0')
+		elseif valueType == "table" then
+			index = index + 1
+			str[index] = '{'
+			index = index + 1
+			str[index] = tblToStr(value)
+			index = index + 1
+			str[index] = '}'
+		end
+		return index
+	end
+
 	tblToStr = function(tbl)
 		local str, index = { }, 0
 
 		local valueType
 		for k, v in next, tbl do
-			valueType = type(v)
-			if valueType == "table" then
-				index = index + 1
-				str[index] = '{'
-				index = index + 1
-				str[index] = tblToStr(tbl)
-				index = index + 1
-				str[index] = '}'
-			elseif valueType == "string" then
-				index = index + 1
-				str[index] = '"'
-				index = index + 1
-				str[index] = value
-				index = index + 1
-				str[index] = '"'
-			elseif value == "boolean" then
-				index = index + 1
-				str[index] = (v and '1' or '0')
-			else
-				index = index + 1
-				str[index] = v
-			end
-
+			index = transformType(type(v), index, str, v)
 			index = index + 1
 			str[index] = ','
 		end
@@ -175,31 +178,7 @@ do
 		local valueName, valueType, value
 		for i = 1, #structureIndexes do
 			valueName = structureIndexes[i]
-			valueType = structure[valueName].type
-			value = playerData[valueName]
-
-			if valueType == "number" then
-				index = index + 1
-				str[index] = format("%x", value)
-			elseif valueType == "string" then
-				index = index + 1
-				str[index] = '"'
-				index = index + 1
-				str[index] = value
-				index = index + 1
-				str[index] = '"'
-			elseif valueType == "boolean" then
-				index = index + 1
-				str[index] = (value and '1' or '0')
-			elseif valueType == "table" then
-				index = index + 1
-				str[index] = '{'
-				index = index + 1
-				str[index] = tblToStr(value)
-				index = index + 1
-				str[index] = '}'
-			end
-
+			index = transformType(structure[valueName].type, index, str, playerData[valueName])
 			index = index + 1
 			str[index] = ','
 		end
