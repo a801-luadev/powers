@@ -3,13 +3,15 @@ eventNewPlayer = function(playerName)
 		playerCache[playerName] = {
 			hasPlayerData = false,
 			level = 1,
+			roundLevel = nil, -- Level on round start
+			levelColor = nil,
 
 			health = 0,
-			extraHealth = 0,
+			extraHealth = 0, -- Health points that were accumulated and will be updated together
 
 			isFacingRight = true,
 
-			powers = { },
+			powers = { }, -- All individual powers' data
 			powerCooldown = 0,
 			keySequence = KeySequence.new(),
 

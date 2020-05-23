@@ -35,6 +35,9 @@ eventRoundEnded = function()
 			playerData
 				:set(name, "rounds", 1, true)
 				:save(name)
+
+			-- Checks player level
+			checkPlayerLevel(name, cache)
 		end
 	end
 	resetPlayersDefaultSize = false

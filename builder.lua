@@ -16,13 +16,12 @@ local tree = {
 	"api/table.lua",
 
 	"api/transformice.lua",
+	"api/xp.lua",
 	"api/players.lua",
 
 	"api/filter.lua",
 	"interfaces/lifeBar.lua",
 	"api/life.lua",
-
-	"api/xp.lua",
 
 	--"classes/byteArray.lua",
 	"classes/keySequence.lua",

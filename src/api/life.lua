@@ -9,7 +9,7 @@ local addHealth = function(playerName, cache, hp)
 		cache.health = 100
 	end
 
-	updateLifeBar(playerName, cache.health)
+	updateLifeBar(playerName, cache)
 end
 
 local damagePlayer = function(playerName, damage, _cache)
@@ -21,7 +21,7 @@ local damagePlayer = function(playerName, damage, _cache)
 		killPlayer(playerName)
 		return true
 	else
-		updateLifeBar(playerName, _cache.health)
+		updateLifeBar(playerName, _cache)
 		return false
 	end
 end

@@ -50,8 +50,47 @@ end
 
 local giveExperience = function()
 	for playerName in next, players.alive do
-		playerData
-			:set(playerName, "xp", module.extra_xp_in_round, true)
-			:save(playerName)
+		playerData:set(playerName, "xp", module.extra_xp_in_round, true)
+	end
+end
+
+local setPlayerLevel = function(playerName, cache)
+	local level = xpToLvl(playerData:get(playerName, "xp"))
+	cache.level = level
+
+	if level == cache.roundLevel then return end
+
+	level = level - 1
+	cache.levelColor = levelColors[10 + level - level%10] or levelColors[#levelColors]
+
+	return level + 1
+end
+
+local checkPlayerLevel = function(playerName, cache)
+	if not canSaveData then return end
+
+	local newLevel = setPlayerLevel(playerName, cache)
+	if not newLevel then return end
+
+	chatMessage(format(getText.newLevel, playerName, newLevel))
+
+	-- Checks unlocked powers
+	local powerNames = getText.powers
+	local nameByLevel = Power.__nameByLevel
+
+	local levelNames, counter, storedNames = { }, 0
+	for lvl = cache.roundLevel, newLevel do -- Checks all new levels, it can be more than one.
+		storedNames = nameByLevel[lvl]
+		if storedNames then
+			for i = 1, #storedNames do
+				counter = counter + 1
+				levelNames[counter] = powerNames[storedNames[i]]
+			end
+		end
+	end
+
+	if counter > 0 then
+		chatMessage(format(getText.unlockPower, "<B>" .. table_concat(levelNames, "</B>, <B>") ..
+			"</B>"), playerName)
 	end
 end

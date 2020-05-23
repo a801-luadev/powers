@@ -8,22 +8,43 @@ translations.en = {
 	remMap = "<BL>The map <J>@%s</J> was removed from the local map queue.",
 	totalMaps = "<BL>Total maps: <J>#%s</J>: %s",
 
+	-- Powers
+	powers = {
+		lightSpeed = "Light Speed",
+		ray = "Ray",
+		wormHole = "Worm Hole",
+		doubleJump = "Double Jump",
+		helix = "Helix",
+		dome = "Dome",
+		lightning = "Lightning",
+		superNova = "Super Nova",
+		hulkSmash = "Hulk Smash",
+		gravitationalAnomaly = "Gravitational Anomaly",
+		deathRay = "Death Ray",
+		beanstalk = "Beanstalk",
+		raiseOfTheDead = "Raise of the Dead"
+	},
+
+	unlockPower = "You have unlocked the following power(s): %s",
+
 	-- Level names
 	level = {
-		[1] = "Mutant",
-		[2] = "Necromancer",
-		[3] = "Scientist",
-		[4] = "Titan",
-		[5] = { "Wizard", "Wizardess" },
-		[6] = "Reality Controller",
-		[7] = { "Lord of Spells", "Lady of Spells" },
-		[8] = "Shamanic Summoner",
-		[9] = "The Pestilence Horseman",
-		[10] = "The Famine Horseman",
-		[11] = "The War Horseman",
-		[12] = "The Death Horseman",
-		[13] = "The Void"
+		[10] = "Mutant",
+		[20] = "Necromancer",
+		[30] = "Scientist",
+		[40] = "Titan",
+		[50] = { "Wizard", "Wizardess" },
+		[60] = "Reality Controller",
+		[70] = { "Lord of Spells", "Lady of Spells" },
+		[80] = "Shamanic Summoner",
+		[90] = "The Pestilence Horseman",
+		[100] = "The Famine Horseman",
+		[110] = "The War Horseman",
+		[120] = "The Death Horseman",
+		[130] = "The Void"
 	},
+
+	newLevel = "%s just reached level %d!",
 
 	-- Winner
 	noWinner = "No one won the round.",

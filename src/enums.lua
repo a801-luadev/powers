@@ -5,19 +5,19 @@ local powerType = {
 }
 
 local levelColors = {
-	[1] = 0xFFA500,
-	[2] = 0x4187B1,
-	[3] = 0x66CDAA,
-	[4] = 0xFEDA7A,
-	[5] = 0xDA70D6,
-	[6] = 0x4F94CD,
-	[7] = 0x9370DB,
-	[8] = 0x48D1CC,
-	[9] = 0x9ACD32,
-	[10] = 0x1C1313,
-	[11] = 0x7C1C29,
-	[12] = 0xD7ECFF,
-	[13] = 0x8B658B
+	[10] = 0xFFA500,
+	[20] = 0x4187B1,
+	[30] = 0x66CDAA,
+	[40] = 0xFEDA7A,
+	[50] = 0xDA70D6,
+	[60] = 0x4F94CD,
+	[70] = 0x9370DB,
+	[80] = 0x48D1CC,
+	[90] = 0x9ACD32,
+	[100] = 0x1C1313,
+	[110] = 0x7C1C29,
+	[120] = 0xD7ECFF,
+	[130] = 0x8B658B
 }
 
 local textAreaId = {

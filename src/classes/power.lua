@@ -1,4 +1,4 @@
-local Power = { }
+Power = { }
 do
 	Power.__index = Power
 
@@ -12,6 +12,8 @@ do
 		__keyboard    = 0,
 		__chatMessage = 0
 	}
+
+	Power.__nameByLevel = { }
 
 	Power.new = function(name, type, level, imageData, extraData, resetableData)
 		local self = {
@@ -51,6 +53,13 @@ do
 		if extraData then
 			table_add(self, extraData)
 		end
+
+		local nameByLevel = Power.__nameByLevel
+		if not nameByLevel[level] then
+			nameByLevel[level] = { }
+		end
+		nameByLevel = nameByLevel[level]
+		nameByLevel[#nameByLevel + 1] = name
 
 		return setmetatable(self, Power)
 	end
