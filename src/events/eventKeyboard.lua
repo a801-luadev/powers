@@ -1,13 +1,13 @@
 eventKeyboard = function(playerName, key, isDown, x, y)
-	local time = playerCanTriggerEvent(playerName, true)
-	if not time then return end
-
 	local cache = playerCache[playerName]
 	if key == 0 then
 		cache.isFacingRight = false
 	elseif key == 2 then
 		cache.isFacingRight = true
 	end
+
+	local time = playerCanTriggerEvent(playerName)
+	if not time then return end
 
 	local playerKs = cache.keySequence
 	playerKs:insert(key)

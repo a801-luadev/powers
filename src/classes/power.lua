@@ -192,7 +192,7 @@ do
 		_time = _time or time()
 		if playerPowerData.cooldown > _time then return end
 		playerPowerData.cooldown = _time + self.useCooldown
-		cache.powerCooldown = _time + 200 -- General cooldown
+		cache.powerCooldown = _time + 800 -- General cooldown
 
 		playerPowerData.remainingUses = playerPowerData.remainingUses - 1
 

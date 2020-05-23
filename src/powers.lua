@@ -124,7 +124,7 @@ do
 			x = 310,
 			y = 110
 		})
-		:setUseCooldown(3)
+		:setUseCooldown(5)
 		:setBind(1)
 		:setKeySequence({ { 1, 1 } })
 		:setEffect(function(playerName, x, y)
