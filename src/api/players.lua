@@ -37,6 +37,12 @@ local enablePowersTrigger = function()
 	canTriggerPowers = true
 end
 
+local isValidPlayer = function(playerName)
+	return sub(playerName, 1, 1) ~= "*" -- Is not souris
+		and (time() - tfm.get.room.playerList[playerName].registrationDate)
+			>= (5 * 60 * 60 * 24 * 1000) -- Is a player for longer than 5 days
+end
+
 local playerCanTriggerEvent = function(playerName)
 	local time = time()
 	local cache = playerCache[playerName]

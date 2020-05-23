@@ -4,5 +4,6 @@ eventPlayerDataLoaded = function(playerName, data)
 	local cache = playerCache[playerName]
 	setPlayerLevel(playerName, cache)
 
-	cache.hasPlayerData = true
+	players_remove("lobby", playerName)
+	players_insert("room", playerName)
 end

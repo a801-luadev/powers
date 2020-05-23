@@ -1,7 +1,6 @@
 eventNewPlayer = function(playerName)
 	if not playerCache[playerName] then
 		playerCache[playerName] = {
-			hasPlayerData = false,
 			level = 1,
 			roundLevel = nil, -- Level on round start
 			levelColor = nil,
@@ -29,7 +28,8 @@ eventNewPlayer = function(playerName)
 	end
 
 	players_insert("lobby", playerName)
-	players_insert("room", playerName)
+
+	if not isValidPlayer(playerName) then return end
 
 	lowerSyncDelay(playerName)
 

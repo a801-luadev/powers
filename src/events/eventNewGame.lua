@@ -24,26 +24,26 @@ eventNewGame = function()
 	end
 
 	-- Resets players
+	for playerName in next, players.lobby do
+		killPlayer(playerName)
+	end
+
 	local currentTime, cache = time()
 	for playerName in next, players.alive do
 		cache = playerCache[playerName]
-		if not cache.hasPlayerData then
-			killPlayer(playerName)
-		else
-			cache.health = 100
-			cache.isFacingRight = not tfm.get.room.mirroredMap
-			cache.extraHealth = 0
-			cache.powerCooldown = 0
-			cache.soulMate = nil
-			cache.roundLevel = cache.level
+		cache.health = 100
+		cache.isFacingRight = not tfm.get.room.mirroredMap
+		cache.extraHealth = 0
+		cache.powerCooldown = 0
+		cache.soulMate = nil
+		cache.roundLevel = cache.level
 
-			updateLifeBar(playerName, cache)
+		updateLifeBar(playerName, cache)
 
-			cache = cache.powers
-			for name, obj in next, powers do
-				-- Resets individual powers settings
-				cache[name] = obj:getNewPlayerData(currentTime)
-			end
+		cache = cache.powers
+		for name, obj in next, powers do
+			-- Resets individual powers settings
+			cache[name] = obj:getNewPlayerData(currentTime)
 		end
 	end
 
