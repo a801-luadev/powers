@@ -1,5 +1,19 @@
 eventRoundEnded = function()
-	hasTriggeredRoundEnd = true
+print(wasLobby, isLobby)
+	wasLobby = isLobby
+	isLobby = (players._count.room == 1)
+
+	hasTriggeredRoundEnd = not isLobby
+
+	if wasLobby then
+		if isLobby then
+			setGameTime(5)
+			return
+		else
+			removeTextArea(textAreaId.lobby)
+		end
+	end
+
 	canTriggerPowers = false
 
 	-- Clears all current timers

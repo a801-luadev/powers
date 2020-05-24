@@ -23,7 +23,8 @@ local levelColors = {
 local textAreaId = {
 	lifeBar = 50,
 	gravitationalAnomaly = 100,
-	interface = 500
+	interface = 500,
+	lobby = 600
 }
 
 local interfaceImages = {

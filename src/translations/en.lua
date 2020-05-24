@@ -62,5 +62,8 @@ translations.en = {
 		[2] = "Content 2",
 		[3] = "Content 3",
 		[4] = "Content 4"
-	}
+	},
+
+	-- Lobby
+	minPlayers = "At least <B>2</B> players must be in the room for the game to start."
 }

@@ -13,7 +13,9 @@ local module = {
 	xp_on_kill = 15,
 
 	max_player_level = 129,
-	max_player_xp = nil
+	max_player_xp = nil,
+
+	lobbyMap = 1995971
 }
 
 local isOfficialRoom = byte(tfm.get.room.name, 2) ~= 3
@@ -36,4 +38,5 @@ local maps, totalCurrentMaps, mapHashes = { }, 0
 local currentMap = 0
 local nextMapLoadTentatives = 0
 
+local isLobby, wasLobby = false, false
 local ignoreRoundData = true

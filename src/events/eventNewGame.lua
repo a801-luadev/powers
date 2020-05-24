@@ -1,19 +1,24 @@
 eventNewGame = function()
-	ignoreRoundData = false
-
-	nextMapLoadTentatives = 0
-	setNextMapIndex()
-
 	-- Resets players
-	players.lobby = { }
-	players._count.lobby = 0
-
 	players.dead = { }
 	players._count.dead = 0
 	players.alive = table_copy(players.room)
 	players._count.alive = players._count.room
 
-	canTriggerPowers = false
+	nextMapLoadTentatives = 0
+	hasTriggeredRoundEnd = false
+
+	if isLobby then
+		setGameTime(5)
+		addTextArea(textAreaId.lobby, "<font size='40'><p align='center'>" .. getText.minPlayers,
+			nil, 5, 45, 790, nil, 1, 1, 0, true)
+		return
+	end
+	wasLobby = false
+
+	ignoreRoundData = false
+	setNextMapIndex()
+
 	timer.start(enablePowersTrigger, 3000, 1)
 
 	-- Resets powers
@@ -46,8 +51,6 @@ eventNewGame = function()
 			cache[name] = obj:getNewPlayerData(currentTime)
 		end
 	end
-
-	hasTriggeredRoundEnd = false
 
 	canSaveData = (isOfficialRoom and tfm.get.room.uniquePlayers >= module.min_players)
 	-- Adds extra XP
