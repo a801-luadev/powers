@@ -66,10 +66,10 @@ local setPlayerLevel = function(playerName, cache)
 
 	if level == cache.roundLevel then return end
 
-	level = level - 1
-	cache.levelColor = levelColors[10 + level - level%10] or levelColors[#levelColors]
+	cache.levelColor = levelColors[level - level%10]
+		or levelColors[module.max_player_level - module.max_player_level%10]
 
-	return level + 1
+	return level
 end
 
 local checkPlayerLevel = function(playerName, cache)

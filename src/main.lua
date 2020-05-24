@@ -12,7 +12,7 @@ local module = {
 	xp_on_victory = 40,
 	xp_on_kill = 15,
 
-	max_player_level = 130,
+	max_player_level = 129,
 	max_player_xp = nil
 }
 

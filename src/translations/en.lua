@@ -29,19 +29,19 @@ translations.en = {
 
 	-- Level names
 	level = {
-		[10] = "Mutant",
-		[20] = "Necromancer",
-		[30] = "Scientist",
-		[40] = "Titan",
-		[50] = { "Wizard", "Wizardess" },
-		[60] = "Reality Controller",
-		[70] = { "Lord of Spells", "Lady of Spells" },
-		[80] = "Shamanic Summoner",
-		[90] = "The Pestilence Horseman",
-		[100] = "The Famine Horseman",
-		[110] = "The War Horseman",
-		[120] = "The Death Horseman",
-		[130] = "The Void"
+		[000] = "Mutant",
+		[010] = "Necromancer",
+		[020] = "Scientist",
+		[030] = "Titan",
+		[040] = { "Wizard", "Wizardess" },
+		[050] = "Reality Controller",
+		[060] = { "Lord of Spells", "Lady of Spells" },
+		[070] = "Shamanic Summoner",
+		[080] = "The Pestilence Horseman",
+		[090] = "The Famine Horseman",
+		[100] = "The War Horseman",
+		[110] = "The Death Horseman",
+		[120] = "The Void"
 	},
 
 	newLevel = "%s just reached level %d!",
