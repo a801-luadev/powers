@@ -10,7 +10,10 @@ local module = {
 	extra_xp_in_round_seconds = 60 * 1000,
 	extra_xp_in_round = 10,
 	xp_on_victory = 40,
-	xp_on_kill = 15
+	xp_on_kill = 15,
+
+	max_player_level = 130,
+	max_player_xp = nil
 }
 
 local isOfficialRoom = byte(tfm.get.room.name, 2) ~= 3

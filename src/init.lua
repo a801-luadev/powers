@@ -1,5 +1,7 @@
 system.loadFile(module.map_file)
 
+module.max_player_xp = lvlToXp(module.max_player_level)
+
 for playerName in next, tfm.get.room.playerList do
 	eventNewPlayer(playerName)
 	setPlayerScore(playerName, 0)
