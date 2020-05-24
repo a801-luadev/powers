@@ -23,7 +23,7 @@ end
 
 local setNextMapIndex = function()
 	currentMap = currentMap + 1
-	if currentMap == totalCurrentMaps then
+	if currentMap >= totalCurrentMaps then
 		table_shuffle(maps)
 		currentMap = 1
 	end
