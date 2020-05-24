@@ -33,7 +33,7 @@ eventNewGame = function()
 		killPlayer(playerName)
 	end
 
-	local currentTime, cache = time()
+	local currentTime, cache, playerPowers = time()
 	for playerName in next, players.alive do
 		cache = playerCache[playerName]
 		cache.health = 100
@@ -45,10 +45,12 @@ eventNewGame = function()
 
 		updateLifeBar(playerName, cache)
 
-		cache = cache.powers
+		playerPowers = cache.powers
+		cache = cache.level
+
 		for name, obj in next, powers do
 			-- Resets individual powers settings
-			cache[name] = obj:getNewPlayerData(currentTime)
+			playerPowers[name] = obj:getNewPlayerData(cache, currentTime)
 		end
 	end
 

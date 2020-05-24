@@ -1,7 +1,6 @@
 eventRoundEnded = function()
-print(wasLobby, isLobby)
-	wasLobby = isLobby
-	isLobby = (players._count.room == 1)
+	--DEBUG--wasLobby = isLobby
+	--DEBUG--isLobby = (players._count.room == 1)
 
 	hasTriggeredRoundEnd = not isLobby
 

@@ -171,8 +171,8 @@ do
 		return self
 	end
 
-	Power.getNewPlayerData = function(self, currentTime)
-		return self.type ~= powerType.divine and {
+	Power.getNewPlayerData = function(self, playerLevel, currentTime)
+		return playerLevel >= self.level and {
 			remainingUses = self.useLimit,
 			cooldown = currentTime + self.useCooldown
 		} or nil
@@ -227,27 +227,29 @@ do
 		return true
 	end
 
-	local canTriggerDivine = function(self, _time)
-		local playerPowerData = powers[self.name]
-		if playerPowerData.useLimit == 0 then return end -- x < 0 means infinity
+	local canTriggerDivine = function(self, playerName, _time)
+		if not playerCache[playerName].powers[self.name] then return end
+
+		local powerData = powers[self.name]
+		if powerData.useLimit == 0 then return end -- x < 0 means infinity
 
 		_time = _time or time()
-		if playerPowerData.useCooldown > _time then return end
-		playerPowerData.useCooldown = _time + 5000 -- Wait a bit before trying again if on failure
+		if powerData.useCooldown > _time then return end
+		powerData.useCooldown = _time + 5000 -- Wait a bit before trying again if on failure
 
 		if self.triggerPossibility then
 			if random(self.triggerPossibility) ~= random(self.triggerPossibility) then return end
 		end
 
-		playerPowerData.useCooldown = _time + self.defaultUseCooldown
-		playerPowerData.useLimit = playerPowerData.useLimit - 1
+		powerData.useCooldown = _time + self.defaultUseCooldown
+		powerData.useLimit = powerData.useLimit - 1
 
 		return true
 	end
 
 	-- It has weird arguments because of @trigger that uses the same parameters of @triggerRegular
-	Power.triggerDivine = function(self, _, _, _time, _, _, _, ...)
-		if not canTriggerDivine(self, _time) then
+	Power.triggerDivine = function(self, playerName, _, _time, _, _, _, ...)
+		if not canTriggerDivine(self, playerName, _time) then
 			return false
 		end
 
