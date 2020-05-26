@@ -62,14 +62,14 @@ do
 	updatePowerMenu = function(playerName, interfaceX, interfaceY, _cache)
 		_cache = _cache or playerCache[playerName]
 
-		if _cache.powerInfoImageId then
-			removeImage(_cache.powerInfoImageId, playerName)
+		if _cache.powerInfoSelectionImageId then
+			removeImage(_cache.powerInfoSelectionImageId, playerName)
 		end
 
 		local highlightRectangleBorder = addImage(interfaceImages.highlightRectangleBorder,
 			imageTargets.interfaceRectangle, interfaceX, interfaceY, playerName)
 
-		_cache.powerInfoImageId = highlightRectangleBorder
+		_cache.powerInfoSelectionImageId = highlightRectangleBorder
 
 		_cache.totalInterfaceImages = _cache.totalInterfaceImages + 1
 		_cache.interfaceImages[_cache.totalInterfaceImages] = highlightRectangleBorder

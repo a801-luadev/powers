@@ -4,12 +4,12 @@ do
 
 	displayMenu = function(playerName, _cache)
 		_cache = _cache or playerCache[playerName]
-		local menuIndex = _cache.menuIndex
+		local menuPage = _cache.menuPage
 
 		-- Tabs
 		local menuTabId, tmpTabId
 		for t = 1, #getText.menuTitles do
-			tmpTabId = displayPrettyUI(format(tabStr, (t == menuIndex and "<J>" or ''), t,
+			tmpTabId = displayPrettyUI(format(tabStr, (t == menuPage and "<J>" or ''), t,
 				getText.menuTitles[t]), 615, 60 + t*35, 120, 30, playerName, _cache, 1, 3, 2)
 
 			if t == 1 then
@@ -20,27 +20,28 @@ do
 		_cache.menuTabId = menuTabId - 1
 
 		-- Main menu
-		_cache.menuContentId = displayPrettyUI(getText.menuContent[menuIndex], 100, 65, 520, 300,
+		_cache.menuContentId = displayPrettyUI(getText.menuContent[menuPage], 100, 65, 520, 300,
 			playerName, _cache)
 	end
 
-	updateMenu = function(playerName, _cache)
+	updateMenu = function(playerName, menuPage, _cache)
 		_cache = _cache or playerCache[playerName]
 
-		local menuIndex = _cache.menuIndex
-		local lastMenuIndex = _cache.lastMenuIndex
+		local currentMenuPage = _cache.menuPage
 
-		if lastMenuIndex then
+		if currentMenuPage then
 			-- Remove highlight color of the last tab
-			updateTextArea(_cache.menuTabId + lastMenuIndex, "<N>" .. format(tabStr, '',
-				lastMenuIndex, getText.menuTitles[lastMenuIndex]), playerName)
+			updateTextArea(_cache.menuTabId + currentMenuPage, "<N>" .. format(tabStr, '',
+				currentMenuPage, getText.menuTitles[currentMenuPage]), playerName)
 		end
 
 		-- Highlights new tab
-		updateTextArea(_cache.menuTabId + menuIndex, format(tabStr, "<J>", menuIndex,
-			getText.menuTitles[menuIndex]), playerName)
+		updateTextArea(_cache.menuTabId + menuPage, format(tabStr, "<J>", menuPage,
+			getText.menuTitles[menuPage]), playerName)
 
 		-- Main menu
-		updateTextArea(_cache.menuContentId, getText.menuContent[menuIndex], playerName)
+		updateTextArea(_cache.menuContentId, getText.menuContent[menuPage], playerName)
+
+		_cache.menuPage = menuPage
 	end
 end

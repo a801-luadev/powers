@@ -16,19 +16,17 @@ eventNewPlayer = function(playerName)
 
 			soulMate = nil,
 
+			hasOpenInterface = false,
 			totalInterfaceTextareas = 0,
 			totalInterfaceImages = 0,
 			interfaceImages = { },
 
-			hasOpenInterface = false,
-
-			menuIndex = 1,
-			lastMenuIndex = nil,
-			menuContentId = nil,
+			menuPage = 1,
+			menuContentId = nil, -- Current main textarea to update text
 			menuTabId = nil,
 
 			powerInfoIdSelected = nil,
-			powerInfoImageId = nil
+			powerInfoSelectionImageId = nil
 		}
 	end
 

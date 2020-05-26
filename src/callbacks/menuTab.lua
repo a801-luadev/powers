@@ -4,11 +4,8 @@ do
 		callback = callback[2] * 1
 
 		local cache = playerCache[playerName]
-		if cache.menuIndex == callback then return end
+		if cache.menuPage == callback then return end
 
-		cache.lastMenuIndex = cache.menuIndex
-		cache.menuIndex = callback
-
-		updateMenu(playerName, cache)
+		updateMenu(playerName, callback, cache)
 	end
 end
