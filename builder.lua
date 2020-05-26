@@ -23,15 +23,19 @@ local tree = {
 	"interfaces/lifeBar.lua",
 	"api/life.lua",
 
+	"translations/setup.lua",
+
 	--"classes/byteArray.lua",
 	"classes/keySequence.lua",
 	"classes/timer.lua",
 	"classes/power.lua",
 
 	"powers.lua",
+	"sortedPowers.lua",
 
 	"interfaces/abstract/prettyUI.lua",
 	"interfaces/menu.lua",
+	"interfaces/powers.lua",
 
 	"events/eventFileLoaded.lua",
 
@@ -41,12 +45,14 @@ local tree = {
 
 	"commands/commands.lua",
 	"commands/help.lua",
+	"commands/powers.lua",
 	"commands/owner/map.lua",
 	"commands/owner/msg.lua",
 	"events/eventChatCommand.lua",
 
 	"callbacks/callbacks.lua",
 	"callbacks/menuTab.lua",
+	"callbacks/powerInfo.lua",
 	"events/eventTextAreaCallback.lua",
 
 	"events/eventNewGame.lua",
@@ -59,7 +65,6 @@ local tree = {
 	"events/eventChatMessage.lua",
 	"events/eventMouse.lua",
 
-	"translations/setup.lua",
 	"init.lua"
 }
 

@@ -8,6 +8,9 @@ do
 
 	powers.lightSpeed = Power
 		.new("lightSpeed", powerType.def, 0, {
+			smallIcon = "172499c43ff.png",
+
+
 			icon = "155d0565587.png",
 			x = 275,
 			y = 108
@@ -42,8 +45,11 @@ do
 		end
 	end
 
-	powers.ray = Power
-		.new("ray", powerType.atk, 0, {
+	powers.laserBeam = Power
+		.new("laserBeam", powerType.atk, 0, {
+			smallIcon = "172499c579c.png",
+
+
 			icon = "155d0567651.png",
 			x = 265,
 			y = 125
@@ -89,6 +95,8 @@ do
 
 	powers.wormHole = Power
 		.new("wormHole", powerType.def, 10, {
+			smallIcon = "172499c71c4.png",
+
 			icon = "155d055f8d0.png",
 			x = 300,
 			y = 105
@@ -120,6 +128,8 @@ do
 
 	powers.doubleJump = Power
 		.new("doubleJump", powerType.def, 10, {
+			smallIcon = "172499c8f3b.png",
+
 			icon = "155d0560b19.png",
 			x = 310,
 			y = 110
@@ -129,7 +139,7 @@ do
 		:setKeySequence({ { 1, 1 } })
 		:setEffect(function(playerName, x, y)
 			-- Move player
-			movePlayer(playerName, 0, 0, true, 0, -50, false)
+			movePlayer(playerName, 0, 0, true, 0, -80, false)
 
 			-- Particles
 			spring(x, y)
@@ -164,6 +174,7 @@ do
 
 	powers.helix = Power
 		.new("helix", powerType.def, 20, {
+			smallIcon = "172499ce899.png",
 			icon = "155d056201e.png",
 			x = 300,
 			y = 105
@@ -211,6 +222,7 @@ do
 
 	powers.dome = Power
 		.new("dome", powerType.atk, 20, {
+			smallIcon = "172499d01da.png",
 			icon = "155d05689b8.png",
 			x = 295,
 			y = 105
@@ -255,6 +267,7 @@ do
 
 	powers.lightning = Power
 		.new("lightning", powerType.atk, 30, {
+			smallIcon = "172499d277f.png",
 			icon = "155d05699c9.png",
 			x = 325,
 			y = 105
@@ -303,6 +316,7 @@ do
 
 	powers.superNova = Power
 		.new("superNova", powerType.atk, 40, {
+			smallIcon = "172499d3af6.png",
 			icon = "155d055d277.png",
 			x = 288,
 			y = 105
@@ -340,8 +354,9 @@ do
 		end
 	end
 
-	powers.hulkSmash = Power
-		.new("hulkSmash", powerType.atk, 50, {
+	powers.meteorSmash = Power
+		.new("meteorSmash", powerType.atk, 50, {
+			smallIcon = "172499d49f6.png",
 			icon = "155d055e49f.png",
 			x = 295,
 			y = 105
@@ -422,6 +437,7 @@ do
 
 	powers.gravitationalAnomaly = Power
 		.new("gravitationalAnomaly", powerType.divine, 60, {
+			smallIcon = "172499d5f79.png",
 			icon = "155d05645e0.png",
 			x = 270,
 			y = 130
@@ -525,6 +541,7 @@ do
 
 	powers.deathRay = Power
 		.new("deathRay", powerType.atk, 70, {
+			smallIcon = "172499d9bcf.png",
 			icon = "155d05633dc.png",
 			x = 270,
 			y = 140
@@ -546,7 +563,7 @@ end
 
 -- Level 80
 do
-	local beanstalk = function(self, timer)
+	local changeSize = function(self, timer)
 		if timer.times == 0 then
 			for name in next, players.room do
 				changePlayerSize(name, 1)
@@ -559,8 +576,9 @@ do
 		end
 	end
 
-	powers.beanstalk = Power
-		.new("beanstalk", powerType.divine, 80, {
+	powers.atomic = Power
+		.new("atomic", powerType.divine, 80, {
+			smallIcon = "172499db327.png",
 			icon = '',
 			x = 0,
 			y = 0
@@ -571,7 +589,7 @@ do
 		:setProbability(50)
 		:setEffect(function(self)
 			resetPlayersDefaultSize = true
-			timer.start(beanstalk, 500, self.seconds * 2, self)
+			timer.start(changeSize, 500, self.seconds * 2, self)
 		end)
 end
 
@@ -579,6 +597,7 @@ end
 do
 	powers.raiseOfTheDead = Power
 		.new("raiseOfTheDead", powerType.divine, 100, {
+			smallIcon = "172499dd0d6.png", -- 172499df39f
 			icon = '',
 			x = 0,
 			y = 0

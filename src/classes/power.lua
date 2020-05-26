@@ -45,7 +45,7 @@ do
 
 			messagePattern = nil,
 
-			imageData = nil,
+			imageData = imageData,
 			resetableData = resetableData
 		}
 		self.useLimit = self.defaultUseLimit
@@ -227,9 +227,7 @@ do
 		return true
 	end
 
-	local canTriggerDivine = function(self, playerName, _time)
-		if not playerCache[playerName].powers[self.name] then return end
-
+	local canTriggerDivine = function(self, _time)
 		local powerData = powers[self.name]
 		if powerData.useLimit == 0 then return end -- x < 0 means infinity
 
@@ -248,8 +246,8 @@ do
 	end
 
 	-- It has weird arguments because of @trigger that uses the same parameters of @triggerRegular
-	Power.triggerDivine = function(self, playerName, _, _time, _, _, _, ...)
-		if not canTriggerDivine(self, playerName, _time) then
+	Power.triggerDivine = function(self, _, _, _time, _, _, _, ...)
+		if not canTriggerDivine(self, _time) then
 			return false
 		end
 

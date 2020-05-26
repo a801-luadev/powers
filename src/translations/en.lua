@@ -11,17 +11,17 @@ translations.en = {
 	-- Powers
 	powers = {
 		lightSpeed = "Light Speed",
-		ray = "Ray",
+		laserBeam = "Laser Beam",
 		wormHole = "Worm Hole",
 		doubleJump = "Double Jump",
 		helix = "Helix",
 		dome = "Dome",
 		lightning = "Lightning",
-		superNova = "Super Nova",
-		hulkSmash = "Hulk Smash",
+		superNova = "Supernova",
+		meteorSmash = "Meteor Smash",
 		gravitationalAnomaly = "Gravitational Anomaly",
 		deathRay = "Death Ray",
-		beanstalk = "Beanstalk",
+		atomic = "Atomic",
 		raiseOfTheDead = "Raise of the Dead"
 	},
 
@@ -45,6 +45,7 @@ translations.en = {
 	},
 
 	newLevel = "%s just reached level %d!",
+	level = "Lv %d",
 
 	-- Winner
 	noWinner = "No one won the round.",

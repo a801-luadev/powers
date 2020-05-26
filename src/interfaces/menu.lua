@@ -1,6 +1,6 @@
 local displayMenu, updateMenu
 do
-	local tabStr = "<font size='1'>\n</font><p align='center'>%s<a href='event:menuTab.%s'>%s\n"
+	local tabStr = "<font size='1'>\n</font><p align='center'>%s<a href='event:menuTab_%s'>%s\n"
 
 	displayMenu = function(playerName, _cache)
 		_cache = _cache or playerCache[playerName]

@@ -28,13 +28,18 @@ local textAreaId = {
 }
 
 local interfaceImages = {
-	lifeBar = "172017a8fa6.png"
+	lifeBar = "172017a8fa6.png",
+	rectangle = "1724c8e1e61.jpg",
+	highlightRectangleBorder = "1724ca7c279.png",
+	locker = "1724e77bf31.png"
 }
 
 local imageTargets = {
 	lifeBar = "&0",
 	interfaceBackground = ":0",
-	interfaceTextAreaBackground = "&0"
+	interfaceTextAreaBackground = "&0",
+	interfaceRectangle = ":10",
+	interfaceIcon = ":50"
 }
 
 local interfaceBackground = {

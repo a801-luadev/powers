@@ -20,10 +20,15 @@ eventNewPlayer = function(playerName)
 			totalInterfaceImages = 0,
 			interfaceImages = { },
 
+			hasOpenInterface = false,
+
 			menuIndex = 1,
 			lastMenuIndex = nil,
 			menuContentId = nil,
-			menuTabId = nil
+			menuTabId = nil,
+
+			powerInfoIdSelected = nil,
+			powerInfoImageId = nil
 		}
 	end
 

@@ -10,6 +10,7 @@ do
 	displayPrettyUI = function(text, x, y, w, h, playerName, _cache, _borderIni, _borderEnd,
 		_borderStep)
 		_cache = _cache or playerCache[playerName]
+		_cache.hasOpenInterface = true
 		local interfaceId = textAreaId.interface + _cache.totalInterfaceTextareas
 
 		-- Default behavior
@@ -39,10 +40,10 @@ do
 		h = h - 16
 
 		local totalInterfaceImages = _cache.totalInterfaceImages
-		local interfaceImages = _cache.interfaceImages
+		local playerInterfaceImages = _cache.interfaceImages
 
 		for b = (_borderIni or 1), (_borderEnd or 4), (_borderStep or 1) do
-			interfaceImages[totalInterfaceImages + b] = addImage(borderImage[b],
+			playerInterfaceImages[totalInterfaceImages + b] = addImage(borderImage[b],
 				imageTargets.interfaceTextAreaBackground, x + (b % 2)*w, y + (b < 3 and 0 or 1)*h,
 				playerName)
 		end
@@ -53,13 +54,14 @@ do
 	end
 end
 
-local removePrettyUI = function(playerName, _cache)
+local removeCallbackInterface = function(playerName, _cache)
 	_cache = _cache or playerCache[playerName]
+	_cache.hasOpenInterface = false
 
 	-- Images
-	local interfaceImages = _cache.interfaceImages
+	local playerInterfaceImages = _cache.interfaceImages
 	for i = 1, _cache.totalInterfaceImages do
-		removeImage(interfaceImages[i])
+		removeImage(playerInterfaceImages[i])
 	end
 	_cache.interfaceImages = { }
 	_cache.totalInterfaceImages = 0
@@ -67,7 +69,7 @@ local removePrettyUI = function(playerName, _cache)
 	-- TextAreas
 	local interfaceId = textAreaId.interface
 	for t = 1, _cache.totalInterfaceTextareas do
-		removeTextArea(interfaceId + interfaceImages[t], playerName)
+		removeTextArea(interfaceId + t, playerName)
 	end
 	_cache.totalInterfaceTextareas = 0
 end
