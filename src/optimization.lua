@@ -34,6 +34,7 @@ local enum_shamanObject = tfm.enum.shamanObject
 local enum_particle     = tfm.enum.particle
 
 -- Mathematics
+local ceil   = math.ceil
 local cos    = math.cos
 local rad    = math.rad
 local random = math.random

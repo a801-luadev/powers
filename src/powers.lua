@@ -9,15 +9,16 @@ do
 	powers.lightSpeed = Power
 		.new("lightSpeed", powerType.def, 0, {
 			smallIcon = "172499c43ff.png",
-
-
 			icon = "155d0565587.png",
-			x = 275,
-			y = 108
+			iconWidth = 120,
+			iconHeight = 76
 		})
 		:setUseCooldown(1.5)
-		:setBind(0, 2)
-		:setKeySequence({ { 0, 0, 0 }, { 2, 2, 2 } })
+		:setBind(keyboard.left, keyboard.right)
+		:setKeySequence({
+			{ keyboard.left, keyboard.left, keyboard.left },
+			{ keyboard.right, keyboard.right, keyboard.right }
+		})
 		:setEffect(function(playerName, x, y, isFacingRight)
 			-- Move player
 			movePlayer(playerName, x + (isFacingRight and 200 or -200), y)
@@ -48,15 +49,13 @@ do
 	powers.laserBeam = Power
 		.new("laserBeam", powerType.atk, 0, {
 			smallIcon = "172499c579c.png",
-
-
 			icon = "155d0567651.png",
-			x = 265,
-			y = 125
+			iconWidth = 145,
+			iconHeight = 45
 		})
 		:setDamage(5)
 		:setUseCooldown(1)
-		:setBind(string.byte(' '))
+		:setBind(keyboard.spacebar)
 		:setEffect(function(_, x, y, isFacingRight)
 			local direction = (isFacingRight and 1 or -1)
 			y = y - 10
@@ -96,14 +95,16 @@ do
 	powers.wormHole = Power
 		.new("wormHole", powerType.def, 10, {
 			smallIcon = "172499c71c4.png",
-
 			icon = "155d055f8d0.png",
-			x = 300,
-			y = 105
+			iconWidth = 69,
+			iconHeight = 80
 		})
 		:setUseCooldown(1.5)
-		:setBind(1, 3)
-		:setKeySequence({ { 1, 3 }, { 3, 1 } })
+		:setBind(keyboard.up, keyboard.down)
+		:setKeySequence({
+			{ keyboard.up, keyboard.down },
+			{ keyboard.down, keyboard.up }
+		})
 		:setEffect(function(playerName, x, y, isFacingRight)
 			local direction = (isFacingRight and 200 or -200)
 
@@ -131,12 +132,12 @@ do
 			smallIcon = "172499c8f3b.png",
 
 			icon = "155d0560b19.png",
-			x = 310,
-			y = 110
+			iconWidth = 54,
+			iconHeight = 70
 		})
 		:setUseCooldown(5)
-		:setBind(1)
-		:setKeySequence({ { 1, 1 } })
+		:setBind(keyboard.up)
+		:setKeySequence({ { keyboard.up, keyboard.up } })
 		:setEffect(function(playerName, x, y)
 			-- Move player
 			movePlayer(playerName, 0, 0, true, 0, -80, false)
@@ -176,11 +177,11 @@ do
 		.new("helix", powerType.def, 20, {
 			smallIcon = "172499ce899.png",
 			icon = "155d056201e.png",
-			x = 300,
-			y = 105
+			iconWidth = 70,
+			iconHeight = 80
 		})
 		:setUseCooldown(2.5)
-		:setBind(16) -- Shift
+		:setBind(keyboard.shift)
 		:setEffect(function(playerName, x, y, isFacingRight)
 			local direction = (isFacingRight and 1 or -1)
 
@@ -222,11 +223,11 @@ do
 
 	powers.dome = Power
 		.new("dome", powerType.atk, 20, {
-			smallIcon = "172499d01da.png",
+			smallIcon = "172499d277f.png",
 			icon = "155d05689b8.png",
-			x = 295,
-			y = 105
-			})
+			iconWidth = 80,
+			iconHeight = 80
+		})
 		:setDamage(5)
 		:setUseLimit(15)
 		:setUseCooldown(4)
@@ -267,10 +268,10 @@ do
 
 	powers.lightning = Power
 		.new("lightning", powerType.atk, 30, {
-			smallIcon = "172499d277f.png",
+			smallIcon = "172499d3af6.png",
 			icon = "155d05699c9.png",
-			x = 325,
-			y = 105
+			iconWidth = 15,
+			iconHeight = 80
 		})
 		:setDamage(10)
 		:setUseLimit(10)
@@ -316,16 +317,16 @@ do
 
 	powers.superNova = Power
 		.new("superNova", powerType.atk, 40, {
-			smallIcon = "172499d3af6.png",
+			smallIcon = "172499d01da.png",
 			icon = "155d055d277.png",
-			x = 288,
-			y = 105
+			iconWidth = 98,
+			iconHeight = 83
 		})
 		:setDamage(20)
 		:setSelfDamage(5)
 		:setUseLimit(6)
 		:setUseCooldown(6)
-		:setBind(17) -- Control
+		:setBind(keyboard.ctrl)
 		:setEffect(function(_, x, y, isFacingRight)
 			local direction = (isFacingRight and 50 or -50)
 			x = x + direction
@@ -358,15 +359,15 @@ do
 		.new("meteorSmash", powerType.atk, 50, {
 			smallIcon = "172499d49f6.png",
 			icon = "155d055e49f.png",
-			x = 295,
-			y = 105
+			iconWidth = 78,
+			iconHeight = 80
 		})
 		:setDamage(20)
 		:setSelfDamage(5)
 		:setUseLimit(10)
 		:setUseCooldown(8)
-		:setBind(3)
-		:setKeySequence({ { 3, 3 } })
+		:setBind(keyboard.down)
+		:setKeySequence({ { keyboard.down, keyboard.down } })
 		:setEffect(function(playerName, x, y, _, self)
 			-- Super jump
 			movePlayer(playerName, 0, 0, true, 0, -110, true)
@@ -439,8 +440,8 @@ do
 		.new("gravitationalAnomaly", powerType.divine, 60, {
 			smallIcon = "172499d5f79.png",
 			icon = "155d05645e0.png",
-			x = 270,
-			y = 130
+			iconWidth = 129,
+			iconHeight = 42
 		}, {
 			spawnableObjects = {
 				enum_shamanObject.littleBox,
@@ -543,14 +544,14 @@ do
 		.new("deathRay", powerType.atk, 70, {
 			smallIcon = "172499d9bcf.png",
 			icon = "155d05633dc.png",
-			x = 270,
-			y = 140
+			iconWidth = 130,
+			iconHeight = 15
 		})
 		:setDamage(30)
 		:setSelfDamage(15)
 		:setUseLimit(1)
 		:setUseCooldown(10)
-		:setBind(string.byte('P'))
+		:setBind(keyboard.P)
 		--:setKeySequence()
 		:setEffect(function(_, x, y, isFacingRight)
 			-- Particles
@@ -580,8 +581,8 @@ do
 		.new("atomic", powerType.divine, 80, {
 			smallIcon = "172499db327.png",
 			icon = '',
-			x = 0,
-			y = 0
+			iconWidth = 0,
+			iconHeight = 0
 		}, {
 			seconds = 10
 		})
@@ -599,8 +600,8 @@ do
 		.new("raiseOfTheDead", powerType.divine, 100, {
 			smallIcon = "172499dd0d6.png", -- 172499df39f
 			icon = '',
-			x = 0,
-			y = 0
+			iconWidth = 0,
+			iconHeight = 0
 		}, {
 			seconds = 10,
 			playerHealthPoints = 35,

@@ -1,4 +1,4 @@
-local displayPowerMenu, updatePowerMenu
+local displayPowerMenu
 do
 	local content = "<p align='center'><font size='3'>\n"
 	local unlockedPowerContent = content .. "<font size='14'>"
@@ -10,18 +10,19 @@ do
 		local playerLevel = _cache.level
 
 		-- Build interface
-		local interfaceId = textAreaId.interface + _cache.totalInterfaceTextareas
-		local totalInterfaceImages = _cache.totalInterfaceImages
-		local playerInterfaceImages = _cache.interfaceImages
-
-		local x, y = 100, 65
-		_cache.menuContentId = displayPrettyUI('', x, y, 520, 300, playerName, _cache)
+		local x, y = 39, 65
+		displayPrettyUI('', x, y, 520, 300, playerName, false, _cache)
 
 		x = x + 15
 		y = y + 17
 
+		local interfaceId = textAreaId.interface + _cache.totalInterfaceTextareas
+		local totalInterfaceImages = _cache.totalInterfaceImages
+		local playerInterfaceImages = _cache.interfaceImages
+
+		local totalPowers = #powersSortedByLevel
 		local power, isLockedPower, sumX
-		for p = 1, #powersSortedByLevel do
+		for p = 1, totalPowers do
 			power = powersSortedByLevel[p]
 			isLockedPower = (power.level > playerLevel)
 
@@ -57,21 +58,182 @@ do
 		end
 
 		_cache.totalInterfaceImages = totalInterfaceImages
+		_cache.totalInterfaceTextareas = interfaceId - textAreaId.interface
+	end
+end
+
+local updatePowerMenu = function(playerName, interfaceX, interfaceY, _cache)
+	_cache = _cache or playerCache[playerName]
+
+	if _cache.powerInfoSelectionImageId then
+		removeImage(_cache.powerInfoSelectionImageId, playerName)
 	end
 
-	updatePowerMenu = function(playerName, interfaceX, interfaceY, _cache)
-		_cache = _cache or playerCache[playerName]
+	local highlightRectangleBorder = addImage(interfaceImages.highlightRectangleBorder,
+		imageTargets.interfaceRectangle, interfaceX, interfaceY, playerName)
 
-		if _cache.powerInfoSelectionImageId then
-			removeImage(_cache.powerInfoSelectionImageId, playerName)
+	_cache.powerInfoSelectionImageId = highlightRectangleBorder
+
+	_cache.totalInterfaceImages = _cache.totalInterfaceImages + 1
+	_cache.interfaceImages[_cache.totalInterfaceImages] = highlightRectangleBorder
+end
+
+local displayPowerInfo
+do
+	local displayPowerIcon = function(power, x, y, interfaceId, playerInterfaceImages,
+		totalInterfaceImages, interfaceWidth)
+		y = y + 40
+
+		totalInterfaceImages = totalInterfaceImages + 1
+		playerInterfaceImages[totalInterfaceImages] = addImage(power.imageData.icon,
+			imageTargets.interfaceIcon, x + interfaceWidth/2 - power.imageData.iconWidth/2, y,
+			playerName)
+
+		return x, y + power.imageData.iconHeight, interfaceId, totalInterfaceImages
+	end
+
+	local displayPowerTypeIcon = function(power, x, y, interfaceId, playerInterfaceImages,
+		totalInterfaceImages)
+		y = y + 15
+
+		totalInterfaceImages = totalInterfaceImages + 1
+		if power.type == powerType.atk then
+			playerInterfaceImages[totalInterfaceImages] = addImage(interfaceImages.sword,
+				imageTargets.interfaceIcon, x, y, playerName)
+
+			interfaceId = interfaceId + 1
+			addTextArea(interfaceId, power.damage, playerName, x + 25, y + 5, nil, nil, 1, 1, 0,
+				true)
+		elseif power.type == powerType.def then
+			playerInterfaceImages[totalInterfaceImages] = addImage(interfaceImages.shield,
+				imageTargets.interfaceIcon, x, y, playerName)
+		elseif power.type == powerType.divine then
+			playerInterfaceImages[totalInterfaceImages] = addImage(interfaceImages.parchment,
+				imageTargets.interfaceIcon, x, y, playerName)
 		end
 
-		local highlightRectangleBorder = addImage(interfaceImages.highlightRectangleBorder,
-			imageTargets.interfaceRectangle, interfaceX, interfaceY, playerName)
+		return x, y, interfaceId, totalInterfaceImages
+	end
 
-		_cache.powerInfoSelectionImageId = highlightRectangleBorder
+	local displayPowerSelfDamage = function(power, x, y, interfaceId, playerInterfaceImages,
+		totalInterfaceImages)
+		if power.selfDamage then
+			y = y + 25
 
-		_cache.totalInterfaceImages = _cache.totalInterfaceImages + 1
-		_cache.interfaceImages[_cache.totalInterfaceImages] = highlightRectangleBorder
+			totalInterfaceImages = totalInterfaceImages + 1
+			playerInterfaceImages[totalInterfaceImages] = addImage(interfaceImages.heart,
+				imageTargets.interfaceIcon, x, y, playerName)
+
+			interfaceId = interfaceId + 1
+			addTextArea(interfaceId, -power.selfDamage, playerName, x + 25, y + 5, nil, nil, 1, 1,
+				0, true)
+		end
+
+		return x, y, interfaceId, totalInterfaceImages
+	end
+
+	local displayPowerTriggerPossibility = function(power, x, y, interfaceId, playerInterfaceImages,
+		totalInterfaceImages)
+		if power.triggerPossibility then
+			y = y + 30
+
+			totalInterfaceImages = totalInterfaceImages + 1
+			playerInterfaceImages[totalInterfaceImages] = addImage(interfaceImages.explodingBomb,
+				imageTargets.interfaceIcon, x + 2, y, playerName)
+
+			interfaceId = interfaceId + 1
+			addTextArea(interfaceId, ceil(100/power.triggerPossibility) .. "%", playerName, x + 28,
+				y, nil, nil, 1, 1, 0, true)
+		end
+
+		return x, y, interfaceId, totalInterfaceImages
+	end
+
+	local displayTrigger = function(power, x, y, interfaceId, playerInterfaceImages,
+		totalInterfaceImages)
+		if power.keySequences then
+			x = x - 25
+
+			local sumX, ks
+			for i = 1, power.totalKeySequences do
+				sumX = x
+				y = y + 25
+
+				ks = power.keySequences[i]
+
+				for j = ks._count, 1, -1 do
+					sumX = sumX + 25
+
+					totalInterfaceImages = totalInterfaceImages + 1
+					playerInterfaceImages[totalInterfaceImages] = addImage(
+						keyboardImages[ks.queue[j]], imageTargets.interfaceIcon, sumX, y,
+						playerName)
+				end
+			end
+
+			x = x + 25
+		elseif power.triggererKey then
+			y = y + 25
+
+			totalInterfaceImages = totalInterfaceImages + 1
+			playerInterfaceImages[totalInterfaceImages] = addImage(
+				keyboardImages[power.triggererKey],	imageTargets.interfaceIcon, x, y, playerName)
+		elseif power.clickRange then
+			y = y + 25
+
+			totalInterfaceImages = totalInterfaceImages + 1
+			playerInterfaceImages[totalInterfaceImages] = addImage(interfaceImages.mouseClick,
+				imageTargets.interfaceIcon, x, y, playerName)
+
+			interfaceId = interfaceId + 1
+			addTextArea(interfaceId, power.clickRange .. "px", playerName, x + 25, y + 5, nil, nil,
+				1, 1, 0, true)
+		elseif power.messagePattern then
+			y = y + 25
+
+			totalInterfaceImages = totalInterfaceImages + 1
+			playerInterfaceImages[totalInterfaceImages] = addImage(interfaceImages.megaphone,
+				imageTargets.interfaceIcon, x, y, playerName)
+
+			interfaceId = interfaceId + 1
+			addTextArea(interfaceId, "<I>" .. gsub(power.messagePattern, "%W+", ''), playerName,
+				x + 30, y + 5, nil, nil, 1, 1, 0, true)
+		end
+
+		return x, y, interfaceId, totalInterfaceImages
+	end
+
+	local body = "<p align='center'><font size='16'>%s</font></p>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n%s"
+
+	displayPowerInfo = function(playerName, _cache)
+		_cache = _cache or playerCache[playerName]
+		local power = powers[_cache.powerInfoIdSelected]
+
+		local x, y, width = 563, 65, 200
+		displayPrettyUI(format(body, getText.powers[power.name],
+			getText.powersDescriptions[power.name]), x, y, width, 300, playerName, false, _cache)
+
+		local interfaceId = textAreaId.interface + _cache.totalInterfaceTextareas
+		local playerInterfaceImages = _cache.interfaceImages
+		local totalInterfaceImages = _cache.totalInterfaceImages
+
+		x, y, interfaceId, totalInterfaceImages = displayPowerIcon(power, x, y, interfaceId,
+			playerInterfaceImages, totalInterfaceImages, width)
+
+		x = x + 10
+		x, y, interfaceId, totalInterfaceImages = displayPowerTypeIcon(power, x, y, interfaceId,
+			playerInterfaceImages, totalInterfaceImages)
+
+		x, y, interfaceId, totalInterfaceImages = displayPowerTriggerPossibility(power, x, y,
+			interfaceId, playerInterfaceImages, totalInterfaceImages)
+
+		x, y, interfaceId, totalInterfaceImages = displayPowerSelfDamage(power, x, y, interfaceId,
+			playerInterfaceImages, totalInterfaceImages)
+
+		x, y, interfaceId, totalInterfaceImages = displayTrigger(power, x, y, interfaceId,
+			playerInterfaceImages, totalInterfaceImages)
+
+		_cache.totalInterfaceTextareas = interfaceId - textAreaId.interface
+		_cache.totalInterfaceImages = totalInterfaceImages
 	end
 end

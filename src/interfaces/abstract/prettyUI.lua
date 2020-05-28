@@ -7,8 +7,8 @@ do
 		[4] = "155cbe97a3f.png"
 	}
 
-	displayPrettyUI = function(text, x, y, w, h, playerName, _cache, _borderIni, _borderEnd,
-		_borderStep)
+	displayPrettyUI = function(text, x, y, w, h, playerName, ignoreTextAreaHeight, _cache,
+		_borderIni, _borderEnd, _borderStep)
 		_cache = _cache or playerCache[playerName]
 		_cache.hasOpenInterface = true
 		local interfaceId = textAreaId.interface + _cache.totalInterfaceTextareas
@@ -19,18 +19,23 @@ do
 			_cache.interfaceImages[_cache.totalInterfaceImages] = addImage(
 				interfaceBackground[w][h], imageTargets.interfaceBackground, x, y, playerName)
 
-			addTextArea(interfaceId, text, playerName, x + 10, y + 10, w - 20, h --[[-20]], 1, 1, 0,
-				true)
+			if ignoreTextAreaHeight then
+				y = y - 6
+			else
+				h = h - 20
+			end
+
+			addTextArea(interfaceId + 1, text, playerName, x + 10, y + 10, w - 20, h, 1, 1, 0, true)
 			_cache.totalInterfaceTextareas = _cache.totalInterfaceTextareas + 1
 
-			return interfaceId
+			return interfaceId + 1
 		end
 
 		-- Debug/development behavior, avoidable
-		addTextArea(interfaceId, '', playerName, x, y, w, h, 0x141312, 0x141312, 1, true)
-		addTextArea(interfaceId + 1, '', playerName, x + 1, y + 1, w - 2, h - 2, 0x7C482C, 0x7C482C,
+		addTextArea(interfaceId + 1, '', playerName, x, y, w, h, 0x141312, 0x141312, 1, true)
+		addTextArea(interfaceId + 2, '', playerName, x + 1, y + 1, w - 2, h - 2, 0x7C482C, 0x7C482C,
 			1, true)
-		addTextArea(interfaceId + 2, text, playerName, x + 4, y + 4, w - 8, h - 8, 0x152D30,
+		addTextArea(interfaceId + 3, text, playerName, x + 4, y + 4, w - 8, h - 8, 0x152D30,
 			0x141312, 1, true)
 		_cache.totalInterfaceTextareas = _cache.totalInterfaceTextareas + 3
 
@@ -50,7 +55,7 @@ do
 		_cache.totalInterfaceImages = totalInterfaceImages + 4
 
 		-- Returns the id of the textarea with color
-		return interfaceId + 2
+		return interfaceId + 3
 	end
 end
 
