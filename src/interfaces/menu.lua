@@ -6,15 +6,20 @@ do
 		_cache = _cache or playerCache[playerName]
 		local menuPage = _cache.menuPage
 
+		local x, y, w = 100, 65, 520
+
 		-- Main menu
-		_cache.menuContentId = displayPrettyUI(getText.menuContent[menuPage], 100, 65, 520, 300,
+		_cache.menuContentId = displayPrettyUI(getText.menuContent[menuPage], x, y, w, 300,
 			playerName, false, _cache)
 
 		-- Tabs
+		x = x + w - 15
+		y = y + 5
+
 		local menuTabId, tmpTabId
 		for t = 1, #getText.menuTitles do
 			tmpTabId = displayPrettyUI(format(tabStr, (t == menuPage and "<J>" or ''), t,
-				getText.menuTitles[t]), 605, 70 + t*30, 120, 30, playerName, true, _cache)
+				getText.menuTitles[t]), x, y + t*30, 120, 30, playerName, true, _cache)
 
 			if t == 1 then
 				menuTabId = tmpTabId

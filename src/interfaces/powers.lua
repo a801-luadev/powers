@@ -217,6 +217,7 @@ do
 		local playerInterfaceImages = _cache.interfaceImages
 		local totalInterfaceImages = _cache.totalInterfaceImages
 
+		-- Icons
 		x, y, interfaceId, totalInterfaceImages = displayPowerIcon(power, x, y, interfaceId,
 			playerInterfaceImages, totalInterfaceImages, width)
 

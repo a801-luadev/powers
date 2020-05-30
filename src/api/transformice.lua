@@ -45,3 +45,11 @@ local nextMap = function()
 
 	newGame(maps[currentMap])
 end
+
+local strToNickname = function(str, checkDiscriminator)
+	str = gsub(lower(str), "%a", upper, 1)
+	if checkDiscriminator and not find(str, '#', 1, true) then
+		str = str .. "#0000"
+	end
+	return str
+end

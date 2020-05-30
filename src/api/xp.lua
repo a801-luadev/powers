@@ -1,6 +1,6 @@
 local xpToLvl = function(xp)
 	if xp >= module.max_player_xp then
-		return module.max_player_level, 0, 0
+		return module.max_player_level, 1, 1
 	end
 
 	local last, total, level, remain, need = 35, 0, 0, 0, 0
@@ -10,7 +10,7 @@ local xpToLvl = function(xp)
 
 		if ntotal >= xp then
 			level, remain, need = i - 1, xp - total, ntotal - xp
-			return level, remain, need
+			return level, remain, remain + need
 		else
 			last, total = nlast, ntotal
 		end
@@ -24,5 +24,5 @@ local lvlToXp = function(lvl)
 		total = total + last
 	end
 
-	return last, total
+	return total, last
 end

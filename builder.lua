@@ -36,6 +36,7 @@ local tree = {
 	"interfaces/abstract/prettyUI.lua",
 	"interfaces/menu.lua",
 	"interfaces/powers.lua",
+	"interfaces/profile.lua",
 
 	"events/eventFileLoaded.lua",
 
@@ -46,6 +47,7 @@ local tree = {
 	"commands/commands.lua",
 	"commands/help.lua",
 	"commands/powers.lua",
+	"commands/profile.lua",
 	"commands/owner/map.lua",
 	"commands/owner/msg.lua",
 	"events/eventChatCommand.lua",

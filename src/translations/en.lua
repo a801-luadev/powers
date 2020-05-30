@@ -43,7 +43,7 @@ translations.en = {
 	unlockPower = "You have unlocked the following power(s): %s",
 
 	-- Level names
-	level = {
+	levelName = {
 		[000] = "Mutant",
 		[010] = "Necromancer",
 		[020] = "Scientist",

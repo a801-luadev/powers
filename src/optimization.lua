@@ -36,6 +36,7 @@ local enum_particle     = tfm.enum.particle
 -- Mathematics
 local ceil   = math.ceil
 local cos    = math.cos
+local min    = math.min
 local rad    = math.rad
 local random = math.random
 local sin    = math.sin
@@ -47,8 +48,10 @@ local find   = string.find
 local format = string.format
 local gmatch = string.gmatch
 local gsub   = string.gsub
+local lower  = string.lower
 local match  = string.match
 local sub    = string.sub
+local upper  = string.upper
 
 -- Table
 local table_concat = table.concat

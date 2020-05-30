@@ -29,6 +29,7 @@ local textAreaId = {
 
 local interfaceImages = {
 	lifeBar = "172017a8fa6.png",
+	levelBar = "17262a19ccf.png",
 
 	rectangle = "1724c8e1e61.jpg",
 	highlightRectangleBorder = "1724ca7c279.png",
@@ -47,6 +48,7 @@ local interfaceImages = {
 
 local imageTargets = {
 	lifeBar = "&0",
+	levelBar = ":10",
 	interfaceBackground = ":0",
 	interfaceTextAreaBackground = "&0",
 	interfaceRectangle = ":10",
@@ -54,12 +56,16 @@ local imageTargets = {
 }
 
 local interfaceBackground = {
+	-- x+6, y+10
 	[120] = {
 		[30] = "17256d5e4ac.png"
 	},
 	[200] = {
 		[200] = "17256d5fc1f.png",
 		[300] = "17256d61391.png"
+	},
+	[280] = {
+		--[330] = ''
 	},
 	[520] = {
 		[300] = "17201a440b4.png"

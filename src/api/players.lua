@@ -61,13 +61,22 @@ local giveExperience = function()
 end
 
 local setPlayerLevel = function(playerName, cache)
-	local level = xpToLvl(playerData:get(playerName, "xp"))
+	local level, remainingXp, needingXp = xpToLvl(playerData:get(playerName, "xp"))
 	cache.level = level
+	cache.currentLevelXp = remainingXp
+	cache.nextLevelXp = needingXp
 
 	if level == cache.roundLevel then return end
 
-	cache.levelColor = levelColors[level - level%10]
-		or levelColors[module.max_player_level - module.max_player_level%10]
+	local levelIndex = level - level%10
+	local levelColor = levelColors[levelIndex]
+	if not levelColor then
+		levelIndex = module.max_player_level - module.max_player_level%10
+		levelColor = levelColors[levelIndex]
+	end
+
+	cache.levelIndex = levelIndex
+	cache.levelColor = levelColor
 
 	return level
 end

@@ -2,7 +2,10 @@ eventNewPlayer = function(playerName)
 	if not playerCache[playerName] then
 		playerCache[playerName] = {
 			level = 1,
+			currentLevelXp = nil,
+			nextLevelXp = nil,
 			roundLevel = nil, -- Level on round start
+			levelIndex = nil, -- ex: 10, 20, 30
 			levelColor = nil,
 
 			health = 0,

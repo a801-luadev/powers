@@ -32,15 +32,16 @@ do
 		end
 
 		-- Debug/development behavior, avoidable
-		addTextArea(interfaceId + 1, '', playerName, x, y, w, h, 0x141312, 0x141312, 1, true)
+		y = y - 3
+		addTextArea(interfaceId + 1, '', playerName, x, y, w, h, 0x141312, 0x141312, 1, false)
 		addTextArea(interfaceId + 2, '', playerName, x + 1, y + 1, w - 2, h - 2, 0x7C482C, 0x7C482C,
-			1, true)
+			1, false)
 		addTextArea(interfaceId + 3, text, playerName, x + 4, y + 4, w - 8, h - 8, 0x152D30,
-			0x141312, 1, true)
+			0x141312, 1, false)
 		_cache.totalInterfaceTextareas = _cache.totalInterfaceTextareas + 3
 
 		x = x - 6
-		y = y - 6
+		y = y - 3
 		w = w - 14
 		h = h - 16
 
