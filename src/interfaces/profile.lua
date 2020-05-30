@@ -44,7 +44,7 @@ do
 			targetCacheData.currentLevelXp, targetCacheData.nextLevelXp), playerName, x, y, 280,
 			nil, 1, 1, 0, true)
 
-		return x + 10, y + 65, interfaceId, totalInterfaceImages
+		return x + 12, y + 65, interfaceId, totalInterfaceImages
 	end
 
 	displayProfile = function(playerName, targetPlayer, _cache)
