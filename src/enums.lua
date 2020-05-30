@@ -33,6 +33,7 @@ local interfaceImages = {
 
 	rectangle = "1724c8e1e61.jpg",
 	highlightRectangleBorder = "1724ca7c279.png",
+	smallRectangle = "172642bf9ed.jpg",
 
 	locker = "1724e77bf31.png",
 
@@ -43,7 +44,11 @@ local interfaceImages = {
 	explodingBomb = "17254d637be.png",
 	megaphone = "1725980b66c.png",
 
-	mouseClick = "172597de49d.png"
+	mouseClick = "172597de49d.png",
+
+	skull = "17263f4dee4.png",
+	ground = "17264087ad6.png",
+	crown = "1726424a9e4.png"
 }
 
 local imageTargets = {

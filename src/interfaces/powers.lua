@@ -80,7 +80,7 @@ end
 
 local displayPowerInfo
 do
-	local displayPowerIcon = function(power, x, y, interfaceId, playerInterfaceImages,
+	local displayPowerIcon = function(playerName, power, x, y, interfaceId, playerInterfaceImages,
 		totalInterfaceImages, interfaceWidth)
 		y = y + 40
 
@@ -92,8 +92,8 @@ do
 		return x, y + power.imageData.iconHeight, interfaceId, totalInterfaceImages
 	end
 
-	local displayPowerTypeIcon = function(power, x, y, interfaceId, playerInterfaceImages,
-		totalInterfaceImages)
+	local displayPowerTypeIcon = function(playerName, power, x, y, interfaceId,
+		playerInterfaceImages, totalInterfaceImages)
 		y = y + 15
 
 		totalInterfaceImages = totalInterfaceImages + 1
@@ -115,8 +115,8 @@ do
 		return x, y, interfaceId, totalInterfaceImages
 	end
 
-	local displayPowerSelfDamage = function(power, x, y, interfaceId, playerInterfaceImages,
-		totalInterfaceImages)
+	local displayPowerSelfDamage = function(playerName, power, x, y, interfaceId,
+		playerInterfaceImages, totalInterfaceImages)
 		if power.selfDamage then
 			y = y + 25
 
@@ -132,8 +132,8 @@ do
 		return x, y, interfaceId, totalInterfaceImages
 	end
 
-	local displayPowerTriggerPossibility = function(power, x, y, interfaceId, playerInterfaceImages,
-		totalInterfaceImages)
+	local displayPowerTriggerPossibility = function(playerName, power, x, y, interfaceId,
+		playerInterfaceImages, totalInterfaceImages)
 		if power.triggerPossibility then
 			y = y + 30
 
@@ -149,7 +149,7 @@ do
 		return x, y, interfaceId, totalInterfaceImages
 	end
 
-	local displayTrigger = function(power, x, y, interfaceId, playerInterfaceImages,
+	local displayTrigger = function(playerName, power, x, y, interfaceId, playerInterfaceImages,
 		totalInterfaceImages)
 		if power.keySequences then
 			x = x - 25
@@ -218,21 +218,21 @@ do
 		local totalInterfaceImages = _cache.totalInterfaceImages
 
 		-- Icons
-		x, y, interfaceId, totalInterfaceImages = displayPowerIcon(power, x, y, interfaceId,
-			playerInterfaceImages, totalInterfaceImages, width)
+		x, y, interfaceId, totalInterfaceImages = displayPowerIcon(playerName, power, x, y,
+			interfaceId, playerInterfaceImages, totalInterfaceImages, width)
 
 		x = x + 10
-		x, y, interfaceId, totalInterfaceImages = displayPowerTypeIcon(power, x, y, interfaceId,
-			playerInterfaceImages, totalInterfaceImages)
-
-		x, y, interfaceId, totalInterfaceImages = displayPowerTriggerPossibility(power, x, y,
+		x, y, interfaceId, totalInterfaceImages = displayPowerTypeIcon(playerName, power, x, y,
 			interfaceId, playerInterfaceImages, totalInterfaceImages)
 
-		x, y, interfaceId, totalInterfaceImages = displayPowerSelfDamage(power, x, y, interfaceId,
-			playerInterfaceImages, totalInterfaceImages)
+		x, y, interfaceId, totalInterfaceImages = displayPowerTriggerPossibility(playerName, power,
+			x, y, interfaceId, playerInterfaceImages, totalInterfaceImages)
 
-		x, y, interfaceId, totalInterfaceImages = displayTrigger(power, x, y, interfaceId,
-			playerInterfaceImages, totalInterfaceImages)
+		x, y, interfaceId, totalInterfaceImages = displayPowerSelfDamage(playerName, power, x, y,
+			interfaceId, playerInterfaceImages, totalInterfaceImages)
+
+		x, y, interfaceId, totalInterfaceImages = displayTrigger(playerName, power, x, y,
+			interfaceId, playerInterfaceImages, totalInterfaceImages)
 
 		_cache.totalInterfaceTextareas = interfaceId - textAreaId.interface
 		_cache.totalInterfaceImages = totalInterfaceImages

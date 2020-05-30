@@ -81,5 +81,12 @@ translations.en = {
 	},
 
 	-- Lobby
-	minPlayers = "At least <B>2</B> players must be in the room for the game to start."
+	minPlayers = "At least <B>2</B> players must be in the room for the game to start.",
+
+	-- Profile
+	profileData = {
+		rounds = "Rounds",
+		victories = "Victories",
+		kills = "Kills"
+	}
 }
