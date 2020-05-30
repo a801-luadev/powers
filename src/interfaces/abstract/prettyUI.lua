@@ -17,15 +17,15 @@ do
 		if interfaceBackground[w] and interfaceBackground[w][h] then
 			_cache.totalInterfaceImages = _cache.totalInterfaceImages + 1
 			_cache.interfaceImages[_cache.totalInterfaceImages] = addImage(
-				interfaceBackground[w][h], imageTargets.interfaceBackground, x, y, playerName)
+				interfaceBackground[w][h], imageTargets.interfaceBackground, x - 8, y - 10,
+				playerName)
 
 			if ignoreTextAreaHeight then
-				y = y - 6
-			else
-				h = h - 20
+				y = y - 10
 			end
 
-			addTextArea(interfaceId + 1, text, playerName, x + 10, y + 10, w - 20, h, 1, 1, 0, true)
+			addTextArea(interfaceId + 1, text, playerName, x + 4, y + 4, w - 24, h - 30, 1, 1, 0,
+				true)
 			_cache.totalInterfaceTextareas = _cache.totalInterfaceTextareas + 1
 
 			return interfaceId + 1

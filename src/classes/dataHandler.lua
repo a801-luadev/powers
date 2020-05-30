@@ -206,11 +206,13 @@ do
 	end
 
 	DataHandler.set = function(self, playerName, valueName, newValue, sum)
-		playerName = self.playerData[playerName]
-		if sum then
-			playerName[valueName] = playerName[valueName] + newValue
-		else
-			playerName[valueName] = newValue
+		if canSaveData then
+			playerName = self.playerData[playerName]
+			if sum then
+				playerName[valueName] = playerName[valueName] + newValue
+			else
+				playerName[valueName] = newValue
+			end
 		end
 		return self
 	end

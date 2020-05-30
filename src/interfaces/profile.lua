@@ -2,7 +2,7 @@ local displayProfile
 do
 	local font = "<font size='%d'>"
 	local centerAndFont = "<p align='center'>" .. font
-	local nicknameFormat = centerAndFont .. "<B><V>%s"
+	local nicknameFormat = centerAndFont .. "<font face='soopafresh'><V>%s"
 	local discriminatorFormat = "<font size='13'><G>#"
 	local levelNameFormat = centerAndFont .. "%s"
 	local xpFormat = centerAndFont .. "<B>%d</B>\n</font>%d/%dxp"
@@ -19,7 +19,7 @@ do
 
 		totalInterfaceImages = totalInterfaceImages + 1
 		playerInterfaceImages[totalInterfaceImages] = addImage(interfaceImages.levelBar,
-			imageTargets.levelBar, x - 1, y, playerName)
+			imageTargets.levelBar, x, y, playerName)
 
 		-- Level Title
 		interfaceId = interfaceId + 1
@@ -30,6 +30,9 @@ do
 
 		-- Width = currentExp*240 / totalExp
 		y = y + 21
+
+		interfaceId = interfaceId + 1
+		addTextArea(interfaceId, '', playerName, x + 20, y, 240, 1,	0x152D30, 0x152D30, 1, false)
 
 		interfaceId = interfaceId + 1
 		addTextArea(interfaceId, '', playerName, x + 20, y,
@@ -44,7 +47,7 @@ do
 			targetCacheData.currentLevelXp, targetCacheData.nextLevelXp), playerName, x, y, 280,
 			nil, 1, 1, 0, true)
 
-		return x + 12, y + 65, interfaceId, totalInterfaceImages
+		return x + 13, y + 65, interfaceId, totalInterfaceImages
 	end
 
 	displayProfile = function(playerName, targetPlayer, _cache)

@@ -61,7 +61,7 @@ local imageTargets = {
 }
 
 local interfaceBackground = {
-	-- x+6, y+10
+	-- x+8, y+10
 	[120] = {
 		[30] = "17256d5e4ac.png"
 	},
@@ -70,7 +70,7 @@ local interfaceBackground = {
 		[300] = "17256d61391.png"
 	},
 	[280] = {
-		--[330] = ''
+		[330] = "1726737b74f.png"
 	},
 	[520] = {
 		[300] = "17201a440b4.png"

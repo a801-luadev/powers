@@ -10,11 +10,11 @@ do
 		local playerLevel = _cache.level
 
 		-- Build interface
-		local x, y = 39, 65
+		local x, y = 45, 65
 		displayPrettyUI('', x, y, 520, 300, playerName, false, _cache)
 
-		x = x + 15
-		y = y + 17
+		x = x + 7
+		y = y + 7
 
 		local interfaceId = textAreaId.interface + _cache.totalInterfaceTextareas
 		local totalInterfaceImages = _cache.totalInterfaceImages
@@ -209,7 +209,7 @@ do
 		_cache = _cache or playerCache[playerName]
 		local power = powers[_cache.powerInfoIdSelected]
 
-		local x, y, width = 563, 65, 200
+		local x, y, width = 575, 65, 200
 		displayPrettyUI(format(body, getText.powers[power.name],
 			getText.powersDescriptions[power.name]), x, y, width, 300, playerName, false, _cache)
 
