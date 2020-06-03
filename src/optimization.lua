@@ -26,6 +26,7 @@ local chatMessage    = tfm.exec.chatMessage
 local newGame        = tfm.exec.newGame
 
 local saveFile       = system.saveFile
+local loadFile       = system.loadFile
 local savePlayerData = system.savePlayerData
 local loadPlayerData = system.loadPlayerData
 
