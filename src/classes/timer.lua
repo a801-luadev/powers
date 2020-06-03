@@ -55,3 +55,6 @@ do
 	end
 	timer.refresh()
 end
+
+local unrefreshableTimer = table_copy(timer)
+unrefreshableTimer.refresh = nil

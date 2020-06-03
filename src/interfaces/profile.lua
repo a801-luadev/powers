@@ -2,8 +2,7 @@ local displayProfile
 do
 	local font = "<font size='%d'>"
 	local centerAndFont = "<p align='center'>" .. font
-	local nicknameFormat = centerAndFont .. "<font face='soopafresh'><V>%s"
-	local discriminatorFormat = "<font size='13'><G>#"
+	local nicknameFormat = centerAndFont .. "<font face='soopafresh'>%s"
 	local levelNameFormat = centerAndFont .. "%s"
 	local xpFormat = centerAndFont .. "<B>%d</B>\n</font>%d/%dxp"
 	local valueFormat = font .. "%s"
@@ -55,8 +54,8 @@ do
 		local targetCacheData = playerCache[targetPlayer]
 
 		local x, y = 260, 55
-		displayPrettyUI(format(nicknameFormat, 20, gsub(targetPlayer, '#', discriminatorFormat, 1)),
-			x, y, 280, 330, playerName, false, _cache)
+		displayPrettyUI(format(nicknameFormat, 20, prettifyNickname(targetPlayer, 13)), x, y, 280,
+			330, playerName, false, _cache)
 
 		local interfaceId = textAreaId.interface + _cache.totalInterfaceTextareas
 		local totalInterfaceImages = _cache.totalInterfaceImages
@@ -92,5 +91,8 @@ do
 				y = y + 44
 			end
 		end
+
+		_cache.totalInterfaceImages = totalInterfaceImages
+		_cache.totalInterfaceTextareas = interfaceId - textAreaId.interface
 	end
 end

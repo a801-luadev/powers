@@ -87,6 +87,10 @@ translations.en = {
 	profileData = {
 		rounds = "Rounds",
 		victories = "Victories",
-		kills = "Kills"
-	}
+		kills = "Kills",
+		xp = "Experience"
+	},
+
+	-- Leaderboard
+	leaderboard = "Leaderboard"
 }

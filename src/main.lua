@@ -5,7 +5,8 @@ local module = {
 	min_players = 4,
 	max_players = 18,
 
-	map_file = 7,
+	map_file = '7',
+	leaderboard_file = '8',
 
 	extra_xp_in_round_seconds = 60 * 1000,
 	extra_xp_in_round = 10,
@@ -40,3 +41,16 @@ local nextMapLoadTentatives = 0
 
 local isLobby, wasLobby = false, false
 local ignoreRoundData = true
+
+local leaderboard = {
+	community = { },
+	nickname = { },
+	discriminator = { },
+	rounds = { },
+	victories = { },
+	kills = { },
+	xp = { },
+
+	full_nickname = { },
+	pretty_nickname = { }
+}

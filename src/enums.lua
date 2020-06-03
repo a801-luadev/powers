@@ -34,6 +34,11 @@ local interfaceImages = {
 	rectangle = "1724c8e1e61.jpg",
 	highlightRectangleBorder = "1724ca7c279.png",
 	smallRectangle = "172642bf9ed.jpg",
+	leaderboardRectangle = "172778a3188.jpg",
+
+	-- 70x70
+	rightArrow = "17272cdad84.png",
+	leftArrow = "17272cd6b16.png",
 
 	locker = "1724e77bf31.png",
 
@@ -46,9 +51,11 @@ local interfaceImages = {
 
 	mouseClick = "172597de49d.png",
 
+	-- 25x25
 	skull = "17263f4dee4.png",
 	ground = "17264087ad6.png",
-	crown = "1726424a9e4.png"
+	crown = "1726424a9e4.png",
+	star = "17272ad3c14.png"
 }
 
 local imageTargets = {
@@ -107,4 +114,64 @@ local keyboardImages = {
 	[keyboard.spacebar] = "172583272f1.png",
 	[keyboard.ctrl] = "17258353f90.png",
 	[keyboard.shift] = "1725832346d.png"
+}
+
+local flags = {
+	xx = "1651b327097.png",
+	ar = "1651b32290a.png",
+	bg = "1651b300203.png",
+	br = "1651b3019c0.png",
+	cn = "1651b3031bf.png",
+	cz = "1651b304972.png",
+	de = "1651b306152.png",
+	ee = "1651b307973.png",
+	es = "1651b309222.png",
+	fi = "1651b30aa94.png",
+	fr = "1651b30c284.png",
+	gb = "1651b30da90.png",
+	hr = "1651b30f25d.png",
+	hu = "1651b310a3b.png",
+	id = "1651b3121ec.png",
+	il = "1651b3139ed.png",
+	it = "1651b3151ac.png",
+	jp = "1651b31696a.png",
+	lt = "1651b31811c.png",
+	lv = "1651b319906.png",
+	nl = "1651b31b0dc.png",
+	ph = "1651b31c891.png",
+	pl = "1651b31e0cf.png",
+	ro = "1651b31f950.png",
+	ru = "1651b321113.png",
+	tr = "1651b3240e8.png",
+	vk = "1651b3258b3.png"
+}
+
+local flagCodes = {
+	[01] = "xx",
+	[02] = "ar",
+	[03] = "bg",
+	[04] = "br",
+	[05] = "cn",
+	[06] = "cz",
+	[07] = "de",
+	[08] = "ee",
+	[09] = "es",
+	[10] = "fi",
+	[11] = "fr",
+	[12] = "gb",
+	[13] = "hr",
+	[14] = "hu",
+	[15] = "id",
+	[16] = "il",
+	[17] = "it",
+	[18] = "jp",
+	[19] = "lt",
+	[20] = "lv",
+	[21] = "nl",
+	[22] = "ph",
+	[23] = "pl",
+	[24] = "ro",
+	[25] = "ru",
+	[26] = "tr",
+	[27] = "vk"
 }

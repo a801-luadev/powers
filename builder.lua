@@ -25,7 +25,7 @@ local tree = {
 
 	"translations/setup.lua",
 
-	--"classes/byteArray.lua",
+	"classes/byteArray.lua",
 	"classes/keySequence.lua",
 	"classes/timer.lua",
 	"classes/power.lua",
@@ -33,10 +33,13 @@ local tree = {
 	"powers.lua",
 	"sortedPowers.lua",
 
+	"leaderboard.lua",
+
 	"interfaces/abstract/prettyUI.lua",
 	"interfaces/menu.lua",
 	"interfaces/powers.lua",
 	"interfaces/profile.lua",
+	"interfaces/leaderboard.lua",
 
 	"events/eventFileLoaded.lua",
 
@@ -48,6 +51,7 @@ local tree = {
 	"commands/help.lua",
 	"commands/powers.lua",
 	"commands/profile.lua",
+	"commands/leaderboard.lua",
 	"commands/owner/map.lua",
 	"commands/owner/msg.lua",
 	"events/eventChatCommand.lua",

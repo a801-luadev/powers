@@ -3,12 +3,20 @@ do
 	-- Reference: https://github.com/Lautenschlager-id/Transfromage/blob/master/libs/bArray.lua
 	byteArray.__index = byteArray
 
+	byteArray.__tostring = function(self)
+		return table_writeBytes(self.stack)
+	end
+
 	local modulo256 = function(n)
 		-- It could be n & 0xFF but, in Lua, modulo is slightly more performatic
 		return n % 256
 	end
 
 	byteArray.new = function(stack)
+		if type(stack) == "string" then
+			stack = str_getBytes(stack)
+		end
+
 		return setmetatable({
 			stack = (stack or { }), -- Array of bytes
 			stackLen = (stack and #stack or 0),
