@@ -1,5 +1,23 @@
 local displayMenu, updateMenu
 do
+	-- Format translations
+	do
+		-- Intro
+		getText.menuContent[1] = format(getText.menuContent[1], getText.enableParticles)
+
+		-- Commands
+		local commands, parameters = "<V><B>!%s</B> %s<N>- %s", getText.commandsParameters
+
+		local data, index = { }, 0
+		for k, v in next, getText.commands do
+			index = index + 1
+			data[index] = format(commands, k, (parameters[k] or ''), v)
+		end
+		getText.menuContent[2] = getText.menuContent[2] .. table_concat(data, '\n')
+	end
+
+	-- Menu
+	local contentFormat = "<font size='14'>"
 	local tabStr = "<font size='1'>\n</font><p align='center'>%s<a href='event:menuTab_%s'>%s\n"
 
 	displayMenu = function(playerName, _cache)
@@ -9,8 +27,8 @@ do
 		local x, y, w = 100, 65, 520
 
 		-- Main menu
-		_cache.menuContentId = displayPrettyUI(getText.menuContent[menuPage], x, y, w, 300,
-			playerName, false, _cache)
+		_cache.menuContentId = displayPrettyUI(contentFormat .. getText.menuContent[menuPage], x, y,
+			w, 300, playerName, false, _cache)
 
 		-- Tabs
 		x = x + w - 15
@@ -45,7 +63,8 @@ do
 			getText.menuTitles[menuPage]), playerName)
 
 		-- Main menu
-		updateTextArea(_cache.menuContentId, getText.menuContent[menuPage], playerName)
+		updateTextArea(_cache.menuContentId, contentFormat .. getText.menuContent[menuPage],
+			playerName)
 
 		_cache.menuPage = menuPage
 	end

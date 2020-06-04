@@ -68,16 +68,44 @@ translations.en = {
 
 	-- Menu
 	menuTitles = {
-		[1] = "Title 1",
-		[2] = "Title 2",
-		[3] = "Title 3",
-		[4] = "Title 4"
+		[1] = "Powers!",
+		[2] = "Commands",
+		[3] = "Contribute",
+		[4] = "What's new?"
 	},
 	menuContent = {
-		[1] = "Content 1",
-		[2] = "Content 2",
-		[3] = "Content 3",
-		[4] = "Content 4"
+		[1] = "<FC><p align='center'>#POWERS!</p>\n\n" ..
+			"<J>Your goal in this module is to survive from opponents' attacks.\n\n" ..
+			"<N>There are a variety of powers <font size='12'>- which are unlocked by reaching " ..
+				"higher levels -</font> to attack and defend.\n" ..
+			"Type <FC><B>!powers</B><N> to learn more about the powers you have unlocked so far!" ..
+				"\n\n" ..
+			"<ROSE>%s</ROSE>\n\n" .. -- enableParticles
+			"This module has been developed by <font color='#8FE2D1'>Bolodefchoco</font><G>#0000"
+		,
+		[2] = "<FC><p align='center'>GENERAL COMMANDS</p><N>\n\n", -- commands
+		[3] = "<FC><p align='center'>CONTRIBUTE<N>\n\n" ..
+			"We love Open Source <font color='#E91E63'>♥</font>! You can view and modify " ..
+				"the source code of this module on <a href='event:print_" ..
+				"github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n\n" ..
+			"Maintaining the module is strictly voluntary, so any help regarding " ..
+				"<V>Code<N>, <V>bugfix and reports<N>, <V>suggestions and feature" ..
+				" enhancements<N>, <V>map making <N>is welcome and very well appreciated.\n" ..
+			"<p align='left'>• You can <FC>report bugs <N>or <FC>suggest <N>on " ..
+				"<a href='event:print_discord.gg/quch83R'><font color='#087ECC'>" ..
+				"Discord</font></a> and/or on <a href='event:print_" ..
+				"github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n" ..
+			"• You can <FC>submit maps <N>in our <a href='event:print_" ..
+				"atelier801.com/topic?f=5&t=918371'><font color='#087ECC'>Map Submissions " ..
+				"Thread on Forums</font></a>.\n\n" ..
+			"<p align='center'>You can also <FC>donate</FC> any amount <a href='event:print_" ..
+				"a801-luadev.github.io/?redirect=powers'><font color='#087ECC'>here</font></a>" ..
+				" to help maintaining the module. All funds obtained through the link are going" ..
+				" to be invested in constant module updates and general improvements.</p>"
+		,
+		[4] = "<FC><p align='center'>WHAT'S NEW?</p><N>\n\n" ..
+			"• Module ~~became~~ official.\n" ..
+			"• Module has been entirely rewritten."
 	},
 
 	-- Lobby
@@ -92,5 +120,20 @@ translations.en = {
 	},
 
 	-- Leaderboard
-	leaderboard = "Leaderboard"
+	leaderboard = "Leaderboard",
+
+	-- Warning
+	enableParticles = "Do NOT forget to ENABLE the special effects/particles in order to see the" ..
+		" game properly. (In 'Menu' → 'Options', next to the 'Room List')",
+
+	-- Commands
+	commands = {
+		help = "Opens this menu.",
+		powers = "Opens a menu that lists all powers and their info.",
+		profile = "Opens your or someone's profile.",
+		leaderboard = "Opens the global leaderboard."
+	},
+	commandsParameters = {
+		profile = "[player_name] "
+	}
 }
