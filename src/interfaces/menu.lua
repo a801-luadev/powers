@@ -26,46 +26,36 @@ do
 
 		local x, y, w = 100, 65, 520
 
-		-- Main menu
-		_cache.menuContentId = displayPrettyUI(contentFormat .. getText.menuContent[menuPage], x, y,
-			w, 300, playerName, false, _cache)
+		prettyUI
+			.new(x, y, w, 300, playerName, contentFormat .. getText.menuContent[menuPage], _cache)
+			:setCloseButton()
 
-		-- Tabs
 		x = x + w - 15
 		y = y + 5
 
-		local menuTabId, tmpTabId
 		for t = 1, #getText.menuTitles do
-			tmpTabId = displayPrettyUI(format(tabStr, (t == menuPage and "<J>" or ''), t,
-				getText.menuTitles[t]), x, y + t*30, 120, 30, playerName, true, _cache)
-
-			if t == 1 then
-				menuTabId = tmpTabId
-			end
+			_cache.menuTabs[t] = prettyUI
+				.new(x, y + t*30, 120, 30, playerName, format(tabStr,
+					(t == menuPage and "<J>" or ''), t,	getText.menuTitles[t]), _cache, true)
 		end
-
-		_cache.menuTabId = menuTabId - 1
 	end
 
-	updateMenu = function(playerName, menuPage, _cache)
+	updateMenu = function(playerName, nextMenuPage, _cache)
 		_cache = _cache or playerCache[playerName]
 
+		-- Remove highlight color of the last tab
 		local currentMenuPage = _cache.menuPage
-
-		if currentMenuPage then
-			-- Remove highlight color of the last tab
-			updateTextArea(_cache.menuTabId + currentMenuPage, "<N>" .. format(tabStr, '',
-				currentMenuPage, getText.menuTitles[currentMenuPage]), playerName)
-		end
+		updateTextArea(_cache.menuTabs[currentMenuPage].contentTextAreaId, "<N>" .. format(tabStr,
+			'', currentMenuPage, getText.menuTitles[currentMenuPage]), playerName)
 
 		-- Highlights new tab
-		updateTextArea(_cache.menuTabId + menuPage, format(tabStr, "<J>", menuPage,
-			getText.menuTitles[menuPage]), playerName)
+		updateTextArea(_cache.menuTabs[nextMenuPage].contentTextAreaId, format(tabStr, "<J>",
+			nextMenuPage, getText.menuTitles[nextMenuPage]), playerName)
 
 		-- Main menu
-		updateTextArea(_cache.menuContentId, contentFormat .. getText.menuContent[menuPage],
-			playerName)
+		updateTextArea(_cache.prettyUIs[1].contentTextAreaId,
+			contentFormat .. getText.menuContent[nextMenuPage], playerName)
 
-		_cache.menuPage = menuPage
+		_cache.menuPage = nextMenuPage
 	end
 end

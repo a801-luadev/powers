@@ -36,6 +36,9 @@ local interfaceImages = {
 	smallRectangle = "172642bf9ed.jpg",
 	leaderboardRectangle = "172778a3188.jpg",
 
+	-- 30x30
+	xButton = "17280a523f6.png",
+
 	-- 70x70
 	rightArrow = "17272cdad84.png",
 	leftArrow = "17272cd6b16.png",

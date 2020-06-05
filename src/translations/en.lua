@@ -75,20 +75,20 @@ translations.en = {
 	},
 	menuContent = {
 		[1] = "<FC><p align='center'>#POWERS!</p>\n\n" ..
-			"<J>Your goal in this module is to survive from opponents' attacks.\n\n" ..
+			"<J>Your goal in this game is to survive from opponents' attacks.\n\n" ..
 			"<N>There are a variety of powers <font size='12'>- which are unlocked by reaching " ..
 				"higher levels -</font> to attack and defend.\n" ..
 			"Type <FC><B>!powers</B><N> to learn more about the powers you have unlocked so far!" ..
 				"\n\n" ..
 			"<ROSE>%s</ROSE>\n\n" .. -- enableParticles
-			"This module has been developed by <font color='#8FE2D1'>Bolodefchoco</font><G>#0000"
+			"This game has been developed by <font color='#8FE2D1'>Bolodefchoco</font><G>#0000"
 		,
 		[2] = "<FC><p align='center'>GENERAL COMMANDS</p><N>\n\n", -- commands
 		[3] = "<FC><p align='center'>CONTRIBUTE<N>\n\n" ..
 			"We love Open Source <font color='#E91E63'>♥</font>! You can view and modify " ..
-				"the source code of this module on <a href='event:print_" ..
+				"the source code of this game on <a href='event:print_" ..
 				"github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n\n" ..
-			"Maintaining the module is strictly voluntary, so any help regarding " ..
+			"Maintaining the game is strictly voluntary, so any help regarding " ..
 				"<V>Code<N>, <V>bugfix and reports<N>, <V>suggestions and feature" ..
 				" enhancements<N>, <V>map making <N>is welcome and very well appreciated.\n" ..
 			"<p align='left'>• You can <FC>report bugs <N>or <FC>suggest <N>on " ..
@@ -100,8 +100,8 @@ translations.en = {
 				"Thread on Forums</font></a>.\n\n" ..
 			"<p align='center'>You can also <FC>donate</FC> any amount <a href='event:print_" ..
 				"a801-luadev.github.io/?redirect=powers'><font color='#087ECC'>here</font></a>" ..
-				" to help maintaining the module. All funds obtained through the link are going" ..
-				" to be invested in constant module updates and general improvements.</p>"
+				" to help maintaining the game. All funds obtained through the link are going" ..
+				" to be invested in constant game updates and general improvements.</p>"
 		,
 		[4] = "<FC><p align='center'>WHAT'S NEW?</p><N>\n\n" ..
 			"• Module ~~became~~ official.\n" ..

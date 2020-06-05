@@ -2,7 +2,7 @@ local displayProfile
 do
 	local font = "<font size='%d'>"
 	local centerAndFont = "<p align='center'>" .. font
-	local nicknameFormat = centerAndFont .. "<font face='soopafresh'>%s"
+	local nicknameFormat = centerAndFont .. "<font face='consolas,courier new,soopafresh'>%s"
 	local levelNameFormat = centerAndFont .. "%s"
 	local xpFormat = centerAndFont .. "<B>%d</B>\n</font>%d/%dxp"
 	local valueFormat = font .. "%s"
@@ -12,17 +12,13 @@ do
 	local dataIcons = { "crown", "skull", "ground" }
 	local totalData = #dataNames
 
-	local displayLevelBar = function(playerName, targetPlayer, targetCacheData, x, y, interfaceId,
-		playerInterfaceImages, totalInterfaceImages)
+	local displayLevelBar = function(playerName, targetPlayer, targetCacheData, x, y, interface)
 		y = y + 35
 
-		totalInterfaceImages = totalInterfaceImages + 1
-		playerInterfaceImages[totalInterfaceImages] = addImage(interfaceImages.levelBar,
-			imageTargets.levelBar, x, y, playerName)
+		interface:addImage(interfaceImages.levelBar, imageTargets.levelBar, x, y, playerName)
 
 		-- Level Title
-		interfaceId = interfaceId + 1
-		addTextArea(interfaceId, format(levelNameFormat, 14,
+		interface:addTextArea(format(levelNameFormat, 14,
 			getText.levelName[targetCacheData.levelIndex]
 				[tfm.get.room.playerList[targetPlayer].gender%2 + 1]), playerName, x, y, 280, 20, 1,
 			1, 0, true)
@@ -30,23 +26,20 @@ do
 		-- Width = currentExp*240 / totalExp
 		y = y + 21
 
-		interfaceId = interfaceId + 1
-		addTextArea(interfaceId, '', playerName, x + 20, y, 240, 1,	0x152D30, 0x152D30, 1, false)
+		interface:addTextArea('', playerName, x + 20, y, 240, 1, 0x152D30, 0x152D30, 1, false)
 
-		interfaceId = interfaceId + 1
-		addTextArea(interfaceId, '', playerName, x + 20, y,
+		interface:addTextArea('', playerName, x + 20, y,
 			min(240, targetCacheData.currentLevelXp*240 / targetCacheData.nextLevelXp), 1,
 			targetCacheData.levelColor, targetCacheData.levelColor, .75, false)
 
 		-- Level value
 		y = y + 18
 
-		interfaceId = interfaceId + 1
-		addTextArea(interfaceId, format(xpFormat, 16, targetCacheData.level,
+		interface:addTextArea(format(xpFormat, 16, targetCacheData.level,
 			targetCacheData.currentLevelXp, targetCacheData.nextLevelXp), playerName, x, y, 280,
 			nil, 1, 1, 0, true)
 
-		return x + 13, y + 65, interfaceId, totalInterfaceImages
+		return x + 13, y + 65
 	end
 
 	displayProfile = function(playerName, targetPlayer, _cache)
@@ -54,45 +47,34 @@ do
 		local targetCacheData = playerCache[targetPlayer]
 
 		local x, y = 260, 55
-		displayPrettyUI(format(nicknameFormat, 20, prettifyNickname(targetPlayer, 13)), x, y, 280,
-			330, playerName, false, _cache)
-
-		local interfaceId = textAreaId.interface + _cache.totalInterfaceTextareas
-		local totalInterfaceImages = _cache.totalInterfaceImages
-		local playerInterfaceImages = _cache.interfaceImages
+		local interface = prettyUI
+			.new(x, y, 280, 330, playerName, format(nicknameFormat, 20,
+				prettifyNickname(targetPlayer, 13)), _cache)
+			:setCloseButton()
 
 		-- Level bar
-		x, y, interfaceId, totalInterfaceImages = displayLevelBar(playerName, targetPlayer,
-			targetCacheData, x, y, interfaceId, playerInterfaceImages, totalInterfaceImages)
+		x, y = displayLevelBar(playerName, targetPlayer, targetCacheData, x, y, interface)
 
 		-- Data
 		local sumX
 		for i = 1, totalData do
 			sumX = x + ((i + 1) % 2)*135
 
-			interfaceId = interfaceId + 1
-			addTextArea(interfaceId, format(dataNameFormat, getText.profileData[dataNames[i]]),
+			interface:addTextArea(format(dataNameFormat, getText.profileData[dataNames[i]]),
 				playerName, sumX - 8, y - 12, nil, nil, 1, 1, 0, true)
 
-			totalInterfaceImages = totalInterfaceImages + 1
-			playerInterfaceImages[totalInterfaceImages] = addImage(interfaceImages.smallRectangle,
-				imageTargets.interfaceRectangle, sumX - 2, y - 2, playerName)
+			interface:addImage(interfaceImages.smallRectangle, imageTargets.interfaceRectangle,
+				sumX - 2, y - 2, playerName)
 
-			totalInterfaceImages = totalInterfaceImages + 1
-			playerInterfaceImages[totalInterfaceImages] = addImage(interfaceImages[dataIcons[i]],
-				imageTargets.interfaceIcon, sumX, y + 5, playerName)
+			interface:addImage(interfaceImages[dataIcons[i]], imageTargets.interfaceIcon, sumX,
+				y + 5, playerName)
 
-			interfaceId = interfaceId + 1
-			addTextArea(interfaceId, format(valueFormat, 14,
-				playerData:get(targetPlayer, dataNames[i])), playerName, sumX + 30, y + 8,
-				nil, nil, 1, 1, 0, true)
+			interface:addTextArea(interfaceId, format(valueFormat, 14, playerData:get(targetPlayer,
+				dataNames[i])), playerName, sumX + 30, y + 8, nil, nil, 1, 1, 0, true)
 
 			if i % 2 == 0 then
 				y = y + 44
 			end
 		end
-
-		_cache.totalInterfaceImages = totalInterfaceImages
-		_cache.totalInterfaceTextareas = interfaceId - textAreaId.interface
 	end
 end

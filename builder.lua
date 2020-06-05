@@ -60,6 +60,7 @@ local tree = {
 	"callbacks/menuTab.lua",
 	"callbacks/powerInfo.lua",
 	"callbacks/print.lua",
+	"callbacks/closeInterface.lua",
 	"events/eventTextAreaCallback.lua",
 
 	"events/eventNewGame.lua",
