@@ -22,6 +22,8 @@ do
 
 	displayMenu = function(playerName, _cache)
 		_cache = _cache or playerCache[playerName]
+		callbacks["closeInterface"](playerName, nil, nil, _cache)
+
 		local menuPage = _cache.menuPage
 
 		local x, y, w = 100, 65, 503
@@ -30,7 +32,7 @@ do
 			.new(x, y, w, 278, playerName, contentFormat .. getText.menuContent[menuPage], _cache)
 			:setCloseButton()
 
-		x = x + w - 15
+		x = x + w + 5
 		y = y + 5
 
 		for t = 1, #getText.menuTitles do

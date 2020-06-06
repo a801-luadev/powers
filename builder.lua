@@ -36,6 +36,10 @@ local tree = {
 	"leaderboard.lua",
 
 	"classes/prettyUI.lua",
+
+	"callbacks/callbacks.lua",
+	"callbacks/closeInterface.lua",
+
 	"interfaces/menu.lua",
 	"interfaces/powers.lua",
 	"interfaces/profile.lua",
@@ -56,11 +60,9 @@ local tree = {
 	"commands/owner/msg.lua",
 	"events/eventChatCommand.lua",
 
-	"callbacks/callbacks.lua",
 	"callbacks/menuTab.lua",
 	"callbacks/powerInfo.lua",
 	"callbacks/print.lua",
-	"callbacks/closeInterface.lua",
 	"events/eventTextAreaCallback.lua",
 
 	"events/eventNewGame.lua",

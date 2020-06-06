@@ -85,7 +85,7 @@ local interfaceBackground = {
 		[278] = "17201a440b4.png"
 	},
 	[700] = {
-		--[330] = ''
+		[330] = "1728a8497f2.png"
 	}
 }
 

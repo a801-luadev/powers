@@ -11,6 +11,7 @@ do
 
 	displayLeaderboard = function(playerName, _cache)
 		_cache = _cache or playerCache[playerName]
+		callbacks["closeInterface"](playerName, nil, nil, _cache)
 
 		local x, y = 50, 50
 

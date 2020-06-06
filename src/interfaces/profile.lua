@@ -44,6 +44,7 @@ do
 
 	displayProfile = function(playerName, targetPlayer, _cache)
 		_cache = _cache or playerCache[playerName]
+		callbacks["closeInterface"](playerName, nil, nil, _cache)
 		local targetCacheData = playerCache[targetPlayer]
 
 		local x, y = 260, 55

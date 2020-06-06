@@ -19,6 +19,8 @@ eventNewPlayer = function(playerName)
 
 			soulMate = nil,
 
+			isInterfaceOpen = false,
+
 			totalPrettyUIs = 0,
 			prettyUIs = { },
 			lastPrettyUI = nil,
@@ -27,6 +29,7 @@ eventNewPlayer = function(playerName)
 			menuTabs = { },
 
 			powerInfoIdSelected = nil,
+			powerInfoSelectionImageId = nil
 		}
 	end
 

@@ -28,11 +28,12 @@ do
 	end
 
 	local imageInterface = function(self, x, y, w, h, playerName, cache, text,
-		compensateTextAreaY)
+		compensateInterfaceImageDimensions)
 		self:addImage(interfaceBackground[w][h], imageTargets.interfaceBackground, x - 8, y - 10,
 			playerName)
 
-		if compensateTextAreaY then
+		if compensateInterfaceImageDimensions then
+			x = x - 8
 			y = y - 10
 		end
 
@@ -73,6 +74,8 @@ do
 		local lastInstance = _cache.prettyUIs[self.id - 1]
 		self.interfaceId = (lastInstance and lastInstance.interfaceId or textAreaId.interface)
 		self.initInterfaceId = self.interfaceId + 1
+
+		_cache.isInterfaceOpen = true
 
 		if interfaceBackground[w] and interfaceBackground[w][h] then
 			imageInterface(self, x, y, w, h, playerName, _cache, text, ...)
