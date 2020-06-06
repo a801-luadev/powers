@@ -36,7 +36,7 @@ do
 			y = y - 10
 		end
 
-		self.contentTextAreaId = self:addTextArea(text, playerName, x + 4, y + 4, w - 24, h - 30, 1,
+		self.contentTextAreaId = self:addTextArea(text, playerName, x + 4, y + 4, w - 8, h - 8, 1,
 			1, 0, true)
 	end
 
@@ -98,9 +98,9 @@ do
 	end
 
 	local callback = "<a href='event:closeInterface'>\n\n\n\n"
-	prettyUI.setCloseButton = function(self)
-		local x = self.x + self.w - 11
-		local y = self.y - 6
+	prettyUI.setCloseButton = function(self, xAxis)
+		local x = self.x + self.w - (xAxis or 12)
+		local y = self.y - 15
 
 		self:addImage(interfaceImages.xButton, imageTargets.interfaceIcon, x, y, self.playerName)
 

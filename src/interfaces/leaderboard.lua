@@ -16,6 +16,7 @@ do
 
 		local interface = prettyUI
 			.new(x, y, 700, 330, playerName, titleFormat, _cache)
+			:setCloseButton()
 
 		x = x + 5
 		y = y + 45

@@ -5,6 +5,6 @@ eventLoop = function(currentTime, remainingTime)
 		end
 		return nextMap()
 	end
-	timer.loop()
-	unrefreshableTimer.loop()
+	timer:loop()
+	unrefreshableTimer:loop()
 end

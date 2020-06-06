@@ -19,7 +19,7 @@ eventNewGame = function()
 	ignoreRoundData = false
 	setNextMapIndex()
 
-	timer.start(enablePowersTrigger, 3000, 1)
+	timer:start(enablePowersTrigger, 3000, 1)
 
 	-- Resets powers
 	for name, obj in next, powers do
@@ -57,6 +57,6 @@ eventNewGame = function()
 	canSaveData = (isOfficialRoom and tfm.get.room.uniquePlayers >= module.min_players)
 	-- Adds extra XP
 	if canSaveData then
-		timer.start(giveExperience, module.extra_xp_in_round_seconds, 1)
+		timer:start(giveExperience, module.extra_xp_in_round_seconds, 1)
 	end
 end

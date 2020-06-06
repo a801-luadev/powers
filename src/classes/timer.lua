@@ -1,7 +1,7 @@
 local timer = { }
 do
-	timer.start = function(callback, ms, times, ...)
-		local t = timer._timers
+	timer.start = function(self, callback, ms, times, ...)
+		local t = self._timers
 		t._count = t._count + 1
 
 		local args = { ... }
@@ -18,14 +18,14 @@ do
 		return t._count
 	end
 
-	timer.delete = function(id)
-		local ts = timer._timers
+	timer.delete = function(self, id)
+		local ts = self._timers
 		ts[id] = nil
 		ts._deleted = ts._deleted + 1
 	end
 
-	timer.loop = function()
-		local ts = timer._timers
+	timer.loop = function(self)
+		local ts = self._timers
 		if ts._deleted >= ts._count then return end
 
 		local t
@@ -40,7 +40,7 @@ do
 					t.callback(unpack(t.args))
 
 					if t.times == 0 then
-						timer.delete(i)
+						self:delete(i)
 					end
 				end
 			end
@@ -56,5 +56,8 @@ do
 	timer.refresh()
 end
 
-local unrefreshableTimer = table_copy(timer)
-unrefreshableTimer.refresh = nil
+local unrefreshableTimer = { }
+unrefreshableTimer.start = timer.start
+unrefreshableTimer.delete = timer.delete
+unrefreshableTimer.loop = timer.loop
+unrefreshableTimer._timers = timer._timers

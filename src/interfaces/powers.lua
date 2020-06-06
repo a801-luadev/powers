@@ -10,9 +10,10 @@ do
 		local playerLevel = _cache.level
 
 		-- Build interface
-		local x, y = 45, 65
+		local x, y = 253, 65
 		local interface = prettyUI
-			.new(x, y, 520, 300, playerName, '', _cache)
+			.new(x, y, 503, 278, playerName, '', _cache)
+			:setCloseButton(4)
 
 		x = x + 7
 		y = y + 7
@@ -172,9 +173,9 @@ do
 		_cache = _cache or playerCache[playerName]
 		local power = powers[_cache.powerInfoIdSelected]
 
-		local x, y, width = 575, 65, 200
+		local x, y, width = 38, 65, 183
 		local interface = prettyUI
-			.new(x, y, width, 300, playerName, format(body, getText.powers[power.name],
+			.new(x, y, width, 279, playerName, format(body, getText.powers[power.name],
 				getText.powersDescriptions[power.name]), _cache)
 
 		-- Icons

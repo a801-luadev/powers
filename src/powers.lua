@@ -64,7 +64,7 @@ do
 			beam(x, y, direction)
 
 			-- Collision
-			timer.start(removeObject, 1000, 1, addShamanObject(6000, x + 40*direction, y, 0,
+			timer:start(removeObject, 1000, 1, addShamanObject(6000, x + 40*direction, y, 0,
 				9 * direction))
 
 			-- Damage
@@ -372,12 +372,12 @@ do
 			-- Super jump
 			movePlayer(playerName, 0, 0, true, 0, -110, true)
 			-- Super smash
-			timer.start(movePlayer, 500, 1, playerName, 0, 0, true, 0, 400, false)
+			timer:start(movePlayer, 500, 1, playerName, 0, 0, true, 0, 400, false)
 			-- Damage
-			timer.start(self.damagePlayers, 1000, 1, self, playerName, { smashDamage, inRectangle,
+			timer:start(self.damagePlayers, 1000, 1, self, playerName, { smashDamage, inRectangle,
 				x - 100, y - 60, 200, 100, true }, damagePlayersWithAction)
 			-- Particles
-			timer.start(dust, 1000, 1, x, y)
+			timer:start(dust, 1000, 1, x, y)
 
 			return false
 		end)
@@ -504,7 +504,7 @@ do
 		:setProbability(60)
 		:setEffect(function(self)
 			canTriggerPowers = false
-			timer.start(anomaly, 500, 1/self.opacityFrame, self, (isLowQuality and 1 or 3))
+			timer:start(anomaly, 500, 1/self.opacityFrame, self, (isLowQuality and 1 or 3))
 		end)
 end
 
@@ -590,7 +590,7 @@ do
 		:setProbability(50)
 		:setEffect(function(self)
 			resetPlayersDefaultSize = true
-			timer.start(changeSize, 500, self.seconds * 2, self)
+			timer:start(changeSize, 500, self.seconds * 2, self)
 		end)
 end
 

@@ -69,7 +69,7 @@ do
 			interface:addImage(interfaceImages[dataIcons[i]], imageTargets.interfaceIcon, sumX,
 				y + 5, playerName)
 
-			interface:addTextArea(interfaceId, format(valueFormat, 14, playerData:get(targetPlayer,
+			interface:addTextArea(format(valueFormat, 14, playerData:get(targetPlayer,
 				dataNames[i])), playerName, sumX + 30, y + 8, nil, nil, 1, 1, 0, true)
 
 			if i % 2 == 0 then

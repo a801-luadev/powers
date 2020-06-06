@@ -35,7 +35,7 @@ local tree = {
 
 	"leaderboard.lua",
 
-	"interfaces/abstract/prettyUI.lua",
+	"classes/prettyUI.lua",
 	"interfaces/menu.lua",
 	"interfaces/powers.lua",
 	"interfaces/profile.lua",

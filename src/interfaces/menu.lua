@@ -24,10 +24,10 @@ do
 		_cache = _cache or playerCache[playerName]
 		local menuPage = _cache.menuPage
 
-		local x, y, w = 100, 65, 520
+		local x, y, w = 100, 65, 503
 
 		prettyUI
-			.new(x, y, w, 300, playerName, contentFormat .. getText.menuContent[menuPage], _cache)
+			.new(x, y, w, 278, playerName, contentFormat .. getText.menuContent[menuPage], _cache)
 			:setCloseButton()
 
 		x = x + w - 15

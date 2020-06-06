@@ -1,5 +1,5 @@
 loadFile(module.map_file)
-unrefreshableTimer.start(loadFile, 65000, 0, module.leaderboard_file)
+unrefreshableTimer:start(loadFile, 65000, 0, module.leaderboard_file)
 
 module.max_player_xp = lvlToXp(module.max_player_level)
 
