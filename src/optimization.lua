@@ -60,6 +60,7 @@ local upper  = string.upper
 -- Table
 local table_concat = table.concat
 local table_remove = table.remove
+local table_sort   = table.sort
 
 -- Bit32
 local band   = bit32.band

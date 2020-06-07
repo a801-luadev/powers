@@ -10,5 +10,6 @@ eventFileLoaded = function(id, data)
 		setGameTime(0)
 	elseif id == module.leaderboard_file then
 		readLeaderboardBString(data)
+		writeLeaderboardBString()
 	end
 end

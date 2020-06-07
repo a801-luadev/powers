@@ -191,3 +191,5 @@ local flagCodes = {
 	[26] = "tr",
 	[27] = "vk"
 }
+
+local flagCodesSet = table_set(flagCodes)

@@ -23,15 +23,16 @@ do
 		x = x + 5
 		y = y + 45
 
-		local listIni, listEnd = 1, min(20, #leaderboard.nickname)
+		local listIni = 1
+		local listEnd = min(17, #leaderboard.nickname)
 
 		-- Generates the name list
 		interface:addImage(interfaceImages.leaderboardRectangle, imageTargets.interfaceRectangle, x,
 			y + 3, playerName)
 
 		local l_community = leaderboard.community
-		local lFull_nickname = leaderboard.full_nickname
-		local lPretty_nickname = leaderboard.pretty_nickname
+		local l_full_nickname = leaderboard.full_nickname
+		local l_pretty_nickname = leaderboard.pretty_nickname
 
 		local prettifiedNicknames = { }
 		for i = listIni, listEnd do
@@ -40,11 +41,11 @@ do
 				imageTargets.interfaceIcon, x + 42, y + 5 + (i - 1)*16, playerName)
 
 			-- Prettify nickname
-			if lFull_nickname[i] == playerName then
+			if l_full_nickname[i] == playerName then
 				prettifiedNicknames[i] = format(prettifiedNickname, i, prettifyNickname(
 					leaderboard.nickname[i], 11, leaderboard.discriminator[i], "BL", "FC"))
 			else
-				prettifiedNicknames[i] = format(prettifiedNickname, i, lPretty_nickname[i])
+				prettifiedNicknames[i] = format(prettifiedNickname, i, l_pretty_nickname[i])
 			end
 		end
 		prettifiedNicknames = midFontSize .. table_concat(prettifiedNicknames, '\n')

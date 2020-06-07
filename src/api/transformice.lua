@@ -54,6 +54,10 @@ local strToNickname = function(str, checkDiscriminator)
 	return str
 end
 
+local getNicknameAndDiscriminator = function(nickname)
+	return sub(nickname, 1, -6), sub(nickname, -4)
+end
+
 local prettifyNickname
 do
 	local nicknameFormat = "<%s>%s<%s><font size='%d'>#%s</font>"
@@ -61,7 +65,7 @@ do
 	prettifyNickname = function(nickname, discriminatorSize, discriminator, discriminatorColor,
 		nicknameColor)
 		if not discriminator then
-			nickname, discriminator = sub(nickname, 1, -6), sub(nickname, -4)
+			nickname, discriminator = getNicknameAndDiscriminator(nickname)
 		end
 
 		return format(nicknameFormat, (nicknameColor or 'V'), nickname, (discriminatorColor or 'G'),

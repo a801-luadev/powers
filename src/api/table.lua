@@ -61,7 +61,7 @@ end
 local table_set = function(tbl)
 	local out = { }
 	for i = 1, #tbl do
-		out[tbl[i]] = true
+		out[tbl[i]] = i
 	end
 	return out
 end

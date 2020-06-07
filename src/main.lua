@@ -8,6 +8,7 @@ local module = {
 	map_file = '7',
 	leaderboard_file = '8',
 
+	default_xp = 36,
 	extra_xp_in_round_seconds = 60 * 1000,
 	extra_xp_in_round = 10,
 	xp_on_victory = 40,
@@ -15,6 +16,8 @@ local module = {
 
 	max_player_level = 129,
 	max_player_xp = nil,
+
+	max_leaderboard_rows = 100,
 
 	lobbyMap = 1995971
 }
@@ -44,6 +47,7 @@ local ignoreRoundData = true
 
 local leaderboard = {
 	community = { },
+	id = { },
 	nickname = { },
 	discriminator = { },
 	rounds = { },
@@ -52,5 +56,8 @@ local leaderboard = {
 	xp = { },
 
 	full_nickname = { },
-	pretty_nickname = { }
+	pretty_nickname = { },
+
+	registers = { },
+	sets = { }
 }
