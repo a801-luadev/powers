@@ -4,4 +4,8 @@ eventPlayerDied = function(playerName)
 	players_remove("alive", playerName)
 	players_insert("dead", playerName)
 	removeLifeBar(playerName)
+
+	if players._count.alive <= 1 then
+		setGameTime(0)
+	end
 end

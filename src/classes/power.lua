@@ -3,14 +3,16 @@ do
 	Power.__index = Power
 
 	-- References
-	Power.__mouse  = { }
 	Power.__keyboard    = { }
+	Power.__mouse       = { }
 	Power.__chatMessage = { }
+	Power.__emotePlayed = { }
 
 	Power.__eventCount  = {
-		__mouse       = 0,
 		__keyboard    = 0,
-		__chatMessage = 0
+		__mouse       = 0,
+		__chatMessage = 0,
+		__emotePlayed = 0
 	}
 
 	Power.__nameByLevel = { }
@@ -44,6 +46,8 @@ do
 			clickRange = nil,
 
 			messagePattern = nil,
+
+			triggererEmote = nil,
 
 			imageData = imageData,
 			resetableData = resetableData
@@ -109,35 +113,39 @@ do
 		power[count[type]] = self
 	end
 
-	Power.setBind = function(self, ...)
-		-- ... = int = keyboard
-		-- ... = str = chat msg
-		local selfType
-
-		local firstArg = (...)
-		if type(firstArg) == "string" then
-			self.messagePattern = firstArg
-			selfType = "__chatMessage"
-		else
-			self.keysToBind = { ... }
-			self.totalKeysToBind = #self.keysToBind
-			if self.totalKeysToBind == 1 then
-				self.triggererKey = firstArg -- No keystroke sequence if it is a single key
-			end
-			self.bindControl = bindKeys
-
-			selfType = "__keyboard"
-		end
-
-		setEventType(self, selfType)
+	Power.bindChatMessage = function(self, message)
+		self.messagePattern = message
+		setEventType(self, "__chatMessage")
 
 		return self
 	end
 
-	Power.setClickRange = function(self, range)
+	Power.bindKeyboard = function(self, ...)
+		self.keysToBind = { ... }
+		self.totalKeysToBind = #self.keysToBind
+		if self.totalKeysToBind == 1 then
+			self.triggererKey = self.keysToBind[1] -- No keystroke sequence if it is a single key
+		end
+		self.bindControl = bindKeys
+
+		setEventType(self, "__keyboard")
+
+		return self
+	end
+
+	Power.bindMouse = function(self, range)
 		self.clickRange = range
 		self.bindControl = bindClick
+
 		setEventType(self, "__mouse")
+
+		return self
+	end
+
+	Power.bindEmote = function(self, emoteId)
+		self.triggererEmote = emoteId
+
+		setEventType(self, "__emotePlayed")
 
 		return self
 	end
@@ -227,6 +235,15 @@ do
 		return true
 	end
 
+	Power.checkTriggerPossibility = function(self)
+		if self.triggerPossibility then
+			if random(self.triggerPossibility) ~= random(self.triggerPossibility) then
+				return false
+			end
+		end
+		return true
+	end
+
 	local canTriggerDivine = function(self, _time)
 		local powerData = powers[self.name]
 		if powerData.useLimit == 0 then return end -- x < 0 means infinity
@@ -235,9 +252,7 @@ do
 		if powerData.useCooldown > _time then return end
 		powerData.useCooldown = _time + 5000 -- Wait a bit before trying again if on failure
 
-		if self.triggerPossibility then
-			if random(self.triggerPossibility) ~= random(self.triggerPossibility) then return end
-		end
+		if not self:checkTriggerPossibility() then return end
 
 		powerData.useCooldown = _time + self.defaultUseCooldown
 		powerData.useLimit = powerData.useLimit - 1

@@ -45,7 +45,7 @@ do
 	end
 
 	-- Removes a map
-	argMethod["rem"] = function(validMaps,  totalMaps)
+	argMethod["rem"] = function(validMaps, totalMaps)
 		local map
 		for i = 1, totalMaps do
 			map = validMaps[i]

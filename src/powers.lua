@@ -14,7 +14,7 @@ do
 			iconHeight = 76
 		})
 		:setUseCooldown(1.5)
-		:setBind(keyboard.left, keyboard.right)
+		:bindKeyboard(keyboard.left, keyboard.right)
 		:setKeySequence({
 			{ keyboard.left, keyboard.left, keyboard.left },
 			{ keyboard.right, keyboard.right, keyboard.right }
@@ -55,7 +55,7 @@ do
 		})
 		:setDamage(5)
 		:setUseCooldown(1)
-		:setBind(keyboard.spacebar)
+		:bindKeyboard(keyboard.spacebar)
 		:setEffect(function(_, x, y, isFacingRight)
 			local direction = (isFacingRight and 1 or -1)
 			y = y - 10
@@ -100,7 +100,7 @@ do
 			iconHeight = 80
 		})
 		:setUseCooldown(1.5)
-		:setBind(keyboard.up, keyboard.down)
+		:bindKeyboard(keyboard.up, keyboard.down)
 		:setKeySequence({
 			{ keyboard.up, keyboard.down },
 			{ keyboard.down, keyboard.up }
@@ -136,7 +136,7 @@ do
 			iconHeight = 70
 		})
 		:setUseCooldown(5)
-		:setBind(keyboard.up)
+		:bindKeyboard(keyboard.up)
 		:setKeySequence({ { keyboard.up, keyboard.up } })
 		:setEffect(function(playerName, x, y)
 			-- Move player
@@ -181,7 +181,7 @@ do
 			iconHeight = 80
 		})
 		:setUseCooldown(2.5)
-		:setBind(keyboard.shift)
+		:bindKeyboard(keyboard.shift)
 		:setEffect(function(playerName, x, y, isFacingRight)
 			local direction = (isFacingRight and 1 or -1)
 
@@ -231,7 +231,9 @@ do
 		:setDamage(5)
 		:setUseLimit(15)
 		:setUseCooldown(4)
-		:setBind("^PRO+TE+CTO+S$")
+		:setProbability(3) -- For non-divine players, it only happens for emote triggerers
+		:bindEmote(enum_emote.facepaw)
+		:bindChatMessage("^P+R+O+T+E+C+T+O+S+$")
 		:setEffect(function(_, x, y)
 			local dimension = 80
 
@@ -276,7 +278,7 @@ do
 		:setDamage(10)
 		:setUseLimit(10)
 		:setUseCooldown(5)
-		:setClickRange(150)
+		:bindMouse(150)
 		:setEffect(function(_, x, y)
 			-- Particles
 			lightning(x, y)
@@ -326,7 +328,7 @@ do
 		:setSelfDamage(5)
 		:setUseLimit(6)
 		:setUseCooldown(6)
-		:setBind(keyboard.ctrl)
+		:bindKeyboard(keyboard.ctrl)
 		:setEffect(function(_, x, y, isFacingRight)
 			local direction = (isFacingRight and 50 or -50)
 			x = x + direction
@@ -366,7 +368,7 @@ do
 		:setSelfDamage(5)
 		:setUseLimit(10)
 		:setUseCooldown(8)
-		:setBind(keyboard.down)
+		:bindKeyboard(keyboard.down)
 		:setKeySequence({ { keyboard.down, keyboard.down } })
 		:setEffect(function(playerName, x, y, _, self)
 			-- Super jump
@@ -502,6 +504,7 @@ do
 		})
 		:setUseCooldown(25)
 		:setProbability(60)
+		:bindChatMessage("^A+N+O+M+A+L+Y+$")
 		:setEffect(function(self)
 			canTriggerPowers = false
 			timer:start(anomaly, 500, 1/self.opacityFrame, self, (isLowQuality and 1 or 3))
@@ -551,7 +554,7 @@ do
 		:setSelfDamage(15)
 		:setUseLimit(1)
 		:setUseCooldown(10)
-		:setBind(keyboard.P)
+		:bindKeyboard(keyboard.P)
 		--:setKeySequence()
 		:setEffect(function(_, x, y, isFacingRight)
 			-- Particles
@@ -588,6 +591,7 @@ do
 		})
 		:setUseCooldown(25)
 		:setProbability(50)
+		:bindChatMessage("^A+T+O+M+I+C+$")
 		:setEffect(function(self)
 			resetPlayersDefaultSize = true
 			timer:start(changeSize, 500, self.seconds * 2, self)

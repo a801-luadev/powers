@@ -107,7 +107,7 @@ do
 
 		self:addImage(interfaceImages.xButton, imageTargets.interfaceIcon, x, y, self.playerName)
 
-		self:addTextArea(callback, self.playerName, x, y, 30, 31, 1, 1,	0, true)
+		self:addTextArea(callback, self.playerName, x, y, 30, 31, 1, 1, 0, true)
 
 		return self
 	end

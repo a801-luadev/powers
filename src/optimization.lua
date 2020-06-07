@@ -6,33 +6,36 @@ local addShamanObject  = tfm.exec.addShamanObject
 local changePlayerSize = tfm.exec.changePlayerSize
 local displayParticle  = tfm.exec.displayParticle
 local explosion        = tfm.exec.explosion
+local giveCheese       = tfm.exec.giveCheese
 local killPlayer       = tfm.exec.killPlayer
 local linkMice         = tfm.exec.linkMice
 local movePlayer       = tfm.exec.movePlayer
+local playerVictory    = tfm.exec.playerVictory
 local removeObject     = tfm.exec.removeObject
 local respawnPlayer    = tfm.exec.respawnPlayer
 local setGameTime      = tfm.exec.setGameTime
 local setPlayerScore   = tfm.exec.setPlayerScore
 
+local addImage       = tfm.exec.addImage
 local addTextArea    = ui.addTextArea
+local removeImage    = tfm.exec.removeImage
 local removeTextArea = ui.removeTextArea
 local updateTextArea = ui.updateTextArea
-local addImage       = tfm.exec.addImage
-local removeImage    = tfm.exec.removeImage
 
 local lowerSyncDelay = tfm.exec.lowerSyncDelay
 
 local chatMessage    = tfm.exec.chatMessage
 local newGame        = tfm.exec.newGame
 
-local saveFile       = system.saveFile
 local loadFile       = system.loadFile
-local savePlayerData = system.savePlayerData
 local loadPlayerData = system.loadPlayerData
+local saveFile       = system.saveFile
+local savePlayerData = system.savePlayerData
 
 -- Enums
-local enum_shamanObject = tfm.enum.shamanObject
+local enum_emote        = tfm.enum.emote
 local enum_particle     = tfm.enum.particle
+local enum_shamanObject = tfm.enum.shamanObject
 
 -- Mathematics
 local ceil   = math.ceil

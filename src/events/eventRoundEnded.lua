@@ -44,6 +44,9 @@ eventRoundEnded = function()
 				playerData
 					:set(name, "xp", module.xp_on_victory, true)
 					:set(name, "victories", 1, true)
+
+				giveCheese(name)
+				playerVictory(name)
 			end
 			playerData
 				:set(name, "rounds", 1, true)

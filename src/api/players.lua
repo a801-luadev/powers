@@ -1,7 +1,7 @@
 local players = {
-	room  = { },
+	room = { },
 	alive = { },
-	dead  = { },
+	dead = { },
 	lobby = { },
 	_count = {
 		room = 0,
@@ -49,7 +49,8 @@ local playerCanTriggerEvent = function(playerName)
 
 	if cache.powerCooldown > time then return end
 
-	if canTriggerPowers and not tfm.get.room.playerList[playerName].isDead then
+	if canTriggerPowers and not (tfm.get.room.playerList[playerName].isDead
+		or cache.isInterfaceOpen) then
 		return time, cache
 	end
 end

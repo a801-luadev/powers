@@ -70,7 +70,7 @@ end
 local displayPowerInfo
 do
 	local displayPowerIcon = function(playerName, power, interface, x, y, w)
-		y = y + 40
+		y = y + 35
 
 		interface:addImage(power.imageData.icon, imageTargets.interfaceIcon,
 			x + w/2 - power.imageData.iconWidth/2, y, playerName)
@@ -108,46 +108,53 @@ do
 		return x, y
 	end
 
-	local displayPowerTriggerPossibility = function(playerName, power, interface, x, y)
-		if power.triggerPossibility then
+	local getTriggerPossibilityStr = function(triggerPossibility)
+		return
+	end
+
+	local displayPowerTriggerPossibility = function(playerName, power, interface, x, y, isEmotePw)
+		if power.triggerPossibility and (isEmotePw or power.type == powerType.divine) then
 			y = y + 30
 
 			interface:addImage(interfaceImages.explodingBomb, imageTargets.interfaceIcon, x + 2, y,
 				playerName)
 
-			interface:addTextArea(ceil(100/power.triggerPossibility) .. "%", playerName, x + 28, y,
-				nil, nil, 1, 1, 0, true)
+			interface:addTextArea("~" .. ceil(100/power.triggerPossibility) .. "%", playerName,
+				x + 28, y, nil, nil, 1, 1, 0, true)
 		end
 
 		return x, y
 	end
 
-	local displayTrigger = function(playerName, power, interface, x, y)
+	local displayTrigger = function(playerName, power, interface, x, y, w)
 		if power.keySequences then
-			x = x - 25
+			x = x - 10
+			w = w / 2
 
 			local sumX, ks
 			for i = 1, power.totalKeySequences do
-				sumX = x
-				y = y + 25
-
 				ks = power.keySequences[i]
 
-				for j = ks._count, 1, -1 do
-					sumX = sumX + 25
+				sumX = x + w - (ks._count * 25)/2
+				y = y + 25
 
+				for j = ks._count, 1, -1 do
 					interface:addImage(keyboardImages[ks.queue[j]], imageTargets.interfaceIcon,
 						sumX, y, playerName)
+
+					sumX = sumX + 25
 				end
 			end
 
 			x = x + 25
-		elseif power.triggererKey then
+		end
+		if power.triggererKey then
 			y = y + 25
 
-			interface:addImage(keyboardImages[power.triggererKey], imageTargets.interfaceIcon, x, y,
-				playerName)
-		elseif power.clickRange then
+			interface:addImage(keyboardImages[power.triggererKey], imageTargets.interfaceIcon,
+				x - 10 + (w - (keyboardImagesWidths[power.triggererKey] or 25))/2, y, playerName)
+		end
+		if power.clickRange then
 			y = y + 25
 
 			interface:addImage(interfaceImages.mouseClick, imageTargets.interfaceIcon, x, y,
@@ -155,14 +162,25 @@ do
 
 			interface:addTextArea(power.clickRange .. "px", playerName, x + 25, y + 5, nil, nil, 1,
 				1, 0, true)
-		elseif power.messagePattern then
+		end
+		if power.messagePattern then
 			y = y + 25
 
 			interface:addImage(interfaceImages.megaphone, imageTargets.interfaceIcon, x, y,
 				playerName)
 
 			interface:addTextArea("<I>" .. gsub(power.messagePattern, "%W+", ''), playerName,
-				x + 30, y + 5, nil, nil, 1, 1, 0, true)
+				x + 30, y + 2, nil, nil, 1, 1, 0, true)
+		end
+		if power.triggererEmote then
+			y = y + 25
+
+			if power.triggerPossibility then
+				displayPowerTriggerPossibility(playerName, power, interface, x + 16, y - 28, true)
+			end
+
+			interface:addImage(emoteImages[power.triggererEmote], imageTargets.interfaceIcon, x, y,
+				playerName)
 		end
 
 		return x, y
@@ -189,6 +207,6 @@ do
 
 		x, y = displayPowerSelfDamage(playerName, power, interface, x, y)
 
-		x, y = displayTrigger(playerName, power, interface, x, y)
+		x, y = displayTrigger(playerName, power, interface, x, y, width)
 	end
 end

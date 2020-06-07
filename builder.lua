@@ -72,8 +72,9 @@ local tree = {
 	"events/eventPlayerRespawn.lua",
 
 	"events/eventKeyboard.lua",
-	"events/eventChatMessage.lua",
 	"events/eventMouse.lua",
+	"events/eventChatMessage.lua",
+	"events/eventEmotePlayed.lua",
 
 	"init.lua"
 }

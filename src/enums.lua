@@ -45,6 +45,7 @@ local interfaceImages = {
 
 	locker = "1724e77bf31.png",
 
+	-- 25x25
 	sword = "17254a44673.png",
 	shield = "17254a45de6.png",
 	parchment = "17254911060.png",
@@ -119,6 +120,16 @@ local keyboardImages = {
 	[keyboard.spacebar] = "172583272f1.png",
 	[keyboard.ctrl] = "17258353f90.png",
 	[keyboard.shift] = "1725832346d.png"
+}
+
+local keyboardImagesWidths = {
+	[keyboard.spacebar] = 124,
+	[keyboard.ctrl] = 42,
+	[keyboard.shift] = 29
+}
+
+local emoteImages = {
+	[enum_emote.facepaw] = "1728baa8d88.png"
 }
 
 local flags = {
