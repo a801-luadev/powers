@@ -1,5 +1,5 @@
 do
-	callbacks["powerInfo"] = function(playerName, callback)
+	textAreaCallbacks["powerInfo"] = function(playerName, callback)
 		-- powerInfo_{power_name}_{interface_x}_{interface_y}
 		local cache = playerCache[playerName]
 		if cache.powerInfoIdSelected == callback[2] then return end

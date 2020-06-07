@@ -7,7 +7,8 @@ do
 
 	displayPowerMenu = function(playerName, _cache)
 		_cache = _cache or playerCache[playerName]
-		callbacks["closeInterface"](playerName, nil, nil, _cache)
+		textAreaCallbacks["closeInterface"](playerName, nil, nil, _cache)
+		_cache.isPowersOpen = true
 		local playerLevel = _cache.level
 
 		-- Build interface

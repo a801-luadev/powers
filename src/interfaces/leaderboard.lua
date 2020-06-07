@@ -11,7 +11,8 @@ do
 
 	displayLeaderboard = function(playerName, _cache)
 		_cache = _cache or playerCache[playerName]
-		callbacks["closeInterface"](playerName, nil, nil, _cache)
+		textAreaCallbacks["closeInterface"](playerName, nil, nil, _cache)
+		_cache.isLeaderboardOpen = true
 
 		local x, y = 50, 50
 

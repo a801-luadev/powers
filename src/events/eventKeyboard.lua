@@ -1,9 +1,12 @@
 eventKeyboard = function(playerName, key, isDown, x, y)
 	local cache = playerCache[playerName]
+
 	if key == 0 then
 		cache.isFacingRight = false
 	elseif key == 2 then
 		cache.isFacingRight = true
+	elseif keyboardCallbacks[key] then
+		return keyboardCallbacks[key](playerName, cache)
 	end
 
 	local time = playerCanTriggerEvent(playerName)

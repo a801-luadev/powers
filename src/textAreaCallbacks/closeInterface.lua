@@ -1,5 +1,5 @@
 do
-	callbacks["closeInterface"] = function(playerName, _, _, _cache)
+	textAreaCallbacks["closeInterface"] = function(playerName, _, _cache)
 		-- closeInterface
 		_cache = _cache or playerCache[playerName]
 
@@ -21,5 +21,10 @@ do
 		_cache.menuTabs = { }
 		_cache.powerInfoIdSelected = nil
 		_cache.powerInfoSelectionImageId = nil
+
+		_cache.isHelpOpen = false
+		_cache.isPowersOpen = false
+		_cache.isProfileOpen = false
+		_cache.isLeaderboardOpen = false
 	end
 end

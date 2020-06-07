@@ -37,10 +37,10 @@ local tree = {
 
 	"classes/prettyUI.lua",
 
-	"callbacks/callbacks.lua",
-	"callbacks/closeInterface.lua",
+	"textAreaCallbacks/callbacks.lua",
+	"textAreaCallbacks/closeInterface.lua",
 
-	"interfaces/menu.lua",
+	"interfaces/help.lua",
 	"interfaces/powers.lua",
 	"interfaces/profile.lua",
 	"interfaces/leaderboard.lua",
@@ -60,9 +60,9 @@ local tree = {
 	"commands/owner/msg.lua",
 	"events/eventChatCommand.lua",
 
-	"callbacks/menuTab.lua",
-	"callbacks/powerInfo.lua",
-	"callbacks/print.lua",
+	"textAreaCallbacks/menuTab.lua",
+	"textAreaCallbacks/powerInfo.lua",
+	"textAreaCallbacks/print.lua",
 	"events/eventTextAreaCallback.lua",
 
 	"events/eventNewGame.lua",
@@ -71,7 +71,13 @@ local tree = {
 	"events/eventPlayerDied.lua",
 	"events/eventPlayerRespawn.lua",
 
+	"keyboardCallbacks/callbacks.lua",
+	"keyboardCallbacks/H.lua",
+	"keyboardCallbacks/O.lua",
+	"keyboardCallbacks/P.lua",
+	"keyboardCallbacks/L.lua",
 	"events/eventKeyboard.lua",
+
 	"events/eventMouse.lua",
 	"events/eventChatMessage.lua",
 	"events/eventEmotePlayed.lua",

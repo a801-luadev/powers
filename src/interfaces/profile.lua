@@ -44,7 +44,8 @@ do
 
 	displayProfile = function(playerName, targetPlayer, _cache)
 		_cache = _cache or playerCache[playerName]
-		callbacks["closeInterface"](playerName, nil, nil, _cache)
+		textAreaCallbacks["closeInterface"](playerName, nil, nil, _cache)
+		_cache.isProfileOpen = true
 		local targetCacheData = playerCache[targetPlayer]
 
 		local x, y = 260, 55

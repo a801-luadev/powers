@@ -1,5 +1,5 @@
 do
 	commands["help"] = function(playerName)
-		displayMenu(playerName)
+		displayHelp(playerName)
 	end
 end

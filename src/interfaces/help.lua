@@ -1,4 +1,4 @@
-local displayMenu, updateMenu
+local displayHelp, updateHelp
 do
 	-- Format translations
 	do
@@ -20,9 +20,10 @@ do
 	local contentFormat = "<font size='14'>"
 	local tabStr = "<font size='1'>\n</font><p align='center'>%s<a href='event:menuTab_%s'>%s\n"
 
-	displayMenu = function(playerName, _cache)
+	displayHelp = function(playerName, _cache)
 		_cache = _cache or playerCache[playerName]
-		callbacks["closeInterface"](playerName, nil, nil, _cache)
+		textAreaCallbacks["closeInterface"](playerName, nil, nil, _cache)
+		_cache.isHelpOpen = true
 
 		local menuPage = _cache.menuPage
 
@@ -42,7 +43,7 @@ do
 		end
 	end
 
-	updateMenu = function(playerName, nextMenuPage, _cache)
+	updateHelp = function(playerName, nextMenuPage, _cache)
 		_cache = _cache or playerCache[playerName]
 
 		-- Remove highlight color of the last tab
