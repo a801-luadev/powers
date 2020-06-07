@@ -169,7 +169,7 @@ do
 			interface:addImage(interfaceImages.megaphone, imageTargets.interfaceIcon, x, y,
 				playerName)
 
-			interface:addTextArea("<I>" .. gsub(power.messagePattern, "%W+", ''), playerName,
+			interface:addTextArea("<I>" .. gsub(power.messagePattern, "[^%w ]+", ''), playerName,
 				x + 30, y + 2, nil, nil, 1, 1, 0, true)
 		end
 		if power.triggererEmote then

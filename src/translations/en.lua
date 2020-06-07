@@ -22,7 +22,7 @@ translations.en = {
 		gravitationalAnomaly = "Gravitational Anomaly",
 		deathRay = "Death Ray",
 		atomic = "Atomic",
-		raiseOfTheDead = "Raise of the Dead"
+		judgmentDay = "Judgment Day"
 	},
 	powersDescriptions = {
 		lightSpeed = "Moves your mouse in the light speed, pushing all enemies around.",
@@ -35,9 +35,9 @@ translations.en = {
 		superNova = "Starts a supernova that destroys all enemies around.",
 		meteorSmash = "Smashes the enemies like a meteor crash.",
 		gravitationalAnomaly = "Starts a gravitational anomaly.",
-		deathRay = "Toats the enemies with the powerful and mysterious death ray.",
+		deathRay = "Toasts the enemies with the powerful and mysterious death ray.",
 		atomic = "Randomly changes all players' size.",
-		raiseOfTheDead = "Revives all dead enemies, them all linked to each other."
+		judgmentDay = "Revives all dead enemies, them all linked to each other."
 	},
 
 	unlockPower = "You have unlocked the following power(s): %s",

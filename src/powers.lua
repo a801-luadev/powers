@@ -1,41 +1,5 @@
 -- Level 0
 do
-	local wind = function(x, y, direction)
-		for i = 1, 6, (isLowQuality and 1.5 or 1) do
-			displayParticle(35, x, y, direction, i * (i < 4 and -1 or 1))
-		end
-	end
-
-	powers.lightSpeed = Power
-		.new("lightSpeed", powerType.def, 0, {
-			smallIcon = "172499c43ff.png",
-			icon = "155d0565587.png",
-			iconWidth = 120,
-			iconHeight = 76
-		})
-		:setUseCooldown(1.5)
-		:bindKeyboard(keyboard.left, keyboard.right)
-		:setKeySequence({
-			{ keyboard.left, keyboard.left, keyboard.left },
-			{ keyboard.right, keyboard.right, keyboard.right }
-		})
-		:setEffect(function(playerName, x, y, isFacingRight)
-			-- Move player
-			movePlayer(playerName, x + (isFacingRight and 200 or -200), y)
-
-			-- Move players
-			local direction = (isFacingRight and 30 or -30)
-			for name in next, getPlayersOnFilter(playerName, inRectangle, x, y - 60, 200, 120,
-				isFacingRight) do
-				movePlayer(name, 0, 0, true, direction)
-			end
-
-			-- Particles
-			wind(x, y, (isFacingRight and 15 or -15))
-		end)
-end
-
-do
 	local beam = function(x, y, direction)
 		local xSpeed = .25 * direction
 		local xAcceleration = .3 * direction
@@ -72,51 +36,88 @@ do
 		end)
 end
 
--- Level 10
+-- Level 3
 do
-	local particles = { 0, 4, 11 }
-	local totalParticles = #particles
-
-	local auxSpeedRad = rad(18)
-	local spiral = function(x, y, angle)
-		angle = rad(angle)
-
-		local auxSpeed, auxRad = 0
-		for i = 1, 40, (isLowQuality and 2 or 1) do
-			auxSpeed = i * .1
-
-			auxRad = angle + auxSpeedRad*i
-
-			displayParticle(particles[(i%totalParticles + 1)], x, y, auxSpeed * cos(auxRad),
-				auxSpeed * sin(auxRad))
+	local wind = function(x, y, direction)
+		for i = 1, 6, (isLowQuality and 1.5 or 1) do
+			displayParticle(35, x, y, direction, i * (i < 4 and -1 or 1))
 		end
 	end
 
-	powers.wormHole = Power
-		.new("wormHole", powerType.def, 10, {
-			smallIcon = "172499c71c4.png",
-			icon = "155d055f8d0.png",
-			iconWidth = 69,
-			iconHeight = 80
+	powers.lightSpeed = Power
+		.new("lightSpeed", powerType.def, 3, {
+			smallIcon = "172499c43ff.png",
+			icon = "155d0565587.png",
+			iconWidth = 120,
+			iconHeight = 76
 		})
 		:setUseCooldown(1.5)
-		:bindKeyboard(keyboard.up, keyboard.down)
+		:bindKeyboard(keyboard.left, keyboard.right)
 		:setKeySequence({
-			{ keyboard.up, keyboard.down },
-			{ keyboard.down, keyboard.up }
+			{ keyboard.left, keyboard.left, keyboard.left },
+			{ keyboard.right, keyboard.right, keyboard.right }
 		})
 		:setEffect(function(playerName, x, y, isFacingRight)
-			local direction = (isFacingRight and 200 or -200)
-
 			-- Move player
-			movePlayer(playerName, x + direction, y, false, 0, -50, false)
+			movePlayer(playerName, x + (isFacingRight and 200 or -200), y)
+
+			-- Move players
+			local direction = (isFacingRight and 30 or -30)
+			for name in next, getPlayersOnFilter(playerName, inRectangle, x, y - 60, 200, 120,
+				isFacingRight) do
+				movePlayer(name, 0, 0, true, direction)
+			end
 
 			-- Particles
-			spiral(x, y, 270)
-			spiral(x + direction, y, 90)
+			wind(x, y, (isFacingRight and 15 or -15))
 		end)
 end
 
+-- Level 15
+do
+	local particles = { 2, 11 }
+	local totalParticles = #particles
+
+	local lightning = function(x, y)
+		local yPos, rand = 0
+
+		local randMin, randMax
+		if isLowQuality then
+			randMin, randMax = 5, 7
+		else
+			randMin, randMax = 3, 5
+		end
+
+		local init = random(500)
+		for i = init, init + 125, randMax do
+			yPos = yPos + random(randMin, randMax)
+			displayParticle(particles[i%totalParticles + 1], x + cos(i)*random(3, 6), y + yPos)
+		end
+	end
+
+	powers.lightning = Power
+		.new("lightning", powerType.atk, 15, {
+			smallIcon = "172499d3af6.png",
+			icon = "155d05699c9.png",
+			iconWidth = 15,
+			iconHeight = 80
+		})
+		:setDamage(10)
+		:setUseLimit(10)
+		:setUseCooldown(5)
+		:bindMouse(150)
+		:setEffect(function(_, x, y)
+			-- Particles
+			lightning(x, y)
+
+			-- Damage
+			y = y + 100
+			explosion(x, y, 30, 60)
+			return pythagoras, x, y, 60
+		end)
+end
+
+-- Level 20
 do
 	local particles = { 2, 11, 2 }
 	local totalParticles = #particles
@@ -128,7 +129,7 @@ do
 	end
 
 	powers.doubleJump = Power
-		.new("doubleJump", powerType.def, 10, {
+		.new("doubleJump", powerType.def, 20, {
 			smallIcon = "172499c8f3b.png",
 
 			icon = "155d0560b19.png",
@@ -147,7 +148,7 @@ do
 		end)
 end
 
--- Level 20
+-- Level 28
 do
 	local particles = { 2, 0, 0, 2 }
 	local totalParticles = #particles
@@ -174,7 +175,7 @@ do
 	end
 
 	powers.helix = Power
-		.new("helix", powerType.def, 20, {
+		.new("helix", powerType.def, 28, {
 			smallIcon = "172499ce899.png",
 			icon = "155d056201e.png",
 			iconWidth = 70,
@@ -193,6 +194,7 @@ do
 		end)
 end
 
+-- Level 35
 do
 	local circle = function(x, y, dimension)
 		local xPos, yPos
@@ -222,7 +224,7 @@ do
 	end
 
 	powers.dome = Power
-		.new("dome", powerType.atk, 20, {
+		.new("dome", powerType.atk, 35, {
 			smallIcon = "172499d277f.png",
 			icon = "155d05689b8.png",
 			iconWidth = 80,
@@ -246,51 +248,85 @@ do
 		end)
 end
 
--- Level 30
+-- Level 42
 do
-	local particles = { 2, 11 }
+	local particles = { 0, 4, 11 }
 	local totalParticles = #particles
 
-	local lightning = function(x, y)
-		local yPos, rand = 0
+	local auxSpeedRad = rad(18)
+	local spiral = function(x, y, angle)
+		angle = rad(angle)
 
-		local randMin, randMax
-		if isLowQuality then
-			randMin, randMax = 5, 7
-		else
-			randMin, randMax = 3, 5
-		end
+		local auxSpeed, auxRad = 0
+		for i = 1, 40, (isLowQuality and 2 or 1) do
+			auxSpeed = i * .1
 
-		local init = random(500)
-		for i = init, init + 125, randMax do
-			yPos = yPos + random(randMin, randMax)
-			displayParticle(particles[i%totalParticles + 1], x + cos(i)*random(3, 6), y + yPos)
+			auxRad = angle + auxSpeedRad*i
+
+			displayParticle(particles[(i%totalParticles + 1)], x, y, auxSpeed * cos(auxRad),
+				auxSpeed * sin(auxRad))
 		end
 	end
 
-	powers.lightning = Power
-		.new("lightning", powerType.atk, 30, {
-			smallIcon = "172499d3af6.png",
-			icon = "155d05699c9.png",
-			iconWidth = 15,
+	powers.wormHole = Power
+		.new("wormHole", powerType.def, 42, {
+			smallIcon = "172499c71c4.png",
+			icon = "155d055f8d0.png",
+			iconWidth = 69,
 			iconHeight = 80
 		})
-		:setDamage(10)
-		:setUseLimit(10)
-		:setUseCooldown(5)
-		:bindMouse(150)
-		:setEffect(function(_, x, y)
-			-- Particles
-			lightning(x, y)
+		:setUseCooldown(1.5)
+		:bindKeyboard(keyboard.up, keyboard.down)
+		:setKeySequence({
+			{ keyboard.up, keyboard.down },
+			{ keyboard.down, keyboard.up }
+		})
+		:setEffect(function(playerName, x, y, isFacingRight)
+			local direction = (isFacingRight and 200 or -200)
 
-			-- Damage
-			y = y + 100
-			explosion(x, y, 30, 60)
-			return pythagoras, x, y, 60
+			-- Move player
+			movePlayer(playerName, x + direction, y, false, 0, -50, false)
+
+			-- Particles
+			spiral(x, y, 270)
+			spiral(x + direction, y, 90)
 		end)
 end
 
--- Level 40
+-- Level 50
+do
+	local changeSize = function(self, timer)
+		if timer.times == 0 then
+			for name in next, players.room do
+				changePlayerSize(name, 1)
+			end
+			resetPlayersDefaultSize = false
+		else
+			for name in next, players.alive do
+				changePlayerSize(name, random(5, 35) / 10)
+			end
+		end
+	end
+
+	powers.atomic = Power
+		.new("atomic", powerType.divine, 50, {
+			smallIcon = "172499db327.png",
+			icon = '',
+			iconWidth = 0,
+			iconHeight = 0
+		}, {
+			seconds = 10
+		})
+		:setUseCooldown(25)
+		:setProbability(60)
+		:bindChatMessage("^A+T+O+M+I+C+$")
+		:setEffect(function(self)
+			resetPlayersDefaultSize = true
+			timer:start(changeSize, 500, self.seconds * 2, self)
+		end)
+end
+
+-- Level 60
 do
 	local auxSpeedRad = rad(18)
 	local doubleSpiral = function(x, y, xAngleRight, xAngleLeft, yAngle)
@@ -318,7 +354,7 @@ do
 	end
 
 	powers.superNova = Power
-		.new("superNova", powerType.atk, 40, {
+		.new("superNova", powerType.atk, 60, {
 			smallIcon = "172499d01da.png",
 			icon = "155d055d277.png",
 			iconWidth = 98,
@@ -343,7 +379,7 @@ do
 		end)
 end
 
--- Level 50
+-- Level 70
 do
 	local smashDamage = function(playerName)
 		local rand = random(50, 100)
@@ -358,7 +394,7 @@ do
 	end
 
 	powers.meteorSmash = Power
-		.new("meteorSmash", powerType.atk, 50, {
+		.new("meteorSmash", powerType.atk, 70, {
 			smallIcon = "172499d49f6.png",
 			icon = "155d055e49f.png",
 			iconWidth = 78,
@@ -385,7 +421,101 @@ do
 		end)
 end
 
--- Level 60
+-- Level 100
+do
+	local ray = function(x, y, width, height, direction)
+		width = width * direction
+
+		local ySin = 0
+		local xPos = x
+		local yPos = 0
+		local xSpeed = 0
+		local ySpeed = 0
+
+		local xDirection = .1 * direction
+
+		for i = 0, 12 do
+			displayParticle(9, xPos, y + yPos, xSpeed, -ySpeed)
+
+			i = i + 1
+			ySin = sin(i)
+			xPos = x + i*width
+			yPos = ySin*height
+			xSpeed = i * xDirection
+			ySpeed = ySin * .55
+
+			displayParticle(2, xPos, y - yPos, xSpeed, ySpeed)
+		end
+
+		xSpeed = width/2 + direction
+		for i = 1, 2 do
+			displayParticle(13, x, y, xSpeed)
+		end
+	end
+
+	powers.deathRay = Power
+		.new("deathRay", powerType.atk, 100, {
+			smallIcon = "172499d9bcf.png",
+			icon = "155d05633dc.png",
+			iconWidth = 130,
+			iconHeight = 15
+		})
+		:setDamage(30)
+		:setSelfDamage(15)
+		:setUseLimit(1)
+		:setUseCooldown(10)
+		:bindKeyboard(0, 1, 2, 3)
+		:setKeySequence({
+			{ keyboard.left, keyboard.up, keyboard.right, keyboard.down },
+			{ keyboard.right, keyboard.up, keyboard.left, keyboard.down }
+		})
+		:setEffect(function(_, x, y, isFacingRight)
+			-- Particles
+			ray(x, y, 10, 8, (isFacingRight and 1 or -1))
+
+			-- Damage
+			return inRectangle, x, y - 40, 170, 80, isFacingRight
+		end)
+end
+
+-- Level 110
+do
+	powers.judgmentDay = Power
+		.new("judgmentDay", powerType.divine, 110, {
+			smallIcon = "172499dd0d6.png", -- 172499df39f
+			icon = '',
+			iconWidth = 0,
+			iconHeight = 0
+		}, {
+			seconds = 10,
+			playerHealthPoints = 35,
+			minDeadMice = 2
+		})
+		:setUseCooldown(45)
+		:setProbability(25)
+		:bindChatMessage("^R+A+I+S+E+ T+H+E+ D+E+A+D+$")
+		:setEffect(function(self)
+			if players._count.dead < self.minDeadMice then return end
+			local deadMice = players.dead
+
+			-- Respawns dead mice
+			local firstPlayer = next(deadMice, nil)
+			local player = firstPlayer
+			local lastName
+
+			while player do
+				respawnPlayer(player)
+				addHealth(player, playerCache[player], self.playerHealthPoints)
+
+				lastPlayer = player
+				player = next(deadMice, player)
+
+				linkMice((player or firstPlayer), lastPlayer, true)
+			end
+		end)
+end
+
+-- Level 120
 do
 	local anomaly = function(self, newItems, timer)
 		if timer.times == 0 then
@@ -439,7 +569,7 @@ do
 	end
 
 	powers.gravitationalAnomaly = Power
-		.new("gravitationalAnomaly", powerType.divine, 60, {
+		.new("gravitationalAnomaly", powerType.divine, 120, {
 			smallIcon = "172499d5f79.png",
 			icon = "155d05645e0.png",
 			iconWidth = 129,
@@ -508,128 +638,5 @@ do
 		:setEffect(function(self)
 			canTriggerPowers = false
 			timer:start(anomaly, 500, 1/self.opacityFrame, self, (isLowQuality and 1 or 3))
-		end)
-end
-
--- Level 70
-do
-	local ray = function(x, y, width, height, direction)
-		width = width * direction
-
-		local ySin = 0
-		local xPos = x
-		local yPos = 0
-		local xSpeed = 0
-		local ySpeed = 0
-
-		local xDirection = .1 * direction
-
-		for i = 0, 12 do
-			displayParticle(9, xPos, y + yPos, xSpeed, -ySpeed)
-
-			i = i + 1
-			ySin = sin(i)
-			xPos = x + i*width
-			yPos = ySin*height
-			xSpeed = i * xDirection
-			ySpeed = ySin * .55
-
-			displayParticle(2, xPos, y - yPos, xSpeed, ySpeed)
-		end
-
-		xSpeed = width/2 + direction
-		for i = 1, 2 do
-			displayParticle(13, x, y, xSpeed)
-		end
-	end
-
-	powers.deathRay = Power
-		.new("deathRay", powerType.atk, 70, {
-			smallIcon = "172499d9bcf.png",
-			icon = "155d05633dc.png",
-			iconWidth = 130,
-			iconHeight = 15
-		})
-		:setDamage(30)
-		:setSelfDamage(15)
-		:setUseLimit(1)
-		:setUseCooldown(10)
-		:bindKeyboard(keyboard.P)
-		--:setKeySequence()
-		:setEffect(function(_, x, y, isFacingRight)
-			-- Particles
-			ray(x, y, 10, 8, (isFacingRight and 1 or -1))
-
-			-- Damage
-			return inRectangle, x, y - 40, 170, 80, isFacingRight
-		end)
-end
-
--- Level 80
-do
-	local changeSize = function(self, timer)
-		if timer.times == 0 then
-			for name in next, players.room do
-				changePlayerSize(name, 1)
-			end
-			resetPlayersDefaultSize = false
-		else
-			for name in next, players.alive do
-				changePlayerSize(name, random(5, 35) / 10)
-			end
-		end
-	end
-
-	powers.atomic = Power
-		.new("atomic", powerType.divine, 80, {
-			smallIcon = "172499db327.png",
-			icon = '',
-			iconWidth = 0,
-			iconHeight = 0
-		}, {
-			seconds = 10
-		})
-		:setUseCooldown(25)
-		:setProbability(50)
-		:bindChatMessage("^A+T+O+M+I+C+$")
-		:setEffect(function(self)
-			resetPlayersDefaultSize = true
-			timer:start(changeSize, 500, self.seconds * 2, self)
-		end)
-end
-
--- Level 100
-do
-	powers.raiseOfTheDead = Power
-		.new("raiseOfTheDead", powerType.divine, 100, {
-			smallIcon = "172499dd0d6.png", -- 172499df39f
-			icon = '',
-			iconWidth = 0,
-			iconHeight = 0
-		}, {
-			seconds = 10,
-			playerHealthPoints = 35,
-			minDeadMice = 2
-		})
-		:setUseCooldown(45)
-		:setProbability(100)
-		:setEffect(function(self)
-			if players._count.dead < self.minDeadMice then return end
-			local deadMice = players.dead
-
-			-- Respawns dead mice
-			local firstPlayer = next(deadMice, nil)
-			local player = firstPlayer
-			local lastName
-
-			while player do
-				respawnPlayer(player)
-				addHealth(player, playerCache[player], self.playerHealthPoints)
-
-				lastPlayer = player
-				player = next(deadMice, player)
-
-				linkMice((player or firstPlayer), lastPlayer, true)
-			end
 		end)
 end
