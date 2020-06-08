@@ -22,7 +22,7 @@ local readLeaderboardBString = function(bString)
 		community     = bString:read8()
 		id            = bString:read32()
 		nickname      = bString:readUTF()
-		discriminator = bString:read16()
+		discriminator = format("%04d", bString:read16())
 		rounds        = bString:read32()
 		victories     = bString:read32()
 		kills         = bString:read32()
@@ -50,7 +50,7 @@ local readLeaderboardBString = function(bString)
 
 		l_sets[id] = player
 
-		l_full_nickname[player] = nickname .. discriminator
+		l_full_nickname[player] = nickname .. "#" .. discriminator
 		l_pretty_nickname[player] = prettifyNickname(nickname, 11, discriminator, "BL")
 	end
 end

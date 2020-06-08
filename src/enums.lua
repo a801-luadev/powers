@@ -162,7 +162,7 @@ local flags = {
 	vk = "1651b3258b3.png"
 }
 
-local flagCodes = {
+local flagCodes, flagCodesSet = {
 	[01] = "xx",
 	[02] = "ar",
 	[03] = "bg",
@@ -191,5 +191,3 @@ local flagCodes = {
 	[26] = "tr",
 	[27] = "vk"
 }
-
-local flagCodesSet = table_set(flagCodes)

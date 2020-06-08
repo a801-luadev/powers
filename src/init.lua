@@ -1,3 +1,5 @@
+flagCodesSet = table_set(flagCodes)
+
 loadFile(module.map_file)
 unrefreshableTimer:start(loadFile, 65000, 0, module.leaderboard_file)
 

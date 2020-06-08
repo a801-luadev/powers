@@ -38,8 +38,10 @@ local enablePowersTrigger = function()
 end
 
 local isValidPlayer = function(playerName)
-	return sub(playerName, 1, 1) ~= "*" -- Is not souris
-		and (time() - tfm.get.room.playerList[playerName].registrationDate)
+	playerName = tfm.get.room.playerList[playerName]
+	return playerName.id > 0 -- Is not souris
+		--sub(playerName, 1, 1) ~= "*"
+		and (time() - playerName.registrationDate)
 			>= (5 * 60 * 60 * 24 * 1000) -- Is a player for longer than 5 days
 end
 
