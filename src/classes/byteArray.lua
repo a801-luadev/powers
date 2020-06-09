@@ -15,11 +15,6 @@ do
 		return table_writeBytes(self.stack)
 	end
 
-	local modulo128 = function(n)
-		-- It could be n & 127 but, in Lua, modulo is slightly more performatic
-		return n % 128
-	end
-
 	byteArray.new = function(stack)
 		if type(stack) == "string" then
 			stack = str_getBytes(stack)
@@ -34,17 +29,20 @@ do
 	end
 
 	byteArray.write8 = function(self, ...)
-		local tbl = { ... }
+		local bytes = { ... }
 
-		local tblLen = #tbl
-		if tblLen == 0 then
-			tblLen = 1
+		local bytesLen = #bytes
+		if bytesLen == 0 then
+			bytesLen = 1
 
-			tbl = { 0 }
+			bytes = { 0 }
 		end
-		self.stackLen = self.stackLen + tblLen
+		self.stackLen = self.stackLen + bytesLen
 
-		local bytes = table_mapArray(tbl, modulo128)
+		for i = 1, bytesLen do
+			-- It could be n & 127 but, in Lua, modulo is slightly more performatic
+			bytes[i] = bytes[i] % 128
+		end
 		table_addArray(self.stack, bytes)
 		return self
 	end

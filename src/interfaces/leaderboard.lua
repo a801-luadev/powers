@@ -10,6 +10,10 @@ do
 	local totalData = #dataNames
 
 	displayLeaderboard = function(playerName, _cache)
+		if not leaderboard.loaded then
+			return chatMessage(getText.leaderboardIsLoading, playerName)
+		end
+
 		_cache = _cache or playerCache[playerName]
 		textAreaCallbacks["closeInterface"](playerName, nil, nil, _cache)
 		_cache.isLeaderboardOpen = true

@@ -46,6 +46,8 @@ local isLobby, wasLobby = false, false
 local ignoreRoundData = true
 
 local leaderboard = {
+	loaded = false,
+
 	community = { },
 	id = { },
 	nickname = { },

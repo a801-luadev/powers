@@ -121,6 +121,7 @@ translations.en = {
 
 	-- Leaderboard
 	leaderboard = "Leaderboard",
+	leaderboardIsLoading = "The leaderboard is still loading. Try again in a few seconds.",
 
 	-- Warning
 	enableParticles = "Do NOT forget to ENABLE the special effects/particles in order to see the" ..

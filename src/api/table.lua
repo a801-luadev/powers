@@ -38,14 +38,6 @@ local table_copy = function(list)
 	return out
 end
 
-local table_mapArray = function(arr, f)
-	local newArray = { }
-	for i = 1, #arr do
-		newArray[i] = f(arr[i])
-	end
-	return newArray
-end
-
 local table_random = function(tbl)
 	return tbl[random(#tbl)]
 end
@@ -67,5 +59,8 @@ local table_set = function(tbl)
 end
 
 local table_writeBytes = function(bytes)
-	return table_concat(table_mapArray(bytes, char))
+	for i = 1, #bytes do
+		bytes[i] = char(bytes[i])
+	end
+	return table_concat(bytes)
 end

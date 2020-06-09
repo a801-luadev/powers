@@ -53,6 +53,8 @@ local readLeaderboardBString = function(bString)
 		l_full_nickname[player] = nickname .. "#" .. discriminator
 		l_pretty_nickname[player] = prettifyNickname(nickname, 11, discriminator, "BL")
 	end
+
+	leaderboard.loaded = true
 end
 
 local sortLeaderboard
