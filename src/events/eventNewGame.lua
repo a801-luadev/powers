@@ -16,7 +16,9 @@ eventNewGame = function()
 	end
 	wasLobby = false
 
-	ignoreRoundData = false
+	ignoreRoundData = ignoreRoundData == nil
+	if ignoreRoundData then return end
+
 	setNextMapIndex()
 
 	timer:start(enablePowersTrigger, 3000, 1)

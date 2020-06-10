@@ -1,5 +1,6 @@
-local readLeaderboardBString = function(bString)
-	bString = byteArray.new(bString)
+ local readLeaderboardData = function(data)
+	local total
+	data, total = str_split(data, ' ', true, tonumber)
 
 	local community, id, nickname, discriminator, rounds, victories, kills, xp
 
@@ -18,22 +19,25 @@ local readLeaderboardBString = function(bString)
 	local l_full_nickname = leaderboard.full_nickname
 	local l_pretty_nickname = leaderboard.pretty_nickname
 
-	local totalRegisters = bString:read8()
+	local totalRegisters = total / 8 -- 8 fields
 
-	for player = 1, totalRegisters do
-		community     = flags[(flagCodes[bString:read8()] or "xx")]
-		id            = bString:read32()
-		nickname      = bString:readUTF()
-		discriminator = format("%04d", bString:read16())
-		rounds        = bString:read24()
-		victories     = bString:read24()
-		kills         = bString:read24()
-		xp            = bString:read32()
+	local player = 0
+	for i = 1, total, 8 do
+		community     = data[i + 0]
+		id            = data[i + 1]
+		nickname      = data[i + 2]
+		discriminator = data[i + 3]
+		rounds        = data[i + 4]
+		victories     = data[i + 5]
+		kills         = data[i + 6]
+		xp            = data[i + 7]
 
-		l_community    [player] = community
+		player = player + 1
+
+		l_community    [player] = flags[(flagCodes[community] or "xx")]
 		l_id           [player] = id
 		l_nickname     [player] = nickname
-		l_discriminator[player] = discriminator
+		l_discriminator[player] = format("%04d", discriminator)
 		l_rounds       [player] = rounds
 		l_victories    [player] = victories
 		l_kills        [player] = kills
@@ -52,12 +56,13 @@ local readLeaderboardBString = function(bString)
 
 		l_sets[id] = player
 
-		l_full_nickname[player] = nickname .. "#" .. discriminator
-		l_pretty_nickname[player] = prettifyNickname(nickname, 11, discriminator, "BL")
+		l_full_nickname[player] = nickname .. "#" .. l_discriminator[player]
+		l_pretty_nickname[player] = prettifyNickname(nickname, 11, l_discriminator[player], "BL")
 	end
 
 	leaderboard.loaded = true
-	leaderboard.total_pages = ceil(totalRegisters / 17) -- Remove from this function when hits max.
+	-- Remove from this function when hits max.
+	leaderboard.total_pages = ceil(totalRegisters / 17) -- 17 rows
 end
 
 local sortLeaderboard
@@ -67,8 +72,6 @@ do
 	end
 
 	sortLeaderboard = function()
-		local bString = byteArray.new()
-
 		local l_community     = leaderboard.community
 		local l_id            = leaderboard.id
 		local l_nickname      = leaderboard.nickname
@@ -85,20 +88,21 @@ do
 
 		local playerData, quickPlayerData = playerData.playerData
 		local player, playerPosition
-		local nickname, discriminator
+		local nickname, discriminator, community
 
 		for playerName in next, players.room do
 			player = tfm.get.room.playerList[playerName]
 			quickPlayerData = playerData[playerName]
 
 			nickname, discriminator = getNicknameAndDiscriminator(playerName)
+			community = flagCodesSet[player.community] or flagCodesSet.xx
 
 			playerPosition = l_sets[player.id]
 			if playerPosition then -- Already exists, just updates the register
 				playerPosition = l_registers[playerPosition]
 
 				-- Player may have changed their community since the last cycle
-				playerPosition.community = player.community
+				playerPosition.community = community
 				-- Player may have changed their nickname
 				playerPosition.nickname = nickname
 				playerPosition.discriminator = discriminator
@@ -110,7 +114,7 @@ do
 			elseif quickPlayerData.xp > module.default_xp then -- Skips profiles with 0 data
 				registersLen = registersLen + 1
 				l_registers[registersLen] = {
-					community     = player.community,
+					community     = community,
 					id            = player.id,
 					nickname      = nickname,
 					discriminator = discriminator,
@@ -129,27 +133,29 @@ do
 	end
 end
 
-local writeLeaderboardBString = function()
-	local registers, totalRegisters = sortLeaderboard()
-	totalRegisters = min(totalRegisters, module.max_leaderboard_rows)
+local writeLeaderboardData
+do
+	local dataFormat = "%d %d %s %d %d %d %d %d"
+	writeLeaderboardData = function()
+		local registers, totalRegisters = sortLeaderboard()
+		totalRegisters = min(totalRegisters, module.max_leaderboard_rows)
 
-	local bString = byteArray
-		.new()
-		:write8(totalRegisters)
+		local data, register = { }
+		for i = 1, totalRegisters do
+			register = registers[i]
 
-	for i = 1, totalRegisters do
-		i = registers[i]
+			data[i] = format(dataFormat,
+				register.community,
+				register.id,
+				register.nickname,
+				register.discriminator,
+				register.rounds,
+				register.victories,
+				register.kills,
+				register.xp
+			)
+		end
 
-		bString
-			:write8(flagCodesSet[i.community] or flagCodesSet.xx)
-			:write32(i.id)
-			:writeUTF(i.nickname)
-			:write16(i.discriminator)
-			:write24(i.rounds)
-			:write24(i.victories)
-			:write24(i.kills)
-			:write32(i.xp)
+		saveFile(table_concat(data, ' '), module.leaderboard_file)
 	end
-
-	saveFile(tostring(bString), module.leaderboard_file)
 end

@@ -9,7 +9,7 @@ eventFileLoaded = function(id, data)
 		-- Init first map
 		setGameTime(0)
 	elseif id == module.leaderboard_file then
-		readLeaderboardBString(data)
-		writeLeaderboardBString()
+		readLeaderboardData(data)
+		writeLeaderboardData()
 	end
 end

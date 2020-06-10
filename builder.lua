@@ -25,7 +25,6 @@ local tree = {
 
 	"translations/setup.lua",
 
-	"classes/byteArray.lua",
 	"classes/keySequence.lua",
 	"classes/timer.lua",
 	"classes/power.lua",

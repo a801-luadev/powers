@@ -1,3 +1,5 @@
+if tfm.get.room.community ~= "sk" then return end--< DEBUG
+
 local module = {
 	author = "Bolodefchoco#0000",
 	id = "pw",
@@ -43,7 +45,7 @@ local currentMap = 0
 local nextMapLoadTentatives = 0
 
 local isLobby, wasLobby = false, false
-local ignoreRoundData = true
+local ignoreRoundData = nil
 
 local leaderboard = {
 	loaded = false,
