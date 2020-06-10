@@ -40,8 +40,8 @@ local interfaceImages = {
 	xButton = "17280a523f6.png",
 
 	-- 70x70
-	rightArrow = "17272cdad84.png",
-	leftArrow = "17272cd6b16.png",
+	rightArrow = "1729bab289f.png",
+	leftArrow = "1729bab4011.png",
 
 	locker = "1724e77bf31.png",
 

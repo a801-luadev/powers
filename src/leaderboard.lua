@@ -18,14 +18,16 @@ local readLeaderboardBString = function(bString)
 	local l_full_nickname = leaderboard.full_nickname
 	local l_pretty_nickname = leaderboard.pretty_nickname
 
-	for player = 1, bString:read8() do
-		community     = bString:read8()
+	local totalRegisters = bString:read8()
+
+	for player = 1, totalRegisters do
+		community     = flags[(flagCodes[bString:read8()] or "xx")]
 		id            = bString:read32()
 		nickname      = bString:readUTF()
 		discriminator = format("%04d", bString:read16())
-		rounds        = bString:read32()
-		victories     = bString:read32()
-		kills         = bString:read32()
+		rounds        = bString:read24()
+		victories     = bString:read24()
+		kills         = bString:read24()
 		xp            = bString:read32()
 
 		l_community    [player] = community
@@ -55,6 +57,7 @@ local readLeaderboardBString = function(bString)
 	end
 
 	leaderboard.loaded = true
+	leaderboard.total_pages = ceil(totalRegisters / 17) -- Remove from this function when hits max.
 end
 
 local sortLeaderboard
@@ -142,9 +145,9 @@ local writeLeaderboardBString = function()
 			:write32(i.id)
 			:writeUTF(i.nickname)
 			:write16(i.discriminator)
-			:write32(i.rounds)
-			:write32(i.victories)
-			:write32(i.kills)
+			:write24(i.rounds)
+			:write24(i.victories)
+			:write24(i.kills)
 			:write32(i.xp)
 	end
 

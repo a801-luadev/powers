@@ -54,6 +54,7 @@ local gmatch = string.gmatch
 local gsub   = string.gsub
 local lower  = string.lower
 local match  = string.match
+local rep    = string.rep
 local sub    = string.sub
 local upper  = string.upper
 

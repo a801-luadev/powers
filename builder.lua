@@ -63,6 +63,8 @@ local tree = {
 	"textAreaCallbacks/menuTab.lua",
 	"textAreaCallbacks/powerInfo.lua",
 	"textAreaCallbacks/print.lua",
+	"textAreaCallbacks/leaderboardLeft.lua",
+	"textAreaCallbacks/leaderboardRight.lua",
 	"events/eventTextAreaCallback.lua",
 
 	"events/eventNewGame.lua",
@@ -89,7 +91,7 @@ local getFile = function(path)
 	local file = io.open("src/" .. path, 'r')
 	local data = file:read("*a")
 	file:close()
-	return data
+	return (string.gsub(data, "\n*$", '', 1))
 end
 
 local writeFile = function(path, data)

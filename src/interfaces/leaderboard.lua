@@ -9,65 +9,89 @@ do
 	local dataIcons = { "star", "crown", "skull", "ground" }
 	local totalData = #dataNames
 
-	displayLeaderboard = function(playerName, _cache)
-		if not leaderboard.loaded then
-			return chatMessage(getText.leaderboardIsLoading, playerName)
+	displayLeaderboard = function(playerName, _cache, interface)
+		local iniX, iniY = 50, 50
+
+		local x = iniX + 5
+		local y = iniY + 45
+
+		if not interface then
+			if not leaderboard.loaded then
+				return chatMessage(getText.leaderboardIsLoading, playerName)
+			end
+
+			_cache = _cache or playerCache[playerName]
+			textAreaCallbacks["closeInterface"](playerName, nil, nil, _cache)
+			_cache.isLeaderboardOpen = true
+
+			local w, h = 700, 330
+			interface = prettyUI
+				.new(iniX, iniY, w, h, playerName, titleFormat, _cache)
+				:setCloseButton()
+
+			-- Add pagination buttons
+			h = iniY + (h - 50)/2
+			interface:addClickableImage(interfaceImages.leftArrow, imageTargets.interfaceIcon,
+				iniX - 50, h, playerName, 50, 50, "leaderboardLeft")
+			interface:addClickableImage(interfaceImages.rightArrow, imageTargets.interfaceIcon,
+				iniX + w, h, playerName, 50, 50, "leaderboardRight")
+
+			iniX = x
+			iniY = y
+
+			-- Background
+			interface:addImage(interfaceImages.leaderboardRectangle,
+				imageTargets.interfaceRectangle, iniX, iniY + 3, playerName)
+
+			-- Icons
+			iniX = iniX + 257
+			for i = 1, totalData do
+				interface:addImage(interfaceImages[dataIcons[i]], imageTargets.interfaceIcon,
+					iniX + i*90, iniY - 30, playerName)
+			end
 		end
 
-		_cache = _cache or playerCache[playerName]
-		textAreaCallbacks["closeInterface"](playerName, nil, nil, _cache)
-		_cache.isLeaderboardOpen = true
+		interface
+			:deleteDeletableContent()
+			:markDeletableContent(true)
 
-		local x, y = 50, 50
-
-		local interface = prettyUI
-			.new(x, y, 700, 330, playerName, titleFormat, _cache)
-			:setCloseButton()
-
-		x = x + 5
-		y = y + 45
-
-		local listIni = 1
-		local listEnd = min(17, #leaderboard.nickname)
+		local listEnd = 17*_cache.leaderboardPage
+		local listIni = listEnd - 16
 
 		-- Generates the name list
-		interface:addImage(interfaceImages.leaderboardRectangle, imageTargets.interfaceRectangle, x,
-			y + 3, playerName)
-
 		local l_community = leaderboard.community
 		local l_full_nickname = leaderboard.full_nickname
 		local l_pretty_nickname = leaderboard.pretty_nickname
 
-		local prettifiedNicknames = { }
+		listEnd = min(listEnd, #l_community)
+
+		interface:addImage(interfaceImages.leaderboardRectangle, imageTargets.interfaceRectangle, x,
+			y + 3, playerName)
+
+		local prettifiedNicknames, count = { }, 0
 		for i = listIni, listEnd do
 			-- Place flags
-			interface:addImage(flags[(flagCodes[l_community[i]] or "xx")],
-				imageTargets.interfaceIcon, x + 42, y + 5 + (i - 1)*16, playerName)
+			count = count + 1
+			interface:addImage(l_community[i], imageTargets.interfaceIcon, x + 42,
+				y + 5 + (count - 1)*16, playerName)
 
 			-- Prettify nickname
 			if l_full_nickname[i] == playerName then
-				prettifiedNicknames[i] = format(prettifiedNickname, i, prettifyNickname(
+				prettifiedNicknames[count] = format(prettifiedNickname, i, prettifyNickname(
 					leaderboard.nickname[i], 11, leaderboard.discriminator[i], "BL", "FC"))
 			else
-				prettifiedNicknames[i] = format(prettifiedNickname, i, l_pretty_nickname[i])
+				prettifiedNicknames[count] = format(prettifiedNickname, i, l_pretty_nickname[i])
 			end
 		end
 		prettifiedNicknames = midFontSize .. table_concat(prettifiedNicknames, '\n')
 
 		interface:addTextArea(prettifiedNicknames, playerName, x, y, nil, nil, 1, 1, 0, true)
 
-		x = x + 230
-
 		-- Inserts other data
-		local sumX
+		x = x + 230
 		for i = 1, totalData do
-			sumX = x + i*90
-
-			interface:addImage(interfaceImages[dataIcons[i]], imageTargets.interfaceIcon, sumX + 27,
-				y - 30, playerName)
-
 			interface:addTextArea(dataFormat .. table_concat(leaderboard[dataNames[i]], '\n',
-				listIni, listEnd), playerName, sumX, y + 1, 80, nil, 1, 1, 0, true)
+				listIni, listEnd), playerName, x + i*90, y + 1, 80, nil, 1, 1, 0, true)
 		end
 	end
 end

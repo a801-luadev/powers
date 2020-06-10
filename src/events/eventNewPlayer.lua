@@ -43,7 +43,8 @@ eventNewPlayer = function(playerName)
 			isProfileOpen = false,
 
 			-- Leaderboard interface
-			isLeaderboardOpen = false
+			isLeaderboardOpen = false,
+			leaderboardPage = 1
 		}
 	end
 

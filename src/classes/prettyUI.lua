@@ -61,7 +61,13 @@ do
 			totalInterfaceImages = 0,
 
 			initInterfaceId = nil,
-			interfaceId = nil
+			interfaceId = nil,
+
+			isCheckingDeletableContent = false,
+			firstDeletableTextArea = nil,
+			lastDeletableTextArea = nil,
+			firstDeletableImage = nil,
+			lastDeletableImage = nil
 		}, prettyUI)
 
 		-- Sets new ID
@@ -87,41 +93,78 @@ do
 		return self
 	end
 
-	prettyUI.remove = function(self)
+	prettyUI.remove = function(self, iniImg, endImg, iniTxt, endTxt)
 		-- Resetting data is unnecessary, GC should handle the instance
 
 		local interfaceImages = self.interfaceImages
-		for i = 1, self.totalInterfaceImages do
+		for i = (iniImg or 1), (endImg or self.totalInterfaceImages) do
 			removeImage(interfaceImages[i])
 		end
 
-		for t = self.initInterfaceId, self.interfaceId do
+		for t = (iniTxt or self.initInterfaceId), (endTxt or self.interfaceId) do
 			removeTextArea(t, self.playerName)
 		end
-	end
-
-	local callback = "<a href='event:closeInterface'>\n\n\n\n"
-	prettyUI.setCloseButton = function(self, xAxis)
-		local x = self.x + self.w - (xAxis or 12)
-		local y = self.y - 15
-
-		self:addImage(interfaceImages.xButton, imageTargets.interfaceIcon, x, y, self.playerName)
-
-		self:addTextArea(callback, self.playerName, x, y, 30, 31, 1, 1, 0, true)
-
-		return self
 	end
 
 	prettyUI.addTextArea = function(self, ...)
 		self.interfaceId = self.interfaceId + 1
 		addTextArea(self.interfaceId, ...)
+
+		if self.isCheckingDeletableContent and not self.firstDeletableTextArea then
+			self.firstDeletableTextArea = self.interfaceId
+		end
+
 		return self.interfaceId
 	end
 
 	prettyUI.addImage = function(self, ...)
 		self.totalInterfaceImages = self.totalInterfaceImages + 1
+
 		local image = addImage(...)
 		self.interfaceImages[self.totalInterfaceImages] = image
+
+		if self.isCheckingDeletableContent and not self.firstDeletableImage then
+			self.firstDeletableImage = self.totalInterfaceImages
+		end
+
 		return image
+	end
+
+	local callback = "<textformat leftmargin='1' rightmargin='1'><a href='event:%s'>%s"
+	prettyUI.addClickableImage = function(self, image, target, x, y, playerName, w, h, callbackName,
+		callbackCondition)
+		self:addImage(image, target, x, y, playerName)
+		if callbackCondition == nil or callbackCondition then
+			self:addTextArea(format(callback, callbackName, rep('\n', h / 10)), playerName, x - 5,
+				y - 5, w + 5, h + 5, 1, 1, 0, true)
+		end
+		return self
+	end
+
+	prettyUI.setCloseButton = function(self, xAxis)
+		return self:addClickableImage(interfaceImages.xButton, imageTargets.interfaceIcon,
+			self.x + self.w - (xAxis or 12), self.y - 15, self.playerName, 30, 30, "closeInterface")
+	end
+
+	prettyUI.markDeletableContent = function(self, bool)
+		if not bool and self.isCheckingDeletableContent then
+			-- Assuming at least one of each has been used...
+			self.lastDeletableTextArea = self.interfaceId
+			self.lastDeletableImage = self.totalInterfaceImages
+		end
+		self.isCheckingDeletableContent = bool
+		return self
+	end
+
+	prettyUI.deleteDeletableContent = function(self)
+		if self.isCheckingDeletableContent then
+			self
+				:markDeletableContent(false)
+				:remove(self.firstDeletableImage, self.lastDeletableImage,
+					self.firstDeletableTextArea, self.lastDeletableTextArea)
+			self.firstDeletableImage, self.lastDeletableImage, self.firstDeletableTextArea,
+				self.lastDeletableTextArea = nil, nil, nil, nil
+		end
+		return self
 	end
 end

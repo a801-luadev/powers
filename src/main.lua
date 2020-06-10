@@ -47,6 +47,7 @@ local ignoreRoundData = true
 
 local leaderboard = {
 	loaded = false,
+	total_pages = 0,
 
 	community = { },
 	id = { },

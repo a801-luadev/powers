@@ -3,7 +3,7 @@ do
 	local content = "<p align='center'><font size='3'>\n"
 	local unlockedPowerContent = content .. "<font size='14'>"
 	local lockedPowerContent = unlockedPowerContent .. "<BL><B>" .. getText.level
-	local callback = "<a href='event:powerInfo_%s_%s_%s'>\n\n\n\n"
+	local callback = "powerInfo_%s_%s_%s"
 
 	displayPowerMenu = function(playerName, _cache)
 		_cache = _cache or playerCache[playerName]
@@ -28,23 +28,20 @@ do
 
 			sumX = x + ((p + 1) % 2)*249
 
-			interface:addImage(interfaceImages.rectangle, imageTargets.interfaceRectangle, sumX - 2,
-				y - 2, playerName)
-
-			interface:addImage(power.imageData.smallIcon, imageTargets.interfaceIcon, sumX, y,
-				playerName)
-
 			interface:addTextArea((isLockedPower and format(lockedPowerContent, power.level)
 				or (unlockedPowerContent .. getText.powers[power.name])), playerName, sumX, y, 241,
 				30, -1, 0x1B2B31, 0, true)
 
+			interface:addClickableImage(interfaceImages.rectangle, imageTargets.interfaceRectangle,
+				sumX - 2, y - 2, playerName, 245, 34, format(callback, power.name, sumX - 4, y - 5),
+				not isLockedPower)
+
+			interface:addImage(power.imageData.smallIcon, imageTargets.interfaceIcon, sumX, y,
+				playerName)
+
 			if isLockedPower then
 				interface:addImage(interfaceImages.locker, imageTargets.interfaceIcon, sumX + 216,
 					y, playerName)
-			else
-				-- Clickable callback
-				interface:addTextArea(format(callback, power.name, sumX - 4, y - 5), playerName,
-					sumX - 5, y - 3, 249, 35, 1, 1, 0, true) -- p instead of power.name?
 			end
 
 			if p % 2 == 0 then
