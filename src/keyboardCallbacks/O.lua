@@ -1,7 +1,7 @@
 do
 	keyboardCallbacks[keyboard.O] = function(playerName, cache)
 		if cache.isPowersOpen then
-			textAreaCallbacks["closeInterface"](playerName, nil, cache)
+			textAreaCallbacks["closeInterface"](playerName, cache)
 		else
 			displayPowerMenu(playerName, cache)
 		end

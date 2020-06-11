@@ -33,8 +33,8 @@ eventNewPlayer = function(playerName)
 
 			-- Help interface
 			isHelpOpen = false,
-			menuPage = 1,
-			menuTabs = { },
+			helpPage = 1,
+			helpTabs = { },
 
 			-- Powers interface
 			isPowersOpen = false,

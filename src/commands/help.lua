@@ -1,5 +1,5 @@
 do
 	commands["help"] = function(playerName)
-		displayHelp(playerName)
+		keyboardCallbacks[keyboard.H](playerName, playerCache[playerName])
 	end
 end

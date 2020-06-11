@@ -1,12 +1,15 @@
 local translations, getText = { }
 translations.en = {
-	-- Official message
-	ownerAnnounce = "<B>[#powers] %s</B>",
+	-- Main messages
+	greeting = "<FC>Welcome to <B>#powers</B>! Press <B>H</B> or type <B>!help</B> to learn more.",
+	ownerAnnounce = "<FC><B>[#powers]</B> %s",
 
-	-- Maps
-	addMap = "<BL>The map <J>@%s</J> was added to the local map queue.",
-	remMap = "<BL>The map <J>@%s</J> was removed from the local map queue.",
-	totalMaps = "<BL>Total maps: <J>#%s</J>: %s",
+	-- Victory
+	mentionWinner = "<FC>%s<FC> won the round!",
+	noWinner = "<FC>No one won the round. :(",
+
+	-- Lobby
+	minPlayers = "At least <B>2</B> players must be in the room for the game to start.",
 
 	-- Powers
 	powers = {
@@ -40,7 +43,7 @@ translations.en = {
 		judgmentDay = "Revives all dead enemies, them all linked to each other."
 	},
 
-	unlockPower = "You have unlocked the following power(s): %s",
+	unlockPower = "<FC>[<VI>•<FC>] You have unlocked the following power(s): %s",
 
 	-- Level names
 	levelName = {
@@ -59,31 +62,27 @@ translations.en = {
 		[120] = "The Void"
 	},
 
-	newLevel = "%s just reached level %d!",
-	level = "Lv %d",
+	newLevel = "<FC>%s<FC> just reached level <VI>%d<FC>!",
+	level = "Level %d",
 
-	-- Winner
-	noWinner = "No one won the round.",
-	mentionWinner = "%s won the round!",
-
-	-- Menu
-	menuTitles = {
+	-- Help
+	helpTitles = {
 		[1] = "Powers!",
 		[2] = "Commands",
 		[3] = "Contribute",
 		[4] = "What's new?"
 	},
-	menuContent = {
+	helpContent = {
 		[1] = "<FC><p align='center'>#POWERS!</p>\n\n" ..
 			"<J>Your goal in this game is to survive from opponents' attacks.\n\n" ..
 			"<N>There are a variety of powers <font size='12'>- which are unlocked by reaching " ..
 				"higher levels -</font> to attack and defend.\n" ..
 			"Type <FC><B>!powers</B><N> to learn more about the powers you have unlocked so far!" ..
 				"\n\n" ..
-			"<ROSE>%s</ROSE>\n\n" .. -- enableParticles
-			"This game has been developed by <font color='#8FE2D1'>Bolodefchoco</font><G>#0000"
+			"%s\n\n" .. -- enableParticles
+			"This game has been developed by %s"
 		,
-		[2] = "<FC><p align='center'>GENERAL COMMANDS</p><N>\n\n", -- commands
+		[2] = "<FC><p align='center'>GENERAL COMMAN DS</p><N>\n\n", -- commands
 		[3] = "<FC><p align='center'>CONTRIBUTE<N>\n\n" ..
 			"We love Open Source <font color='#E91E63'>♥</font>! You can view and modify " ..
 				"the source code of this game on <a href='event:print_" ..
@@ -108,25 +107,6 @@ translations.en = {
 			"• Module has been entirely rewritten."
 	},
 
-	-- Lobby
-	minPlayers = "At least <B>2</B> players must be in the room for the game to start.",
-
-	-- Profile
-	profileData = {
-		rounds = "Rounds",
-		victories = "Victories",
-		kills = "Kills",
-		xp = "Experience"
-	},
-
-	-- Leaderboard
-	leaderboard = "Leaderboard",
-	leaderboardIsLoading = "The leaderboard is still loading. Try again in a few seconds.",
-
-	-- Warning
-	enableParticles = "Do NOT forget to ENABLE the special effects/particles in order to see the" ..
-		" game properly. (In 'Menu' → 'Options', next to the 'Room List')",
-
 	-- Commands
 	commands = {
 		help = "Opens this menu.",
@@ -138,6 +118,25 @@ translations.en = {
 		profile = "[player_name] "
 	},
 
-	-- Misc
-	greeting = "Welcome to #powers! Press <B>H</B> or type <B>!help</B> to learn more."
+	-- Profile
+	profileData = {
+		rounds = "Rounds",
+		victories = "Victories",
+		kills = "Kills",
+		xp = "Experience"
+	},
+
+	-- Leaderboard
+	leaderboard = "Leaderboard",
+	leaderboardIsLoading = "<BL>[<VI>•<BL>] The leaderboard is still loading. Try again in " ..
+		"a few seconds.",
+
+	-- Map management
+	addMap = "<T>[<VI>•<T>] The map <J>@%s</J> was added to the local map queue.",
+	remMap = "<T>[<VI>•<T>] The map <J>@%s</J> was removed from the local map queue.",
+	listMaps = "<T>[<VI>•<T>] Maps (<J>#%s</J>): %s",
+
+	-- Warning
+	enableParticles = "<ROSE>Do NOT forget to ENABLE the special effects/particles in order to " ..
+		"see the game properly. (In 'Menu' → 'Options', next to the 'Room List')</ROSE>"
 }

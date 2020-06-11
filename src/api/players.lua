@@ -33,10 +33,6 @@ local players_remove_all = function(playerName)
 	end
 end
 
-local enablePowersTrigger = function()
-	canTriggerPowers = true
-end
-
 local isValidPlayer = function(playerName)
 	playerName = tfm.get.room.playerList[playerName]
 	return playerName.id > 0 -- Is not souris
@@ -45,16 +41,26 @@ local isValidPlayer = function(playerName)
 			>= (5 * 60 * 60 * 24 * 1000) -- Is a player for longer than 5 days
 end
 
-local playerCanTriggerEvent = function(playerName)
-	local time = time()
-	local cache = playerCache[playerName]
+local playerCanTriggerEvent = function(playerName, cache)
+	cache = cache or playerCache[playerName]
 
+	local time = time()
 	if cache.powerCooldown > time then return end
 
 	if canTriggerPowers and not (tfm.get.room.playerList[playerName].isDead
 		or cache.isInterfaceOpen) then
 		return time, cache
 	end
+end
+
+local playerCanTriggerCallback = function(playerName, cache)
+	cache = cache or playerCache[playerName]
+
+	local time = time()
+	if cache.interfaceActionCooldown > time then return end
+	cache.interfaceActionCooldown = time + 1000
+
+	return cache
 end
 
 local giveExperience = function()
@@ -90,7 +96,8 @@ local checkPlayerLevel = function(playerName, cache)
 	local newLevel = setPlayerLevel(playerName, cache)
 	if not newLevel then return end
 
-	chatMessage(format(getText.newLevel, playerName, newLevel))
+	chatMessage(format(getText.newLevel, prettifyNickname(playerName, 10, nil, "/B><G", 'B'),
+		newLevel))
 
 	-- Checks unlocked powers
 	local powerNames = getText.powers

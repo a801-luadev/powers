@@ -16,8 +16,7 @@ eventNewGame = function()
 	end
 	wasLobby = false
 
-	ignoreRoundData = ignoreRoundData == nil
-	if ignoreRoundData then return end
+	if currentMap == 0 then return end
 
 	setNextMapIndex()
 

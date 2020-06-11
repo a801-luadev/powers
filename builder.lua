@@ -50,16 +50,7 @@ local tree = {
 	"events/eventPlayerDataLoaded.lua",
 	"events/eventPlayerLeft.lua",
 
-	"commands/commands.lua",
-	"commands/help.lua",
-	"commands/powers.lua",
-	"commands/profile.lua",
-	"commands/leaderboard.lua",
-	"commands/owner/map.lua",
-	"commands/owner/msg.lua",
-	"events/eventChatCommand.lua",
-
-	"textAreaCallbacks/menuTab.lua",
+	"textAreaCallbacks/helpTab.lua",
 	"textAreaCallbacks/powerInfo.lua",
 	"textAreaCallbacks/print.lua",
 	"textAreaCallbacks/leaderboardLeft.lua",
@@ -82,6 +73,15 @@ local tree = {
 	"events/eventMouse.lua",
 	"events/eventChatMessage.lua",
 	"events/eventEmotePlayed.lua",
+
+	"commands/commands.lua",
+	"commands/help.lua",
+	"commands/powers.lua",
+	"commands/profile.lua",
+	"commands/leaderboard.lua",
+	"commands/owner/map.lua",
+	"commands/owner/msg.lua",
+	"events/eventChatCommand.lua",
 
 	"init.lua"
 }

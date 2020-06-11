@@ -21,9 +21,16 @@ local isMapCode = function(x)
 	return (not not x and #str > 3), x
 end
 
+local enablePowersTrigger = function()
+	canTriggerPowers = true
+	if currentMap == 2 then
+		chatMessage(getText.enableParticles)
+	end
+end
+
 local setNextMapIndex = function()
 	currentMap = currentMap + 1
-	if currentMap >= totalCurrentMaps then
+	if currentMap > totalCurrentMaps then
 		table_shuffle(maps)
 		currentMap = 1
 	end

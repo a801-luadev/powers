@@ -16,7 +16,7 @@ do
 		cache.prettyUIs = { }
 		cache.totalPrettyUIs = 0
 
-		cache.menuTabs = { }
+		cache.helpTabs = { }
 		cache.powerInfoIdSelected = nil
 		cache.powerInfoSelectionImageId = nil
 

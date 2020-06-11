@@ -1,9 +1,9 @@
 do
-	keyboardCallbacks[keyboard.P] = function(playerName, cache)
+	keyboardCallbacks[keyboard.P] = function(playerName, cache, _, targetPlayer)
 		if cache.isProfileOpen then
-			textAreaCallbacks["closeInterface"](playerName, nil, cache)
+			textAreaCallbacks["closeInterface"](playerName, cache)
 		else
-			displayProfile(playerName, playerName, cache)
+			displayProfile(playerName, (targetPlayer or playerName), cache)
 		end
 	end
 end

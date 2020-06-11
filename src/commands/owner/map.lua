@@ -66,7 +66,7 @@ do
 
 	-- Displays the map queue
 	noArgMethod["ls"] = function(playerName)
-		chatMessage(format(getText.totalMaps, totalCurrentMaps, "@" .. table_concat(maps, ", @")),
+		chatMessage(format(getText.listMaps, totalCurrentMaps, "@" .. table_concat(maps, ", @")),
 			playerName)
 	end
 

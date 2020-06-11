@@ -6,10 +6,13 @@ eventKeyboard = function(playerName, key, isDown, x, y)
 	elseif key == 2 then
 		cache.isFacingRight = true
 	elseif keyboardCallbacks[key] then
-		return keyboardCallbacks[key](playerName, cache)
+		if playerCanTriggerCallback(playerName, cache) then
+			keyboardCallbacks[key](playerName, cache)
+		end
+		return
 	end
 
-	local time = playerCanTriggerEvent(playerName)
+	local time = playerCanTriggerEvent(playerName, cache)
 	if not time then return end
 
 	local playerKs = cache.keySequence

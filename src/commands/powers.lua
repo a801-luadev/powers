@@ -1,5 +1,5 @@
 do
 	commands["powers"] = function(playerName)
-		displayPowerMenu(playerName)
+		keyboardCallbacks[keyboard.O](playerName, playerCache[playerName])
 	end
 end

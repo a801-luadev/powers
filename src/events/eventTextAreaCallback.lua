@@ -1,9 +1,6 @@
 eventTextAreaCallback = function(id, playerName, callback)
-	local cache = playerCache[playerName]
-	local time = time()
-
-	if time > cache.interfaceActionCooldown then return end
-	cache.interfaceActionCooldown = time + 1000
+	local cache = playerCanTriggerCallback(playerName)
+	if not cache then return end
 
 	callback = str_split(callback, '_', true)
 

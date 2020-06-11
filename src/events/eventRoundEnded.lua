@@ -18,10 +18,10 @@ eventRoundEnded = function()
 	-- Clears all current timers
 	timer.refresh()
 
+	if currentMap == 0 then return end
+
 	-- Resets divine powers
 	removeTextArea(textAreaId.gravitationalAnomaly)
-
-	if ignoreRoundData then return end
 
 	local alivePlayers, lobbyPlayers = players.alive, players.lobby
 	local winners, winnerCount = { }, 0
@@ -39,7 +39,7 @@ eventRoundEnded = function()
 
 			if alivePlayers[name] then
 				winnerCount = winnerCount + 1
-				winners[winnerCount] = name
+				winners[winnerCount] = prettifyNickname(name, 10, nil, "/B><G", 'B')
 
 				playerData
 					:set(name, "xp", module.xp_on_victory, true)
@@ -60,7 +60,7 @@ eventRoundEnded = function()
 
 	-- Announce winner
 	if winnerCount > 0 then
-		chatMessage(format(getText.mentionWinner, table_concat(winners, ", ")))
+		chatMessage(format(getText.mentionWinner, table_concat(winners, "<FC>, ")))
 	else
 		chatMessage(getText.noWinner)
 	end

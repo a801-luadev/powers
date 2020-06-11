@@ -43,7 +43,6 @@ local currentMap = 0
 local nextMapLoadTentatives = 0
 
 local isLobby, wasLobby = false, false
-local ignoreRoundData = nil
 
 local leaderboard = {
 	loaded = false,

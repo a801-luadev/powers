@@ -1,5 +1,5 @@
 do
 	commands["leaderboard"] = function(playerName)
-		displayLeaderboard(playerName)
+		keyboardCallbacks[keyboard.L](playerName, playerCache[playerName])
 	end
 end
