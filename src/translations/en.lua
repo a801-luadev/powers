@@ -136,5 +136,8 @@ translations.en = {
 	},
 	commandsParameters = {
 		profile = "[player_name] "
-	}
+	},
+
+	-- Misc
+	greeting = "Welcome to #powers! Press <B>H</B> or type <B>!help</B> to learn more."
 }

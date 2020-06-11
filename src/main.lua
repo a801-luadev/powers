@@ -1,5 +1,3 @@
-if tfm.get.room.community ~= "sk" then return end--< DEBUG
-
 local module = {
 	author = "Bolodefchoco#0000",
 	id = "pw",

@@ -21,7 +21,7 @@ do
 			end
 
 			_cache = _cache or playerCache[playerName]
-			textAreaCallbacks["closeInterface"](playerName, nil, nil, _cache)
+			textAreaCallbacks["closeInterface"](playerName, _cache)
 			_cache.isLeaderboardOpen = true
 
 			local w, h = 700, 330

@@ -1,30 +1,28 @@
 do
-	textAreaCallbacks["closeInterface"] = function(playerName, _, _cache)
+	textAreaCallbacks["closeInterface"] = function(playerName, cache)
 		-- closeInterface
-		_cache = _cache or playerCache[playerName]
+		if not cache.isInterfaceOpen then return end
+		cache.isInterfaceOpen = false
 
-		if not _cache.isInterfaceOpen then return end
-		_cache.isInterfaceOpen = false
+		local prettyUIs = cache.prettyUIs
 
-		local prettyUIs = _cache.prettyUIs
-
-		_cache.lastPrettyUI = nil
-		for u = 1, _cache.totalPrettyUIs do
+		cache.lastPrettyUI = nil
+		for u = 1, cache.totalPrettyUIs do
 			if prettyUIs[u] then
 				prettyUIs[u]:remove()
 			end
 		end
 
-		_cache.prettyUIs = { }
-		_cache.totalPrettyUIs = 0
+		cache.prettyUIs = { }
+		cache.totalPrettyUIs = 0
 
-		_cache.menuTabs = { }
-		_cache.powerInfoIdSelected = nil
-		_cache.powerInfoSelectionImageId = nil
+		cache.menuTabs = { }
+		cache.powerInfoIdSelected = nil
+		cache.powerInfoSelectionImageId = nil
 
-		_cache.isHelpOpen = false
-		_cache.isPowersOpen = false
-		_cache.isProfileOpen = false
-		_cache.isLeaderboardOpen = false
+		cache.isHelpOpen = false
+		cache.isPowersOpen = false
+		cache.isProfileOpen = false
+		cache.isLeaderboardOpen = false
 	end
 end

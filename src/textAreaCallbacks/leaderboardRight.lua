@@ -1,8 +1,6 @@
 do
-	textAreaCallbacks["leaderboardRight"] = function(playerName)
+	textAreaCallbacks["leaderboardRight"] = function(playerName, cache)
 		-- leaderboardRight
-		local cache = playerCache[playerName]
-
 		cache.leaderboardPage = cache.leaderboardPage + 1
 		if cache.leaderboardPage >= leaderboard.total_pages then
 			cache.leaderboardPage = 1

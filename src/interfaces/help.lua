@@ -22,7 +22,7 @@ do
 
 	displayHelp = function(playerName, _cache)
 		_cache = _cache or playerCache[playerName]
-		textAreaCallbacks["closeInterface"](playerName, nil, nil, _cache)
+		textAreaCallbacks["closeInterface"](playerName, _cache)
 		_cache.isHelpOpen = true
 
 		local menuPage = _cache.menuPage

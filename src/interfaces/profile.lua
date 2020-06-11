@@ -44,7 +44,7 @@ do
 
 	displayProfile = function(playerName, targetPlayer, _cache)
 		_cache = _cache or playerCache[playerName]
-		textAreaCallbacks["closeInterface"](playerName, nil, nil, _cache)
+		textAreaCallbacks["closeInterface"](playerName, _cache)
 		_cache.isProfileOpen = true
 		local targetCacheData = playerCache[targetPlayer]
 

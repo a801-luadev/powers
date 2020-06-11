@@ -29,6 +29,8 @@ eventNewPlayer = function(playerName)
 			prettyUIs = { },
 			lastPrettyUI = nil,
 
+			interfaceActionCooldown = 0,
+
 			-- Help interface
 			isHelpOpen = false,
 			menuPage = 1,
@@ -68,4 +70,6 @@ eventNewPlayer = function(playerName)
 
 	-- Displayed once because the image is never removed
 	displayLifeBar(playerName)
+
+	chatMessage(getText.greeting, playerName)
 end
