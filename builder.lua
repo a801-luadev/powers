@@ -5,6 +5,7 @@ local tree = {
 	"translations/en.lua",
 
 	"enums/powers.lua",
+	"enums/colors.lua",
 	"enums/interface.lua",
 	"enums/keyboard.lua",
 	"enums/emotes.lua",

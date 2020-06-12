@@ -16,6 +16,7 @@ do
 			return chatMessage(getText.cantPermUnban, playerName)
 		end
 
+		bannedPlayers[targetPlayerId] = nil
 		chatMessage(format(getText.unban, prettifyNickname(playerName, nil, nil, nil, 'J')),
 			targetPlayer)
 	end

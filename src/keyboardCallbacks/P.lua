@@ -3,7 +3,11 @@ do
 		if cache.isProfileOpen then
 			textAreaCallbacks["closeInterface"](playerName, cache)
 		else
-			displayProfile(playerName, (targetPlayer or playerName), cache)
+			targetPlayer = targetPlayer or playerName
+			if playerCache[targetPlayer] and
+				not bannedPlayers[tfm.get.room.playerList[targetPlayer].id] then
+				displayProfile(playerName, targetPlayer, cache)
+			end
 		end
 	end
 end

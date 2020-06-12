@@ -7,6 +7,7 @@ do
 	local xpFormat = centerAndFont .. "<B>%d</B>\n</font>%d/%dxp"
 	local valueFormat = font .. "%s"
 	local dataNameFormat = "<font face='courier new'>%s"
+	local nicknameColorFormat = "font color='#%x'"
 
 	local dataNames = { "victories", "kills", "rounds" }
 	local dataIcons = { "crown", "skull", "ground" }
@@ -48,10 +49,19 @@ do
 		_cache.isProfileOpen = true
 		local targetCacheData = playerCache[targetPlayer]
 
+		local nicknameColor
+		if hasPermission(playerName, permissions.administratorColor) then
+			nicknameColor = format(nicknameColorFormat, roleColors.administrator)
+		elseif hasPermission(playerName, permissions.moderatorColor) then
+			nicknameColor = format(nicknameColorFormat, roleColors.moderator)
+		elseif hasPermission(playerName, permissions.mapperColor) then
+			nicknameColor = format(nicknameColorFormat, roleColors.mapper)
+		end
+
 		local x, y = 260, 55
 		local interface = prettyUI
 			.new(x, y, 280, 330, playerName, format(nicknameFormat, 20,
-				prettifyNickname(targetPlayer, 13)), _cache)
+				prettifyNickname(targetPlayer, 13, nil, nil, nicknameColor)), _cache)
 			:setCloseButton()
 
 		-- Level bar
