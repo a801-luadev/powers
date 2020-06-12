@@ -63,3 +63,5 @@ local leaderboard = {
 	registers = { },
 	sets = { }
 }
+
+local playersWithPrivileges = { }

@@ -4,7 +4,12 @@ local tree = {
 
 	"translations/en.lua",
 
-	"enums.lua",
+	"enums/powers.lua",
+	"enums/interface.lua",
+	"enums/keyboard.lua",
+	"enums/emotes.lua",
+	"enums/flags.lua",
+	"enums/permissions.lua",
 
 	"classes/dataHandler.lua",
 	"playerData.lua",
@@ -79,8 +84,8 @@ local tree = {
 	"commands/powers.lua",
 	"commands/profile.lua",
 	"commands/leaderboard.lua",
-	"commands/owner/map.lua",
-	"commands/owner/msg.lua",
+	"commands/map.lua",
+	"commands/msg.lua",
 	"events/eventChatCommand.lua",
 
 	"init.lua"

@@ -66,9 +66,7 @@ local table_sort   = table.sort
 -- Bit32
 local band   = bit32.band
 local bor    = bit32.bor
-local bxor   = bit32.bxor
-local lshift = bit32.lshift
-local rshift = bit32.rshift
+local bnot   = bit32.bnot
 
 -- Others
 local next         = next

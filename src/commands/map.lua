@@ -1,21 +1,21 @@
 do
-	local noArgMethod = { }
-	local argMethod = { }
+	local subCommand = { }
+	local subCommandPermission = { }
 
 	-- Manages the module maps
-	ownerCommands["map"] = function(playerName, command)
+	commands["map"] = function(playerName, command)
 		if totalCurrentMaps == 0 or not command[2] then return end
 
-		if not command[3] then
-			if noArgMethod[command[2]] then
-				noArgMethod[command[2]](playerName)
-				return
+		if subCommand[command[2]] then
+			local permission = permission[subCommandPermission[command[2]]]
+			if not permission or hasPermission(playerName, permission) then
+				subCommand[command[2]](playerName, command)
 			end
 		end
+	end
 
-		if not argMethod[command[2]] then return end
-
-		local entries, totalEntries = str_split(command[3], "[, ]+")
+	local getValidMaps = function(subParameter)
+		local entries, totalEntries = str_split(subParameter, "[, ]+")
 
 		local validMaps, totalMaps, tmpMapCode, tmpIsMapCode = { }, 0
 		for i = 1, totalEntries do
@@ -25,13 +25,16 @@ do
 				validMaps[totalMaps] = tmpMapCode
 			end
 		end
-		if totalMaps == 0 then return end
 
-		argMethod[command[2]](validMaps, totalMaps)
+		return totalMaps > 0, validMaps, totalMaps
 	end
 
 	-- Adds a new map
-	argMethod["add"] = function(validMaps, totalMaps)
+	subCommandPermission["add"] = permissions.editLocalMapQueue
+	subCommand["add"] = function(playerName, command)
+		local hasMaps, validMaps, totalMaps = getValidMaps(command[3])
+		if not hasMaps then return end
+
 		local map
 		for i = 1, totalMaps do
 			map = validMaps[i]
@@ -45,7 +48,11 @@ do
 	end
 
 	-- Removes a map
-	argMethod["rem"] = function(validMaps, totalMaps)
+	subCommandPermission["rem"] = permissions.editLocalMapQueue
+	subCommand["rem"] = function(playerName, commands)
+		local hasMaps, validMaps, totalMaps = getValidMaps(command[3])
+		if not hasMaps then return end
+
 		local map
 		for i = 1, totalMaps do
 			map = validMaps[i]
@@ -65,16 +72,17 @@ do
 	end
 
 	-- Displays the map queue
-	noArgMethod["ls"] = function(playerName)
+	subCommand["ls"] = function(playerName)
 		chatMessage(format(getText.listMaps, totalCurrentMaps, "@" .. table_concat(maps, ", @")),
 			playerName)
 	end
 
 	-- Saves the map queue
-	noArgMethod["save"] = function(playerName)
+	permission["save"] = permissions.saveLocalMapQueue
+	subCommand["save"] = function(playerName)
 		local data = table_concat(maps, '@')
 
+		subCommand["ls"](playerName)
 		saveFile(data, module.map_file)
-		noArgMethod["ls"](playerName, totalCurrentMaps)
 	end
 end
