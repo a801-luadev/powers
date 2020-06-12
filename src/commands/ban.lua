@@ -29,5 +29,7 @@ do
 			chatMessage(format(getText.permBan, prettyTargetPlayer, prettyPlayer, command),
 				targetPlayer)
 		end
+
+		buildAndSaveDataFile()
 	end
 end

@@ -1,11 +1,13 @@
 local module = {
 	author = "Bolodefchoco#0000",
+	author_id = 7903955,
+
 	id = "pw",
 
 	min_players = 4,
 	max_players = 18,
 
-	map_file = '7',
+	data_file = '7',
 	leaderboard_file = '8',
 
 	default_xp = 36,
@@ -37,6 +39,13 @@ local canTriggerPowers = false
 local resetPlayersDefaultSize = false
 
 local canSaveData = false
+
+local dataFileContent = {
+	[1] = nil, -- Maps
+	[2] = nil, -- Privileges
+	[3] = nil -- Banned
+}
+local isSaveDataFileScheduled = true
 
 local maps, totalCurrentMaps, mapHashes = { }, 0
 local currentMap = 0

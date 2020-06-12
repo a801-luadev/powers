@@ -18,5 +18,7 @@ do
 		bannedPlayers[targetPlayerId] = nil
 		chatMessage(format(getText.unban, prettifyNickname(playerName, nil, nil, nil, 'J')),
 			targetPlayer)
+
+		buildAndSaveDataFile()
 	end
 end

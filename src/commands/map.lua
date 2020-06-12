@@ -80,9 +80,7 @@ do
 	-- Saves the map queue
 	subCommandPermission["save"] = permissions.saveLocalMapQueue
 	subCommand["save"] = function(playerName)
-		local data = table_concat(maps, '@')
-
+		buildAndSaveDataFile()
 		subCommand["ls"](playerName)
-		saveFile(data, module.map_file)
 	end
 end

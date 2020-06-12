@@ -57,7 +57,56 @@ do
 end
 
 local unrefreshableTimer = { }
-unrefreshableTimer.start = timer.start
-unrefreshableTimer.delete = timer.delete
-unrefreshableTimer.loop = timer.loop
-unrefreshableTimer._timers = timer._timers
+do
+	unrefreshableTimer.id = 0
+	unrefreshableTimer.timers = { }
+	unrefreshableTimer.deleteQueue = { }
+	unrefreshableTimer.countDeleteQueue = 0
+
+	unrefreshableTimer.start = function(self, callback, ms, times, ...)
+		self.id = self.id + 1
+
+		local t = self.timers
+		local args = { ... }
+		t[self.id] = {
+			id = self.id,
+			callback = callback,
+			args = args,
+			defaultMilliseconds = ms,
+			milliseconds = ms,
+			times = times
+		}
+		args[#args + 1] = t[self.id]
+
+		return self.id
+	end
+
+	unrefreshableTimer.delete = function(self, id)
+		self.countDeleteQueue = self.countDeleteQueue + 1
+		self.deleteQueue[self.countDeleteQueue] = id
+	end
+
+	unrefreshableTimer.loop = function(self)
+		local ts = self.timers
+
+		for i, t in next, ts do
+			t.milliseconds = t.milliseconds - 500
+			if t.milliseconds <= 0 then
+				t.milliseconds = t.defaultMilliseconds
+				t.times = t.times - 1
+
+				t.callback(unpack(t.args))
+
+				if t.times == 0 then
+					self:delete(i)
+				end
+			end
+		end
+
+		local dq = self.deleteQueue
+		for i = 1, self.countDeleteQueue do
+			ts[dq[i]] = nil
+		end
+		self.countDeleteQueue = 0
+	end
+end

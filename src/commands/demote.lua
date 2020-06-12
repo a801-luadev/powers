@@ -39,5 +39,7 @@ do
 			messagePlayersWithPrivilege(format(getText.playerLosePermissions, prettyTargetPlayer,
 				table_concat(removedPermissions, "</B> - <B>")))
 		end
+
+		buildAndSaveDataFile()
 	end
 end

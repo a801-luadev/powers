@@ -39,6 +39,8 @@ local tree = {
 	"powers.lua",
 	"sortedPowers.lua",
 
+	"api/data.lua",
+
 	"leaderboard.lua",
 
 	"classes/prettyUI.lua",
@@ -52,6 +54,7 @@ local tree = {
 	"interfaces/leaderboard.lua",
 
 	"events/eventFileLoaded.lua",
+	"events/eventFileSaved.lua",
 
 	"events/eventNewPlayer.lua",
 	"events/eventPlayerDataLoaded.lua",

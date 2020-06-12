@@ -115,18 +115,27 @@ translations.en = {
 		leaderboard = "Opens the global leaderboard.",
 
 		map = "Manages the map rotation of the game.",
-		msg = "Sends a message to the room",
+
+		msg = "Sends a message to the room.",
 		ban = "Bans a player from the game.",
 		unban = "Unbans a player from the game.",
-		permban = "Bans permanently a player from the game."
+		permban = "Bans permanently a player from the game.",
+
+		promote = "Promotes a player to a specific role or gives them specific permissions.",
+		demote = "Demotes a player from a specific role or removes specific permissions from them."
 	},
 	commandsParameters = {
 		profile = "[player_name]* ",
+
 		map = "[add|rem|ls|save]* [@map ...] ",
+
 		msg = "[message]* ",
 		ban = "[player_name]* [ban_time] [reason] ",
 		unban = "[player_name]* ",
-		permban = "[player_name]* [reason] "
+		permban = "[player_name]* [reason] ",
+
+		promote = "[player_name]* [permission_name|role_name ...] ",
+		demote = "[player_name]* [permission_name|role_name ...] ",
 	},
 
 	-- Profile

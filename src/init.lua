@@ -1,9 +1,9 @@
-playersWithPrivileges[7903955] = rolePermissions.administrator --< DEBUG
+playersWithPrivileges[module.author_id] = rolePermissions.administrator
 
 flagCodesSet = table_set(flagCodes)
 
-loadFile(module.map_file)
-unrefreshableTimer:start(loadFile, 65000, 0, module.leaderboard_file)
+loadFile(module.data_file) -- Maps, banned players, players with privilege, etc
+loadFile(module.leaderboard_file)
 
 module.max_player_xp = lvlToXp(module.max_player_level)
 
