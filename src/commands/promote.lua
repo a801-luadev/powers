@@ -1,5 +1,5 @@
 do
-	-- Assigns specific permissions to a player
+	-- Adds specific permissions to a player
 	commands["promote"] = function(playerName, command)
 		-- !promote name permissions
 		if not (command[3] and hasPermission(playerName, permissions.promoteUser)) then return end
@@ -37,7 +37,7 @@ do
 
 		if permissionsCounter > 0 then
 			messagePlayersWithPrivilege(format(getText.playerGetPermissions, prettyTargetPlayer,
-				table_concat(givenPermissions, "</B> - <B>")), playerName)
+				table_concat(givenPermissions, "</B> - <B>")))
 		end
 	end
 end

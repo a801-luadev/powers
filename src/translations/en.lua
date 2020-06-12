@@ -160,6 +160,10 @@ translations.en = {
 
 	-- Promotion
 	playerGetPermissions = "<BL>[<VI>•<BL>] %s <BL>has now the following permissions: <B>%s</B>",
+	playerLosePermissions = "<BL>[<VI>•<BL>] %s <BL>had the following permissions removed: " ..
+		"<B>%s</B>",
 	playerGetRole = "<FC>%s <FC>has been promoted to <font color='#%x'>%s</font>!",
-	privatePlayerSetPermissions = "<BL>[<VI>•<BL>] %s<BL>: %s<BL> → %s", -- name: name → permissions
+	playerLoseRole = "<FC>%s <FC>is not <font color='#%x'>%s</font> anymore.",
+	privatePlayerSetPermissions = "<BL>[<VI>•<BL>] %s <BL>[promote] [%s]<BL> → %s",
+	privatePlayerUnsetPermissions = "<BL>[<VI>•<BL>] %s <BL>[demote] [%s]<BL> → %s",
 }

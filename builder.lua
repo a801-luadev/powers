@@ -95,6 +95,7 @@ local tree = {
 	"commands/permban.lua",
 
 	"commands/promote.lua",
+	"commands/demote.lua",
 
 	"events/eventChatCommand.lua",
 
