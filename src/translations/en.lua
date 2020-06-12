@@ -156,5 +156,10 @@ translations.en = {
 	unban = "<ROSE>You have been unbanned by %s",
 	isBanned = "<ROSE>You are banned from #powers until %s (%d hours to go).",
 	permBan = "%s <ROSE>has been banned permanently from #powers by %s<ROSE>. Reason: %s",
-	cantPermUnban = "<BL>[<VI>•<BL>] You cannot ban a user that is banned permanently."
+	cantPermUnban = "<BL>[<VI>•<BL>] You cannot ban a user that is banned permanently.",
+
+	-- Promotion
+	playerGetPermissions = "<BL>[<VI>•<BL>] %s <BL>has now the following permissions: <B>%s</B>",
+	playerGetRole = "<FC>%s <FC>has been promoted to <font color='#%x'>%s</font>!",
+	privatePlayerSetPermissions = "<BL>[<VI>•<BL>] %s<BL>: %s<BL> → %s", -- name: name → permissions
 }

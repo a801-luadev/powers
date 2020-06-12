@@ -86,11 +86,16 @@ local tree = {
 	"commands/powers.lua",
 	"commands/profile.lua",
 	"commands/leaderboard.lua",
+
 	"commands/map.lua",
+
 	"commands/msg.lua",
 	"commands/ban.lua",
 	"commands/unban.lua",
 	"commands/permban.lua",
+
+	"commands/promote.lua",
+
 	"events/eventChatCommand.lua",
 
 	"init.lua"

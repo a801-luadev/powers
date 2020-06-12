@@ -79,3 +79,17 @@ do
 			(discriminatorSize or 10), discriminator)
 	end
 end
+
+local validateNicknameAndGetID = function(str)
+	local targetPlayer = strToNickname(str, true)
+	local targetPlayerId = tfm.get.room.playerList[targetPlayer]
+	return targetPlayerId and targetPlayerId.id, targetPlayer
+end
+
+local messagePlayersWithPrivilege = function(message)
+	for playerName, data in next, tfm.get.room.playerList do
+		if playersWithPrivileges[data.id] then
+			chatMessage(message, playerName)
+		end
+	end
+end

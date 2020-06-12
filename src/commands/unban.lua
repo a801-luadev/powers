@@ -4,9 +4,8 @@ do
 		-- !unban name
 		if not (command[2] and hasPermission(playerName, permissions.unbanUser)) then return end
 
-		local targetPlayer = strToNickname(command[2], true)
-		local targetPlayerId = tfm.get.room.playerList[targetPlayer]
-		targetPlayerId = targetPlayerId and targetPlayerId.id
+		local targetPlayerId, targetPlayer = validateNicknameAndGetID(command[2])
+		if not targetPlayerId then return end
 
 		local time = bannedPlayers[targetPlayerId]
 		if not time then return end
