@@ -9,28 +9,28 @@ local permissions = {
 	sendRoomMessage    = 2 ^ 05,
 	banUser            = 2 ^ 06,
 	unbanUser          = 2 ^ 07,
-	permBanUser        = 2 ^ 08
+	permBanUser        = 2 ^ 08,
 
 	promoteUser        = 2 ^ 09,
 	demoteUser         = 2 ^ 10,
 }
 
 local rolePermissions = {
-	mapper = rolePermissions.mapperColor
-		+ rolePermissions.editLocalMapQueue
-		+ rolePermissions.saveLocalMapQueue,
+	mapper = permissions.mapperColor
+		+ permissions.editLocalMapQueue
+		+ permissions.saveLocalMapQueue,
 
-	moderator = rolePermissions.moderatorColor
-		+ rolePermissions.editLocalMapQueue
-		+ rolePermissions.sendRoomMessage
-		+ rolePermissions.banUser
-		+ rolePermissions.unbanUser
+	moderator = permissions.moderatorColor
+		+ permissions.editLocalMapQueue
+		+ permissions.sendRoomMessage
+		+ permissions.banUser
+		+ permissions.unbanUser,
 
 	administrator = 0
 }
 
 do
-	for _, v in next, rolePermissions do
-		permissionsCollections.administrator = permissionsCollections.administrator + v
+	for _, v in next, permissions do
+		rolePermissions.administrator = rolePermissions.administrator + v
 	end
 end

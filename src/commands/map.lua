@@ -7,7 +7,7 @@ do
 		if totalCurrentMaps == 0 or not command[2] then return end
 
 		if subCommand[command[2]] then
-			local permission = permission[subCommandPermission[command[2]]]
+			local permission = subCommandPermission[command[2]]
 			if not permission or hasPermission(playerName, permission) then
 				subCommand[command[2]](playerName, command)
 			end
@@ -49,7 +49,7 @@ do
 
 	-- Removes a map
 	subCommandPermission["rem"] = permissions.editLocalMapQueue
-	subCommand["rem"] = function(playerName, commands)
+	subCommand["rem"] = function(playerName, command)
 		local hasMaps, validMaps, totalMaps = getValidMaps(command[3])
 		if not hasMaps then return end
 
@@ -78,7 +78,7 @@ do
 	end
 
 	-- Saves the map queue
-	permission["save"] = permissions.saveLocalMapQueue
+	subCommandPermission["save"] = permissions.saveLocalMapQueue
 	subCommand["save"] = function(playerName)
 		local data = table_concat(maps, '@')
 

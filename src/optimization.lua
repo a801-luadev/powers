@@ -40,6 +40,7 @@ local enum_shamanObject = tfm.enum.shamanObject
 -- Mathematics
 local ceil   = math.ceil
 local cos    = math.cos
+local max    = math.max
 local min    = math.min
 local rad    = math.rad
 local random = math.random
@@ -60,6 +61,7 @@ local upper  = string.upper
 
 -- Table
 local table_concat = table.concat
+local table_insert = table.insert
 local table_remove = table.remove
 local table_sort   = table.sort
 
@@ -68,11 +70,14 @@ local band   = bit32.band
 local bor    = bit32.bor
 local bnot   = bit32.bnot
 
+-- OS
+local data = os.date
+local time = os.time
+
 -- Others
 local next         = next
 local rawset       = rawset
 local setmetatable = setmetatable
-local time         = os.time
 local tonumber     = tonumber
 local type         = type
 local unpack       = table.unpack

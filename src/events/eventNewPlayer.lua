@@ -52,7 +52,16 @@ eventNewPlayer = function(playerName)
 
 	players_insert("lobby", playerName)
 
-	if not isValidPlayer(playerName) then return end
+	chatMessage(getText.greeting, playerName)
+
+	local isValid, isBanned = isValidPlayer(playerName)
+	if not isValid then
+		if isBanned then
+			chatMessage(format(getText.isBanned, date("%d/%m/%Y", time() + isBanned),
+				isBanned / (60 * 60 * 1000)), playerName)
+		end
+		return
+	end
 
 	lowerSyncDelay(playerName)
 
@@ -70,6 +79,4 @@ eventNewPlayer = function(playerName)
 
 	-- Displayed once because the image is never removed
 	displayLifeBar(playerName)
-
-	chatMessage(getText.greeting, playerName)
 end

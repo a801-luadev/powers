@@ -35,13 +35,15 @@ end
 
 local isValidPlayer = function(playerName)
 	playerName = tfm.get.room.playerList[playerName]
+	local isBanned = bannedPlayers[playerName.id]
 	return playerName.id > 0 -- Is not souris
-		--sub(playerName, 1, 1) ~= "*"
-		and (time() - playerName.registrationDate)
-			>= (5 * 60 * 60 * 24 * 1000) -- Is a player for longer than 5 days
+		and not isBanned -- Is not banned
+		and (time() - playerName.registrationDate) >= (5 * 60 * 60 * 24 * 1000), -- Player 5+ days
+		isBanned
 end
 
 local playerCanTriggerEvent = function(playerName, cache)
+	if players.lobby[playerName] then return end
 	cache = cache or playerCache[playerName]
 
 	local time = time()
@@ -54,6 +56,7 @@ local playerCanTriggerEvent = function(playerName, cache)
 end
 
 local playerCanTriggerCallback = function(playerName, cache)
+	if players.lobby[playerName] then return end
 	cache = cache or playerCache[playerName]
 
 	local time = time()

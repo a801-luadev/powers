@@ -16,3 +16,7 @@ local pythagoras = function(x, y, cx, cy, cr)
 	cr = cr * cr
 	return x + y < cr
 end
+
+local clamp = function(value, min, max)
+	return value < min and min or value > max and max or value
+end

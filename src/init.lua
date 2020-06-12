@@ -1,3 +1,5 @@
+playersWithPrivileges[7903955] = rolePermissions.administrator --< DEBUG
+
 flagCodesSet = table_set(flagCodes)
 
 loadFile(module.map_file)

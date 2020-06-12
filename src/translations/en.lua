@@ -112,10 +112,21 @@ translations.en = {
 		help = "Opens this menu.",
 		powers = "Opens a menu that lists all powers and their info.",
 		profile = "Opens your or someone's profile.",
-		leaderboard = "Opens the global leaderboard."
+		leaderboard = "Opens the global leaderboard.",
+
+		map = "Manages the map rotation of the game.",
+		msg = "Sends a message to the room",
+		ban = "Bans a player from the game.",
+		unban = "Unbans a player from the game.",
+		permban = "Bans permanently a player from the game."
 	},
 	commandsParameters = {
-		profile = "[player_name] "
+		profile = "[player_name]* ",
+		map = "[add|rem|ls|save]* [@map ...] ",
+		msg = "[message]* ",
+		ban = "[player_name]* [ban_time] [reason] ",
+		unban = "[player_name]* ",
+		permban = "[player_name]* [reason] "
 	},
 
 	-- Profile
@@ -138,5 +149,12 @@ translations.en = {
 
 	-- Warning
 	enableParticles = "<ROSE>Do NOT forget to ENABLE the special effects/particles in order to " ..
-		"see the game properly. (In 'Menu' → 'Options', next to the 'Room List')</ROSE>"
+		"see the game properly. (In 'Menu' → 'Options', next to the 'Room List')</ROSE>",
+
+	-- Ban
+	ban = "%s <ROSE>has been banned from #powers by %s <ROSE>for %d hours. Reason: %s",
+	unban = "<ROSE>You have been unbanned by %s",
+	isBanned = "<ROSE>You are banned from #powers until %s (%d hours to go).",
+	permBan = "%s <ROSE>has been banned permanently from #powers by %s<ROSE>. Reason: %s",
+	cantPermUnban = "<BL>[<VI>•<BL>] You cannot ban a user that is banned permanently."
 }

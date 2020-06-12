@@ -23,6 +23,7 @@ local tree = {
 	"api/transformice.lua",
 	"api/xp.lua",
 	"api/players.lua",
+	"api/permissions.lua",
 
 	"api/filter.lua",
 	"interfaces/lifeBar.lua",
@@ -86,6 +87,9 @@ local tree = {
 	"commands/leaderboard.lua",
 	"commands/map.lua",
 	"commands/msg.lua",
+	"commands/ban.lua",
+	"commands/unban.lua",
+	"commands/permban.lua",
 	"events/eventChatCommand.lua",
 
 	"init.lua"

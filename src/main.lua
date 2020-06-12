@@ -65,3 +65,4 @@ local leaderboard = {
 }
 
 local playersWithPrivileges = { }
+local bannedPlayers = { }
