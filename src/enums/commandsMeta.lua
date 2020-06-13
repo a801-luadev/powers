@@ -26,6 +26,18 @@ local commandsMeta = {
 		index = "mapSaveQueue",
 		permission = permissions.saveLocalMapQueue
 	},
+	{
+		name = "review",
+		permission = permissions.enableReviewMode
+	},
+	{
+		name = "np",
+		permission = permissions.enableReviewMode
+	},
+	{
+		name = "npp",
+		permission = permissions.enableReviewMode
+	},
 
 	{
 		name = "msg",

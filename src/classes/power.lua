@@ -180,7 +180,7 @@ do
 	end
 
 	Power.getNewPlayerData = function(self, playerLevel, currentTime)
-		return playerLevel >= self.level and {
+		return (playerLevel >= self.level or isCurrentMapOnReviewMode) and {
 			remainingUses = self.useLimit,
 			cooldown = currentTime + self.useCooldown
 		} or nil
@@ -237,7 +237,11 @@ do
 
 	Power.checkTriggerPossibility = function(self)
 		if self.triggerPossibility then
-			if random(self.triggerPossibility) ~= random(self.triggerPossibility) then
+			local possibility = self.triggerPossibility
+			if isCurrentMapOnReviewMode then
+				possibility = possibility / 2
+			end
+			if random(possibility) ~= random(possibility) then
 				return false
 			end
 		end

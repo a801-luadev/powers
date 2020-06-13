@@ -1,5 +1,5 @@
 do
-	local moderatorFormat = format("font color='#%x'", roleColors.moderator)
+	local moderatorColor = format("font color='#%x'", roleColors.moderator)
 
 	-- Unbans a player
 	commands["unban"] = function(playerName, command)
@@ -19,7 +19,7 @@ do
 
 		bannedPlayers[targetPlayerId] = nil
 		chatMessage(format(getText.unban, prettifyNickname(playerName, nil, nil, nil,
-			moderatorFormat)), targetPlayer)
+			moderatorColor)), targetPlayer)
 
 		buildAndSaveDataFile()
 	end

@@ -92,6 +92,9 @@ local tree = {
 	"commands/leaderboard.lua",
 
 	"commands/map.lua",
+	"commands/review.lua",
+	"commands/np.lua",
+	"commands/npp.lua",
 
 	"commands/msg.lua",
 	"commands/ban.lua",

@@ -43,7 +43,7 @@ translations.en = {
 		judgmentDay = "Revives all dead enemies, them all linked to each other."
 	},
 
-	unlockPower = "<FC>[<VI>•<FC>] You have unlocked the following power(s): %s",
+	unlockPower = "<FC>[<J>•<FC>] You have unlocked the following power(s): %s",
 
 	-- Level names
 	levelName = {
@@ -62,7 +62,7 @@ translations.en = {
 		[120] = "The Void"
 	},
 
-	newLevel = "<FC>%s<FC> just reached level <VI>%d<FC>!",
+	newLevel = "<FC>%s<FC> just reached level <B>%d</B>!",
 	level = "Level %d",
 
 	-- Help
@@ -116,6 +116,9 @@ translations.en = {
 
 		mapEditQueue = "Manages the map rotation of the game.",
 		mapSaveQueue = "Saves the map rotation of the game.",
+		review = "Enables the review mode.",
+		np = "Loads a new map.",
+		npp = "Schedules the next map to be loaded.",
 
 		msg = "Sends a message to the room.",
 		ban = "Bans a player from the game.",
@@ -130,6 +133,8 @@ translations.en = {
 
 		mapEditQueue = "[add|rem]<R>*</R> [@map ...]<R>*</R> ",
 		mapSaveQueue = "[save]<R>*</R> ",
+		np = "[@map]<R>*</R> ",
+		npp = "[@map]<R>*</R> ",
 
 		msg = "[message]<R>*</R> ",
 		ban = "[player_name]<R>*</R> [ban_time] [reason] ",
@@ -156,13 +161,16 @@ translations.en = {
 		"a few seconds.",
 
 	-- Map management
-	addMap = "<T>[<VI>•<T>] The map <J>@%s</J> was added to the local map queue.",
-	remMap = "<T>[<VI>•<T>] The map <J>@%s</J> was removed from the local map queue.",
-	listMaps = "<T>[<VI>•<T>] Maps (<J>#%s</J>): %s",
+	addMap = "<BV>[<FC>•<BV>] The map <J>@%s</J> was added to the local map queue.",
+	remMap = "<BV>[<FC>•<BV>] The map <J>@%s</J> was removed from the local map queue.",
+	listMaps = "<BV>[<FC>•<BV>] Maps (<J>#%s</J>): %s",
 
 	-- Warning
 	enableParticles = "<ROSE>Do NOT forget to ENABLE the special effects/particles in order to " ..
 		"see the game properly. (In 'Menu' → 'Options', next to the 'Room List')</ROSE>",
+
+	-- Internal Warning
+	internalMessage = "<BL>[<VI>•<BL>] %s <BL>[%s] → %s",
 
 	-- Ban
 	ban = "%s <ROSE>has been banned from #powers by %s <ROSE>for %d hours. Reason: %s",
@@ -177,6 +185,11 @@ translations.en = {
 		"<B>%s</B>",
 	playerGetRole = "<FC>%s <FC>has been promoted to <font color='#%x'>%s</font>!",
 	playerLoseRole = "<FC>%s <FC>is not <font color='#%x'>%s</font> anymore.",
-	privatePlayerSetPermissions = "<BL>[<VI>•<BL>] %s <BL>[promote] [%s]<BL> → %s",
-	privatePlayerUnsetPermissions = "<BL>[<VI>•<BL>] %s <BL>[demote] [%s]<BL> → %s",
+
+	-- Review
+	enableReviewMode = "<BV>[<FC>•<BV>] The <FC>Map Review Mode<BV> is enabled. Next rounds " ..
+		"will <B>not</B> count stats and the maps that appear are in test for the map rotation " ..
+		"of the module. All powers have been enabled and divine powers are more likely to happen!",
+	disableReviewMode = "<BV>[<FC>•<BV>] The <FC>Map Review Mode<BV> has been disabled and " ..
+		"everything will be back to normal in the next round!"
 }

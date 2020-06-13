@@ -7,6 +7,8 @@ eventNewGame = function()
 
 	nextMapLoadTentatives = 0
 	hasTriggeredRoundEnd = false
+	isCurrentMapOnReviewMode = isReviewMode
+	nextMapToLoad = nil
 
 	if isLobby then
 		setGameTime(5)
@@ -55,7 +57,8 @@ eventNewGame = function()
 		end
 	end
 
-	canSaveData = (isOfficialRoom and tfm.get.room.uniquePlayers >= module.min_players)
+	canSaveData = (isOfficialRoom and tfm.get.room.uniquePlayers >= module.min_players
+		and not isReviewMode)
 	-- Adds extra XP
 	if canSaveData then
 		timer:start(giveExperience, module.extra_xp_in_round_seconds, 1)

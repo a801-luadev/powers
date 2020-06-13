@@ -24,34 +24,18 @@ local module = {
 	lobbyMap = 1995971
 }
 
-local isOfficialRoom = byte(tfm.get.room.name, 2) ~= 3
-
+-- Important tables
 local playerCache = { }
 
-local powers, powersSortedByLevel, Power = { }, { }
+local powers = { }
 
-local isLowQuality = false
-local lowQualityCounter = 0
-
-local hasTriggeredRoundEnd = false
-
-local canTriggerPowers = false
-local resetPlayersDefaultSize = false
-
-local canSaveData = false
+local maps = { }
 
 local dataFileContent = {
 	[1] = nil, -- Maps
 	[2] = nil, -- Privileges
 	[3] = nil -- Banned
 }
-local isSaveDataFileScheduled = false
-
-local maps, totalCurrentMaps, mapHashes = { }, 0
-local currentMap = 0
-local nextMapLoadTentatives = 0
-
-local isLobby, wasLobby = false, false
 
 local leaderboard = {
 	loaded = false,
@@ -73,5 +57,27 @@ local leaderboard = {
 	sets = { }
 }
 
+local powersSortedByLevel = { }
+
 local playersWithPrivileges = { }
+
 local bannedPlayers = { }
+
+-- Important settings
+local isOfficialRoom = byte(tfm.get.room.name, 2) ~= 3
+
+local canSaveData = false
+local canTriggerPowers = false
+local isLowQuality = false
+local isReviewMode, isCurrentMapOnReviewMode = false, false
+
+local totalCurrentMaps, currentMap, nextMapLoadTentatives, mapHashes = 0, 0, 0
+local nextMapToLoad
+
+local hasTriggeredRoundEnd, isLobby, wasLobby = false, false, false
+
+local isSaveDataFileScheduled = false
+
+local resetPlayersDefaultSize = false
+
+local Power

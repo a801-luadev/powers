@@ -9,9 +9,8 @@ do
 
 		local prettyTargetPlayer = prettifyNickname(targetPlayer, 10, nil, "/B><G", 'B')
 
-		messagePlayersWithPrivilege(format(getText.privatePlayerUnsetPermissions,
-			prettifyNickname(playerName, 10, nil, "/B><G", 'B'), prettyTargetPlayer,
-			table_concat(command, " - ", 3)))
+		messagePlayersWithPrivilege(format(getText.internalMessage, prettifyNickname(playerName, 10,
+			nil, "/B><G", 'B'), command[1], table_concat(command, ' ', 2)))
 
 		local removedPermissions, permissionsCounter = { }, 0
 		local rolePerm, perm, permRemoved

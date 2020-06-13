@@ -67,6 +67,10 @@ eventNewPlayer = function(playerName)
 		playerCache[playerName].commands = generateCommandHelp(playerId)
 	end
 
+	if isReviewMode then
+		chatMessage(getText.enableReviewMode, playerName)
+	end
+
 	lowerSyncDelay(playerName)
 
 	-- May bind duplicates

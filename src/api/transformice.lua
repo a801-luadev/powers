@@ -47,10 +47,11 @@ local nextMap = function()
 	nextMapLoadTentatives = nextMapLoadTentatives + 1
 	if nextMapLoadTentatives == 4 then
 		nextMapLoadTentatives = 0
+		nextMapToLoad = nil
 		setNextMapIndex()
 	end
 
-	newGame(maps[currentMap])
+	newGame(nextMapToLoad or maps[currentMap])
 end
 
 local strToNickname = function(str, checkDiscriminator)

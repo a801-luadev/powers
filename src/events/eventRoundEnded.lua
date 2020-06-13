@@ -1,6 +1,6 @@
 eventRoundEnded = function()
-	--DEBUG--wasLobby = isLobby
-	--DEBUG--isLobby = (players._count.room <= 1)
+	wasLobby = isLobby
+	isLobby = (not isReviewMode and players._count.room <= 1)
 
 	hasTriggeredRoundEnd = not isLobby
 
