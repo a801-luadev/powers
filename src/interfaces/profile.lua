@@ -54,8 +54,10 @@ do
 			nicknameColor = format(nicknameColorFormat, roleColors.administrator)
 		elseif hasPermission(playerName, permissions.moderatorColor) then
 			nicknameColor = format(nicknameColorFormat, roleColors.moderator)
-		elseif hasPermission(playerName, permissions.mapperColor) then
-			nicknameColor = format(nicknameColorFormat, roleColors.mapper)
+		elseif hasPermission(playerName, permissions.mapReviewerColor) then
+			nicknameColor = format(nicknameColorFormat, roleColors.mapReviewer)
+		elseif hasPermission(playerName, permissions.translatorColor) then
+			nicknameColor = format(nicknameColorFormat, roleColors.translator)
 		end
 
 		local x, y = 260, 55
@@ -88,5 +90,14 @@ do
 				y = y + 44
 			end
 		end
+
+		-- Badges
+		y = y + 44
+
+		interface:addImage(interfaceImages.largeRectangle, imageTargets.interfaceRectangle, x - 2,
+			y - 2, playerName)
+
+		interface:addTextArea(format(dataNameFormat, getText.profileData.badges), playerName, x - 8,
+			y - 12, nil, nil, 1, 1, 0, true)
 	end
 end

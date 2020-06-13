@@ -82,7 +82,7 @@ translations.en = {
 			"%s\n\n" .. -- enableParticles
 			"This game has been developed by %s"
 		,
-		[2] = "<FC><p align='center'>GENERAL COMMAN DS</p><N>\n\n", -- commands
+		[2] = "<FC><p align='center'>GENERAL COMMANDS</p><N>\n\n<font size='12'>", -- commands
 		[3] = "<FC><p align='center'>CONTRIBUTE<N>\n\n" ..
 			"We love Open Source <font color='#E91E63'>♥</font>! You can view and modify " ..
 				"the source code of this game on <a href='event:print_" ..
@@ -108,13 +108,14 @@ translations.en = {
 	},
 
 	-- Commands
-	commands = {
+	commandDescriptions = {
 		help = "Opens this menu.",
 		powers = "Opens a menu that lists all powers and their info.",
 		profile = "Opens your or someone's profile.",
 		leaderboard = "Opens the global leaderboard.",
 
-		map = "Manages the map rotation of the game.",
+		mapEditQueue = "Manages the map rotation of the game.",
+		mapSaveQueue = "Saves the map rotation of the game.",
 
 		msg = "Sends a message to the room.",
 		ban = "Bans a player from the game.",
@@ -125,25 +126,28 @@ translations.en = {
 		demote = "Demotes a player from a specific role or removes specific permissions from them."
 	},
 	commandsParameters = {
-		profile = "[player_name]* ",
+		profile = "[player_name] ",
 
-		map = "[add|rem|ls|save]* [@map ...] ",
+		mapEditQueue = "[add|rem]<R>*</R> [@map ...]<R>*</R> ",
+		mapSaveQueue = "[save]<R>*</R> ",
 
-		msg = "[message]* ",
-		ban = "[player_name]* [ban_time] [reason] ",
-		unban = "[player_name]* ",
-		permban = "[player_name]* [reason] ",
+		msg = "[message]<R>*</R> ",
+		ban = "[player_name]<R>*</R> [ban_time] [reason] ",
+		unban = "[player_name]<R>*</R> ",
+		permban = "[player_name]<R>*</R> [reason] ",
 
-		promote = "[player_name]* [permission_name|role_name ...] ",
-		demote = "[player_name]* [permission_name|role_name ...] ",
+		promote = "[player_name]<R>*</R> [permission_name|role_name ...]<R>*</R> ",
+		demote = "[player_name]<R>*</R> [permission_name|role_name ...]<R>*</R> "
 	},
+	["or"] = "or",
 
 	-- Profile
 	profileData = {
 		rounds = "Rounds",
 		victories = "Victories",
 		kills = "Kills",
-		xp = "Experience"
+		xp = "Experience",
+		badges = "Badges"
 	},
 
 	-- Leaderboard

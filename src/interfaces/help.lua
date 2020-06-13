@@ -1,25 +1,24 @@
 local displayHelp, updateHelp
 do
 	-- Format translations
+	local helpContent = getText.helpContent
 	do
 		-- Intro
-		getText.helpContent[1] = format(getText.helpContent[1], getText.enableParticles,
+		helpContent[1] = format(getText.helpContent[1], getText.enableParticles,
 			prettifyNickname(module.author, 11, nil, nil, "font color='#8FE2D1'"))
-
-		-- Commands
-		local commands, parameters = "<V><B>!%s</B> %s<N>- %s", getText.commandsParameters
-
-		local data, index = { }, 0
-		for k, v in next, getText.commands do
-			index = index + 1
-			data[index] = format(commands, k, (parameters[k] or ''), v)
-		end
-		getText.helpContent[2] = getText.helpContent[2] .. table_concat(data, '\n')
 	end
 
 	-- Menu
 	local contentFormat = "<font size='14'>"
 	local tabStr = "<font size='1'>\n</font><p align='center'>%s<a href='event:helpTab_%s'>%s\n"
+
+	local getPageContent = function(page, _cache)
+		if page == 2 then
+			return helpContent[2] .. (_cache.commands or '?')
+		else
+			return helpContent[page]
+		end
+	end
 
 	displayHelp = function(playerName, _cache)
 		_cache = _cache or playerCache[playerName]
@@ -31,7 +30,8 @@ do
 		local x, y, w = 100, 65, 503
 
 		prettyUI
-			.new(x, y, w, 278, playerName, contentFormat .. getText.helpContent[helpPage], _cache)
+			.new(x, y, w, 278, playerName, contentFormat .. getPageContent(helpPage, _cache),
+				_cache)
 			:setCloseButton()
 
 		x = x + w + 5
@@ -58,7 +58,7 @@ do
 
 		-- Main menu
 		updateTextArea(_cache.prettyUIs[1].contentTextAreaId,
-			contentFormat .. getText.helpContent[nextHelpPage], playerName)
+			contentFormat .. getPageContent(nextHelpPage, _cache), playerName)
 
 		_cache.helpPage = nextHelpPage
 	end

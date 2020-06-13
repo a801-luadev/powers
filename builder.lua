@@ -39,6 +39,7 @@ local tree = {
 	"powers.lua",
 	"sortedPowers.lua",
 
+	"enums/commandsMeta.lua",
 	"api/data.lua",
 
 	"leaderboard.lua",

@@ -15,7 +15,8 @@ local levelColors = {
 }
 
 local roleColors = {
-	mapper        = 0x80C96B,
-	moderator     = 0xBABD2F,
-	administrator = 0xA96BC9
+	translator    = 0x6CC19F,
+	mapReviewer   = 0x3BA4E6,
+	moderator     = 0xE9E654,
+	administrator = 0xB69EFD
 }

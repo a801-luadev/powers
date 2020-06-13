@@ -35,6 +35,7 @@ eventNewPlayer = function(playerName)
 			isHelpOpen = false,
 			helpPage = 1,
 			helpTabs = { },
+			commands = nil,
 
 			-- Powers interface
 			isPowersOpen = false,
@@ -54,12 +55,16 @@ eventNewPlayer = function(playerName)
 
 	chatMessage(getText.greeting, playerName)
 
-	local isValid, isBanned = isValidPlayer(playerName)
+	local isValid, isBanned, playerId = isValidPlayer(playerName)
 	if not isValid then
 		if isBanned then
 			warnBanMessage(playerName, isBanned)
 		end
 		return
+	end
+
+	if next(playersWithPrivileges) then
+		playerCache[playerName].commands = generateCommandHelp(playerId)
 	end
 
 	lowerSyncDelay(playerName)

@@ -9,10 +9,11 @@ local interfaceImages = {
 	lifeBar = "172017a8fa6.png",
 	levelBar = "17262a19ccf.png",
 
-	rectangle = "1724c8e1e61.jpg",
+	rectangle = "1724c8e1e61.jpg", -- Powers
 	highlightRectangleBorder = "1724ca7c279.png",
-	smallRectangle = "172642bf9ed.jpg",
+	smallRectangle = "172642bf9ed.jpg", -- Profile
 	leaderboardRectangle = "172778a3188.jpg",
+	largeRectangle = "172aeae9445.jpg", -- Profile
 
 	-- 30x30
 	xButton = "17280a523f6.png",

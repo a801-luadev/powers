@@ -1,4 +1,6 @@
 do
+	local moderatorFormat = format("font color='#%x'", roleColors.moderator)
+
 	-- Bans a player temporarily
 	commands["ban"] = function(playerName, command, isPermanent)
 		-- !ban name time? reason?
@@ -16,7 +18,7 @@ do
 		bannedPlayers[targetPlayerId] = time * 60 * 60 * 1000 -- hours
 
 		local prettyTargetPlayer = prettifyNickname(targetPlayer, nil, nil, nil, "ROSE")
-		local prettyPlayer = prettifyNickname(playerName, nil, nil, nil, 'J')
+		local prettyPlayer = prettifyNickname(playerName, nil, nil, nil, moderatorFormat)
 		command = table_concat(command, ' ', 4)
 
 		if not isPermanent then

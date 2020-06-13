@@ -45,7 +45,7 @@ local isValidPlayer = function(playerName)
 	return playerName.id > 0 -- Is not souris
 		and not isBanned -- Is not banned
 		and (time() - playerName.registrationDate) >= (5 * 60 * 60 * 24 * 1000), -- Player 5+ days
-		isBanned
+		isBanned, playerName.id
 end
 
 local playerCanTriggerEvent = function(playerName, cache)
