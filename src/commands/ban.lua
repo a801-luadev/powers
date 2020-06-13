@@ -7,10 +7,7 @@ do
 		local targetPlayerId, targetPlayer = validateNicknameAndGetID(command[2])
 		if not targetPlayerId then return end
 
-		killPlayer(targetPlayer)
-
-		players_remove("room", targetPlayer)
-		players_insert("lobby", targetPlayer)
+		players_lobby(targetPlayer)
 
 		local time = command[3]
 		if not isPermanent then

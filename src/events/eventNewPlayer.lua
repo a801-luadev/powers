@@ -57,8 +57,7 @@ eventNewPlayer = function(playerName)
 	local isValid, isBanned = isValidPlayer(playerName)
 	if not isValid then
 		if isBanned then
-			chatMessage(format(getText.isBanned, date("%d/%m/%Y", time() + isBanned),
-				isBanned / (60 * 60 * 1000)), playerName)
+			warnBanMessage(playerName, isBanned)
 		end
 		return
 	end

@@ -34,7 +34,7 @@ local buildAndSaveDataFile = function()
 		counter = counter + 1
 		dataStr[counter] = playerId
 		counter = counter + 1
-		dataStr[counter] = permissions
+		dataStr[counter] = format("%x", permissions) -- Saves space
 	end
 	dataFileContent[2] = table_concat(dataStr, '#')
 
@@ -44,7 +44,7 @@ local buildAndSaveDataFile = function()
 		counter = counter + 1
 		dataStr[counter] = playerId
 		counter = counter + 1
-		dataStr[counter] = remainingTime
+		dataStr[counter] = format("%x", remainingTime / (60 * 60 * 1000)) -- Saves space
 	end
 	dataFileContent[3] = table_concat(dataStr, '#')
 
@@ -52,5 +52,41 @@ local buildAndSaveDataFile = function()
 	if not isSaveDataFileScheduled then
 		isSaveDataFileScheduled = true
 		saveFile(table_concat(dataFileContent, ' '), module.data_file)
+	end
+end
+
+local parseDataFile = function(data)
+	--[[
+		data[1] -> Maps
+		data[2] -> Privileges
+		data[3] -> Banned
+	]]
+	data = str_split(data, ' ', true)
+	dataFileContent = data
+
+	-- Loads all maps
+	maps = str_split(tostring(data[1]), '@', true, tonumber)
+	mapHashes = table_set(maps)
+	table_shuffle(maps)
+	totalCurrentMaps = #maps
+	-- Init first map
+	setGameTime(0)
+
+	-- Loads all privileged players
+	for playerId, permissions in gmatch(tostring(data[2]), "(%d+)#(%x+)") do
+		playersWithPrivileges[playerId * 1] = tonumber(permissions, 16)
+	end
+
+	-- Loads all banned players
+	for playerId, remainingTime in gmatch(tostring(data[3]), "(%d+)#(%x+)") do
+		bannedPlayers[playerId * 1] = tonumber(remainingTime, 16) * (60 * 60 * 1000)
+	end
+	-- Horizontal ban check
+	for playerName, data in next, tfm.get.room.playerList do
+		local data = bannedPlayers[data.id]
+		if data then
+			players_lobby(playerName)
+			warnBanMessage(playerName, data)
+		end
 	end
 end

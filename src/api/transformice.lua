@@ -83,7 +83,12 @@ end
 local validateNicknameAndGetID = function(str)
 	local targetPlayer = strToNickname(str, true)
 	local targetPlayerId = tfm.get.room.playerList[targetPlayer]
-	return targetPlayerId and targetPlayerId.id, targetPlayer
+	targetPlayerId = targetPlayerId and targetPlayerId.id
+	if targetPlayerId == 0 then
+		targetPlayerId = nil
+	end
+
+	return targetPlayerId, targetPlayer
 end
 
 local messagePlayersWithPrivilege = function(message)

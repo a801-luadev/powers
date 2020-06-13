@@ -45,7 +45,7 @@ local dataFileContent = {
 	[2] = nil, -- Privileges
 	[3] = nil -- Banned
 }
-local isSaveDataFileScheduled = true
+local isSaveDataFileScheduled = false
 
 local maps, totalCurrentMaps, mapHashes = { }, 0
 local currentMap = 0

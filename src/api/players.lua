@@ -33,6 +33,12 @@ local players_remove_all = function(playerName)
 	end
 end
 
+local players_lobby = function(playerName)
+	killPlayer(playerName)
+	players_remove_all(playerName)
+	players_insert("lobby", playerName)
+end
+
 local isValidPlayer = function(playerName)
 	playerName = tfm.get.room.playerList[playerName]
 	local isBanned = bannedPlayers[playerName.id]
@@ -121,4 +127,9 @@ local checkPlayerLevel = function(playerName, cache)
 		chatMessage(format(getText.unlockPower, "<B>" .. table_concat(levelNames, "</B>, <B>") ..
 			"</B>"), playerName)
 	end
+end
+
+local warnBanMessage = function(playerName, banTime)
+	chatMessage(format(getText.isBanned, date("%d/%m/%Y", time() + banTime),
+		banTime / (60 * 60 * 1000)), playerName)
 end

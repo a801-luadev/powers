@@ -71,7 +71,7 @@ local bor    = bit32.bor
 local bnot   = bit32.bnot
 
 -- OS
-local data = os.date
+local date = os.date
 local time = os.time
 
 -- Others
