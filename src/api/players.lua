@@ -133,3 +133,18 @@ local warnBanMessage = function(playerName, banTime)
 	chatMessage(format(getText.isBanned, date("%d/%m/%Y", time() + banTime),
 		banTime / (60 * 60 * 1000)), playerName)
 end
+
+local generateBadgesList = function(playerName, _cache)
+	local playerBadgesInt = playerData:get(playerName, "badges")
+
+	local playerBadges, counter = { }, 0
+	for b = 1, #badgesOrder do
+		b = badgesOrder[b]
+		if band(badges[b], playerBadgesInt) > 0 then
+			counter = counter + 1
+			playerBadges[counter] = b
+		end
+	end
+
+	(_cache or playerCache[playerName]).badges = playerBadges
+end

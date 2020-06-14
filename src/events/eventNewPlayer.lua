@@ -44,6 +44,7 @@ eventNewPlayer = function(playerName)
 
 			-- Profile interface
 			isProfileOpen = false,
+			badges = nil,
 
 			-- Leaderboard interface
 			isLeaderboardOpen = false,

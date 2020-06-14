@@ -72,7 +72,7 @@ do
 		-- Data
 		local sumX
 		for i = 1, totalData do
-			sumX = x + ((i + 1) % 2)*135
+			sumX = x + ((i - 1) % 2)*135
 
 			interface:addTextArea(format(dataNameFormat, getText.profileData[dataNames[i]]),
 				playerName, sumX - 8, y - 12, nil, nil, 1, 1, 0, true)
@@ -99,5 +99,20 @@ do
 
 		interface:addTextArea(format(dataNameFormat, getText.profileData.badges), playerName, x - 8,
 			y - 12, nil, nil, 1, 1, 0, true)
+
+		local targetBadges = targetCacheData.badges
+		if not targetBadges then return end
+
+		y = y + 4
+		x = x + 8
+
+		for b = 1, #targetBadges do
+			sumX = x + ((b - 1) % 8)*30
+			interface:addImage(badgeImages[targetBadges[b]], imageTargets.interfaceIcon, sumX, y,
+				playerName)
+			if b % 8 == 0 then
+				y = y + 30
+			end
+		end
 	end
 end

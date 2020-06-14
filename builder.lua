@@ -11,6 +11,7 @@ local tree = {
 	"enums/emotes.lua",
 	"enums/flags.lua",
 	"enums/permissions.lua",
+	"enums/badges.lua",
 
 	"classes/dataHandler.lua",
 	"playerData.lua",
