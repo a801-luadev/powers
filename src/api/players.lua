@@ -149,14 +149,19 @@ local generateBadgesList = function(playerName, _cache)
 	(_cache or playerCache[playerName]).badges = playerBadges
 end
 
-local giveBadge = function(playerName, badge, _forceSave)
-	badges = badges[badges]
-	if not badges then return end
+local giveBadge = function(playerName, badge, _cache, _forceSave)
+	badge = badges[badge]
+	if not badge then return end
+
+	local playerBadges = playerData:get(playerName, "badges")
+	badge = bor(playerBadges, badge)
+	if badge == playerBadges then return end
 
 	playerData
-		:set(playerName, "badges", bor(playerData:get(playerName, "badges"), badge), nil,
-			_forceSave)
+		:set(playerName, "badges", badge, nil, _forceSave)
 		:save(playerName, _forceSave)
+
+	generateBadgesList(playerName, (_cache or playerCache[playerName]))
 
 	chatMessage(format(getText.getBadge, prettifyNickname(playerName, 10, nil, "/B><G", 'B')))
 end

@@ -97,11 +97,11 @@ do
 		-- Resetting data is unnecessary, GC should handle the instance
 
 		local interfaceImages = self.interfaceImages
-		for i = (iniImg or 1), (endImg or self.totalInterfaceImages) do
+		for i = (endImg or self.totalInterfaceImages), (iniImg or 1), -1 do
 			removeImage(interfaceImages[i])
 		end
 
-		for t = (iniTxt or self.initInterfaceId), (endTxt or self.interfaceId) do
+		for t = (endTxt or self.interfaceId), (iniTxt or self.initInterfaceId), -1 do
 			removeTextArea(t, self.playerName)
 		end
 	end
