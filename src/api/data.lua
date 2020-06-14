@@ -28,7 +28,7 @@ end
 local generateCommandHelp
 do
 	generateCommandHelp = function(playerId)
-		local playerPermissions = playersWithPrivileges[playerId]
+		local playerPermissions = playersWithPrivileges[playerId] or 0
 
 		local commands, totalCommands = { }, 0
 		for cmd = 1, #commandsMeta do
@@ -64,7 +64,7 @@ local buildAndSaveDataFile = function()
 		counter = counter + 1
 		dataStr[counter] = playerId
 		counter = counter + 1
-		dataStr[counter] = format("%x", remainingTime / (60 * 60 * 1000)) -- Saves space
+		dataStr[counter] = format("%x", remainingTime) -- Saves space
 	end
 	dataFileContent[3] = table_concat(dataStr, '#')
 
@@ -99,18 +99,29 @@ local parseDataFile = function(data)
 
 	-- Loads all banned players
 	for playerId, remainingTime in gmatch(tostring(data[3]), "(%d+)#(%x+)") do
-		bannedPlayers[playerId * 1] = tonumber(remainingTime, 16) * (60 * 60 * 1000)
+		bannedPlayers[playerId * 1] = tonumber(remainingTime, 16)
 	end
 
-	-- Horizontal ban and commands check
-	local banTime
+	-- Horizontal (un)ban and commands check
+	local fileHasChanged = false
+
+	local time, banTime = time()
 	for playerName, data in next, tfm.get.room.playerList do
 		banTime = bannedPlayers[data.id]
 		if banTime then
-			players_lobby(playerName)
-			warnBanMessage(playerName, banTime)
+			if time > banTime then
+				bannedPlayers[data.id] = nil
+				fileHasChanged = true
+			else
+				players_lobby(playerName)
+				warnBanMessage(playerName, banTime)
+			end
 		elseif playerCache[playerName] then
 			playerCache[playerName].commands = generateCommandHelp(data.id)
 		end
+	end
+
+	if fileHasChanged then
+		buildAndSaveDataFile()
 	end
 end

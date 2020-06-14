@@ -175,7 +175,7 @@ translations.en = {
 	-- Ban
 	ban = "%s <ROSE>has been banned from #powers by %s <ROSE>for %d hours. Reason: %s",
 	unban = "<ROSE>You have been unbanned by %s",
-	isBanned = "<ROSE>You are banned from #powers until %s (%d hours to go).",
+	isBanned = "<ROSE>You are banned from #powers until GMT+2 %s (%d hours to go).",
 	permBan = "%s <ROSE>has been banned permanently from #powers by %s<ROSE>. Reason: %s",
 	cantPermUnban = "<BL>[<VI>•<BL>] You cannot ban a user that is banned permanently.",
 

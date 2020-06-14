@@ -130,8 +130,8 @@ local checkPlayerLevel = function(playerName, cache)
 end
 
 local warnBanMessage = function(playerName, banTime)
-	chatMessage(format(getText.isBanned, date("%d/%m/%Y", time() + banTime),
-		banTime / (60 * 60 * 1000)), playerName)
+	chatMessage(format(getText.isBanned, date("%d/%m/%Y", banTime),
+		1 + (banTime - time()) / (60 * 60 * 1000)), playerName)
 end
 
 local generateBadgesList = function(playerName, _cache)
