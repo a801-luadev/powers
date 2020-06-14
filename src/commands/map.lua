@@ -2,9 +2,11 @@ do
 	local subCommand = { }
 	local subCommandPermission = { }
 
+	local hasQueueChanged = false
+
 	-- Manages the module maps
 	commands["map"] = function(playerName, command)
-		if totalCurrentMaps == 0 or not command[2] then return end
+		if totalCurrentMaps == 0 or not command[2] and dataFileContent[1] then return end
 
 		if subCommand[command[2]] then
 			local permission = subCommandPermission[command[2]]
@@ -15,11 +17,9 @@ do
 	end
 
 	local getValidMaps = function(subParameter)
-		local entries, totalEntries = str_split(subParameter, "[, ]+")
-
 		local validMaps, totalMaps, tmpMapCode, tmpIsMapCode = { }, 0
-		for i = 1, totalEntries do
-			tmpIsMapCode, tmpMapCode = isMapCode(entries[i])
+		for i = 3, #subParameter do
+			tmpIsMapCode, tmpMapCode = isMapCode(subParameter[i])
 			if tmpIsMapCode then
 				totalMaps = totalMaps + 1
 				validMaps[totalMaps] = tmpMapCode
@@ -32,7 +32,7 @@ do
 	-- Adds a new map
 	subCommandPermission["add"] = permissions.editLocalMapQueue
 	subCommand["add"] = function(playerName, command)
-		local hasMaps, validMaps, totalMaps = getValidMaps(command[3])
+		local hasMaps, validMaps, totalMaps = getValidMaps(command)
 		if not hasMaps then return end
 
 		local map
@@ -42,6 +42,7 @@ do
 				totalCurrentMaps = totalCurrentMaps + 1
 				maps[totalCurrentMaps] = map
 				mapHashes[map] = true
+				hasQueueChanged = true
 				chatMessage(format(getText.addMap, map))
 			end
 		end
@@ -50,7 +51,7 @@ do
 	-- Removes a map
 	subCommandPermission["rem"] = permissions.editLocalMapQueue
 	subCommand["rem"] = function(playerName, command)
-		local hasMaps, validMaps, totalMaps = getValidMaps(command[3])
+		local hasMaps, validMaps, totalMaps = getValidMaps(command)
 		if not hasMaps then return end
 
 		local map
@@ -66,6 +67,7 @@ do
 				end
 
 				mapHashes[map] = nil
+				hasQueueChanged = true
 				chatMessage(format(getText.remMap, map))
 			end
 		end
@@ -80,6 +82,8 @@ do
 	-- Saves the map queue
 	subCommandPermission["save"] = permissions.saveLocalMapQueue
 	subCommand["save"] = function(playerName)
+		if not hasQueueChanged then return end
+		hasQueueChanged = false
 		buildAndSaveDataFile()
 		subCommand["ls"](playerName)
 	end

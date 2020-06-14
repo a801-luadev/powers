@@ -4,7 +4,8 @@ do
 	-- Bans a player temporarily
 	commands["ban"] = function(playerName, command, isPermanent)
 		-- !ban name time? reason?
-		if not (command[2] and hasPermission(playerName, permissions.banUser)) then return end
+		if not (command[2] and hasPermission(playerName, permissions.banUser)
+			and dataFileContent[2]) then return end
 
 		local targetPlayerId, targetPlayer = validateNicknameAndGetID(command[2])
 		if not targetPlayerId then return end

@@ -4,7 +4,8 @@ do
 	-- Unbans a player
 	commands["unban"] = function(playerName, command)
 		-- !unban name
-		if not (command[2] and hasPermission(playerName, permissions.unbanUser)) then return end
+		if not (command[2] and hasPermission(playerName, permissions.unbanUser)
+			and dataFileContent[2]) then return end
 
 		local targetPlayerId, targetPlayer = validateNicknameAndGetID(command[2])
 		if not targetPlayerId then return end

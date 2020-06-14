@@ -2,7 +2,8 @@ do
 	-- Removes specific permissions from a player
 	commands["demote"] = function(playerName, command)
 		-- !demote name permissions
-		if not (command[3] and hasPermission(playerName, permissions.demoteUser)) then return end
+		if not (command[3] and hasPermission(playerName, permissions.demoteUser)
+			and dataFileContent[2]) then return end
 
 		local targetPlayerId, targetPlayer = validateNicknameAndGetID(command[2])
 		if not targetPlayerId then return end
@@ -11,6 +12,8 @@ do
 
 		messagePlayersWithPrivilege(format(getText.internalMessage, prettifyNickname(playerName, 10,
 			nil, "/B><G", 'B'), command[1], table_concat(command, ' ', 2)))
+
+		local saveDataFile = false
 
 		local removedPermissions, permissionsCounter = { }, 0
 		local rolePerm, perm, permRemoved
@@ -24,6 +27,7 @@ do
 				permRemoved = removePermission(playerName, perm, targetPlayerId)
 				if permRemoved then
 					if rolePerm then
+						saveDataFile = true
 						chatMessage(format(getText.playerLoseRole, prettyTargetPlayer,
 							roleColors[p], upper(p)))
 					else
@@ -35,10 +39,13 @@ do
 		end
 
 		if permissionsCounter > 0 then
+			saveDataFile = true
 			messagePlayersWithPrivilege(format(getText.playerLosePermissions, prettyTargetPlayer,
 				table_concat(removedPermissions, "</B> - <B>")))
 		end
 
-		buildAndSaveDataFile()
+		if saveDataFile then
+			buildAndSaveDataFile()
+		end
 	end
 end
