@@ -205,8 +205,8 @@ do
 		return self.playerData[playerName][valueName]
 	end
 
-	DataHandler.set = function(self, playerName, valueName, newValue, sum)
-		if canSaveData then
+	DataHandler.set = function(self, playerName, valueName, newValue, sum, _forceSave)
+		if _forceSave or canSaveData then
 			playerName = self.playerData[playerName]
 			if sum then
 				playerName[valueName] = playerName[valueName] + newValue
@@ -217,8 +217,8 @@ do
 		return self
 	end
 
-	DataHandler.save = function(self, playerName)
-		if canSaveData then
+	DataHandler.save = function(self, playerName, _forceSave)
+		if _forceSave or canSaveData then
 			chatMessage(playerName .. "=" .. self:dumpPlayer(playerName))
 			--savePlayerData(name, self:dumpPlayer(playerName))
 		end

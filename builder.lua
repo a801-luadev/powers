@@ -105,6 +105,8 @@ local tree = {
 	"commands/promote.lua",
 	"commands/demote.lua",
 
+	"commands/givebadge.lua",
+
 	"events/eventChatCommand.lua",
 
 	"init.lua"

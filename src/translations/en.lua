@@ -191,5 +191,8 @@ translations.en = {
 		"will <B>not</B> count stats and the maps that appear are in test for the map rotation " ..
 		"of the module. All powers have been enabled and divine powers are more likely to happen!",
 	disableReviewMode = "<BV>[<FC>•<BV>] The <FC>Map Review Mode<BV> has been disabled and " ..
-		"everything will be back to normal in the next round!"
+		"everything will be back to normal in the next round!",
+
+	-- Badges
+	getBadge = "<FC>%s<FC> just unlocked a new #powers badge!"
 }
