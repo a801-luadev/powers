@@ -110,6 +110,8 @@ local tree = {
 
 	"events/eventChatCommand.lua",
 
+	"roomAdmins.lua",
+
 	"init.lua"
 }
 
