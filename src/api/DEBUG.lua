@@ -8,4 +8,8 @@ do
 
 		p(table.concat(args, '\t'))
 	end
+
+	savePlayerData = function(playerName, data)
+		chatMessage(playerName .. " " .. tostring(data))
+	end
 end

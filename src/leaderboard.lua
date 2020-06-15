@@ -22,7 +22,7 @@
 	local totalRegisters = total / 8 -- 8 fields
 
 	local player = 0
-	for i = 1, total, 8 do
+	for i = 1, totalRegisters, 8 do
 		community     = data[i + 0]
 		id            = data[i + 1]
 		nickname      = data[i + 2]

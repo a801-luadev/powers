@@ -50,13 +50,13 @@ do
 		local targetCacheData = playerCache[targetPlayer]
 
 		local nicknameColor
-		if hasPermission(playerName, permissions.administratorColor) then
+		if hasPermission(targetPlayer, permissions.administratorColor) then
 			nicknameColor = format(nicknameColorFormat, roleColors.administrator)
-		elseif hasPermission(playerName, permissions.moderatorColor) then
+		elseif hasPermission(targetPlayer, permissions.moderatorColor) then
 			nicknameColor = format(nicknameColorFormat, roleColors.moderator)
-		elseif hasPermission(playerName, permissions.mapReviewerColor) then
+		elseif hasPermission(targetPlayer, permissions.mapReviewerColor) then
 			nicknameColor = format(nicknameColorFormat, roleColors.mapReviewer)
-		elseif hasPermission(playerName, permissions.translatorColor) then
+		elseif hasPermission(targetPlayer, permissions.translatorColor) then
 			nicknameColor = format(nicknameColorFormat, roleColors.translator)
 		end
 

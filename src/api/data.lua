@@ -25,23 +25,21 @@ do
 end
 
 -- Commands
-local generateCommandHelp
-do
-	generateCommandHelp = function(playerId)
-		local playerPermissions = playersWithPrivileges[playerId] or 0
+local generateCommandHelp = function(playerId, playerName)
+	local playerPermissions = playersWithPrivileges[playerId] or 0
 
-		local commands, totalCommands = { }, 0
-		for cmd = 1, #commandsMeta do
-			cmd = commandsMeta[cmd]
+	local commands, totalCommands = { }, 0
+	for cmd = 1, #commandsMeta do
+		cmd = commandsMeta[cmd]
 
-			if not cmd.permission or hasPermission(nil, cmd.permission, nil, playerPermissions) then
-				totalCommands = totalCommands + 1
-				commands[totalCommands] = helpCommands[cmd.index]
-			end
+		if (not cmd.permission or hasPermission(nil, cmd.permission, nil, playerPermissions))
+			and (not cmd.isRoomAdmin or roomAdmins[playerName]) then
+			totalCommands = totalCommands + 1
+			commands[totalCommands] = helpCommands[cmd.index]
 		end
-
-		return table_concat(commands, '\n')
 	end
+
+	return table_concat(commands, '\n')
 end
 
 local buildAndSaveDataFile = function()
@@ -117,7 +115,7 @@ local parseDataFile = function(data)
 				warnBanMessage(playerName, banTime)
 			end
 		elseif playerCache[playerName] then
-			playerCache[playerName].commands = generateCommandHelp(data.id)
+			playerCache[playerName].commands = generateCommandHelp(data.id, playerName)
 		end
 	end
 

@@ -38,7 +38,7 @@ end
 
 local nextMap = function()
 	if isLobby then
-		if not wasLobby then
+		if not inLobby then
 			newGame(module.lobbyMap)
 		end
 		return
@@ -95,6 +95,14 @@ end
 local messagePlayersWithPrivilege = function(message)
 	for playerName, data in next, tfm.get.room.playerList do
 		if playersWithPrivileges[data.id] then
+			chatMessage(message, playerName)
+		end
+	end
+end
+
+local messageRoomAdmins = function(message)
+	for playerName in next, tfm.get.room.playerList do
+		if roomAdmins[playerName] then
 			chatMessage(message, playerName)
 		end
 	end

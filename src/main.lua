@@ -63,18 +63,23 @@ local playersWithPrivileges = { }
 
 local bannedPlayers = { }
 
+local roomAdmins = {
+	[module.author] = true
+}
+
 -- Important settings
 local isOfficialRoom = byte(tfm.get.room.name, 2) ~= 3
 
 local canSaveData = false
 local canTriggerPowers = false
-local isLowQuality = false
-local isReviewMode, isCurrentMapOnReviewMode = false, false
+local isLowQuality = false -- Unused yet
 
 local totalCurrentMaps, currentMap, nextMapLoadTentatives, mapHashes = 0, 0, 0
 local nextMapToLoad
 
-local hasTriggeredRoundEnd, isLobby, wasLobby = false, false, false
+local hasTriggeredRoundEnd, isLobby, inLobby = false, false, false
+local isReviewMode, isCurrentMapOnReviewMode = false, false
+local minPlayersForNextRound = 1
 
 local isSaveDataFileScheduled = false
 

@@ -22,7 +22,8 @@ local removeImage    = tfm.exec.removeImage
 local removeTextArea = ui.removeTextArea
 local updateTextArea = ui.updateTextArea
 
-local lowerSyncDelay = tfm.exec.lowerSyncDelay
+local lowerSyncDelay  = tfm.exec.lowerSyncDelay
+local setRoomPassword = tfm.exec.setRoomPassword
 
 local chatMessage    = tfm.exec.chatMessage
 local newGame        = tfm.exec.newGame

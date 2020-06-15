@@ -65,7 +65,7 @@ eventNewPlayer = function(playerName)
 	end
 
 	if next(playersWithPrivileges) then
-		playerCache[playerName].commands = generateCommandHelp(playerId)
+		playerCache[playerName].commands = generateCommandHelp(playerId, playerName)
 	end
 
 	if isReviewMode then

@@ -114,6 +114,8 @@ translations.en = {
 		profile = "Opens your or someone's profile.",
 		leaderboard = "Opens the global leaderboard.",
 
+		pw = "Protects the room with a password. Send empty to remove it.",
+
 		mapEditQueue = "Manages the map rotation of the game.",
 		mapSaveQueue = "Saves the map rotation of the game.",
 		review = "Enables the review mode.",
@@ -131,6 +133,8 @@ translations.en = {
 	commandsParameters = {
 		profile = "[player_name] ",
 
+		pw = "[password] ",
+
 		mapEditQueue = "[add|rem]<R>*</R> [@map ...]<R>*</R> ",
 		mapSaveQueue = "[save]<R>*</R> ",
 		np = "[@map]<R>*</R> ",
@@ -139,8 +143,8 @@ translations.en = {
 		msg = "[message]<R>*</R> ",
 		ban = "[player_name]<R>*</R> [ban_time] [reason] ",
 		unban = "[player_name]<R>*</R> ",
-		permban = "[player_name]<R>*</R> [reason] ",
 
+		permban = "[player_name]<R>*</R> [reason] ",
 		promote = "[player_name]<R>*</R> [permission_name|role_name ...]<R>*</R> ",
 		demote = "[player_name]<R>*</R> [permission_name|role_name ...]<R>*</R> "
 	},
@@ -194,5 +198,9 @@ translations.en = {
 		"everything will be back to normal in the next round!",
 
 	-- Badges
-	getBadge = "<FC>%s<FC> just unlocked a new #powers badge!"
+	getBadge = "<FC>%s<FC> just unlocked a new #powers badge!",
+
+	-- Password
+	setPassword = "<BL>[<VI>•<BL>] %s <BL>has set the password to %q.",
+	removePassword = "<BL>[<VI>•<BL>] %s <BL>has removed the password of the room."
 }

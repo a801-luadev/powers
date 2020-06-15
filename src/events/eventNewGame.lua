@@ -8,15 +8,18 @@ eventNewGame = function()
 	nextMapLoadTentatives = 0
 	hasTriggeredRoundEnd = false
 	isCurrentMapOnReviewMode = isReviewMode
+	minPlayersForNextRound = (isReviewMode and 0 or 1)
 	nextMapToLoad = nil
 
 	if isLobby then
 		setGameTime(5)
 		addTextArea(textAreaId.lobby, "<font size='40'><p align='center'>" .. getText.minPlayers,
 			nil, 5, 45, 790, nil, 1, 1, 0, true)
+
+		inLobby = true
 		return
 	end
-	wasLobby = false
+	inLobby = false
 
 	if currentMap == 0 then return end
 

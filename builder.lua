@@ -16,7 +16,7 @@ local tree = {
 	"classes/dataHandler.lua",
 	"playerData.lua",
 
-	"api/DEBUG.lua",
+	--"api/DEBUG.lua",
 
 	"api/math.lua",
 	"api/string.lua",
@@ -92,20 +92,21 @@ local tree = {
 	"commands/profile.lua",
 	"commands/leaderboard.lua",
 
-	"commands/map.lua",
-	"commands/review.lua",
-	"commands/np.lua",
-	"commands/npp.lua",
+	"commands/roomAdmin/password.lua",
 
-	"commands/msg.lua",
-	"commands/ban.lua",
-	"commands/unban.lua",
-	"commands/permban.lua",
+	"commands/mapReviewer/map.lua",
+	"commands/mapReviewer/review.lua",
+	"commands/mapReviewer/np.lua",
+	"commands/mapReviewer/npp.lua",
 
-	"commands/promote.lua",
-	"commands/demote.lua",
+	"commands/moderator/msg.lua",
+	"commands/moderator/ban.lua",
+	"commands/moderator/unban.lua",
 
-	"commands/givebadge.lua",
+	"commands/administrator/permban.lua",
+	"commands/administrator/promote.lua",
+	"commands/administrator/demote.lua",
+	"commands/administrator/givebadge.lua",
 
 	"events/eventChatCommand.lua",
 

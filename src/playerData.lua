@@ -17,7 +17,7 @@ local playerData = DataHandler.new(module.id, {
 	},
 	xp = {
 		index = 5,
-		default = 11525--< DEBUG <--module.default_xp
+		default = module.default_xp
 	},
 	badges = {
 		index = 6,

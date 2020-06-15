@@ -1,17 +1,14 @@
 eventRoundEnded = function()
-	wasLobby = isLobby
 	isLobby = (not isReviewMode and players._count.room <= 1)
 
 	hasTriggeredRoundEnd = not isLobby
 
-	if wasLobby then
-		if isLobby then
-			setGameTime(5)
-			return
-		else
-			removeTextArea(textAreaId.lobby)
-		end
+	if isLobby then
+		setGameTime(5)
+		return
 	end
+
+	removeTextArea(textAreaId.lobby)
 
 	canTriggerPowers = false
 

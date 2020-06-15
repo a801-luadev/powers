@@ -17,6 +17,11 @@ local commandsMeta = {
 	},
 
 	{
+		name = "pw",
+		isRoomAdmin = true
+	},
+
+	{
 		name = "map",
 		index = "mapEditQueue",
 		permission = permissions.editLocalMapQueue
