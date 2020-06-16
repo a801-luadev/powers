@@ -20,7 +20,7 @@ translations.fr = {
 		gravitationalAnomaly = "Anomalie Gravitationnelle",
 		deathRay = "Rayon de la mort",
 		atomic = "Atomique",
-		judgmentDay = "Jour de Jugement"
+		dayOfJudgement = "Jour de Jugement"
 	},
 	powersDescriptions = {
 		lightSpeed = "Déplace votre souris en Vitesse Lumière, repoussant tous les ennemis autour.",
@@ -35,7 +35,7 @@ translations.fr = {
 		gravitationalAnomaly = "Forme une anomalie gravitationnelle.",
 		deathRay = "Grille les ennemis avec le puissant et mystérieux rayon.",
 		atomic = "Change aléatoirement la taille de tous les joueurs.",
-		judgmentDay = "Ressucite tous les ennemis, mais ils sont tous liés les uns aux autres."
+		dayOfJudgement = "Ressucite tous les ennemis, mais ils sont tous liés les uns aux autres."
 	},
 
 	unlockPower = "<FC>[<J>•<FC>] Vous avez débloqué les pouvoirs suivant(s): %s",
@@ -161,7 +161,7 @@ translations.fr = {
 
 	addMap = "<BV>[<FC>•<BV>] La carte <J>@%s</J> a été ajoutée dans la liste des cartes locales.",
 	remMap = "<BV>[<FC>•<BV>] The map <J>@%s</J> a été retirée de la liste des cartes locales.",
-	listMaps = "<BV>[<FC>•<BV>] Cartes (<J>#%s</J>): %s",
+	listMaps = "<BV>[<FC>•<BV>] Cartes (<J>#%d</J>): %s",
 
 	enableParticles = "<ROSE>DN'OUBLIEZ PAS D'ACTIVER les effets/particules spéciales pour " ..
 		"voir le jeu normalement. (Dans 'Menu' → 'Options', à côté de 'Liste de salon')</ROSE>",

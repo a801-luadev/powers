@@ -20,7 +20,7 @@ translations.he = {
 		gravitationalAnomaly = "אנטי-גרביטציה",
 		deathRay = "קרן מוות",
 		atomic = "אטומי",
-		judgmentDay = "יום הדין"
+		dayOfJudgement = "יום הדין"
 	},
 	powersDescriptions = {
 		lightSpeed = "מזיז את העכבר שלכם במהירות האור, דוחף את כל האויבים שבדרך.",
@@ -35,7 +35,7 @@ translations.he = {
 		gravitationalAnomaly = "יוצר חריגת גרוויטציה.",
 		deathRay = "מחמם את האויבים עם קרן לייזר מיסטורית וחזקה.",
 		atomic = "משנה באקראיות את הגודל של כל השחקנים.",
-		judgmentDay = "מחייה את כל השחקנים המתים, אבל כשכולם קשורים אחד לשני."
+		dayOfJudgement = "מחייה את כל השחקנים המתים, אבל כשכולם קשורים אחד לשני."
 	},
 
 	unlockPower = "<FC>[<J>•<FC>] פתחת את הכוח(ות) הבאים: %s",
@@ -156,7 +156,7 @@ translations.he = {
 
 	addMap = "<BV>[<FC>•<BV>] המפה <J>@%s</J> נוספה לתור המפות המקומי.",
 	remMap = "<BV>[<FC>•<BV>] המפה <J>@%s</J> הוסרה מתור המפות המקומי.",
-	listMaps = "<BV>[<FC>•<BV>] המפות (<J>#%s</J>): %s",
+	listMaps = "<BV>[<FC>•<BV>] המפות (<J>#%d</J>): %s",
 
 	enableParticles = "<ROSE>אל תשכחו לסמן 'הפעל אפקטים' בהגדרות בשביל " ..
 		"לראות את המשחק בצורה הרגילה. ('תפריט' → 'אפשרויות', ליד 'רשימת החדרים')</ROSE>",
