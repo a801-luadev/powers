@@ -2,14 +2,13 @@ local translations, getText = { }
 translations.en = {
 	-- Main messages
 	greeting = "<FC>Welcome to <B>#powers</B>! Press <B>H</B> or type <B>!help</B> to learn more.",
-	ownerAnnounce = "<FC><B>[#powers]</B> %s",
 
 	-- Victory
 	mentionWinner = "<FC>%s<FC> won the round!",
 	noWinner = "<FC>No one won the round. :(",
 
 	-- Lobby
-	minPlayers = "At least <B>2</B> players must be in the room for the game to start.",
+	minPlayers = "<N>At least <B>2</B> players must be in the room for the game to start.",
 
 	-- Powers
 	powers = {
@@ -25,7 +24,7 @@ translations.en = {
 		gravitationalAnomaly = "Gravitational Anomaly",
 		deathRay = "Death Ray",
 		atomic = "Atomic",
-		judgmentDay = "Judgment Day"
+		dayOfJudgement = "Day of Judgement"
 	},
 	powersDescriptions = {
 		lightSpeed = "Moves your mouse in the light speed, pushing all enemies around.",
@@ -40,7 +39,12 @@ translations.en = {
 		gravitationalAnomaly = "Starts a gravitational anomaly.",
 		deathRay = "Toasts the enemies with the powerful and mysterious death ray.",
 		atomic = "Randomly changes all players' size.",
-		judgmentDay = "Revives all dead enemies, them all linked to each other."
+		dayOfJudgement = "Revives all dead enemies, them all linked to each other."
+	},
+	powerType = {
+		atk = "ATK (%d)",
+		def = "DEF",
+		divine = "DVN"
 	},
 
 	unlockPower = "<FC>[<J>•<FC>] You have unlocked the following power(s): %s",
@@ -74,20 +78,20 @@ translations.en = {
 	},
 	helpContent = {
 		[1] = "<FC><p align='center'>#POWERS!</p>\n\n" ..
-			"<J>Your goal in this game is to survive from opponents' attacks.\n\n" ..
+			"<J>Your goal in this module is to survive from opponents' attacks.\n\n" ..
 			"<N>There are a variety of powers <font size='12'>- which are unlocked by reaching " ..
 				"higher levels -</font> to attack and defend.\n" ..
 			"Type <FC><B>!powers</B><N> to learn more about the powers you have unlocked so far!" ..
 				"\n\n" ..
 			"%s\n\n" .. -- enableParticles
-			"This game has been developed by %s"
+			"This module has been developed by %s"
 		,
 		[2] = "<FC><p align='center'>GENERAL COMMANDS</p><N>\n\n<font size='12'>", -- commands
 		[3] = "<FC><p align='center'>CONTRIBUTE<N>\n\n" ..
 			"We love Open Source <font color='#E91E63'>♥</font>! You can view and modify " ..
-				"the source code of this game on <a href='event:print_" ..
+				"the source code of this module on <a href='event:print_" ..
 				"github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n\n" ..
-			"Maintaining the game is strictly voluntary, so any help regarding " ..
+			"Maintaining the module is strictly voluntary, so any help regarding " ..
 				"<V>Code<N>, <V>bugfix and reports<N>, <V>suggestions and feature" ..
 				" enhancements<N>, <V>map making <N>is welcome and very well appreciated.\n" ..
 			"<p align='left'>• You can <FC>report bugs <N>or <FC>suggest <N>on " ..
@@ -99,8 +103,8 @@ translations.en = {
 				"Thread on Forums</font></a>.\n\n" ..
 			"<p align='center'>You can also <FC>donate</FC> any amount <a href='event:print_" ..
 				"a801-luadev.github.io/?redirect=powers'><font color='#087ECC'>here</font></a>" ..
-				" to help maintaining the game. All funds obtained through the link are going" ..
-				" to be invested in constant game updates and general improvements.</p>"
+				" to help maintaining the module. All funds obtained through the link are going" ..
+				" to be invested in constant module updates and general improvements.</p>"
 		,
 		[4] = "<FC><p align='center'>WHAT'S NEW?</p><N>\n\n" ..
 			"• Module ~~became~~ official.\n" ..
@@ -167,21 +171,18 @@ translations.en = {
 	-- Map management
 	addMap = "<BV>[<FC>•<BV>] The map <J>@%s</J> was added to the local map queue.",
 	remMap = "<BV>[<FC>•<BV>] The map <J>@%s</J> was removed from the local map queue.",
-	listMaps = "<BV>[<FC>•<BV>] Maps (<J>#%s</J>): %s",
+	listMaps = "<BV>[<FC>•<BV>] Maps (<J>#%d</J>): %s",
 
 	-- Warning
 	enableParticles = "<ROSE>Do NOT forget to ENABLE the special effects/particles in order to " ..
-		"see the game properly. (In 'Menu' → 'Options', next to the 'Room List')</ROSE>",
-
-	-- Internal Warning
-	internalMessage = "<BL>[<VI>•<BL>] %s <BL>[%s] → %s",
+		"see the module properly. (In 'Menu' → 'Options', next to the 'Room List')</ROSE>",
 
 	-- Ban
 	ban = "%s <ROSE>has been banned from #powers by %s <ROSE>for %d hours. Reason: %s",
 	unban = "<ROSE>You have been unbanned by %s",
 	isBanned = "<ROSE>You are banned from #powers until GMT+2 %s (%d hours to go).",
 	permBan = "%s <ROSE>has been banned permanently from #powers by %s<ROSE>. Reason: %s",
-	cantPermUnban = "<BL>[<VI>•<BL>] You cannot ban a user that is banned permanently.",
+	cantPermUnban = "<BL>[<VI>•<BL>] You cannot unban a user that is banned permanently.",
 
 	-- Promotion
 	playerGetPermissions = "<BL>[<VI>•<BL>] %s <BL>has now the following permissions: <B>%s</B>",

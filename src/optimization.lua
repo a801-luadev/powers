@@ -21,6 +21,7 @@ local addTextArea    = ui.addTextArea
 local removeImage    = tfm.exec.removeImage
 local removeTextArea = ui.removeTextArea
 local updateTextArea = ui.updateTextArea
+local setMapName     = ui.setMapName
 
 local lowerSyncDelay  = tfm.exec.lowerSyncDelay
 local setRoomPassword = tfm.exec.setRoomPassword

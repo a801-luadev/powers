@@ -13,9 +13,9 @@ do
 	powers.laserBeam = Power
 		.new("laserBeam", powerType.atk, 0, {
 			smallIcon = "172499c579c.png",
-			icon = "155d0567651.png",
-			iconWidth = 145,
-			iconHeight = 45
+			icon = "172baf7a17c.jpg",
+			iconWidth = 100,
+			iconHeight = 54
 		})
 		:setDamage(5)
 		:setUseCooldown(1)
@@ -47,9 +47,9 @@ do
 	powers.lightSpeed = Power
 		.new("lightSpeed", powerType.def, 3, {
 			smallIcon = "172499c43ff.png",
-			icon = "155d0565587.png",
-			iconWidth = 120,
-			iconHeight = 76
+			icon = "172bb04e693.jpg",
+			iconWidth = 92,
+			iconHeight = 70
 		})
 		:setUseCooldown(1.5)
 		:bindKeyboard(keyboard.left, keyboard.right)
@@ -98,8 +98,8 @@ do
 	powers.lightning = Power
 		.new("lightning", powerType.atk, 15, {
 			smallIcon = "172499d3af6.png",
-			icon = "155d05699c9.png",
-			iconWidth = 15,
+			icon = "172baf86520.jpg",
+			iconWidth = 21,
 			iconHeight = 80
 		})
 		:setDamage(10)
@@ -131,10 +131,9 @@ do
 	powers.doubleJump = Power
 		.new("doubleJump", powerType.def, 20, {
 			smallIcon = "172499c8f3b.png",
-
-			icon = "155d0560b19.png",
-			iconWidth = 54,
-			iconHeight = 70
+			icon = "172baf8852b.jpg",
+			iconWidth = 44,
+			iconHeight = 55
 		})
 		:setUseCooldown(5)
 		:bindKeyboard(keyboard.up)
@@ -177,8 +176,8 @@ do
 	powers.helix = Power
 		.new("helix", powerType.def, 28, {
 			smallIcon = "172499ce899.png",
-			icon = "155d056201e.png",
-			iconWidth = 70,
+			icon = "172baf8a5db.jpg",
+			iconWidth = 67,
 			iconHeight = 80
 		})
 		:setUseCooldown(2.5)
@@ -226,7 +225,7 @@ do
 	powers.dome = Power
 		.new("dome", powerType.atk, 35, {
 			smallIcon = "172499d277f.png",
-			icon = "155d05689b8.png",
+			icon = "172baf8c5fe.jpg",
 			iconWidth = 80,
 			iconHeight = 80
 		})
@@ -271,8 +270,8 @@ do
 	powers.wormHole = Power
 		.new("wormHole", powerType.def, 42, {
 			smallIcon = "172499c71c4.png",
-			icon = "155d055f8d0.png",
-			iconWidth = 69,
+			icon = "172baf8e646.jpg",
+			iconWidth = 72,
 			iconHeight = 80
 		})
 		:setUseCooldown(1.5)
@@ -311,9 +310,9 @@ do
 	powers.atomic = Power
 		.new("atomic", powerType.divine, 50, {
 			smallIcon = "172499db327.png",
-			icon = '',
-			iconWidth = 0,
-			iconHeight = 0
+			icon = "172baf7e255.jpg",
+			iconWidth = 76,
+			iconHeight = 80
 		}, {
 			seconds = 10
 		})
@@ -356,9 +355,9 @@ do
 	powers.superNova = Power
 		.new("superNova", powerType.atk, 60, {
 			smallIcon = "172499d01da.png",
-			icon = "155d055d277.png",
-			iconWidth = 98,
-			iconHeight = 83
+			icon = "172baf9065b.jpg",
+			iconWidth = 92,
+			iconHeight = 80
 		})
 		:setDamage(20)
 		:setSelfDamage(5)
@@ -396,8 +395,8 @@ do
 	powers.meteorSmash = Power
 		.new("meteorSmash", powerType.atk, 70, {
 			smallIcon = "172499d49f6.png",
-			icon = "155d055e49f.png",
-			iconWidth = 78,
+			icon = "172baf7c232.jpg",
+			iconWidth = 86,
 			iconHeight = 80
 		})
 		:setDamage(20)
@@ -456,9 +455,9 @@ do
 	powers.deathRay = Power
 		.new("deathRay", powerType.atk, 100, {
 			smallIcon = "172499d9bcf.png",
-			icon = "155d05633dc.png",
-			iconWidth = 130,
-			iconHeight = 15
+			icon = "172bb0d9761.jpg",
+			iconWidth = 150,
+			iconHeight = 28
 		})
 		:setDamage(30)
 		:setSelfDamage(15)
@@ -480,12 +479,12 @@ end
 
 -- Level 110
 do
-	powers.judgmentDay = Power
-		.new("judgmentDay", powerType.divine, 110, {
+	powers.dayOfJudgement = Power
+		.new("dayOfJudgement", powerType.divine, 110, {
 			smallIcon = "172499dd0d6.png", -- 172499df39f
-			icon = '',
-			iconWidth = 0,
-			iconHeight = 0
+			icon = "172baf80263.jpg",
+			iconWidth = 77,
+			iconHeight = 80
 		}, {
 			seconds = 10,
 			playerHealthPoints = 35,
@@ -571,9 +570,9 @@ do
 	powers.gravitationalAnomaly = Power
 		.new("gravitationalAnomaly", powerType.divine, 120, {
 			smallIcon = "172499d5f79.png",
-			icon = "155d05645e0.png",
-			iconWidth = 129,
-			iconHeight = 42
+			icon = "172baf82263.jpg",
+			iconWidth = 72,
+			iconHeight = 80
 		}, {
 			spawnableObjects = {
 				enum_shamanObject.littleBox,

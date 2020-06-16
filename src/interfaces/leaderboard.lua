@@ -10,7 +10,7 @@ do
 	local totalData = #dataNames
 
 	displayLeaderboard = function(playerName, _cache, interface)
-		local iniX, iniY = 50, 50
+		local iniX, iniY = 50, 60
 
 		local x = iniX + 5
 		local y = iniY + 45

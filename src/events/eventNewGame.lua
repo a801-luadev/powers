@@ -13,8 +13,7 @@ eventNewGame = function()
 
 	if isLobby then
 		setGameTime(5)
-		addTextArea(textAreaId.lobby, "<font size='40'><p align='center'>" .. getText.minPlayers,
-			nil, 5, 45, 790, nil, 1, 1, 0, true)
+		setMapName(getText.minPlayers .. "<")
 
 		inLobby = true
 		return

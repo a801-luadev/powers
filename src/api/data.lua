@@ -91,12 +91,14 @@ local parseDataFile = function(data)
 	setGameTime(0)
 
 	-- Loads all privileged players
-	for playerId, permissions in gmatch(tostring(data[2]), "(%d+)#(%x+)") do
+	data[2] = data[2] or ''
+	for playerId, permissions in gmatch(data[2], "(%d+)#(%x+)") do
 		playersWithPrivileges[playerId * 1] = tonumber(permissions, 16)
 	end
 
 	-- Loads all banned players
-	for playerId, remainingTime in gmatch(tostring(data[3]), "(%d+)#(%x+)") do
+	data[3] = data[3] or ''
+	for playerId, remainingTime in gmatch(data[3], "(%d+)#(%x+)") do
 		bannedPlayers[playerId * 1] = tonumber(remainingTime, 16)
 	end
 
@@ -116,6 +118,7 @@ local parseDataFile = function(data)
 			end
 		elseif playerCache[playerName] then
 			playerCache[playerName].commands = generateCommandHelp(data.id, playerName)
+			keyboardCallbacks[keyboard.H](playerName, playerCache[playerName])
 		end
 	end
 

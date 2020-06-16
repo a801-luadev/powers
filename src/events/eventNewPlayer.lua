@@ -64,8 +64,9 @@ eventNewPlayer = function(playerName)
 		return
 	end
 
-	if next(playersWithPrivileges) then
+	if totalCurrentMaps > 0 then -- File already loaded
 		playerCache[playerName].commands = generateCommandHelp(playerId, playerName)
+		keyboardCallbacks[keyboard.H](playerName, playerCache[playerName])
 	end
 
 	if isReviewMode then

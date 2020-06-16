@@ -1,4 +1,6 @@
 do
+	local internalMessageFormat = "<BL>[<VI>•<BL>] %s <BL>[%s] → %s"
+
 	-- Removes specific permissions from a player
 	commands["demote"] = function(playerName, command)
 		-- !demote name permissions
@@ -10,7 +12,7 @@ do
 
 		local prettyTargetPlayer = prettifyNickname(targetPlayer, 10, nil, "/B><G", 'B')
 
-		messagePlayersWithPrivilege(format(getText.internalMessage, prettifyNickname(playerName, 10,
+		messagePlayersWithPrivilege(format(internalMessageFormat, prettifyNickname(playerName, 10,
 			nil, "/B><G", 'B'), command[1], table_concat(command, ' ', 2)))
 
 		local saveDataFile = false

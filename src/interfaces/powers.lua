@@ -68,7 +68,7 @@ end
 local displayPowerInfo
 do
 	local displayPowerIcon = function(playerName, power, interface, x, y, w)
-		y = y + 35
+		y = y + 40
 
 		interface:addImage(power.imageData.icon, imageTargets.interfaceIcon,
 			x + w/2 - power.imageData.iconWidth/2, y, playerName)
@@ -77,18 +77,22 @@ do
 	end
 
 	local displayPowerTypeIcon = function(playerName, power, interface, x, y)
-		y = y + 15
+		y = y + 10
 
+		local typeImage, typeText
 		if power.type == powerType.atk then
-			interface:addImage(interfaceImages.sword, imageTargets.interfaceIcon, x, y, playerName)
-
-			interface:addTextArea(power.damage, playerName, x + 25, y + 5, nil, nil, 1, 1, 0, true)
+			typeImage = interfaceImages.sword
+			typeText = format(getText.powerType.atk, power.damage)
 		elseif power.type == powerType.def then
-			interface:addImage(interfaceImages.shield, imageTargets.interfaceIcon, x, y, playerName)
+			typeImage = interfaceImages.shield
+			typeText = getText.powerType.def
 		elseif power.type == powerType.divine then
-			interface:addImage(interfaceImages.parchment, imageTargets.interfaceIcon, x, y,
-				playerName)
+			typeImage = interfaceImages.parchment
+			typeText = getText.powerType.divine
 		end
+
+		interface:addImage(typeImage, imageTargets.interfaceIcon, x, y, playerName)
+		interface:addTextArea(typeText, playerName, x + 25, y + 5, nil, nil, 1, 1, 0, true)
 
 		return x, y
 	end
@@ -155,7 +159,7 @@ do
 		if power.clickRange then
 			y = y + 25
 
-			interface:addImage(interfaceImages.mouseClick, imageTargets.interfaceIcon, x, y,
+			interface:addImage(interfaceImages.mouseClick, imageTargets.interfaceIcon, x + 5, y,
 				playerName)
 
 			interface:addTextArea(power.clickRange .. "px", playerName, x + 25, y + 5, nil, nil, 1,

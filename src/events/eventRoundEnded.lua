@@ -8,8 +8,6 @@ eventRoundEnded = function()
 		return
 	end
 
-	removeTextArea(textAreaId.lobby)
-
 	canTriggerPowers = false
 
 	-- Clears all current timers

@@ -96,13 +96,13 @@ do
 	prettyUI.remove = function(self, iniImg, endImg, iniTxt, endTxt)
 		-- Resetting data is unnecessary, GC should handle the instance
 
+		for t = (endTxt or self.interfaceId), (iniTxt or self.initInterfaceId), -1 do
+			removeTextArea(t, self.playerName)
+		end
+
 		local interfaceImages = self.interfaceImages
 		for i = (endImg or self.totalInterfaceImages), (iniImg or 1), -1 do
 			removeImage(interfaceImages[i])
-		end
-
-		for t = (endTxt or self.interfaceId), (iniTxt or self.initInterfaceId), -1 do
-			removeTextArea(t, self.playerName)
 		end
 	end
 

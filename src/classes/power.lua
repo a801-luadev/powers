@@ -239,7 +239,7 @@ do
 		if self.triggerPossibility then
 			local possibility = self.triggerPossibility
 			if isCurrentMapOnReviewMode then
-				possibility = possibility / 2
+				possibility = 5
 			end
 			if random(possibility) ~= random(possibility) then
 				return false

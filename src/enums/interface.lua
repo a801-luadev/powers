@@ -1,8 +1,7 @@
 local textAreaId = {
 	lifeBar = 10,
 	gravitationalAnomaly = 50,
-	lobby = 100,
-	interface = 150,
+	interface = 100,
 }
 
 local interfaceImages = {
@@ -32,7 +31,7 @@ local interfaceImages = {
 	explodingBomb = "17254d637be.png",
 	megaphone = "1725980b66c.png",
 
-	mouseClick = "172597de49d.png",
+	mouseClick = "172bb22eed4.png",
 
 	-- 25x25
 	skull = "17263f4dee4.png",

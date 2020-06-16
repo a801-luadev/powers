@@ -40,6 +40,10 @@ local tree = {
 	"powers.lua",
 	"sortedPowers.lua",
 
+	"textAreaCallbacks/callbacks.lua",
+	"keyboardCallbacks/callbacks.lua",
+	"commands/commands.lua",
+
 	"enums/commandsMeta.lua",
 	"api/data.lua",
 
@@ -47,7 +51,6 @@ local tree = {
 
 	"classes/prettyUI.lua",
 
-	"textAreaCallbacks/callbacks.lua",
 	"textAreaCallbacks/closeInterface.lua",
 
 	"interfaces/help.lua",
@@ -55,38 +58,17 @@ local tree = {
 	"interfaces/profile.lua",
 	"interfaces/leaderboard.lua",
 
-	"events/eventFileLoaded.lua",
-	"events/eventFileSaved.lua",
-
-	"events/eventNewPlayer.lua",
-	"events/eventPlayerDataLoaded.lua",
-	"events/eventPlayerLeft.lua",
-
 	"textAreaCallbacks/helpTab.lua",
 	"textAreaCallbacks/powerInfo.lua",
 	"textAreaCallbacks/print.lua",
 	"textAreaCallbacks/leaderboardLeft.lua",
 	"textAreaCallbacks/leaderboardRight.lua",
-	"events/eventTextAreaCallback.lua",
 
-	"events/eventNewGame.lua",
-	"events/eventRoundEnded.lua",
-	"events/eventLoop.lua",
-	"events/eventPlayerDied.lua",
-	"events/eventPlayerRespawn.lua",
-
-	"keyboardCallbacks/callbacks.lua",
 	"keyboardCallbacks/H.lua",
 	"keyboardCallbacks/O.lua",
 	"keyboardCallbacks/P.lua",
 	"keyboardCallbacks/L.lua",
-	"events/eventKeyboard.lua",
 
-	"events/eventMouse.lua",
-	"events/eventChatMessage.lua",
-	"events/eventEmotePlayed.lua",
-
-	"commands/commands.lua",
 	"commands/help.lua",
 	"commands/powers.lua",
 	"commands/profile.lua",
@@ -107,6 +89,27 @@ local tree = {
 	"commands/administrator/promote.lua",
 	"commands/administrator/demote.lua",
 	"commands/administrator/givebadge.lua",
+
+	"events/eventFileLoaded.lua",
+	"events/eventFileSaved.lua",
+
+	"events/eventNewPlayer.lua",
+	"events/eventPlayerDataLoaded.lua",
+	"events/eventPlayerLeft.lua",
+
+	"events/eventTextAreaCallback.lua",
+
+	"events/eventNewGame.lua",
+	"events/eventRoundEnded.lua",
+	"events/eventLoop.lua",
+	"events/eventPlayerDied.lua",
+	"events/eventPlayerRespawn.lua",
+
+	"events/eventKeyboard.lua",
+
+	"events/eventMouse.lua",
+	"events/eventChatMessage.lua",
+	"events/eventEmotePlayed.lua",
 
 	"events/eventChatCommand.lua",
 

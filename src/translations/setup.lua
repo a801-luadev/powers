@@ -1,7 +1,20 @@
 do
+	local merge
+	merge = function(src, aux)
+		for k, v in next, aux do
+			if type(v) == "table" and type(src[k]) == "table" then
+				src[k] = merge(v, src[k])
+			else
+				src[k] = src[k] or v
+			end
+		end
+	end
+
 	getText = translations[tfm.get.room.community]
 	if getText then
-		-- TODO: merge EN
+		if getText ~= translations.en then
+			merge(getText, translations.en)
+		end
 	else
 		getText = translations.en
 	end
