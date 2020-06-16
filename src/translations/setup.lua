@@ -3,9 +3,9 @@ do
 	merge = function(src, aux)
 		for k, v in next, aux do
 			if type(v) == "table" and type(src[k]) == "table" then
-				src[k] = merge(v, src[k])
-			else
-				src[k] = src[k] or v
+				merge(v, src[k])
+			elseif not src[k] then
+				src[k] = v
 			end
 		end
 	end

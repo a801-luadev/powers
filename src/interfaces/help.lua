@@ -9,7 +9,7 @@ do
 	end
 
 	-- Menu
-	local contentFormat = "<font size='14'>"
+	local contentFormat = "<font size='13'>"
 	local tabStr = "<font size='1'>\n</font><p align='center'>%s<a href='event:helpTab_%s'>%s\n"
 
 	local getPageContent = function(page, _cache)

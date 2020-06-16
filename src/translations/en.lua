@@ -8,7 +8,7 @@ translations.en = {
 	noWinner = "<FC>No one won the round. :(",
 
 	-- Lobby
-	minPlayers = "<N>At least <B>2</B> players must be in the room for the game to start.",
+	minPlayers = "At least <B>2</B> players must be in the room for the game to start.",
 
 	-- Powers
 	powers = {

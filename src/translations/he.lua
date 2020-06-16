@@ -60,7 +60,7 @@ translations.he = {
 	level = "Level %d",
 
 	helpTitles = {
-		[1] = "כוחות!",
+		[1] = "Powers!",
 		[2] = "פקודות",
 		[3] = "תרמו",
 		[4] = "מה חדש?"

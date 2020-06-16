@@ -61,10 +61,10 @@ translations.br = {
 	level = "Nível %d",
 
 	helpTitles = {
-		[1] = "Poderes!",
+		[1] = "Powers!",
 		[2] = "Comandos",
 		[3] = "Contribua",
-		[4] = "O que há de novo?"
+		[4] = "Novidades"
 	},
 	helpContent = {
 		[1] = "<FC><p align='center'>#POWERS!</p>\n\n" ..
@@ -88,14 +88,14 @@ translations.br = {
 				"<a href='event:print_discord.gg/quch83R'><font color='#087ECC'>" ..
 				"Discord</font></a> e/ou no <a href='event:print_" ..
 				"github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n" ..
-			"• Você pode <FC>enviar mapas <N>no nosso tópico<a href='event:print_" ..
-				"atelier801.com/topic?f=5&t=918371'><font color='#087ECC'>Envios de mapas " ..
-				"no Fórum</font></a>.\n\n" ..
+			"• Você pode <FC>enviar mapas <N>no nosso <a href='event:print_" ..
+				"atelier801.com/topic?f=5&t=918371'><font color='#087ECC'>Tópico de envio de "..
+				"mapas no Fórum</font></a>.\n\n" ..
 			"<p align='center'>Você também pode <FC>doar</FC> qualquer quantia " ..
 				"<a href='event:print_a801-luadev.github.io/?redirect=powers'>" ..
 				"<font color='#087ECC'>aqui</font></a> para ajudar a manter o Module. Todos os " ..
 				"fundos arrecadados através desse link serão investidos em atualizações " ..
-				" constantes no Module e em melhorias gerais.</p>"
+				"constantes no Module e em melhorias gerais.</p>"
 		,
 		[4] = "<FC><p align='center'>O QUE HÁ DE NOVO?</p><N>\n\n" ..
 			"• O Module se tornou oficial.\n" ..

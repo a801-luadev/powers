@@ -60,7 +60,7 @@ translations.fr = {
 	level = "Niveau %d",
 
 	helpTitles = {
-		[1] = "Pouvoirs !",
+		[1] = "Powers!",
 		[2] = "Commandes",
 		[3] = "Contribuer",
 		[4] = "Quoi d'neuf ?"

@@ -3,6 +3,9 @@ local tree = {
 	"main.lua",
 
 	"translations/en.lua",
+	"translations/br.lua",
+	"translations/fr.lua",
+	"translations/he.lua",
 
 	"enums/powers.lua",
 	"enums/colors.lua",
