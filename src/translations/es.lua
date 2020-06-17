@@ -1,7 +1,8 @@
 -- Translated by Tocutoeltuco#0000
 translations.es = {
-	greeting = "<FC>¡Bienvenido a <B>#powers</B>! Presiona <B>H</B> o escribe <B>!help</B> para " ..
-		"saber más.",
+	greeting = "<FC>¡Bienvenido a <B>#powers</B>!\n" ..
+		"\t• Presiona <B>H</B> o escribe <B>!help</B> para saber más sobre el módulo.\n" ..
+		"\t• Presiona <B>O</B> o escribe <B>!powers</B> para saber más sobre los poderes.",
 
 	mentionWinner = "<FC>%s<FC> ganó la ronda!",
 	noWinner = "<FC>Nadie ganó la ronda. :(",
@@ -91,13 +92,15 @@ translations.es = {
 				"Discord</font></a> y/o en <a href='event:print_" ..
 				"github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n" ..
 			"• Puedes <FC>enviar mapas <N>en nusetro <a href='event:print_" ..
-				"atelier801.com/topic?f=5&t=918371'><font color='#087ECC'>Hilo de Envíos de " ..
+				"atelier801.com/topic?f=6&t=888677'><font color='#087ECC'>Hilo de Envíos de " ..
 				"Mapas en los Foros</font></a>.\n\n" ..
 			"<p align='center'>También podes <FC>donar</FC> cualquier cantidad " ..
 				"<a href='event:print_a801-luadev.github.io/?redirect=powers'>" ..
 				"<font color='#087ECC'>aquí</font></a> para ayudar el mantenimiento del módulo. " ..
 				"Todas las donaciones obtenidas a través del link serán invertidas en " ..
-				"actualizaciones y mejoras constantes del módulo.</p>"
+				"actualizaciones y mejoras constantes del módulo.\n\n" ..
+			"<a href='event:print_atelier801.com/topic?f=6&t=888676'>" ..
+				"<font size='18' color='#087ECC'>Hilo en los Foros</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>¿QUÉ HAY DE NUEVO?</p><N>\n\n" ..
 			"• El módulo se volvió oficial.\n" ..

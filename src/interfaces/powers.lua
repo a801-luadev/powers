@@ -188,7 +188,8 @@ do
 		return x, y
 	end
 
-	local body = "<p align='center'><font size='16'>%s</font></p>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n%s"
+	local body = "<p align='center'><font size='16'><V><B>%s</B></V></font></p>" ..
+		"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n%s"
 
 	displayPowerInfo = function(playerName, _cache)
 		_cache = _cache or playerCache[playerName]

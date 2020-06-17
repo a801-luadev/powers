@@ -179,7 +179,9 @@ local Power
 local translations, getText = { }
 translations.en = {
 	-- Main messages
-	greeting = "<FC>Welcome to <B>#powers</B>! Press <B>H</B> or type <B>!help</B> to learn more.",
+	greeting = "<FC>Welcome to <B>#powers</B>!\n" ..
+		"\t• Press <B>H</B> or type <B>!help</B> to learn more about the module.\n" ..
+		"\t• Press <B>O</B> or type <B>!powers</B> to learn more about the powers.",
 
 	-- Victory
 	mentionWinner = "<FC>%s<FC> won the round!",
@@ -277,12 +279,14 @@ translations.en = {
 				"Discord</font></a> and/or on <a href='event:print_" ..
 				"github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n" ..
 			"• You can <FC>submit maps <N>in our <a href='event:print_" ..
-				"atelier801.com/topic?f=5&t=918371'><font color='#087ECC'>Map Submissions " ..
+				"atelier801.com/topic?f=6&t=888677'><font color='#087ECC'>Map Submissions " ..
 				"Thread on Forums</font></a>.\n\n" ..
 			"<p align='center'>You can also <FC>donate</FC> any amount <a href='event:print_" ..
 				"a801-luadev.github.io/?redirect=powers'><font color='#087ECC'>here</font></a>" ..
 				" to help maintaining the module. All funds obtained through the link are going" ..
-				" to be invested in constant module updates and general improvements.</p>"
+				" to be invested in constant module updates and general improvements.\n\n" ..
+			"<a href='event:print_atelier801.com/topic?f=6&t=888676'>" ..
+				"<font size='18' color='#087ECC'>Thread on Forums</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>WHAT'S NEW?</p><N>\n\n" ..
 			"• Module ~~became~~ official.\n" ..
@@ -387,8 +391,9 @@ translations.en = {
 --[[ translations/br.lua ]]--
 -- Translated by Natsmiro#0000
 translations.br = {
-	greeting = "<FC>Bem-vindo ao <B>#powers</B>! Pressione <B>H</B> ou digite <B>!help</B> para " ..
-		"saber mais.",
+	greeting = "<FC>Bem-vindo ao <B>#powers</B>!\n" ..
+		"\t• Pressione <B>H</B> ou digite <B>!help</B> para saber mais sobre o module.\n" ..
+		"\t• Pressione <B>O</B> ou digite <B>!powers</B> para saber mais sobre os poderes.",
 
 	mentionWinner = "<FC>%s<FC> venceu a rodada!",
 	noWinner = "<FC>Ninguém venceu a rodada. :(",
@@ -478,13 +483,15 @@ translations.br = {
 				"Discord</font></a> e/ou no <a href='event:print_" ..
 				"github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n" ..
 			"• Você pode <FC>enviar mapas <N>no nosso <a href='event:print_" ..
-				"atelier801.com/topic?f=5&t=918371'><font color='#087ECC'>Tópico de envio de "..
+				"atelier801.com/topic?f=6&t=888677'><font color='#087ECC'>Tópico de envio de "..
 				"mapas no Fórum</font></a>.\n\n" ..
 			"<p align='center'>Você também pode <FC>doar</FC> qualquer quantia " ..
 				"<a href='event:print_a801-luadev.github.io/?redirect=powers'>" ..
 				"<font color='#087ECC'>aqui</font></a> para ajudar a manter o Module. Todos os " ..
 				"fundos arrecadados através desse link serão investidos em atualizações " ..
-				"constantes no Module e em melhorias gerais.</p>"
+				"constantes no Module e em melhorias gerais.\n\n" ..
+			"<a href='event:print_atelier801.com/topic?f=6&t=888676'>" ..
+				"<font size='18' color='#087ECC'>Tópico no Fórum</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>O QUE HÁ DE NOVO?</p><N>\n\n" ..
 			"• O Module se tornou oficial.\n" ..
@@ -578,12 +585,14 @@ translations.br = {
 	setPassword = "<BL>[<VI>•<BL>] %s <BL>definiu a senha da sala para %q.",
 	removePassword = "<BL>[<VI>•<BL>] %s <BL>removeu a senha da sala."
 }
+translations.pt = translations.br
 
 --[[ translations/es.lua ]]--
 -- Translated by Tocutoeltuco#0000
 translations.es = {
-	greeting = "<FC>¡Bienvenido a <B>#powers</B>! Presiona <B>H</B> o escribe <B>!help</B> para " ..
-		"saber más.",
+	greeting = "<FC>¡Bienvenido a <B>#powers</B>!\n" ..
+		"\t• Presiona <B>H</B> o escribe <B>!help</B> para saber más sobre el módulo.\n" ..
+		"\t• Presiona <B>O</B> o escribe <B>!powers</B> para saber más sobre los poderes.",
 
 	mentionWinner = "<FC>%s<FC> ganó la ronda!",
 	noWinner = "<FC>Nadie ganó la ronda. :(",
@@ -673,13 +682,15 @@ translations.es = {
 				"Discord</font></a> y/o en <a href='event:print_" ..
 				"github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n" ..
 			"• Puedes <FC>enviar mapas <N>en nusetro <a href='event:print_" ..
-				"atelier801.com/topic?f=5&t=918371'><font color='#087ECC'>Hilo de Envíos de " ..
+				"atelier801.com/topic?f=6&t=888677'><font color='#087ECC'>Hilo de Envíos de " ..
 				"Mapas en los Foros</font></a>.\n\n" ..
 			"<p align='center'>También podes <FC>donar</FC> cualquier cantidad " ..
 				"<a href='event:print_a801-luadev.github.io/?redirect=powers'>" ..
 				"<font color='#087ECC'>aquí</font></a> para ayudar el mantenimiento del módulo. " ..
 				"Todas las donaciones obtenidas a través del link serán invertidas en " ..
-				"actualizaciones y mejoras constantes del módulo.</p>"
+				"actualizaciones y mejoras constantes del módulo.\n\n" ..
+			"<a href='event:print_atelier801.com/topic?f=6&t=888676'>" ..
+				"<font size='18' color='#087ECC'>Hilo en los Foros</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>¿QUÉ HAY DE NUEVO?</p><N>\n\n" ..
 			"• El módulo se volvió oficial.\n" ..
@@ -775,7 +786,11 @@ translations.es = {
 --[[ translations/fr.lua ]]--
 -- Translated by Jaker#9310
 translations.fr = {
-	greeting = "<FC>Bienvenue dans <B>#powers</B> ! Appuyez sur <B>H</B> ou écrivez <B>!help</B> pour en apprendre plus.",
+	greeting = "<FC>Bienvenue dans <B>#powers</B>!\n" ..
+		"\t• Appuyez sur <B>H</B> ou écrivez <B>!help</B> pour en connaître plus à propos du " ..
+			"module.\n" ..
+		"\t• Appuyez sur <B>O</B> ou écrivez <B>!powers</B> pour en connaître plus à propos des " ..
+			"pouvoirs.",
 
 	mentionWinner = "<FC>%s<FC> a gagné la manche !",
 	noWinner = "<FC>Personne n'a gagné la manche. :(",
@@ -863,13 +878,15 @@ translations.fr = {
 				"Discord</font></a> and/ou sur <a href='event:print_" ..
 				"github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n" ..
 			"• Vous pouvez <FC>proposer vos cartes <N>dans notre <a href='event:print_" ..
-				"atelier801.com/topic?f=5&t=918371'><font color='#087ECC'>Map Submissions " ..
+				"atelier801.com/topic?f=6&t=888677'><font color='#087ECC'>Map Submissions " ..
 				"Sujet dans le Forum</font></a>.\n\n" ..
 			"<p align='center'>Vous pouvez aussi <FC>donner</FC> n'importe quel somme d'argent " ..
 				"<a href='event:print_a801-luadev.github.io/?redirect=powers'>" ..
 				"<font color='#087ECC'>ici</font></a> pour aider à maintenir le module. Tous les" ..
 				" fonts obtenus à travers ce lien seront utilisés dans les mise à jours et " ..
-				"l'amélioration.</p>"
+				"l'amélioration.\n\n" ..
+			"<a href='event:print_atelier801.com/topic?f=6&t=888676'>" ..
+				"<font size='18' color='#087ECC'>Sujet dans le Forum</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>QUOI D'NEUF ?</p><N>\n\n" ..
 			"• Le module est devenu officiel.\n" ..
@@ -944,7 +961,8 @@ translations.fr = {
 	unban = "<ROSE>Votre bannissement a été supprimé par %s",
 	isBanned = "<ROSE>Vous êtes banni de #powers jusqu'à GMT+2 %s (%d heures restantes).",
 	permBan = "%s <ROSE>a été banni de #powers définitivement par %s<ROSE>. Raison: %s",
-	cantPermUnban = "<BL>[<VI>•<BL>] Vous ne pouvez pas supprimé le bannissement d'un joueur banni définitevement.",
+	cantPermUnban = "<BL>[<VI>•<BL>] Vous ne pouvez pas supprimé le bannissement d'un joueur " ..
+		"banni définitevement.",
 
 	playerGetPermissions = "<BL>[<VI>•<BL>] %s <BL>a maintenant les permissions suivantes : <B>%s</B>",
 	playerLosePermissions = "<BL>[<VI>•<BL>] %s <BL>n'a plus les permissions suivantes : " ..
@@ -968,7 +986,9 @@ translations.fr = {
 --[[ translations/he.lua ]]--
 -- Translated by Danielthemouse#6206
 translations.he = {
-	greeting = "<FC>ברוכים הבאים אל <B>#powers</B>! לחצו <B>H</B> או כתבו <B>!help</B> כדי ללמוד יותר.",
+	greeting = "<FC>ברוכים הבאים אל <B>#powers</B>!\n" ..
+		"\t• לחצו <B>H</B> או רשמו <B>!help</B> כדי ללמוד עוד על המודול.\n" ..
+		"\t• לחצו <B>O</B> או רשמו <B>!powers</B> כדי ללמוד עוד על הכוחות.",
 
 	mentionWinner = "<FC>%s<FC> ניצחו את הסיבוב!",
 	noWinner = "<FC>אף אחד לא ניצח את הסיבוב. :(",
@@ -1060,12 +1080,14 @@ translations.he = {
 				"Discord</font></a> ו/או ב- <a href='event:print_" ..
 				"github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n" ..
 			"• אתם יכולים <FC>להגיש מפות <N> <a href='event:print_" ..
-				"atelier801.com/topic?f=5&t=918371'><font color='#087ECC'>באשכול הגשת " ..
+				"atelier801.com/topic?f=6&t=888677'><font color='#087ECC'>באשכול הגשת " ..
 				"המפות בפורומים</font></a>.\n\n" ..
 			"<p align='center'>אתם יכולים גם <FC>לתרום</FC> כל כמות <a href='event:print_" ..
 				"a801-luadev.github.io/?redirect=powers'><font color='#087ECC'>כאן</font></a>" ..
 				" על מנת לתחזק את המשחק. כל הכספים המושגים דרך הקישור" ..
-				" יהיו מושקעים בעדכוני משחק רציפים ושיפורים כלליים.</p>"
+				" יהיו מושקעים בעדכוני משחק רציפים ושיפורים כלליים.\n\n" ..
+			"<a href='event:print_atelier801.com/topic?f=6&t=888676'>" ..
+				"<font size='18' color='#087ECC'>אשכול בפורומים</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>מה חדש?</p><N>\n\n" ..
 			"• המודול הפך לרשמי.\n" ..
@@ -2249,21 +2271,6 @@ end
 
 --[[ translations/setup.lua ]]--
 do
-table.merge = function(this,src)
-	for k, v in next, src do
-		if this[k] then
-			if type(v) == "table" then
-				this[k] = table.turnTable(this[k])
-				table.merge(this[k], v)
-			else
-				this[k] = this[k] or v
-			end
-		else
-			this[k] = v
-		end
-	end
-end
-
 	local merge
 	merge = function(src, aux, ignoredIndexes)
 		for k, v in next, aux do
@@ -3092,7 +3099,7 @@ do
 			seconds = 10
 		})
 		:setUseCooldown(25)
-		:setProbability(60)
+		:setProbability(40)
 		:bindChatMessage("^A+T+O+M+I+C+$")
 		:setEffect(function(self)
 			resetPlayersDefaultSize = true
@@ -3135,7 +3142,7 @@ do
 			iconHeight = 80
 		})
 		:setDamage(20)
-		:setSelfDamage(5)
+		:setSelfDamage(8)
 		:setUseLimit(6)
 		:setUseCooldown(6)
 		:bindKeyboard(keyboard.ctrl)
@@ -3175,7 +3182,7 @@ do
 			iconHeight = 80
 		})
 		:setDamage(20)
-		:setSelfDamage(5)
+		:setSelfDamage(8)
 		:setUseLimit(10)
 		:setUseCooldown(8)
 		:bindKeyboard(keyboard.down)
@@ -3266,7 +3273,7 @@ do
 			minDeadMice = 2
 		})
 		:setUseCooldown(45)
-		:setProbability(25)
+		:setProbability(40)
 		:bindChatMessage("^R+A+I+S+E+ T+H+E+ D+E+A+D+$")
 		:setEffect(function(self)
 			if players._count.dead < self.minDeadMice then return end
@@ -4288,7 +4295,8 @@ do
 		return x, y
 	end
 
-	local body = "<p align='center'><font size='16'>%s</font></p>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n%s"
+	local body = "<p align='center'><font size='16'><V><B>%s</B></V></font></p>" ..
+		"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n%s"
 
 	displayPowerInfo = function(playerName, _cache)
 		_cache = _cache or playerCache[playerName]
@@ -4614,15 +4622,11 @@ end
 
 --[[ keyboardCallbacks/P.lua ]]--
 do
-	keyboardCallbacks[keyboard.P] = function(playerName, cache, _, targetPlayer)
+	keyboardCallbacks[keyboard.P] = function(playerName, cache)
 		if cache.isProfileOpen then
 			textAreaCallbacks["closeInterface"](playerName, cache)
 		else
-			targetPlayer = targetPlayer or playerName
-			if playerCache[targetPlayer] and
-				not bannedPlayers[tfm.get.room.playerList[targetPlayer].id] then
-				displayProfile(playerName, targetPlayer, cache)
-			end
+			displayProfile(playerName, playerName, cache)
 		end
 	end
 end
@@ -4656,7 +4660,10 @@ end
 do
 	commands["profile"] = function(playerName, command)
 		command[2] = command[2] and strToNickname(command[2]) or playerName
-		keyboardCallbacks[keyboard.P](playerName, playerCache[playerName], nil, command[2])
+		if playerCache[command[2]] and
+			not bannedPlayers[tfm.get.room.playerList[command[2]].id] then
+			displayProfile(playerName, command[2], cache)
+		end
 	end
 end
 

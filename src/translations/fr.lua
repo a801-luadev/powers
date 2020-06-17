@@ -1,6 +1,10 @@
 -- Translated by Jaker#9310
 translations.fr = {
-	greeting = "<FC>Bienvenue dans <B>#powers</B> ! Appuyez sur <B>H</B> ou écrivez <B>!help</B> pour en apprendre plus.",
+	greeting = "<FC>Bienvenue dans <B>#powers</B>!\n" ..
+		"\t• Appuyez sur <B>H</B> ou écrivez <B>!help</B> pour en connaître plus à propos du " ..
+			"module.\n" ..
+		"\t• Appuyez sur <B>O</B> ou écrivez <B>!powers</B> pour en connaître plus à propos des " ..
+			"pouvoirs.",
 
 	mentionWinner = "<FC>%s<FC> a gagné la manche !",
 	noWinner = "<FC>Personne n'a gagné la manche. :(",
@@ -88,13 +92,15 @@ translations.fr = {
 				"Discord</font></a> and/ou sur <a href='event:print_" ..
 				"github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n" ..
 			"• Vous pouvez <FC>proposer vos cartes <N>dans notre <a href='event:print_" ..
-				"atelier801.com/topic?f=5&t=918371'><font color='#087ECC'>Map Submissions " ..
+				"atelier801.com/topic?f=6&t=888677'><font color='#087ECC'>Map Submissions " ..
 				"Sujet dans le Forum</font></a>.\n\n" ..
 			"<p align='center'>Vous pouvez aussi <FC>donner</FC> n'importe quel somme d'argent " ..
 				"<a href='event:print_a801-luadev.github.io/?redirect=powers'>" ..
 				"<font color='#087ECC'>ici</font></a> pour aider à maintenir le module. Tous les" ..
 				" fonts obtenus à travers ce lien seront utilisés dans les mise à jours et " ..
-				"l'amélioration.</p>"
+				"l'amélioration.\n\n" ..
+			"<a href='event:print_atelier801.com/topic?f=6&t=888676'>" ..
+				"<font size='18' color='#087ECC'>Sujet dans le Forum</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>QUOI D'NEUF ?</p><N>\n\n" ..
 			"• Le module est devenu officiel.\n" ..
@@ -169,7 +175,8 @@ translations.fr = {
 	unban = "<ROSE>Votre bannissement a été supprimé par %s",
 	isBanned = "<ROSE>Vous êtes banni de #powers jusqu'à GMT+2 %s (%d heures restantes).",
 	permBan = "%s <ROSE>a été banni de #powers définitivement par %s<ROSE>. Raison: %s",
-	cantPermUnban = "<BL>[<VI>•<BL>] Vous ne pouvez pas supprimé le bannissement d'un joueur banni définitevement.",
+	cantPermUnban = "<BL>[<VI>•<BL>] Vous ne pouvez pas supprimé le bannissement d'un joueur " ..
+		"banni définitevement.",
 
 	playerGetPermissions = "<BL>[<VI>•<BL>] %s <BL>a maintenant les permissions suivantes : <B>%s</B>",
 	playerLosePermissions = "<BL>[<VI>•<BL>] %s <BL>n'a plus les permissions suivantes : " ..

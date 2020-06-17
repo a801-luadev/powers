@@ -1,6 +1,8 @@
 -- Translated by Danielthemouse#6206
 translations.he = {
-	greeting = "<FC>ברוכים הבאים אל <B>#powers</B>! לחצו <B>H</B> או כתבו <B>!help</B> כדי ללמוד יותר.",
+	greeting = "<FC>ברוכים הבאים אל <B>#powers</B>!\n" ..
+		"\t• לחצו <B>H</B> או רשמו <B>!help</B> כדי ללמוד עוד על המודול.\n" ..
+		"\t• לחצו <B>O</B> או רשמו <B>!powers</B> כדי ללמוד עוד על הכוחות.",
 
 	mentionWinner = "<FC>%s<FC> ניצחו את הסיבוב!",
 	noWinner = "<FC>אף אחד לא ניצח את הסיבוב. :(",
@@ -92,12 +94,14 @@ translations.he = {
 				"Discord</font></a> ו/או ב- <a href='event:print_" ..
 				"github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n" ..
 			"• אתם יכולים <FC>להגיש מפות <N> <a href='event:print_" ..
-				"atelier801.com/topic?f=5&t=918371'><font color='#087ECC'>באשכול הגשת " ..
+				"atelier801.com/topic?f=6&t=888677'><font color='#087ECC'>באשכול הגשת " ..
 				"המפות בפורומים</font></a>.\n\n" ..
 			"<p align='center'>אתם יכולים גם <FC>לתרום</FC> כל כמות <a href='event:print_" ..
 				"a801-luadev.github.io/?redirect=powers'><font color='#087ECC'>כאן</font></a>" ..
 				" על מנת לתחזק את המשחק. כל הכספים המושגים דרך הקישור" ..
-				" יהיו מושקעים בעדכוני משחק רציפים ושיפורים כלליים.</p>"
+				" יהיו מושקעים בעדכוני משחק רציפים ושיפורים כלליים.\n\n" ..
+			"<a href='event:print_atelier801.com/topic?f=6&t=888676'>" ..
+				"<font size='18' color='#087ECC'>אשכול בפורומים</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>מה חדש?</p><N>\n\n" ..
 			"• המודול הפך לרשמי.\n" ..

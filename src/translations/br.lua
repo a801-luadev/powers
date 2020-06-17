@@ -1,7 +1,8 @@
 -- Translated by Natsmiro#0000
 translations.br = {
-	greeting = "<FC>Bem-vindo ao <B>#powers</B>! Pressione <B>H</B> ou digite <B>!help</B> para " ..
-		"saber mais.",
+	greeting = "<FC>Bem-vindo ao <B>#powers</B>!\n" ..
+		"\t• Pressione <B>H</B> ou digite <B>!help</B> para saber mais sobre o module.\n" ..
+		"\t• Pressione <B>O</B> ou digite <B>!powers</B> para saber mais sobre os poderes.",
 
 	mentionWinner = "<FC>%s<FC> venceu a rodada!",
 	noWinner = "<FC>Ninguém venceu a rodada. :(",
@@ -91,13 +92,15 @@ translations.br = {
 				"Discord</font></a> e/ou no <a href='event:print_" ..
 				"github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n" ..
 			"• Você pode <FC>enviar mapas <N>no nosso <a href='event:print_" ..
-				"atelier801.com/topic?f=5&t=918371'><font color='#087ECC'>Tópico de envio de "..
+				"atelier801.com/topic?f=6&t=888677'><font color='#087ECC'>Tópico de envio de "..
 				"mapas no Fórum</font></a>.\n\n" ..
 			"<p align='center'>Você também pode <FC>doar</FC> qualquer quantia " ..
 				"<a href='event:print_a801-luadev.github.io/?redirect=powers'>" ..
 				"<font color='#087ECC'>aqui</font></a> para ajudar a manter o Module. Todos os " ..
 				"fundos arrecadados através desse link serão investidos em atualizações " ..
-				"constantes no Module e em melhorias gerais.</p>"
+				"constantes no Module e em melhorias gerais.\n\n" ..
+			"<a href='event:print_atelier801.com/topic?f=6&t=888676'>" ..
+				"<font size='18' color='#087ECC'>Tópico no Fórum</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>O QUE HÁ DE NOVO?</p><N>\n\n" ..
 			"• O Module se tornou oficial.\n" ..
@@ -191,3 +194,4 @@ translations.br = {
 	setPassword = "<BL>[<VI>•<BL>] %s <BL>definiu a senha da sala para %q.",
 	removePassword = "<BL>[<VI>•<BL>] %s <BL>removeu a senha da sala."
 }
+translations.pt = translations.br

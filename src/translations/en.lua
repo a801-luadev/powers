@@ -1,7 +1,9 @@
 local translations, getText = { }
 translations.en = {
 	-- Main messages
-	greeting = "<FC>Welcome to <B>#powers</B>! Press <B>H</B> or type <B>!help</B> to learn more.",
+	greeting = "<FC>Welcome to <B>#powers</B>!\n" ..
+		"\t• Press <B>H</B> or type <B>!help</B> to learn more about the module.\n" ..
+		"\t• Press <B>O</B> or type <B>!powers</B> to learn more about the powers.",
 
 	-- Victory
 	mentionWinner = "<FC>%s<FC> won the round!",
@@ -99,12 +101,14 @@ translations.en = {
 				"Discord</font></a> and/or on <a href='event:print_" ..
 				"github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n" ..
 			"• You can <FC>submit maps <N>in our <a href='event:print_" ..
-				"atelier801.com/topic?f=5&t=918371'><font color='#087ECC'>Map Submissions " ..
+				"atelier801.com/topic?f=6&t=888677'><font color='#087ECC'>Map Submissions " ..
 				"Thread on Forums</font></a>.\n\n" ..
 			"<p align='center'>You can also <FC>donate</FC> any amount <a href='event:print_" ..
 				"a801-luadev.github.io/?redirect=powers'><font color='#087ECC'>here</font></a>" ..
 				" to help maintaining the module. All funds obtained through the link are going" ..
-				" to be invested in constant module updates and general improvements.</p>"
+				" to be invested in constant module updates and general improvements.\n\n" ..
+			"<a href='event:print_atelier801.com/topic?f=6&t=888676'>" ..
+				"<font size='18' color='#087ECC'>Thread on Forums</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>WHAT'S NEW?</p><N>\n\n" ..
 			"• Module ~~became~~ official.\n" ..

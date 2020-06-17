@@ -317,7 +317,7 @@ do
 			seconds = 10
 		})
 		:setUseCooldown(25)
-		:setProbability(60)
+		:setProbability(40)
 		:bindChatMessage("^A+T+O+M+I+C+$")
 		:setEffect(function(self)
 			resetPlayersDefaultSize = true
@@ -360,7 +360,7 @@ do
 			iconHeight = 80
 		})
 		:setDamage(20)
-		:setSelfDamage(5)
+		:setSelfDamage(8)
 		:setUseLimit(6)
 		:setUseCooldown(6)
 		:bindKeyboard(keyboard.ctrl)
@@ -400,7 +400,7 @@ do
 			iconHeight = 80
 		})
 		:setDamage(20)
-		:setSelfDamage(5)
+		:setSelfDamage(8)
 		:setUseLimit(10)
 		:setUseCooldown(8)
 		:bindKeyboard(keyboard.down)
@@ -491,7 +491,7 @@ do
 			minDeadMice = 2
 		})
 		:setUseCooldown(45)
-		:setProbability(25)
+		:setProbability(40)
 		:bindChatMessage("^R+A+I+S+E+ T+H+E+ D+E+A+D+$")
 		:setEffect(function(self)
 			if players._count.dead < self.minDeadMice then return end

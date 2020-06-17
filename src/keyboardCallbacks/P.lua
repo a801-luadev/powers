@@ -1,13 +1,9 @@
 do
-	keyboardCallbacks[keyboard.P] = function(playerName, cache, _, targetPlayer)
+	keyboardCallbacks[keyboard.P] = function(playerName, cache)
 		if cache.isProfileOpen then
 			textAreaCallbacks["closeInterface"](playerName, cache)
 		else
-			targetPlayer = targetPlayer or playerName
-			if playerCache[targetPlayer] and
-				not bannedPlayers[tfm.get.room.playerList[targetPlayer].id] then
-				displayProfile(playerName, targetPlayer, cache)
-			end
+			displayProfile(playerName, playerName, cache)
 		end
 	end
 end
