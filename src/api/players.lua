@@ -3,11 +3,13 @@ local players = {
 	alive = { },
 	dead = { },
 	lobby = { },
+	currentRound = { },
 	_count = {
 		room = 0,
 		alive = 0,
 		dead = 0,
-		lobby = 0
+		lobby = 0,
+		currentRound = 0
 	}
 }
 

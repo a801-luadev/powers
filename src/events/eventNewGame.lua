@@ -2,6 +2,8 @@ eventNewGame = function()
 	-- Resets players
 	players.dead = { }
 	players._count.dead = 0
+	players.currentRound = table_copy(players.room)
+	players._count.currentRound = players._count.room
 	players.alive = table_copy(players.room)
 	players._count.alive = players._count.room
 

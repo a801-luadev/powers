@@ -296,7 +296,7 @@ end
 do
 	local changeSize = function(self, timer)
 		if timer.times == 0 then
-			for name in next, players.room do
+			for name in next, players.currentRound do
 				changePlayerSize(name, 1)
 			end
 			resetPlayersDefaultSize = false
