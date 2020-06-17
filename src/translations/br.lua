@@ -38,6 +38,9 @@ translations.br = {
 		atomic = "Altera o tamanho dos jogadores aleatoriamente.",
 		dayOfJudgement = "Revive todos os inimigos mortos, todos presos uns aos outros."
 	},
+	powerType = {
+		atk = "ATQ (%d)"
+	},
 
 	unlockPower = "<FC>[<J>•<FC>] Você desbloqueou o(s) seguinte(s) poder(es): %s",
 
@@ -61,7 +64,6 @@ translations.br = {
 	level = "Nível %d",
 
 	helpTitles = {
-		[1] = "Powers!",
 		[2] = "Comandos",
 		[3] = "Contribua",
 		[4] = "Novidades"

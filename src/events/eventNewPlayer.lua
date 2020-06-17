@@ -1,56 +1,57 @@
 eventNewPlayer = function(playerName)
-	if not playerCache[playerName] then
-		playerCache[playerName] = {
-			-- Level and XP
-			level = 1,
-			currentLevelXp = nil,
-			nextLevelXp = nil,
-			roundLevel = nil, -- Level on round start
-			levelIndex = nil, -- ex: 10, 20, 30
-			levelColor = nil,
+	playerCache[playerName] = {
+		-- Level and XP
+		level = 1,
+		currentLevelXp = nil,
+		nextLevelXp = nil,
+		roundLevel = nil, -- Level on round start
+		levelIndex = nil, -- ex: 10, 20, 30
+		levelColor = nil,
 
-			-- Round life
-			health = 0,
-			extraHealth = 0, -- Health points that were accumulated and will be updated together
+		-- Round life
+		health = 0,
+		extraHealth = 0, -- Health points that were accumulated and will be updated together
 
-			-- Round powers
-			powers = { }, -- All individual powers' data
-			powerCooldown = 0,
-			keySequence = KeySequence.new(),
+		-- Round powers
+		powers = { }, -- All individual powers' data
+		powerCooldown = 0,
+		keySequence = KeySequence.new(),
 
-			-- Round misc
-			isFacingRight = true,
-			soulMate = nil,
+		-- Round misc
+		isFacingRight = true,
+		soulMate = nil,
 
-			-- General Interface
-			isInterfaceOpen = false,
+		lastDamageBy = nil,
+		lastDamageTime = nil,
 
-			totalPrettyUIs = 0,
-			prettyUIs = { },
-			lastPrettyUI = nil,
+		-- General Interface
+		isInterfaceOpen = false,
 
-			interfaceActionCooldown = 0,
+		totalPrettyUIs = 0,
+		prettyUIs = { },
+		lastPrettyUI = nil,
 
-			-- Help interface
-			isHelpOpen = false,
-			helpPage = 1,
-			helpTabs = { },
-			commands = nil,
+		interfaceActionCooldown = 0,
 
-			-- Powers interface
-			isPowersOpen = false,
-			powerInfoIdSelected = nil,
-			powerInfoSelectionImageId = nil,
+		-- Help interface
+		isHelpOpen = false,
+		helpPage = 1,
+		helpTabs = { },
+		commands = nil,
 
-			-- Profile interface
-			isProfileOpen = false,
-			badges = nil,
+		-- Powers interface
+		isPowersOpen = false,
+		powerInfoIdSelected = nil,
+		powerInfoSelectionImageId = nil,
 
-			-- Leaderboard interface
-			isLeaderboardOpen = false,
-			leaderboardPage = 1
-		}
-	end
+		-- Profile interface
+		isProfileOpen = false,
+		badges = nil,
+
+		-- Leaderboard interface
+		isLeaderboardOpen = false,
+		leaderboardPage = 1
+	}
 
 	players_insert("lobby", playerName)
 

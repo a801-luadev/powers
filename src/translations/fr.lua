@@ -41,18 +41,18 @@ translations.fr = {
 	unlockPower = "<FC>[<J>•<FC>] Vous avez débloqué les pouvoirs suivant(s): %s",
 
 	levelName = {
-		[000] = "Mutant",
-		[010] = "Nécromancien",
+		[000] = { "Mutant", "Mutante" },
+		[010] = { "Nécromancien", "Nécromancienne" },
 		[020] = "Scientifique",
-		[030] = "Titan",
+		[030] = { "Titan", "Titane" },
 		[040] = { "Sorcier", "Sorcière" },
-		[050] = "Contrôleur de Réalité",
+		[050] = { "Contrôleur de Réalité" },
 		[060] = { "Seigneur des Enchantements", "Maîtresse des Enchantements" },
-		[070] = "Invocateur Chaman",
-		[080] = "Le Chevalier de la Peste",
-		[090] = "Le Chevalier de la Famine",
-		[100] = "Le Chevalier de Guerre",
-		[110] = "Le Chevalier Mort",
+		[070] = { "Invocateur Chaman", "Invocatrice Chamane" },
+		[080] = { "Le Chevalier de la Peste", "La Chevalière de la Peste"},
+		[090] = { "Le Chevalier de la Famine", "La Chevalière de la Famine" },
+		[100] = { "Le Chevalier de Guerre", "La Chevalière de Guerre" },
+		[110] = { "Le Chevalier Mort", "La Chevalière Morte" },
 		[120] = "Le Vide"
 	},
 
@@ -60,7 +60,6 @@ translations.fr = {
 	level = "Niveau %d",
 
 	helpTitles = {
-		[1] = "Powers!",
 		[2] = "Commandes",
 		[3] = "Contribuer",
 		[4] = "Quoi d'neuf ?"
@@ -99,7 +98,7 @@ translations.fr = {
 		,
 		[4] = "<FC><p align='center'>QUOI D'NEUF ?</p><N>\n\n" ..
 			"• Le module est devenu officiel.\n" ..
-			"• Le module a été complétement ré-écrit."
+			"• Le module a été complètement ré-écrit."
 	},
 
 	commandDescriptions = {
@@ -151,31 +150,31 @@ translations.fr = {
 		rounds = "Manches",
 		victories = "Victoires",
 		kills = "Tués",
-		xp = "Experience",
+		xp = "Expérience",
 		badges = "Badges"
 	},
 
 	leaderboard = "Classement",
-	leaderboardIsLoading = "<BL>[<VI>•<BL>] Le classement est toujours en train de cahrger. " ..
+	leaderboardIsLoading = "<BL>[<VI>•<BL>] Le classement est toujours en train de charger. " ..
 		"Ré-essayez dans quelques secondes.",
 
 	addMap = "<BV>[<FC>•<BV>] La carte <J>@%s</J> a été ajoutée dans la liste des cartes locales.",
 	remMap = "<BV>[<FC>•<BV>] The map <J>@%s</J> a été retirée de la liste des cartes locales.",
 	listMaps = "<BV>[<FC>•<BV>] Cartes (<J>#%d</J>): %s",
 
-	enableParticles = "<ROSE>DN'OUBLIEZ PAS D'ACTIVER les effets/particules spéciales pour " ..
+	enableParticles = "<ROSE>N'OUBLIEZ PAS D'ACTIVER les effets/particules spéciales pour " ..
 		"voir le jeu normalement. (Dans 'Menu' → 'Options', à côté de 'Liste de salon')</ROSE>",
 
-	ban = "%s <ROSE>has been banned from #powers by %s <ROSE>for %d hours. Reason: %s",
-	unban = "<ROSE>You have been unbanned by %s",
-	isBanned = "<ROSE>You are banned from #powers until GMT+2 %s (%d hours to go).",
-	permBan = "%s <ROSE>has been banned permanently from #powers by %s<ROSE>. Reason: %s",
-	cantPermUnban = "<BL>[<VI>•<BL>] You cannot unban a user that is banned permanently.",
+	ban = "%s <ROSE>a été banni de #powers par %s <ROSE>pendant %d heures. Raison: %s",
+	unban = "<ROSE>Votre bannissement a été supprimé par %s",
+	isBanned = "<ROSE>Vous êtes banni de #powers jusqu'à GMT+2 %s (%d heures restantes).",
+	permBan = "%s <ROSE>a été banni de #powers définitivement par %s<ROSE>. Raison: %s",
+	cantPermUnban = "<BL>[<VI>•<BL>] Vous ne pouvez pas supprimé le bannissement d'un joueur banni définitevement.",
 
-	playerGetPermissions = "<BL>[<VI>•<BL>] %s <BL>has now the following permissions: <B>%s</B>",
-	playerLosePermissions = "<BL>[<VI>•<BL>] %s <BL>had the following permissions removed: " ..
+	playerGetPermissions = "<BL>[<VI>•<BL>] %s <BL>a maintenant les permissions suivantes : <B>%s</B>",
+	playerLosePermissions = "<BL>[<VI>•<BL>] %s <BL>n'a plus les permissions suivantes : " ..
 		"<B>%s</B>",
-	playerGetRole = "<FC>%s <FC>ha été promu(e) vers <font color='#%x'>%s</font>!",
+	playerGetRole = "<FC>%s <FC>a été promu(e) vers <font color='#%x'>%s</font>!",
 	playerLoseRole = "<FC>%s <FC>n'est plus <font color='#%x'>%s</font>.",
 
 	enableReviewMode = "<BV>[<FC>•<BV>] Le <FC>Mode de vérification de cartes<BV> est activé. " ..

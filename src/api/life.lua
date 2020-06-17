@@ -12,29 +12,39 @@ local addHealth = function(playerName, cache, hp)
 	updateLifeBar(playerName, cache)
 end
 
-local damagePlayer = function(playerName, damage, _cache)
-	_cache = _cache or playerCache[playerName]
-	_cache.health = _cache.health - damage
+local givePlayerKill = function(playerName)
+	playerData
+		:set(playerName, "kills", 1, true)
+		:set(playerName, "xp", module.xp_on_kill, true)
+end
 
-	if _cache.health <= 0 then
-		_cache.health = 0
+local damagePlayer = function(playerName, damage, cache, _attackerName, _time)
+	cache.health = cache.health - damage
+
+	if cache.health <= 0 then
+		cache.lastDamageBy = nil
+		cache.health = 0
 		killPlayer(playerName)
 		return true
 	else
-		updateLifeBar(playerName, _cache)
+		if _attackerName then -- If player falls or something, the kill is given to the last damage
+			cache.lastDamageBy = _attackerName
+			cache.lastDamageTime = _time
+		end
+		updateLifeBar(playerName, cache)
 		return false
 	end
 end
 
 local damagePlayersWithAction = function(except, damage, action, filter, x, y, ...)
+	local time = time() + 3000
+
 	local hasKilled = false
 	for name, cache in next, getPlayersOnFilter(except, filter, x, y, ...) do
 		if (not action and true or action(name))
-			and damagePlayer(name, damage, cache) then -- Has died
+			and damagePlayer(name, damage, cache, except, time) then -- Has died
 			hasKilled = true
-			playerData
-				:set(except, "kills", 1, true)
-				:set(except, "xp", module.xp_on_kill, true)
+			givePlayerKill(except)
 		end
 	end
 	if hasKilled then

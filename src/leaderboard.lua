@@ -1,4 +1,4 @@
- local readLeaderboardData = function(data)
+local readLeaderboardData = function(data)
 	local total
 	data, total = str_split(data, ' ', true, tonumber)
 
@@ -22,7 +22,7 @@
 	local totalRegisters = total / 8 -- 8 fields
 
 	local player = 0
-	for i = 1, totalRegisters, 8 do
+	for i = 1, total, 8 do
 		community     = data[i + 0]
 		id            = data[i + 1]
 		nickname      = data[i + 2]
@@ -111,7 +111,7 @@ do
 				playerPosition.victories = quickPlayerData.victories
 				playerPosition.kills = quickPlayerData.kills
 				playerPosition.xp = quickPlayerData.xp
-			elseif quickPlayerData.xp > module.default_xp then -- Skips profiles with 0 data
+			else
 				registersLen = registersLen + 1
 				l_registers[registersLen] = {
 					community     = community,
@@ -123,6 +123,7 @@ do
 					kills         = quickPlayerData.kills,
 					xp            = quickPlayerData.xp
 				}
+				l_sets[player.id] = registersLen
 			end
 		end
 

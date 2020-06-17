@@ -4,8 +4,9 @@ local tree = {
 
 	"translations/en.lua",
 	"translations/br.lua",
+	"translations/es.lua",
 	"translations/fr.lua",
-	"translations/he.lua",
+	"translations/he.lua", -- RTL is broken
 
 	"enums/powers.lua",
 	"enums/colors.lua",

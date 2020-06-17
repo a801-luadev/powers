@@ -9,6 +9,6 @@ do
 		chatMessage(msgFormat .. table_concat(command, ' ', 2))
 
 		messagePlayersWithPrivilege(format(internalMessageFormat, prettifyNickname(playerName, 10,
-			nil, "/B><G", 'B'), command[1], table_concat(command, ' ', 2, 5)))
+			nil, "/B><G", 'B'), command[1], table_concat(command, ' ', 2, min(#command, 5))))
 	end
 end

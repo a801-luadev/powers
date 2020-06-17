@@ -47,6 +47,8 @@ eventNewGame = function()
 		cache.powerCooldown = 0
 		cache.soulMate = nil
 		cache.roundLevel = cache.level
+		cache.lastDamageBy = nil
+		cache.lastDamageTime = nil
 
 		updateLifeBar(playerName, cache)
 
