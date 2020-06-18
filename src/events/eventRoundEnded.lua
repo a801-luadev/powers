@@ -25,32 +25,33 @@ eventRoundEnded = function()
 	for name in next, players.currentRound do
 		-- Only players that played in this round
 		cache = playerCache[name]
+		if cache then
+			if resetPlayersDefaultSize then
+				changePlayerSize(name, 1)
+			end
 
-		if resetPlayersDefaultSize then
-			changePlayerSize(name, 1)
-		end
+			if cache.soulMate then
+				linkMice(name, cache.soulMate, false)
+			end
 
-		if cache.soulMate then
-			linkMice(name, cache.soulMate, false)
-		end
+			if alivePlayers[name] then
+				winnerCount = winnerCount + 1
+				winners[winnerCount] = prettifyNickname(name, 10, nil, "/B><G", 'B')
 
-		if alivePlayers[name] then
-			winnerCount = winnerCount + 1
-			winners[winnerCount] = prettifyNickname(name, 10, nil, "/B><G", 'B')
+				playerData
+					:set(name, "xp", module.xp_on_victory, true)
+					:set(name, "victories", 1, true)
 
+				giveCheese(name)
+				playerVictory(name)
+			end
 			playerData
-				:set(name, "xp", module.xp_on_victory, true)
-				:set(name, "victories", 1, true)
+				:set(name, "rounds", 1, true)
+				:save(name)
 
-			giveCheese(name)
-			playerVictory(name)
+			-- Checks player level
+			checkPlayerLevel(name, cache)
 		end
-		playerData
-			:set(name, "rounds", 1, true)
-			:save(name)
-
-		-- Checks player level
-		checkPlayerLevel(name, cache)
 	end
 	resetPlayersDefaultSize = false
 

@@ -115,7 +115,7 @@ local checkPlayerLevel = function(playerName, cache)
 	local nameByLevel = Power.__nameByLevel
 
 	local levelNames, counter, storedNames = { }, 0
-	for lvl = cache.roundLevel, newLevel do -- Checks all new levels, it can be more than one.
+	for lvl = cache.roundLevel + 1, newLevel do -- Checks all new levels, it can be more than one.
 		storedNames = nameByLevel[lvl]
 		if storedNames then
 			for i = 1, #storedNames do
