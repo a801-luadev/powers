@@ -2,7 +2,7 @@ do
 	textAreaCallbacks["leaderboardRight"] = function(playerName, cache)
 		-- leaderboardRight
 		cache.leaderboardPage = cache.leaderboardPage + 1
-		if cache.leaderboardPage >= leaderboard.total_pages then
+		if cache.leaderboardPage > leaderboard.total_pages then
 			cache.leaderboardPage = 1
 		end
 

@@ -23,11 +23,9 @@ do
 		command = table_concat(command, ' ', 4)
 
 		if not isPermanent then
-			chatMessage(format(getText.ban, prettyTargetPlayer, prettyPlayer, banTime, command),
-				targetPlayer)
+			chatMessage(format(getText.ban, prettyTargetPlayer, prettyPlayer, banTime, command))
 		else
-			chatMessage(format(getText.permBan, prettyTargetPlayer, prettyPlayer, command),
-				targetPlayer)
+			chatMessage(format(getText.permBan, prettyTargetPlayer, prettyPlayer, command))
 		end
 
 		buildAndSaveDataFile()
