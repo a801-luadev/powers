@@ -42,7 +42,7 @@ local players_lobby = function(playerName)
 end
 
 local isValidPlayer = function(playerName)
-	playerName = tfm.get.room.playerList[playerName]
+	playerName = room.playerList[playerName]
 	local isBanned = bannedPlayers[playerName.id]
 	return playerName.id > 0 -- Is not souris
 		and not isBanned -- Is not banned
@@ -57,7 +57,7 @@ local playerCanTriggerEvent = function(playerName, cache)
 	local time = time()
 	if cache.powerCooldown > time then return end
 
-	if canTriggerPowers and not (tfm.get.room.playerList[playerName].isDead
+	if canTriggerPowers and not (room.playerList[playerName].isDead
 		or cache.isInterfaceOpen) then
 		return time, cache
 	end

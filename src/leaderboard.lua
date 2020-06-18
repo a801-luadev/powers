@@ -91,7 +91,7 @@ do
 		local nickname, discriminator, community
 
 		for playerName in next, players.room do
-			player = tfm.get.room.playerList[playerName]
+			player = room.playerList[playerName]
 			quickPlayerData = playerData[playerName]
 
 			nickname, discriminator = getNicknameAndDiscriminator(playerName)

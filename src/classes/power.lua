@@ -215,7 +215,7 @@ do
 		end
 
 		if not (_ignorePosition or _x) then
-			local playerData = tfm.get.room.playerList[playerName]
+			local playerData = room.playerList[playerName]
 			_x, _y = playerData.x, playerData.y
 		end
 

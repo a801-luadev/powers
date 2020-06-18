@@ -35,6 +35,8 @@ local loadPlayerData = system.loadPlayerData
 local saveFile       = system.saveFile
 local savePlayerData = system.savePlayerData
 
+local room = tfm.get.room
+
 -- Enums
 local enum_emote        = tfm.enum.emote
 local enum_particle     = tfm.enum.particle
@@ -51,7 +53,6 @@ local sin    = math.sin
 
 -- String
 local byte   = string.byte
-local char   = string.char
 local find   = string.find
 local format = string.format
 local gmatch = string.gmatch
@@ -79,7 +80,6 @@ local time = os.time
 
 -- Others
 local next         = next
-local rawset       = rawset
 local setmetatable = setmetatable
 local tonumber     = tonumber
 local type         = type
@@ -156,7 +156,7 @@ local roomAdmins = {
 }
 
 -- Important settings
-local isOfficialRoom = byte(tfm.get.room.name, 2) ~= 3
+local isOfficialRoom = byte(room.name, 2) ~= 3
 
 local canSaveData = false
 local canTriggerPowers = false
@@ -1728,19 +1728,6 @@ local clamp = function(value, min, max)
 end
 
 --[[ api/string.lua ]]--
-local str_getBytes = function(str)
-	local len = #str
-	if len > 8000 then -- avoids 'string slice too long'
-		local out = { }
-		for i = 1, len do
-			out[i] = byte(str, i, i)
-		end
-		return out
-	else
-		return { byte(str, 1, -1) }
-	end
-end
-
 local str_split = function(str, pattern, raw, f)
 	local out, counter = { }, 0
 
@@ -1775,26 +1762,6 @@ table_add = function(src, tbl, deep)
 	end
 end
 
-local table_addArray = function(src, add)
-	local len = #src
-	for i = 1, #add do
-		src[len + i] = add[i]
-	end
-end
-
-local table_arrayRange = function(arr, i, j)
-	i = i or 1
-	j = j or #arr
-	if i > j then return { } end
-
-	local newArray, counter = { }, 0
-	for v = i, j do
-		counter = counter + 1
-		newArray[counter] = arr[v]
-	end
-	return newArray
-end
-
 local table_copy = function(list)
 	local out = { }
 	for k, v in next, list do
@@ -1821,13 +1788,6 @@ local table_set = function(tbl)
 		out[tbl[i]] = i
 	end
 	return out
-end
-
-local table_writeBytes = function(bytes)
-	for i = 1, #bytes do
-		bytes[i] = char(bytes[i])
-	end
-	return table_concat(bytes)
 end
 
 --[[ api/transformice.lua ]]--
@@ -1916,7 +1876,7 @@ end
 
 local validateNicknameAndGetID = function(str)
 	local targetPlayer = strToNickname(str, true)
-	local targetPlayerId = tfm.get.room.playerList[targetPlayer]
+	local targetPlayerId = room.playerList[targetPlayer]
 	targetPlayerId = targetPlayerId and targetPlayerId.id
 	if targetPlayerId == 0 then
 		targetPlayerId = nil
@@ -1926,7 +1886,7 @@ local validateNicknameAndGetID = function(str)
 end
 
 local messagePlayersWithPrivilege = function(message)
-	for playerName, data in next, tfm.get.room.playerList do
+	for playerName, data in next, room.playerList do
 		if playersWithPrivileges[data.id] then
 			chatMessage(message, playerName)
 		end
@@ -1934,7 +1894,7 @@ local messagePlayersWithPrivilege = function(message)
 end
 
 local messageRoomAdmins = function(message)
-	for playerName in next, tfm.get.room.playerList do
+	for playerName in next, room.playerList do
 		if roomAdmins[playerName] then
 			chatMessage(message, playerName)
 		end
@@ -2016,7 +1976,7 @@ local players_lobby = function(playerName)
 end
 
 local isValidPlayer = function(playerName)
-	playerName = tfm.get.room.playerList[playerName]
+	playerName = room.playerList[playerName]
 	local isBanned = bannedPlayers[playerName.id]
 	return playerName.id > 0 -- Is not souris
 		and not isBanned -- Is not banned
@@ -2031,7 +1991,7 @@ local playerCanTriggerEvent = function(playerName, cache)
 	local time = time()
 	if cache.powerCooldown > time then return end
 
-	if canTriggerPowers and not (tfm.get.room.playerList[playerName].isDead
+	if canTriggerPowers and not (room.playerList[playerName].isDead
 		or cache.isInterfaceOpen) then
 		return time, cache
 	end
@@ -2144,7 +2104,7 @@ end
 
 --[[ api/permissions.lua ]]--
 local hasPermission = function(playerName, permission, _playerId, _playerPermissions)
-	_playerId = _playerPermissions or _playerId or tfm.get.room.playerList[playerName].id
+	_playerId = _playerPermissions or _playerId or room.playerList[playerName].id
 	_playerPermissions = _playerPermissions or playersWithPrivileges[_playerId]
 
 	-- p & t > 0
@@ -2152,7 +2112,7 @@ local hasPermission = function(playerName, permission, _playerId, _playerPermiss
 end
 
 local addPermission = function(playerName, permission, _playerId)
-	_playerId = _playerId or tfm.get.room.playerList[playerName].id
+	_playerId = _playerId or room.playerList[playerName].id
 
 	local oldPerms = playersWithPrivileges[_playerId]
 	if not oldPerms then
@@ -2168,7 +2128,7 @@ local addPermission = function(playerName, permission, _playerId)
 end
 
 local removePermission = function(playerName, permission, _playerId)
-	_playerId = _playerId or tfm.get.room.playerList[playerName].id
+	_playerId = _playerId or room.playerList[playerName].id
 
 	local oldPerms = playersWithPrivileges[_playerId]
 	-- t & ~p
@@ -2185,7 +2145,7 @@ local getPlayersOnFilter = function(except, filter, ...)
 	local player
 	for playerName in next, players.alive do
 		if playerName ~= except then
-			player = tfm.get.room.playerList[playerName]
+			player = room.playerList[playerName]
 			if filter(player.x, player.y, ...) then
 				data[playerName] = playerCache[playerName]
 			end
@@ -2285,7 +2245,7 @@ do
 		return src
 	end
 
-	getText = translations[tfm.get.room.community]
+	getText = translations[room.community]
 	if getText then
 		if getText ~= translations.en then
 			merge(getText, translations.en, {
@@ -2708,7 +2668,7 @@ do
 		end
 
 		if not (_ignorePosition or _x) then
-			local playerData = tfm.get.room.playerList[playerName]
+			local playerData = room.playerList[playerName]
 			_x, _y = playerData.x, playerData.y
 		end
 
@@ -3650,7 +3610,7 @@ local parseDataFile = function(data)
 	local fileHasChanged = false
 
 	local time, banTime = time()
-	for playerName, data in next, tfm.get.room.playerList do
+	for playerName, data in next, room.playerList do
 		banTime = bannedPlayers[data.id]
 		if banTime then
 			if time > banTime then
@@ -3765,7 +3725,7 @@ do
 		local nickname, discriminator, community
 
 		for playerName in next, players.room do
-			player = tfm.get.room.playerList[playerName]
+			player = room.playerList[playerName]
 			quickPlayerData = playerData[playerName]
 
 			nickname, discriminator = getNicknameAndDiscriminator(playerName)
@@ -4345,7 +4305,7 @@ do
 		-- Level Title
 		interface:addTextArea(format(levelNameFormat, 14,
 			getText.levelName[targetCacheData.levelIndex]
-				[tfm.get.room.playerList[targetPlayer].gender%2 + 1]), playerName, x, y, 280, 20, 1,
+				[room.playerList[targetPlayer].gender%2 + 1]), playerName, x, y, 280, 20, 1,
 			1, 0, true)
 
 		-- Width = currentExp*240 / totalExp
@@ -4661,7 +4621,7 @@ do
 	commands["profile"] = function(playerName, command)
 		command[2] = command[2] and strToNickname(command[2]) or playerName
 		if playerCache[command[2]] and
-			not bannedPlayers[tfm.get.room.playerList[command[2]].id] then
+			not bannedPlayers[room.playerList[command[2]].id] then
 			displayProfile(playerName, command[2], cache)
 		end
 	end
@@ -5230,7 +5190,7 @@ eventNewGame = function()
 	for playerName in next, players.alive do
 		cache = playerCache[playerName]
 		cache.health = 100
-		cache.isFacingRight = not tfm.get.room.mirroredMap
+		cache.isFacingRight = not room.mirroredMap
 		cache.extraHealth = 0
 		cache.powerCooldown = 0
 		cache.soulMate = nil
@@ -5249,7 +5209,7 @@ eventNewGame = function()
 		end
 	end
 
-	canSaveData = (isOfficialRoom and tfm.get.room.uniquePlayers >= module.min_players
+	canSaveData = (isOfficialRoom and room.uniquePlayers >= module.min_players
 		and not isReviewMode)
 	-- Adds extra XP
 	if canSaveData then
@@ -5417,7 +5377,7 @@ eventMouse = function(playerName, x, y)
 	local time, cache = playerCanTriggerEvent(playerName)
 	if not time then return end
 
-	local playerX, playerY = tfm.get.room.playerList[playerName]
+	local playerX, playerY = room.playerList[playerName]
 	playerX, playerY = playerX.x, playerX.y
 
 	local playerPowers = cache.powers
@@ -5457,7 +5417,7 @@ eventEmotePlayed = function(playerName, id)
 	local time, cache = playerCanTriggerEvent(playerName)
 	if not time then return end
 
-	local playerX, playerY = tfm.get.room.playerList[playerName]
+	local playerX, playerY = room.playerList[playerName]
 	playerX, playerY = playerX.x, playerX.y
 
 	local playerPowers = cache.powers
@@ -5487,9 +5447,9 @@ end
 
 --[[ roomAdmins.lua ]]--
 if isOfficialRoom then
-	local _, roomQuery = find(tfm.get.room.name, "^%*?.?.?%-?#powers%d+()")
+	local _, roomQuery = find(room.name, "^%*?.?.?%-?#powers%d+()")
 	if roomQuery then
-		roomQuery = sub(tfm.get.room.name, roomQuery)
+		roomQuery = sub(room.name, roomQuery)
 
 		for playerName in gmatch(roomQuery, "%+?%a[%w_][%w_][%w_]*#%d%d%d%d") do
 			roomAdmins[strToNickname(playerName)] = true
@@ -5507,7 +5467,7 @@ loadFile(module.leaderboard_file)
 
 module.max_player_xp = lvlToXp(module.max_player_level)
 
-for playerName in next, tfm.get.room.playerList do
+for playerName in next, room.playerList do
 	eventNewPlayer(playerName)
 	setPlayerScore(playerName, 0)
 end

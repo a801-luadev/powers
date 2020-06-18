@@ -21,7 +21,7 @@ do
 		-- Level Title
 		interface:addTextArea(format(levelNameFormat, 14,
 			getText.levelName[targetCacheData.levelIndex]
-				[tfm.get.room.playerList[targetPlayer].gender%2 + 1]), playerName, x, y, 280, 20, 1,
+				[room.playerList[targetPlayer].gender%2 + 1]), playerName, x, y, 280, 20, 1,
 			1, 0, true)
 
 		-- Width = currentExp*240 / totalExp

@@ -1,5 +1,5 @@
 local hasPermission = function(playerName, permission, _playerId, _playerPermissions)
-	_playerId = _playerPermissions or _playerId or tfm.get.room.playerList[playerName].id
+	_playerId = _playerPermissions or _playerId or room.playerList[playerName].id
 	_playerPermissions = _playerPermissions or playersWithPrivileges[_playerId]
 
 	-- p & t > 0
@@ -7,7 +7,7 @@ local hasPermission = function(playerName, permission, _playerId, _playerPermiss
 end
 
 local addPermission = function(playerName, permission, _playerId)
-	_playerId = _playerId or tfm.get.room.playerList[playerName].id
+	_playerId = _playerId or room.playerList[playerName].id
 
 	local oldPerms = playersWithPrivileges[_playerId]
 	if not oldPerms then
@@ -23,7 +23,7 @@ local addPermission = function(playerName, permission, _playerId)
 end
 
 local removePermission = function(playerName, permission, _playerId)
-	_playerId = _playerId or tfm.get.room.playerList[playerName].id
+	_playerId = _playerId or room.playerList[playerName].id
 
 	local oldPerms = playersWithPrivileges[_playerId]
 	-- t & ~p

@@ -13,7 +13,7 @@ do
 		return src
 	end
 
-	getText = translations[tfm.get.room.community]
+	getText = translations[room.community]
 	if getText then
 		if getText ~= translations.en then
 			merge(getText, translations.en, {

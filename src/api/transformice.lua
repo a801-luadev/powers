@@ -83,7 +83,7 @@ end
 
 local validateNicknameAndGetID = function(str)
 	local targetPlayer = strToNickname(str, true)
-	local targetPlayerId = tfm.get.room.playerList[targetPlayer]
+	local targetPlayerId = room.playerList[targetPlayer]
 	targetPlayerId = targetPlayerId and targetPlayerId.id
 	if targetPlayerId == 0 then
 		targetPlayerId = nil
@@ -93,7 +93,7 @@ local validateNicknameAndGetID = function(str)
 end
 
 local messagePlayersWithPrivilege = function(message)
-	for playerName, data in next, tfm.get.room.playerList do
+	for playerName, data in next, room.playerList do
 		if playersWithPrivileges[data.id] then
 			chatMessage(message, playerName)
 		end
@@ -101,7 +101,7 @@ local messagePlayersWithPrivilege = function(message)
 end
 
 local messageRoomAdmins = function(message)
-	for playerName in next, tfm.get.room.playerList do
+	for playerName in next, room.playerList do
 		if roomAdmins[playerName] then
 			chatMessage(message, playerName)
 		end

@@ -34,6 +34,8 @@ local loadPlayerData = system.loadPlayerData
 local saveFile       = system.saveFile
 local savePlayerData = system.savePlayerData
 
+local room = tfm.get.room
+
 -- Enums
 local enum_emote        = tfm.enum.emote
 local enum_particle     = tfm.enum.particle
@@ -50,7 +52,6 @@ local sin    = math.sin
 
 -- String
 local byte   = string.byte
-local char   = string.char
 local find   = string.find
 local format = string.format
 local gmatch = string.gmatch
@@ -78,7 +79,6 @@ local time = os.time
 
 -- Others
 local next         = next
-local rawset       = rawset
 local setmetatable = setmetatable
 local tonumber     = tonumber
 local type         = type

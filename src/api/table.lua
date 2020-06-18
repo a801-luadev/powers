@@ -10,26 +10,6 @@ table_add = function(src, tbl, deep)
 	end
 end
 
-local table_addArray = function(src, add)
-	local len = #src
-	for i = 1, #add do
-		src[len + i] = add[i]
-	end
-end
-
-local table_arrayRange = function(arr, i, j)
-	i = i or 1
-	j = j or #arr
-	if i > j then return { } end
-
-	local newArray, counter = { }, 0
-	for v = i, j do
-		counter = counter + 1
-		newArray[counter] = arr[v]
-	end
-	return newArray
-end
-
 local table_copy = function(list)
 	local out = { }
 	for k, v in next, list do
@@ -56,11 +36,4 @@ local table_set = function(tbl)
 		out[tbl[i]] = i
 	end
 	return out
-end
-
-local table_writeBytes = function(bytes)
-	for i = 1, #bytes do
-		bytes[i] = char(bytes[i])
-	end
-	return table_concat(bytes)
 end

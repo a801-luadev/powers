@@ -68,7 +68,7 @@ local roomAdmins = {
 }
 
 -- Important settings
-local isOfficialRoom = byte(tfm.get.room.name, 2) ~= 3
+local isOfficialRoom = byte(room.name, 2) ~= 3
 
 local canSaveData = false
 local canTriggerPowers = false
