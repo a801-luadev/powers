@@ -19,9 +19,7 @@ local module = {
 	max_player_level = 129,
 	max_player_xp = nil,
 
-	max_leaderboard_rows = 100,
-
-	lobbyMap = 1995971
+	max_leaderboard_rows = 100
 }
 
 -- Important tables
@@ -77,7 +75,7 @@ local isLowQuality = false -- Unused yet
 local totalCurrentMaps, currentMap, nextMapLoadTentatives, mapHashes = 0, 0, 0
 local nextMapToLoad
 
-local hasTriggeredRoundEnd, isLobby, inLobby = false, false, false
+local hasTriggeredRoundEnd = false
 local isReviewMode, isCurrentMapOnReviewMode = false, false
 local minPlayersForNextRound = 1
 

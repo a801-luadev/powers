@@ -7,6 +7,7 @@ local addShamanObject  = tfm.exec.addShamanObject
 local changePlayerSize = tfm.exec.changePlayerSize
 local displayParticle  = tfm.exec.displayParticle
 local explosion        = tfm.exec.explosion
+local freezePlayer     = tfm.exec.freezePlayer
 local giveCheese       = tfm.exec.giveCheese
 local killPlayer       = tfm.exec.killPlayer
 local linkMice         = tfm.exec.linkMice
@@ -107,9 +108,7 @@ local module = {
 	max_player_level = 129,
 	max_player_xp = nil,
 
-	max_leaderboard_rows = 100,
-
-	lobbyMap = 1995971
+	max_leaderboard_rows = 100
 }
 
 -- Important tables
@@ -165,7 +164,7 @@ local isLowQuality = false -- Unused yet
 local totalCurrentMaps, currentMap, nextMapLoadTentatives, mapHashes = 0, 0, 0
 local nextMapToLoad
 
-local hasTriggeredRoundEnd, isLobby, inLobby = false, false, false
+local hasTriggeredRoundEnd = false
 local isReviewMode, isCurrentMapOnReviewMode = false, false
 local minPlayersForNextRound = 1
 
@@ -205,7 +204,8 @@ translations.en = {
 		gravitationalAnomaly = "Gravitational Anomaly",
 		deathRay = "Death Ray",
 		atomic = "Atomic",
-		dayOfJudgement = "Day of Judgement"
+		dayOfJudgement = "Day of Judgement",
+		waterPump = "Water Pump"
 	},
 	powersDescriptions = {
 		lightSpeed = "Moves your mouse in the speed of light, pushing all enemies around.",
@@ -220,7 +220,8 @@ translations.en = {
 		gravitationalAnomaly = "Starts a gravitational anomaly.",
 		deathRay = "Toasts the enemies with the powerful and mysterious death ray.",
 		atomic = "Randomly changes all players' size.",
-		dayOfJudgement = "Revives all dead enemies, them all linked to each other."
+		dayOfJudgement = "Revives all dead enemies, them all linked to each other.",
+		waterPump = "Summons some drops of water from Antarctica."
 	},
 	powerType = {
 		atk = "ATTACK (%d)",
@@ -612,7 +613,7 @@ translations.es = {
 			"<a href='event:print_atelier801.com/topic?f=6&t=888676'><font size='18' color='#087ECC'>Hilo en los Foros</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>¿QUÉ HAY DE NUEVO?</p><N>\n\n" ..
-			"• Ahora puedes leer acerca de los poderes.\n" ..
+			"• Ahora puedes leer acerca de todos los poderes.\n" ..
 			"• El módulo se volvió oficial.\n" ..
 			"• El módulo ha sido completamente reescrito."
 	},
@@ -759,7 +760,7 @@ translations.fr = {
 			"<a href='event:print_atelier801.com/topic?f=6&t=888676'><font size='18' color='#087ECC'>Sujet dans le Forum</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>QUOI D'NEUF ?</p><N>\n\n" ..
-			"• Vous pouvez lire à propos des pouvoirs maintenant.\n" ..
+			"• Vous pouvez lire à propos de tous les pouvoirs maintenant.\n" ..
 			"• Le module est devenu officiel.\n" ..
 			"• Le module a été complètement ré-écrit."
 	},
@@ -814,7 +815,7 @@ translations.fr = {
 }
 
 --[[ translations/pl.lua ]]--
--- Translated by Michipol
+-- Translated by Michipol#0000
 translations.pl = {
 	greeting = "<FC>Witaj w <B>#powers</B>!\n" ..
 		"\t• Naciśnij <B>H</B> albo wpisz <B>!help</B> aby przeczytać więcej o module.\n" ..
@@ -958,6 +959,439 @@ translations.pl = {
 
 	setPassword = "<BL>[<VI>•<BL>] %s <BL>ustawił nowe hasło na %q.",
 	removePassword = "<BL>[<VI>•<BL>] %s <BL>usunął haslo z pokoju."
+}
+
+--[[ translations/ro.lua ]]--
+-- Translated by Railysse#0000
+translations.ro = {
+	greeting = "<FC>Bine ai venit la <B>#powers</B>!\n" ..
+		"\t• Apasă <B>H</B> sau scrie <B>!help</B> pentru a afla mai multe despre modul.\n" ..
+		"\t• Apasă <B>O</B> sau scrie <B>!powers</B> pentru a afla mai multe despre puteri.",
+	kill = "<R>%s<FC> a omorât pe %s",
+
+	mentionWinner = "<FC>%s<FC> a câștigat runda!",
+	noWinner = "<FC>Nimeni nu a câștigat runda. :(",
+
+	minPlayers = "Trebuie să fie cel puțin <B>2</B> jucători pe sală pentru ca jocul să înceapă.",
+
+	powers = {
+		lightSpeed = "Viteza Luminii",
+		laserBeam = "Rază Laser",
+		wormHole = "Gaură de Vierme",
+		doubleJump = "Săritură dublă",
+		helix = "Spirală",
+		dome = "Dom",
+		lightning = "Fulger",
+		superNova = "Supernovă",
+		meteorSmash = "Lovitură de Meteorit",
+		gravitationalAnomaly = "Anomalie Gravitațională",
+		deathRay = "Raza Morții",
+		atomic = "Atomic",
+		dayOfJudgement = "Ziua Judecății"
+	},
+	powersDescriptions = {
+		lightSpeed = "Moves your mouse in the light speed, pushing all enemies around.",
+		laserBeam = "Aruncă o rază laser așa de puternică încât inamicii o pot simți.",
+		wormHole = "Îți teleportează șoricelul în față, printr-o Gaură de Vierme.",
+		doubleJump = "Performs an auxiliar and high double jump.",
+		helix = "Îi dă un impuls șoricelului tău pe diagonală cu o spirală puternică.",
+		dome = "Creează un dom protector care împinge toți inamicii din jur.",
+		lightning = "Invocă un fulger puternic care electrocutează inamicii.",
+		superNova = "Pornește o supernovă care distruge toți inamici din jur..",
+		meteorSmash = "Lovește inamicii cu puterea unui meteorit.",
+		gravitationalAnomaly = "Pornește o anomalie gravitațională.",
+		deathRay = "Prăjește inamicii cu o puternică și misterioasă rază a morții.",
+		atomic = "Schimbă mărimea jucătorilor într-un mod aleator.",
+		dayOfJudgement = "Reînvie toți inamicii morți și îi leagă unul de celălalt."
+	},
+	powerType = {
+		atk = "ATAC (%d)",
+		def = "APĂRARE",
+		divine = "DIVIN"
+	},
+
+	unlockPower = "<FC>[<J>•<FC>] Ai deblocat următoarele puteri: %s",
+
+	levelName = {
+		[000] = { "Mutant", "Mutantă" },
+		[010] = { "Necromant", "Necromantă" },
+		[020] = "Om de știință",
+		[030] = "Titan",
+		[040] = { "Vrăjitor", "Vrăjitoare" },
+		[050] = { "Controlorul realității", "Controloarea realității" },
+		[060] = { "Stăpânul vrăjilor", "Stăpâna vrăjilor" },
+		[070] = { "Invocator Șamanic", "Invocatoare Șamanică" },
+		[080] = { "Călărețul molimei", "Călăreața molimei" },
+		[090] = { "Călărețul foametei", "Călăreața foametei" },
+		[100] = { "Călărețul războiului", "Călăreața războiului" },
+		[110] = { "Călărețul morții", "Călăreața morții" },
+		[120] = "Vidul"
+	},
+
+	newLevel = "<FC>%s<FC> tocmai a atins nivelul <B>%d</B>!",
+	level = "Nivel %d",
+
+	helpTitles = {
+		[2] = "Comenzi",
+		[3] = "Contribuie",
+		[4] = "Ce este nou?"
+	},
+	helpContent = {
+		[1] = "<FC><p align='center'>#POWERS!</p>\n\n" ..
+			"<J>Scopul tău în acest modul este de a supraviețui atacurilor inamice.\n\n" ..
+			"<N>Există o multitudine de puteri folosite ofensiv sau defensiv <font size='12'>- care sunt deblocate atingând nivele superioare -</font>.\n" ..
+			"Scrie <FC><B>!powers</B><N> pentru a afla mai multe despre puterile pe care le-ai deblocat până acum!\n\n" ..
+			"%s\n\n" ..
+			"Acest modul a fost dezvoltat de %s"
+		,
+		[2] = "<FC><p align='center'>COMENZI GENERALE</p><N>\n\n<font size='12'>",
+		[3] = "<FC><p align='center'>CONTRIBUIE<N>\n\n" ..
+			"Iubim Open Source <font color='#E91E63'>♥</font>! Poți vedea și schimba codul sursă al acestui modul pe <a href='event:print_github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n\n" ..
+			"Mentenanța modului este strict voluntară, deci orice ajutor cu privire la <V>cod<N>, <V>bugfix-uri și raportări<N>, <V>sugestii și îmbunătățiri<N>, <V>crearea hărților <N>este binevenită și apreciată.\n" ..
+			"<p align='left'>• Poți <FC>raporta bug-uri <N>sau <FC>să faci sugestii <N>pe <a href='event:print_discord.gg/quch83R'><font color='#087ECC'>Discord</font></a> și/sau pe <a href='event:print_github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n" ..
+			"• Poți <FC>trimite hărți <N>în Thread-ul nostru <a href='event:print_atelier801.com/topic?f=6&t=888677'><font color='#087ECC'>Map Submissions de pe Forum</font></a>.\n\n" ..
+			"<p align='center'>Poți de asemenea să <FC>donezi</FC> orice sumă la <a href='event:print_a801-luadev.github.io/?redirect=powers'><font color='#087ECC'>aici</font></a> pentru a ajuta la menținerea modulului. Toate fondurile obținute prin link vor fi investite în asigurarea de update-uri constante ale modulului și îmbunătățiri generale.\n\n" ..
+			"<a href='event:print_atelier801.com/topic?f=6&t=888676'><font size='18' color='#087ECC'>Thread pe Forum</font></a></p>"
+		,
+		[4] = "<FC><p align='center'>Ce este nou?</p><N>\n\n" ..
+			"• Acum poți citi despre toate puterile.\n" ..
+			"• Modulul a devenit oficial.\n" ..
+			"• Modulul a fost rescris în întregime."
+	},
+
+	commandDescriptions = {
+		help = "Deschide meniul.",
+		powers = "Deschide un meniu care listează toate puterile și descrierile lor.",
+		profile = "Deschide profilul tău sau al altcuiva.",
+		leaderboard = "Deschide clasamentul global.",
+
+		pw = "Protejează sala cu o parolă. Trimite necompletat pentru a o scoate."
+	},
+	commandsParameters = {
+		profile = "[player_name] ",
+
+		pw = "[password] "
+	},
+	["or"] = "sau",
+
+	profileData = {
+		rounds = "Runde",
+		victories = "Victorii",
+		kills = "Kill-uri",
+		xp = "Experiență",
+		badges = "Insigne"
+	},
+
+	leaderboard = "Clasament",
+	leaderboardIsLoading = "<BL>[<VI>•<BL>] Clasamentul se încarcă. Încearcă iar în câteva secunde.",
+
+	addMap = "<BV>[<FC>•<BV>] Harta <J>@%s</J> a fost adăugată în lista locală de așteptare.",
+	remMap = "<BV>[<FC>•<BV>] Harta <J>@%s</J> a fost eliminată din lista locală de așteptare.",
+	listMaps = "<BV>[<FC>•<BV>] Hărți (<J>#%d</J>): %s",
+
+	enableParticles = "<ROSE>NU uita să ACTIVEZI efectele speciale/particulele pentru a vedea modulul cum trebuie. (În 'Meniu' → 'Opțiuni', lângă 'Lista sălilor')</ROSE>",
+
+	ban = "%s <ROSE>a fost banat de pe #powers de către %s <ROSE>pentru %d ore. Motiv: %s",
+	unban = "<ROSE>Ai fost debanat de către %s",
+	isBanned = "<ROSE>Ești banat de pe #powers până la GMT+2 %s (încă %d ore).",
+	permBan = "%s <ROSE>a fost banat permanent de pe #powers de către %s<ROSE>. Motiv: %s",
+
+	playerGetRole = "<FC>%s <FC>a fost promovat la <font color='#%x'>%s</font>!",
+	playerLoseRole = "<FC>%s <FC>nu mai este <font color='#%x'>%s</font>.",
+
+	enableReviewMode = "<BV>[<FC>•<BV>] The <FC>Modul de Revizuire Hărți<BV> este activat. Următoarele runde <B>nu</B> vor lua în considerare statisticile și hărțile care vor apărea sunt testate pentru rotația hărtilor modulului. Au fost activate toate puterile, iar puterile divine au șansă mai mare să se petreacă!",
+	disableReviewMode = "<BV>[<FC>•<BV>] The <FC>Modul de Revizuire Hărți<BV> a fost dezactivat și totul va reveni la normal începând cu următoarea rundă!",
+
+	getBadge = "<FC>%s<FC> tocmai a deblocat o nouă insignă #powers!",
+
+	setPassword = "<BL>[<VI>•<BL>] %s <BL>a pus parola %q.",
+	removePassword = "<BL>[<VI>•<BL>] %s <BL>a scos parola de pe sală."
+}
+
+--[[ translations/tr.lua ]]--
+-- Translated by Bisharch#4886
+translations.tr = {
+	greeting = "<FC><B>#powers</B> modülüne hoş geldiniz!\n" ..
+		"\t• Modül hakkında bilgi almak için <B>H</B> tuşuna basabilir ya da sohbete <B>!help</B> yazabilirsiniz.\n" ..
+		"\t• Güçler hakkında bilgi almak için <B>O</B> tuşuna basabilir ya da sohbete <B>!powers</B> yazabilirsiniz.",
+	kill = "<R>%s<FC>, %s adlı fareyi öldürdü.",
+
+	mentionWinner = "<FC>%s<FC> raundu kazandı!",
+	noWinner = "<FC>Kimse raundu kazanamadı. :(",
+
+	minPlayers = "Oyunun başlaması için odada en az <B>2</B> kişi olması gerekiyor.",
+
+	powers = {
+		lightSpeed = "Işık Hızı",
+		laserBeam = "Lazer Işını",
+		wormHole = "Solucan Deliği",
+		doubleJump = "Çift Zıplama",
+		helix = "Helix",
+		dome = "Kubbe",
+		lightning = "Şimşek",
+		superNova = "Süpernova",
+		meteorSmash = "Meteor Vuruşu",
+		gravitationalAnomaly = "Yerçekimsel Bozukluk",
+		deathRay = "Ölüm Işını",
+		atomic = "Atomik",
+		dayOfJudgement = "Mahşer Günü"
+	},
+	powersDescriptions = {
+		lightSpeed = "Önündeki tüm düşmanları iterek fareniz ışık hızında hareket eder.",
+		laserBeam = "Düşmanların iliklerinde hissedebileceği bir lazer ışını.",
+		wormHole = "Fareniz solucan deliğinde ışınlanır.",
+		doubleJump = "Fareniz iki kere zıplayabilir.",
+		helix = "Fareniz şarmal bir yol alıp çapraz bir şekilde hızlanır.",
+		dome = "Tüm düşmanları ittiren bir koruyucu kubbe yaratır.",
+		lightning = "Düşmanları elektriklerndiren bir güçlü bir şimşek yaratır.",
+		superNova = "Etraftaki tüm düşmanları alt eden bir süpernova yaratır.",
+		meteorSmash = "Düşmanları üstüne meteor yağmış gibi vurur.",
+		gravitationalAnomaly = "Yerçekimini bozar.",
+		deathRay = "Tüm düşmanları kızartır.",
+		atomic = "Tüm oyuncuların boyutunu rastgele olarak değiştirir.",
+		dayOfJudgement = "Birbirine bağlı olan tüm ölü düşmanları diriltir."
+	},
+	powerType = {
+		atk = "SALDIRI (%d)",
+		def = "SAVUNMA",
+		divine = "KUTSAL"
+	},
+
+	unlockPower = "<FC>[<J>•<FC>] Bu gücün kilidini açtınız: %s",
+
+	levelName = {
+		[000] = "Mutant",
+		[010] = "Ruh Çağıran",
+		[020] = "Bilimfaresi",
+		[030] = "Titan",
+		[040] = "Büyücü",
+		[050] = "Gerçekliğin Kontrolcüsü",
+		[060] = "Sihirlerin Efendisi",
+		[070] = "Şamanik Sihirdar",
+		[080] = "Veba Atlısı",
+		[090] = "Kıtlık Atlısı",
+		[100] = "Savaş Atlısı",
+		[110] = "Ölüm Atlısı",
+		[120] = "Boşluk"
+	},
+
+	newLevel = "<FC>%s<FC> şu seviyeye ulaştı: <B>%d</B>!",
+	level = "Seviye %d",
+
+	helpTitles = {
+		[2] = "Komutlar",
+		[3] = "Katkıda Bulun",
+		[4] = "Haberler"
+	},
+	helpContent = {
+		[1] = "<FC><p align='center'>#POWERS!</p>\n\n" ..
+			"<J>Bu modülde amacınız rakipleriniz saldırılarına karşı hayatta kalmak.\n\n" ..
+			"<N>Saldırmak ve savunma yapmak için türlü türlü güçler <font size='12'>- ki bu güçler yüksek seviyelere gelerek açılıyor -</font> elde edebilirsiniz.\n" ..
+			"Kilidini açtığınız güçler hakkında bilgi almak için sohbete <FC><B>!powers</B><N> yazabilirsiniz!\n\n" ..
+			"%s\n\n" ..
+			"%s, bu modülün geliştiricisidir."
+		,
+		[2] = "<FC><p align='center'>GENEL KOMUTLAR</p><N>\n\n<font size='12'>",
+		[3] = "<FC><p align='center'>KATKIDA BULUN<N>\n\n" ..
+			"Açık kaynak kodlu yazılımları seviyoruz <font color='#E91E63'>♥</font>! Bu modülün kaynak kodunu görebilir ve düzenleyebilirsiniz Kaynak koda erişmek için buraya tıklayın. <a href='event:print_github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n\n" ..
+			"Modülü gönüllü olarak geliştirip devam ettirebilirsiniz. Bu yüzden <V>Kodlama<N>, <V>hata gidermeleri ve raporlar<N>, <V>öneriler ve özelliklerin artırılması ya da iyileştirilmesi<N>, <V>harita yapımı <N> hakkındaki öneri ve isteklerinizi memnuniyetle karşılıyoruz.\n" ..
+			"<p align='left'>• Bu linkten <FC>Hataları raporlayabilir <N>ya da <FC>yeni şeyler önerebilirsiniz <N><a href='event:print_discord.gg/quch83R'><font color='#087ECC'>Discord</font></a> ya da buradan <a href='event:print_github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n" ..
+			"• Şuradan bize <FC>haritalarınızı gönderebilirsiniz <N> <a href='event:print_atelier801.com/topic?f=6&t=888677'><font color='#087ECC'>Forumdaki Harita Gönderme konusu</font></a>.\n\n" ..
+			"<p align='center'>Ayrıca istediğiniz miktarda  <FC>bağışta</FC> bulunabilirsiniz. <a href='event:print_a801-luadev.github.io/?redirect=powers'><font color='#087ECC'>Bu linkten</font></a> Bu modülün sürdürülebilmesi için yardımlarınıza açığız. Toplanınan tüm para sürekli gelecek olan güncellemeler ve modülün genel iyileştirmeleri için harcanacaktır.\n\n" ..
+			"<a href='event:print_atelier801.com/topic?f=6&t=888676'><font size='18' color='#087ECC'>Forum Konusu</font></a></p>"
+		,
+		[4] = "<FC><p align='center'>HABERLER</p><N>\n\n" ..
+			"• Artık oyundaki tüm güçler hakkında bilgi sahibi olabilirsiniz.\n" ..
+			"• Modülümüz artık resmî.\n" ..
+			"• Modülümüz baştan sona tekrar yazıldı."
+	},
+
+	commandDescriptions = {
+		help = "Bu menüyü açar.",
+		powers = "Bütün güçlerin ve güçler hakkında bilginin olduğu menüyü açar.",
+		profile = "Sizin ya da bir başkasının profilini gösterir.",
+		leaderboard = "Küresel lider tahtasını gösterir.",
+
+		pw = "Odaya şifre koyar. Şifreyi kaldırmak için sonrasına bir şey yazmadan gönderin."
+	},
+	commandsParameters = {
+		profile = "[kullanıcı_adı] ",
+
+		pw = "[şifre] "
+	},
+	["or"] = "or",
+
+	profileData = {
+		rounds = "Oynanılan raunt",
+		victories = "Zaferler",
+		kills = "Öldürmeler",
+		xp = "Tecrübe",
+		badges = "Rozetler"
+	},
+
+	leaderboard = "Lider Tahtası",
+	leaderboardIsLoading = "<BL>[<VI>•<BL>] Lider tahtası yükleme aşamasında. Birkaç saniye sonra tekrar deneyin",
+
+	addMap = "<BV>[<FC>•<BV>] <J>@%s</J> kodlu harita listeye eklendi.",
+	remMap = "<BV>[<FC>•<BV>] <J>@%s</J> kodlu harita listeden silindi.",
+	listMaps = "<BV>[<FC>•<BV>] Haritalar (<J>#%d</J>): %s",
+
+	enableParticles = "<ROSE>Özel efektleri/parçacıkları aktive etmeyi unutmayın. Modülü daha iyi görebilmeniz için bunu yapmanız gereklidir. (‘Menü’den → ‘Ayarlar’, ’Oda Listesi’nin yanında)</ROSE>",
+
+	ban = "%s <ROSE>isimli kullanıcı #powers modülünden uzaklaştırılmıştır. Cezalandıran: %s <ROSE>Süre: %d saat. Sebep: %s",
+	unban = "<ROSE>%s uzaklaştırma cezanızı kaldırdı.",
+	isBanned = "<ROSE> #powers modülünden şu kadar süre için uzaklaştırıldınız: Fransa saati ile %s (%d saat kaldı).",
+	permBan = "%s <ROSE> isimli kullanıcı #powers modülünden kalıcı olarak uzaklaştırılmıştır. Cezalandıran: %s<ROSE>. Sebep: %s",
+
+	playerGetRole = "<FC>%s <FC>isimli kullanıcı artık <font color='#%x'>%s</font>!",
+	playerLoseRole = "<FC>%s <FC>isimli kullanıcı artık <font color='#%x'>%s</font> değil.",
+
+	enableReviewMode = "<BV>[<FC>•<BV>] <FC>Harita değerlendirme modu<BV> aktive edildi. Gelecek raundlar profilinize sayı <B> eklemeyecek </B> ve çıkan haritalar da harita rotasyonuna girmek için sınanacaktır. Tüm güçler aktive edildi ve kutsal güçlerin ortaya çıkma şansı artırıldı!",
+	disableReviewMode = "<BV>[<FC>•<BV>] <FC>Harita değerlendirme modu<BV> kapatıldı ve gelecek raundda her şey eski haline dönecek!",
+
+	getBadge = "<FC>%s<FC> yeni bir #powers rozeti kazandı!",
+
+	setPassword = "<BL>[<VI>•<BL>] %s <BL> isimli kullanıcının koyduğu şifre: %q.",
+	removePassword = "<BL>[<VI>•<BL>] %s <BL>isimli kullanıcı odanın şifresini kaldırdı."
+}
+
+--[[ translations/cn.lua ]]--
+-- Translated by Wrfg#0000
+translations.cn = {
+	greeting = "<FC>歡迎來到 <B>#powers</B>!\n" ..
+		"\t• 按 <B>H鍵</B> 或輸入 <B>!help</B> 了解更多關於這小遊戲的資訊。\n" ..
+		"\t• 按 <B>O鍵</B> 或輸入 <B>!powers</B> 了解更多關於能力的資訊。",
+
+	mentionWinner = "<FC>%s<FC> 勝出了回合!",
+	noWinner = "<FC>這回合沒有人勝出。 :(",
+
+	minPlayers = "房間裡最少需要 <B>2</B> 個玩家遊戲才會開始。",
+
+	powers = {
+		lightSpeed = "光速",
+		laserBeam = "雷射光束",
+		wormHole = "蟲洞",
+		doubleJump = "雙重跳躍",
+		helix = "螺旋",
+		dome = "圓頂",
+		lightning = "雷電閃現",
+		superNova = "超新星",
+		meteorSmash = "隕石壓頂",
+		gravitationalAnomaly = "重力異象",
+		deathRay = "死亡射線",
+		atomic = "原子",
+		judgmentDay = "審判之日"
+	},
+	powersDescriptions = {
+		lightSpeed = "你會以光速移動, 推開附近的所有敵人。",
+		laserBeam = "發射出一束雷射來燃燒敵人。",
+		wormHole = "通過蟲洞傳送你到目的地。",
+		doubleJump = "使用出輔助而且更高的雙重跳躍。",
+		helix = "一個強勁的螺旋會對角性的加速你的小鼠。",
+		dome = "製造出一個保護圓頂把附近所有敵人推開。",
+		lightning = "召喚出一道雷電來讓敵人觸電。",
+		superNova = "超新星開始爆炸毀滅附近所有敵人。",
+		meteorSmash = "跟隕石一樣的輾壓敵人。",
+		gravitationalAnomaly = "使重力開始變得異常。",
+		deathRay = "使用強大而且神秘的死亡光束把敵人烤焦。",
+		atomic = "隨機改變所有玩家的身體大小。",
+		judgmentDay = "復活所有死掉的敵人, 同時把他們都綁在一起。"
+	},
+
+	unlockPower = "<FC>[<J>•<FC>] 你解鎖了以下能力: %s",
+
+	levelName = {
+		[000] = "變異體",
+		[010] = "死靈法師",
+		[020] = "瘋狂科學家",
+		[030] = "泰坦",
+		[040] = { "巫師", "巫女" },
+		[050] = "現實操弄者",
+		[060] = { "法術爵士", "法術夫人" },
+		[070] = "薩滿神力者",
+		[080] = "瘟疫大臣",
+		[090] = "饑荒之源",
+		[100] = "戰爭馭手",
+		[110] = "死亡神",
+		[120] = "無盡虛空"
+	},
+
+	newLevel = "<FC>%s<FC> 達到等級 <B>%d</B> 了!",
+	level = "等級 %d",
+
+	helpTitles = {
+		[2] = "指令",
+		[3] = "貢獻",
+		[4] = "新鮮事?"
+	},
+	helpContent = {
+		[1] = "<FC><p align='center'>#POWERS!</p>\n\n" ..
+			"<J>你在這遊戲的目標是從敵人的攻擊中生存下來。\n\n" ..
+			"<N>那裡有不同種類的能力 <font size='12'>- 只要你到達更高等級就可以解鎖 -</font> 用來攻擊跟防守。\n" ..
+			"輸入 <FC><B>!powers</B><N> 來了解更多關於你解鎖了的能力!\n\n" ..
+			"%s\n\n" ..
+			"這個小遊戲由 %s 研發"
+		,
+		[2] = "<FC><p align='center'>主要指令</p><N>\n\n<font size='12'>",
+		[3] = "<FC><p align='center'>貢獻<N>\n\n" ..
+			"我們熱愛開放原始碼 <font color='#E91E63'>♥</font>! 你可以查看及修改 這個遊戲的原始碼: <a href='event:print_github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n\n" ..
+			"維護這個小遊戲完全是義務性質, 所以任何在<V>編程<N>, <V>漏洞回饋<N>, <V>建議及其他地方的改善<N>, <V>地圖創作<N>上的協助將會是十分歡迎而且感激。\n" ..
+			"<p align='left'>• 你可以在這裡 <FC>回報漏洞<N> 或 <FC>提供建議: <N>on <a href='event:print_discord.gg/quch83R'><font color='#087ECC'>Discord</font></a> 及/或在 <a href='event:print_github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n" ..
+			"• 你可以在我們的 <a href='event:print_atelier801.com/topic?f=5&t=918371'><font color='#087ECC'>論壇帖子 <FC>提交你的地圖<N>論壇帖子</font></a>.\n\n" ..
+			"<p align='center'>你也可以 <FC>捐贈</FC> 任何金額 <a href='event:print_a801-luadev.github.io/?redirect=powers'><font color='#087ECC'>here</font></a> 來協助小遊戲的維護。所有籌得的捐款將會 被用作恆常的小遊戲更新及改善。</p>"
+		,
+		[4] = "<FC><p align='center'>新鮮事?</p><N>\n\n" ..
+			"• 小遊戲變成官方小遊戲了。\n" ..
+			"• 小遊戲被重新打造。"
+	},
+
+	commandDescriptions = {
+		help = "打開菜單。",
+		powers = "打開列出所有能力簡介的菜單。",
+		profile = "打開你或其他人的資料。",
+		leaderboard = "打開伺服排行榜。",
+
+		pw = "使用密碼鎖起房間。發送空的密碼來解除鎖定。"
+	},
+	commandsParameters = {
+		profile = "[玩家名稱] ",
+
+		pw = "[密碼] "
+	},
+	["or"] = "或",
+
+	profileData = {
+		rounds = "回合",
+		victories = "勝利次數",
+		kills = "殺敵次數",
+		xp = "經驗",
+		badges = "徽章"
+	},
+
+	leaderboard = "排行榜",
+	leaderboardIsLoading = "<BL>[<VI>•<BL>] 排行榜正在加載中。請在幾秒後再嘗試。",
+
+	addMap = "<BV>[<FC>•<BV>] 地圖 <J>@%s</J> 已被加到地圖序列中。",
+	remMap = "<BV>[<FC>•<BV>] 地圖 <J>@%s</J> 已從地圖序列中移除。",
+	listMaps = "<BV>[<FC>•<BV>] 地圖 (<J>#%s</J>): %s",
+
+	enableParticles = "<ROSE>別忘記啟用特別效果/粒子模式來使遊戲外觀更好。 (在 '房間列表' 旁邊的 '菜單' → '效果')</ROSE>",
+
+	ban = "%s <ROSE>被 %s <ROSE>從 #power 封禁 %d 小時。原因: %s",
+	unban = "<ROSE>你已經被 %s 解除封禁。",
+	isBanned = "<ROSE>你已經從 #power 被封禁直到 GMT+2 %s (剩餘 %d 小時)。",
+	permBan = "%s <ROSE>已經從 #power 被 %s <ROSE>永久封禁。原因: %s",
+
+	playerGetRole = "<FC>%s <FC>被晉升至 <font color='#%x'>%s</font>!",
+	playerLoseRole = "<FC>%s <FC>不再是 <font color='#%x'>%s</font> 了。",
+
+	enableReviewMode = "<BV>[<FC>•<BV>] <FC>地圖檢視模式<BV> 已經啟用。下一回合的數據將 <B>不會</B> 被保存而且出現的地圖是用以測試遊戲中的地圖循環。所有能力都可以使用以及有更大的機會可以使出神聖的能力!",
+	disableReviewMode = "<BV>[<FC>•<BV>] <FC>地圖檢視模式<BV> 已被關閉以及一切將會在下一回合裡回復正常!",
+
+	getBadge = "<FC>%s<FC> 剛剛解鎖了新的 #powers 徽章!",
+
+	setPassword = "<BL>[<VI>•<BL>] %s <BL>設置了密碼 %q。",
+	removePassword = "<BL>[<VI>•<BL>] %s <BL>移除了房間密碼。"
 }
 
 --[[ translations/he.lua ]]--
@@ -1757,13 +2191,6 @@ local setNextMapIndex = function()
 end
 
 local nextMap = function()
-	if isLobby then
-		if not inLobby then
-			newGame(module.lobbyMap)
-		end
-		return
-	end
-
 	nextMapLoadTentatives = nextMapLoadTentatives + 1
 	if nextMapLoadTentatives == 4 then
 		nextMapLoadTentatives = 0
@@ -3093,10 +3520,57 @@ do
 		end)
 end
 
+-- Level 90
+do
+	local circle = function(x, y, dimension)
+		local xCos, ySin
+		for i = 90, 110, (isLowQuality and 1.75 or 1) do
+			xCos = cos(i)
+			ySin = sin(i)
+
+			displayParticle(14, x + xCos*dimension, y + ySin*dimension, xCos * -5, ySin * -5)
+		end
+	end
+
+	local freeze = function(playerName)
+		freezePlayer(playerName)
+		timer:start(freezePlayer, 1500, 1, playerName, false)
+		return true
+	end
+
+	powers.waterPump = Power
+		.new("waterPump", powerType.atk, 90, {
+			smallIcon = "172cec7920e.png",
+			icon = "172ced1ac40.jpg",
+			iconWidth = 70,
+			iconHeight = 70
+		})
+		:setDamage(20)
+		:setSelfDamage(15)
+		:setUseLimit(1)
+		:setUseCooldown(20)
+		:bindKeyboard(0, 2, 3)
+		:setKeySequence({
+			{ keyboard.right, keyboard.left, keyboard.down, keyboard.right },
+			{ keyboard.left, keyboard.right, keyboard.down, keyboard.left }
+		})
+		:setEffect(function(playerName, x, y, _, self)
+			local dimension = 60
+
+			-- Particles
+			circle(x, y, dimension)
+
+			-- Damage
+			self:damagePlayers(playerName, { freeze, pythagoras, x, y, dimension },
+				damagePlayersWithAction)
+			return false
+		end)
+end
+
 -- Level 100
 do
-	local ray = function(x, y, width, height, direction)
-		width = width * direction
+	local ray = function(x, y, arcWidth, arcHeight, size, direction)
+		arcWidth = arcWidth * direction
 
 		local ySin = 0
 		local xPos = x
@@ -3106,20 +3580,21 @@ do
 
 		local xDirection = .1 * direction
 
-		for i = 0, 12 do
+		size = size * 3
+		for i = 0, size do
 			displayParticle(9, xPos, y + yPos, xSpeed, -ySpeed)
 
 			i = i + 1
 			ySin = sin(i)
-			xPos = x + i*width
-			yPos = ySin*height
+			xPos = x + i*arcWidth
+			yPos = ySin*arcHeight
 			xSpeed = i * xDirection
 			ySpeed = ySin * .55
 
 			displayParticle(2, xPos, y - yPos, xSpeed, ySpeed)
 		end
 
-		xSpeed = width/2 + direction
+		xSpeed = direction*(size/2 - 1) + direction
 		for i = 1, 2 do
 			displayParticle(13, x, y, xSpeed)
 		end
@@ -3133,9 +3608,9 @@ do
 			iconHeight = 28
 		})
 		:setDamage(30)
-		:setSelfDamage(15)
+		:setSelfDamage(20)
 		:setUseLimit(1)
-		:setUseCooldown(10)
+		:setUseCooldown(20)
 		:bindKeyboard(0, 1, 2, 3)
 		:setKeySequence({
 			{ keyboard.left, keyboard.up, keyboard.right, keyboard.down },
@@ -3143,10 +3618,10 @@ do
 		})
 		:setEffect(function(_, x, y, isFacingRight)
 			-- Particles
-			ray(x, y, 10, 8, (isFacingRight and 1 or -1))
+			ray(x, y, 10, 8, 6, (isFacingRight and 1 or -1))
 
 			-- Damage
-			return inRectangle, x, y - 40, 170, 80, isFacingRight
+			return inRectangle, x, y - 40, 250, 80, isFacingRight
 		end)
 end
 
@@ -5126,17 +5601,8 @@ eventNewGame = function()
 	nextMapLoadTentatives = 0
 	hasTriggeredRoundEnd = false
 	isCurrentMapOnReviewMode = isReviewMode
-	minPlayersForNextRound = (isReviewMode and 0 or 1)
+	minPlayersForNextRound = ((isReviewMode or players._count.currentRound <= 1) and 0 or 1)
 	nextMapToLoad = nil
-
-	if isLobby then
-		setGameTime(5)
-		setMapName(getText.minPlayers .. "<")
-
-		inLobby = true
-		return
-	end
-	inLobby = false
 
 	if currentMap == 0 then return end
 
@@ -5189,15 +5655,7 @@ end
 
 --[[ events/eventRoundEnded.lua ]]--
 eventRoundEnded = function()
-	isLobby = (not isReviewMode and players._count.room <= 1)
-
-	hasTriggeredRoundEnd = not isLobby
-
-	if isLobby then
-		setGameTime(5)
-		return
-	end
-
+	hasTriggeredRoundEnd = true
 	canTriggerPowers = false
 
 	-- Clears all current timers
@@ -5262,7 +5720,7 @@ end
 --[[ events/eventLoop.lua ]]--
 eventLoop = function(currentTime, remainingTime)
 	unrefreshableTimer:loop()
-	if remainingTime < 500 or (not isLobby and players._count.alive <= minPlayersForNextRound) then
+	if remainingTime < 500 or players._count.alive <= minPlayersForNextRound then
 		if not hasTriggeredRoundEnd then
 			eventRoundEnded()
 		end

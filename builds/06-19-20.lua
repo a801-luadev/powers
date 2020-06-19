@@ -108,9 +108,7 @@ local module = {
 	max_player_level = 129,
 	max_player_xp = nil,
 
-	max_leaderboard_rows = 100,
-
-	lobbyMap = 1995971
+	max_leaderboard_rows = 100
 }
 
 -- Important tables
@@ -166,7 +164,7 @@ local isLowQuality = false -- Unused yet
 local totalCurrentMaps, currentMap, nextMapLoadTentatives, mapHashes = 0, 0, 0
 local nextMapToLoad
 
-local hasTriggeredRoundEnd, isLobby, inLobby = false, false, false
+local hasTriggeredRoundEnd = false
 local isReviewMode, isCurrentMapOnReviewMode = false, false
 local minPlayersForNextRound = 1
 
@@ -2193,13 +2191,6 @@ local setNextMapIndex = function()
 end
 
 local nextMap = function()
-	if isLobby then
-		if not inLobby then
-			newGame(module.lobbyMap)
-		end
-		return
-	end
-
 	nextMapLoadTentatives = nextMapLoadTentatives + 1
 	if nextMapLoadTentatives == 4 then
 		nextMapLoadTentatives = 0
@@ -5610,17 +5601,8 @@ eventNewGame = function()
 	nextMapLoadTentatives = 0
 	hasTriggeredRoundEnd = false
 	isCurrentMapOnReviewMode = isReviewMode
-	minPlayersForNextRound = (isReviewMode and 0 or 1)
+	minPlayersForNextRound = ((isReviewMode or players._count.currentRound <= 1) and 0 or 1)
 	nextMapToLoad = nil
-
-	if isLobby then
-		setGameTime(5)
-		setMapName(getText.minPlayers .. "<")
-
-		inLobby = true
-		return
-	end
-	inLobby = false
 
 	if currentMap == 0 then return end
 
@@ -5673,15 +5655,7 @@ end
 
 --[[ events/eventRoundEnded.lua ]]--
 eventRoundEnded = function()
-	isLobby = (not isReviewMode and players._count.room <= 1)
-
-	hasTriggeredRoundEnd = not isLobby
-
-	if isLobby then
-		setGameTime(5)
-		return
-	end
-
+	hasTriggeredRoundEnd = true
 	canTriggerPowers = false
 
 	-- Clears all current timers
@@ -5746,7 +5720,7 @@ end
 --[[ events/eventLoop.lua ]]--
 eventLoop = function(currentTime, remainingTime)
 	unrefreshableTimer:loop()
-	if remainingTime < 500 or (not isLobby and players._count.alive <= minPlayersForNextRound) then
+	if remainingTime < 500 or players._count.alive <= minPlayersForNextRound then
 		if not hasTriggeredRoundEnd then
 			eventRoundEnded()
 		end

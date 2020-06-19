@@ -1,13 +1,5 @@
 eventRoundEnded = function()
-	isLobby = (not isReviewMode and players._count.room <= 1)
-
-	hasTriggeredRoundEnd = not isLobby
-
-	if isLobby then
-		setGameTime(5)
-		return
-	end
-
+	hasTriggeredRoundEnd = true
 	canTriggerPowers = false
 
 	-- Clears all current timers

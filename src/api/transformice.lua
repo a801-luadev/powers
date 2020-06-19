@@ -37,13 +37,6 @@ local setNextMapIndex = function()
 end
 
 local nextMap = function()
-	if isLobby then
-		if not inLobby then
-			newGame(module.lobbyMap)
-		end
-		return
-	end
-
 	nextMapLoadTentatives = nextMapLoadTentatives + 1
 	if nextMapLoadTentatives == 4 then
 		nextMapLoadTentatives = 0

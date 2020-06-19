@@ -10,17 +10,8 @@ eventNewGame = function()
 	nextMapLoadTentatives = 0
 	hasTriggeredRoundEnd = false
 	isCurrentMapOnReviewMode = isReviewMode
-	minPlayersForNextRound = (isReviewMode and 0 or 1)
+	minPlayersForNextRound = ((isReviewMode or players._count.currentRound <= 1) and 0 or 1)
 	nextMapToLoad = nil
-
-	if isLobby then
-		setGameTime(5)
-		setMapName(getText.minPlayers .. "<")
-
-		inLobby = true
-		return
-	end
-	inLobby = false
 
 	if currentMap == 0 then return end
 
