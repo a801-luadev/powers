@@ -1,6 +1,6 @@
 local readLeaderboardData = function(data)
 	local total
-	data, total = str_split(data, ' ', true, tonumber)
+	data, total = str_split(gsub(data, "([Hh])ttp", "%1:ttp"), ' ', true, tonumber)
 
 	local community, id, nickname, discriminator, rounds, victories, kills, xp
 
@@ -26,7 +26,6 @@ local readLeaderboardData = function(data)
 		community     = data[i + 0]
 		id            = data[i + 1]
 		nickname      = data[i + 2]
-
 		discriminator = data[i + 3]
 		rounds        = data[i + 4]
 		victories     = data[i + 5]

@@ -1,6 +1,4 @@
 do
-	local internalMessageFormat = "<BL>[<VI>•<BL>] Data of %s<BL> has been set to {%d,%d,%d,%d}"
-
 	-- Sets the data of a player
 	commands["setdata"] = function(playerName, command)
 		if playerName ~= module.author then return end
@@ -18,7 +16,7 @@ do
 
 		playerData:save(targetPlayer, true)
 
-		messagePlayersWithPrivilege(format(internalMessageFormat,
+		messagePlayersWithPrivilege(format(getText.resetData,
 			playerCache[targetPlayer].chatNickname, targetData.rounds, targetData.victories,
 			targetData.kills, targetData.xp))
 	end
