@@ -90,7 +90,7 @@ translations.fr = {
 			"<a href='event:print_atelier801.com/topic?f=6&t=888676'><font size='18' color='#087ECC'>Sujet dans le Forum</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>QUOI D'NEUF ?</p><N>\n\n" ..
-			"• Vous pouvez lire à propos des pouvoirs maintenant.\n" ..
+			"• Vous pouvez lire à propos de tous les pouvoirs maintenant.\n" ..
 			"• Le module est devenu officiel.\n" ..
 			"• Le module a été complètement ré-écrit."
 	},

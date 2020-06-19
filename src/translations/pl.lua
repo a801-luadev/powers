@@ -1,4 +1,4 @@
--- Translated by Michipol
+-- Translated by Michipol#0000
 translations.pl = {
 	greeting = "<FC>Witaj w <B>#powers</B>!\n" ..
 		"\t• Naciśnij <B>H</B> albo wpisz <B>!help</B> aby przeczytać więcej o module.\n" ..

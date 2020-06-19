@@ -27,7 +27,8 @@ translations.en = {
 		gravitationalAnomaly = "Gravitational Anomaly",
 		deathRay = "Death Ray",
 		atomic = "Atomic",
-		dayOfJudgement = "Day of Judgement"
+		dayOfJudgement = "Day of Judgement",
+		waterPump = "Water Pump"
 	},
 	powersDescriptions = {
 		lightSpeed = "Moves your mouse in the speed of light, pushing all enemies around.",
@@ -42,7 +43,8 @@ translations.en = {
 		gravitationalAnomaly = "Starts a gravitational anomaly.",
 		deathRay = "Toasts the enemies with the powerful and mysterious death ray.",
 		atomic = "Randomly changes all players' size.",
-		dayOfJudgement = "Revives all dead enemies, them all linked to each other."
+		dayOfJudgement = "Revives all dead enemies, them all linked to each other.",
+		waterPump = "Summons some drops of water from Antarctica."
 	},
 	powerType = {
 		atk = "ATTACK (%d)",
