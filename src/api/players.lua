@@ -107,8 +107,7 @@ local checkPlayerLevel = function(playerName, cache)
 	local newLevel = setPlayerLevel(playerName, cache)
 	if not newLevel then return end
 
-	chatMessage(format(getText.newLevel, prettifyNickname(playerName, 10, nil, "/B><G", 'B'),
-		newLevel))
+	chatMessage(format(getText.newLevel, cache.chatNickname, newLevel))
 
 	-- Checks unlocked powers
 	local powerNames = getText.powers
@@ -163,7 +162,8 @@ local giveBadge = function(playerName, badge, _cache, _forceSave)
 		:set(playerName, "badges", badge, nil, _forceSave)
 		:save(playerName, _forceSave)
 
-	generateBadgesList(playerName, (_cache or playerCache[playerName]))
+	_cache = _cache or playerCache[playerName]
+	generateBadgesList(playerName, _cache)
 
-	chatMessage(format(getText.getBadge, prettifyNickname(playerName, 10, nil, "/B><G", 'B')))
+	chatMessage(format(getText.getBadge, _cache.chatNickname))
 end

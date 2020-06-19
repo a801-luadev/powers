@@ -50,7 +50,10 @@ eventNewPlayer = function(playerName)
 
 		-- Leaderboard interface
 		isLeaderboardOpen = false,
-		leaderboardPage = 1
+		leaderboardPage = 1,
+
+		-- Misc
+		chatNickname = prettifyNickname(playerName, 10, nil, "/B><G", 'B')
 	}
 
 	players_insert("lobby", playerName)

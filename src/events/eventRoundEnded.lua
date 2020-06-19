@@ -18,39 +18,38 @@ eventRoundEnded = function()
 	-- Resets divine powers
 	removeTextArea(textAreaId.gravitationalAnomaly)
 
-	local alivePlayers, lobbyPlayers = players.alive, players.lobby
+	local alivePlayers = players.alive
 	local winners, winnerCount = { }, 0
 
 	local cache
-	for name in next, players.currentRound do
+	for playerName in next, players.currentRound do
 		-- Only players that played in this round
-		cache = playerCache[name]
+		cache = playerCache[playerName]
 		if cache then
 			if resetPlayersDefaultSize then
-				changePlayerSize(name, 1)
+				changePlayerSize(playerName, 1)
 			end
 
 			if cache.soulMate then
 				linkMice(name, cache.soulMate, false)
 			end
 
-			if alivePlayers[name] then
+			if alivePlayers[playerName] then
 				winnerCount = winnerCount + 1
-				winners[winnerCount] = prettifyNickname(name, 10, nil, "/B><G", 'B')
+				winners[winnerCount] = cache.chatNickname
 
-				playerData
-					:set(name, "xp", module.xp_on_victory, true)
-					:set(name, "victories", 1, true)
+				-- Ties won't give XP anymore.
+				playerData:set(playerName, "victories", 1, true)
 
-				giveCheese(name)
-				playerVictory(name)
+				giveCheese(playerName)
+				playerVictory(playerName)
 			end
 			playerData
-				:set(name, "rounds", 1, true)
-				:save(name)
+				:set(playerName, "rounds", 1, true)
+				:save(playerName)
 
 			-- Checks player level
-			checkPlayerLevel(name, cache)
+			checkPlayerLevel(playerName, cache)
 		end
 	end
 	resetPlayersDefaultSize = false
@@ -58,6 +57,14 @@ eventRoundEnded = function()
 	-- Announce winner
 	if winnerCount > 0 then
 		chatMessage(format(getText.mentionWinner, table_concat(winners, "<FC>, ")))
+
+		if winnerCount == 1 then -- Only rounds with one winner give XP
+			winners = winners[1]
+
+			playerData
+				:set(winners, "xp", module.xp_on_victory, true)
+				:save(winners)
+		end
 	else
 		chatMessage(getText.noWinner)
 	end

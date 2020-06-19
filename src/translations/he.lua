@@ -104,6 +104,7 @@ translations.he = {
 				"<font size='18' color='#087ECC'>אשכול בפורומים</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>מה חדש?</p><N>\n\n" ..
+			"• You can read about powers now.\n" ..
 			"• המודול הפך לרשמי.\n" ..
 			"• המודול נכתב מחדש לגמרי."
 	},

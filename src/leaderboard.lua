@@ -26,6 +26,7 @@ local readLeaderboardData = function(data)
 		community     = data[i + 0]
 		id            = data[i + 1]
 		nickname      = data[i + 2]
+
 		discriminator = data[i + 3]
 		rounds        = data[i + 4]
 		victories     = data[i + 5]
@@ -139,22 +140,28 @@ do
 	local dataFormat = "%d %d %s %d %d %d %d %d"
 	writeLeaderboardData = function()
 		local registers, totalRegisters = sortLeaderboard()
-		totalRegisters = min(totalRegisters, module.max_leaderboard_rows)
 
-		local data, register = { }
+		local data, counter, tmpWritten, register = { }, 0, { }
 		for i = 1, totalRegisters do
 			register = registers[i]
 
-			data[i] = format(dataFormat,
-				register.community,
-				register.id,
-				register.nickname,
-				register.discriminator,
-				register.rounds,
-				register.victories,
-				register.kills,
-				register.xp
-			)
+			if not tmpWritten[register.nickname] then
+				tmpWritten[register.nickname] = true
+
+				counter = counter + 1
+				data[counter] = format(dataFormat,
+					register.community,
+					register.id,
+					register.nickname,
+					register.discriminator,
+					register.rounds,
+					register.victories,
+					register.kills,
+					register.xp
+				)
+			end
+
+			if counter == module.max_leaderboard_rows then break end
 		end
 
 		saveFile(table_concat(data, ' '), module.leaderboard_file)

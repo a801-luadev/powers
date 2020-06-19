@@ -182,6 +182,7 @@ translations.en = {
 	greeting = "<FC>Welcome to <B>#powers</B>!\n" ..
 		"\t• Press <B>H</B> or type <B>!help</B> to learn more about the module.\n" ..
 		"\t• Press <B>O</B> or type <B>!powers</B> to learn more about the powers.",
+	kill = "<R>%s<FC> killed %s",
 
 	-- Victory
 	mentionWinner = "<FC>%s<FC> won the round!",
@@ -207,7 +208,7 @@ translations.en = {
 		dayOfJudgement = "Day of Judgement"
 	},
 	powersDescriptions = {
-		lightSpeed = "Moves your mouse in the light speed, pushing all enemies around.",
+		lightSpeed = "Moves your mouse in the speed of light, pushing all enemies around.",
 		laserBeam = "Shoots a laser beam so strong that enemies can feel it.",
 		wormHole = "Teleports your mouse ahead through a Worm Hole.",
 		doubleJump = "Performs an auxiliar and high double jump.",
@@ -289,7 +290,8 @@ translations.en = {
 				"<font size='18' color='#087ECC'>Thread on Forums</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>WHAT'S NEW?</p><N>\n\n" ..
-			"• Module ~~became~~ official.\n" ..
+			"• You can read about all powers now.\n" ..
+			"• Module became official.\n" ..
 			"• Module has been entirely rewritten."
 	},
 
@@ -494,6 +496,7 @@ translations.br = {
 				"<font size='18' color='#087ECC'>Tópico no Fórum</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>O QUE HÁ DE NOVO?</p><N>\n\n" ..
+			"• Você pode ler sobre todos os poderes agora.\n" ..
 			"• O Module se tornou oficial.\n" ..
 			"• O Module foi totalmente reescrito."
 	},
@@ -560,7 +563,7 @@ translations.br = {
 		"conseguir ver o jogo adequadamente. (Em 'Menu' → 'Opções', próximo a 'Lista de Salas')" ..
 		"</ROSE>",
 
-	ban = "%s <ROSE>você foi banido do #powers por %s <ROSE>por %d horas. Motivo: %s",
+	ban = "%s <ROSE>foi banido do #powers por %s <ROSE>por %d horas. Motivo: %s",
 	unban = "<ROSE>Seu banimento foi revogado por %s",
 	isBanned = "<ROSE>Você está banido do #powers até GMT+2 %s (%d horas restantes).",
 	permBan = "%s <ROSE>foi banido permanentemente do #powers por %s<ROSE>. Motivo: %s",
@@ -693,6 +696,7 @@ translations.es = {
 				"<font size='18' color='#087ECC'>Hilo en los Foros</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>¿QUÉ HAY DE NUEVO?</p><N>\n\n" ..
+			"• You can read about powers now.\n" ..
 			"• El módulo se volvió oficial.\n" ..
 			"• El módulo ha sido completamente reescrito."
 	},
@@ -889,6 +893,7 @@ translations.fr = {
 				"<font size='18' color='#087ECC'>Sujet dans le Forum</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>QUOI D'NEUF ?</p><N>\n\n" ..
+			"• You can read about powers now.\n" ..
 			"• Le module est devenu officiel.\n" ..
 			"• Le module a été complètement ré-écrit."
 	},
@@ -1090,6 +1095,7 @@ translations.he = {
 				"<font size='18' color='#087ECC'>אשכול בפורומים</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>מה חדש?</p><N>\n\n" ..
+			"• You can read about powers now.\n" ..
 			"• המודול הפך לרשמי.\n" ..
 			"• המודול נכתב מחדש לגמרי."
 	},
@@ -2041,8 +2047,7 @@ local checkPlayerLevel = function(playerName, cache)
 	local newLevel = setPlayerLevel(playerName, cache)
 	if not newLevel then return end
 
-	chatMessage(format(getText.newLevel, prettifyNickname(playerName, 10, nil, "/B><G", 'B'),
-		newLevel))
+	chatMessage(format(getText.newLevel, cache.chatNickname, newLevel))
 
 	-- Checks unlocked powers
 	local powerNames = getText.powers
@@ -2097,9 +2102,10 @@ local giveBadge = function(playerName, badge, _cache, _forceSave)
 		:set(playerName, "badges", badge, nil, _forceSave)
 		:save(playerName, _forceSave)
 
-	generateBadgesList(playerName, (_cache or playerCache[playerName]))
+	_cache = _cache or playerCache[playerName]
+	generateBadgesList(playerName, _cache)
 
-	chatMessage(format(getText.getBadge, prettifyNickname(playerName, 10, nil, "/B><G", 'B')))
+	chatMessage(format(getText.getBadge, _cache.chatNickname))
 end
 
 --[[ api/permissions.lua ]]--
@@ -2185,10 +2191,14 @@ local addHealth = function(playerName, cache, hp)
 	updateLifeBar(playerName, cache)
 end
 
-local givePlayerKill = function(playerName)
+local givePlayerKill = function(killerName, killedName, killerCache)
 	playerData
-		:set(playerName, "kills", 1, true)
-		:set(playerName, "xp", module.xp_on_kill, true)
+		:set(killerName, "kills", 1, true)
+		:set(killerName, "xp", module.xp_on_kill, true)
+
+	local msg = format(getText.kill, playerCache[killerName].chatNickname, killerCache.chatNickname)
+	chatMessage(msg, killerName)
+	chatMessage(msg, killedName)
 end
 
 local damagePlayer = function(playerName, damage, cache, _attackerName, _time)
@@ -2217,7 +2227,7 @@ local damagePlayersWithAction = function(except, damage, action, filter, x, y, .
 		if (not action and true or action(name))
 			and damagePlayer(name, damage, cache, except, time) then -- Has died
 			hasKilled = true
-			givePlayerKill(except)
+			givePlayerKill(except, name, cache)
 		end
 	end
 	if hasKilled then
@@ -3655,11 +3665,17 @@ local readLeaderboardData = function(data)
 
 	local totalRegisters = total / 8 -- 8 fields
 
+	local _tmp_duplicate = { }
+
 	local player = 0
 	for i = 1, total, 8 do
 		community     = data[i + 0]
 		id            = data[i + 1]
 		nickname      = data[i + 2]
+
+		if not _tmp_duplicate[nickname] then
+
+		_tmp_duplicate[nickname] = true
 		discriminator = data[i + 3]
 		rounds        = data[i + 4]
 		victories     = data[i + 5]
@@ -3692,6 +3708,8 @@ local readLeaderboardData = function(data)
 
 		l_full_nickname[player] = nickname .. "#" .. l_discriminator[player]
 		l_pretty_nickname[player] = prettifyNickname(nickname, 11, l_discriminator[player], "BL")
+
+		end
 	end
 
 	leaderboard.loaded = true
@@ -4069,7 +4087,8 @@ local displayPowerMenu
 do
 	local content = "<p align='center'><font size='3'>\n"
 	local unlockedPowerContent = content .. "<font size='14'>"
-	local lockedPowerContent = unlockedPowerContent .. "<BL><B>" .. getText.level
+	local lockedPowerContent = content .. "<font size='12'><BL><B>" .. getText.level ..
+		"</B><N><font size='10'>\n%s"
 	local callback = "powerInfo_%s_%s_%s"
 
 	displayPowerMenu = function(playerName, _cache)
@@ -4095,13 +4114,17 @@ do
 
 			sumX = x + ((p + 1) % 2)*249
 
-			interface:addTextArea((isLockedPower and format(lockedPowerContent, power.level)
-				or (unlockedPowerContent .. getText.powers[power.name])), playerName, sumX, y, 241,
-				30, -1, 0x1B2B31, 0, true)
+			if not isLockedPower then
+				interface:addTextArea(unlockedPowerContent .. getText.powers[power.name],
+					playerName, sumX, y, 241, 30, -1, 0x1B2B31, 0, true)
+			else
+				interface:addTextArea(format(lockedPowerContent, power.level,
+					getText.powers[power.name]), playerName, sumX, y - 5, 241, 50, -1, 0x1B2B31, 0,
+					true)
+			end
 
 			interface:addClickableImage(interfaceImages.rectangle, imageTargets.interfaceRectangle,
-				sumX - 2, y - 2, playerName, 245, 34, format(callback, power.name, sumX - 4, y - 5),
-				not isLockedPower)
+				sumX - 2, y - 2, playerName, 245, 34, format(callback, power.name, sumX - 4, y - 5))
 
 			interface:addImage(power.imageData.smallIcon, imageTargets.interfaceIcon, sumX, y,
 				playerName)
@@ -4642,7 +4665,7 @@ do
 		command = table_concat(command, ' ', 2)
 		setRoomPassword(command)
 
-		playerName = prettifyNickname(playerName, 10, nil, "/B><G", 'B')
+		playerName = cache.chatNickname
 
 		if command ~= '' then
 			messageRoomAdmins(format(getText.setPassword, playerName, command))
@@ -4793,8 +4816,9 @@ do
 
 		chatMessage(msgFormat .. table_concat(command, ' ', 2))
 
-		messagePlayersWithPrivilege(format(internalMessageFormat, prettifyNickname(playerName, 10,
-			nil, "/B><G", 'B'), command[1], table_concat(command, ' ', 2, min(#command, 5))))
+		messagePlayersWithPrivilege(format(internalMessageFormat,
+			playerCache[playerName].chatNickname, command[1],
+			table_concat(command, ' ', 2, min(#command, 5))))
 	end
 end
 
@@ -4887,10 +4911,10 @@ do
 		local targetPlayerId, targetPlayer = validateNicknameAndGetID(command[2])
 		if not targetPlayerId then return end
 
-		local prettyTargetPlayer = prettifyNickname(targetPlayer, 10, nil, "/B><G", 'B')
+		local prettyTargetPlayer = playerCache[targetPlayer].chatNickname
 
-		messagePlayersWithPrivilege(format(internalMessageFormat, prettifyNickname(playerName, 10,
-			nil, "/B><G", 'B'), command[1], table_concat(command, ' ', 2)))
+		messagePlayersWithPrivilege(format(internalMessageFormat,
+			playerCache[playerName].chatNickname, command[1], table_concat(command, ' ', 2)))
 
 		local saveDataFile = false
 
@@ -4942,10 +4966,10 @@ do
 		local targetPlayerId, targetPlayer = validateNicknameAndGetID(command[2])
 		if not targetPlayerId then return end
 
-		local prettyTargetPlayer = prettifyNickname(targetPlayer, 10, nil, "/B><G", 'B')
+		local prettyTargetPlayer = playerCache[targetPlayer].chatNickname
 
-		messagePlayersWithPrivilege(format(internalMessageFormat, prettifyNickname(playerName, 10,
-			nil, "/B><G", 'B'), command[1], table_concat(command, ' ', 2)))
+		messagePlayersWithPrivilege(format(internalMessageFormat,
+			playerCache[playerName].chatNickname, command[1], table_concat(command, ' ', 2)))
 
 		local saveDataFile = false
 
@@ -4995,6 +5019,33 @@ do
 		if not cache then return end
 
 		giveBadge(targetPlayer, command[3], cache, true)
+	end
+end
+
+--[[ commands/administrator/setdata.lua ]]--
+do
+	local internalMessageFormat = "<BL>[<VI>•<BL>] Data of %s has been set to {%d,%d,%d,%d}"
+
+	-- Sets the data of a player
+	commands["setdata"] = function(playerName, command)
+		if playerName ~= module.author then return end
+
+		local _, targetPlayer = validateNicknameAndGetID(command[2])
+		local targetData = playerData.playerData[targetPlayer]
+		if not targetData then return end
+
+		local dataStructure = playerData.structure
+
+		targetData.rounds = tonumber(command[3]) or dataStructure.rounds.default
+		targetData.victories = tonumber(command[4]) or dataStructure.victories.default
+		targetData.kills = tonumber(command[5]) or dataStructure.kills.default
+		targetData.xp = tonumber(command[6]) or dataStructure.xp.default
+
+		playerData:save(targetPlayer, true)
+
+		messagePlayersWithPrivilege(format(internalMessageFormat,
+			playerCache[targetPlayer].chatNickname, targetData.rounds, targetData.victories,
+			targetData.kills, targetData.xp))
 	end
 end
 
@@ -5070,7 +5121,10 @@ eventNewPlayer = function(playerName)
 
 		-- Leaderboard interface
 		isLeaderboardOpen = false,
-		leaderboardPage = 1
+		leaderboardPage = 1,
+
+		-- Misc
+		chatNickname = prettifyNickname(playerName, 10, nil, "/B><G", 'B')
 	}
 
 	players_insert("lobby", playerName)
@@ -5171,7 +5225,7 @@ eventNewGame = function()
 
 	setNextMapIndex()
 
-	timer:start(enablePowersTrigger, 3000, 1)
+	timer:start(enablePowersTrigger, 6000, 1)
 
 	-- Resets powers
 	for name, obj in next, powers do
@@ -5237,39 +5291,38 @@ eventRoundEnded = function()
 	-- Resets divine powers
 	removeTextArea(textAreaId.gravitationalAnomaly)
 
-	local alivePlayers, lobbyPlayers = players.alive, players.lobby
+	local alivePlayers = players.alive
 	local winners, winnerCount = { }, 0
 
 	local cache
-	for name in next, players.currentRound do
+	for playerName in next, players.currentRound do
 		-- Only players that played in this round
-		cache = playerCache[name]
+		cache = playerCache[playerName]
 		if cache then
 			if resetPlayersDefaultSize then
-				changePlayerSize(name, 1)
+				changePlayerSize(playerName, 1)
 			end
 
 			if cache.soulMate then
 				linkMice(name, cache.soulMate, false)
 			end
 
-			if alivePlayers[name] then
+			if alivePlayers[playerName] then
 				winnerCount = winnerCount + 1
-				winners[winnerCount] = prettifyNickname(name, 10, nil, "/B><G", 'B')
+				winners[winnerCount] = cache.chatNickname
 
-				playerData
-					:set(name, "xp", module.xp_on_victory, true)
-					:set(name, "victories", 1, true)
+				-- Ties won't give XP anymore.
+				playerData:set(playerName, "victories", 1, true)
 
-				giveCheese(name)
-				playerVictory(name)
+				giveCheese(playerName)
+				playerVictory(playerName)
 			end
 			playerData
-				:set(name, "rounds", 1, true)
-				:save(name)
+				:set(playerName, "rounds", 1, true)
+				:save(playerName)
 
 			-- Checks player level
-			checkPlayerLevel(name, cache)
+			checkPlayerLevel(playerName, cache)
 		end
 	end
 	resetPlayersDefaultSize = false
@@ -5277,6 +5330,14 @@ eventRoundEnded = function()
 	-- Announce winner
 	if winnerCount > 0 then
 		chatMessage(format(getText.mentionWinner, table_concat(winners, "<FC>, ")))
+
+		if winnerCount == 1 then -- Only rounds with one winner give XP
+			winners = winners[1]
+
+			playerData
+				:set(winners, "xp", module.xp_on_victory, true)
+				:save(winners)
+		end
 	else
 		chatMessage(getText.noWinner)
 	end
@@ -5309,7 +5370,7 @@ eventPlayerDied = function(playerName)
 	local cache = playerCache[playerName]
 	if cache and cache.lastDamageBy then
 		if cache.lastDamageTime > time() then
-			givePlayerKill(cache.lastDamageBy)
+			givePlayerKill(cache.lastDamageBy, playerName, cache)
 			playerData:save(cache.lastDamageBy)
 		else
 			cache.lastDamageBy = nil

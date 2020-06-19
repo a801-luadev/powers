@@ -26,7 +26,7 @@ eventNewGame = function()
 
 	setNextMapIndex()
 
-	timer:start(enablePowersTrigger, 3000, 1)
+	timer:start(enablePowersTrigger, 6000, 1)
 
 	-- Resets powers
 	for name, obj in next, powers do

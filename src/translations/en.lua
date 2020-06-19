@@ -4,6 +4,7 @@ translations.en = {
 	greeting = "<FC>Welcome to <B>#powers</B>!\n" ..
 		"\t• Press <B>H</B> or type <B>!help</B> to learn more about the module.\n" ..
 		"\t• Press <B>O</B> or type <B>!powers</B> to learn more about the powers.",
+	kill = "<R>%s<FC> killed %s",
 
 	-- Victory
 	mentionWinner = "<FC>%s<FC> won the round!",
@@ -29,7 +30,7 @@ translations.en = {
 		dayOfJudgement = "Day of Judgement"
 	},
 	powersDescriptions = {
-		lightSpeed = "Moves your mouse in the light speed, pushing all enemies around.",
+		lightSpeed = "Moves your mouse in the speed of light, pushing all enemies around.",
 		laserBeam = "Shoots a laser beam so strong that enemies can feel it.",
 		wormHole = "Teleports your mouse ahead through a Worm Hole.",
 		doubleJump = "Performs an auxiliar and high double jump.",
@@ -111,7 +112,8 @@ translations.en = {
 				"<font size='18' color='#087ECC'>Thread on Forums</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>WHAT'S NEW?</p><N>\n\n" ..
-			"• Module ~~became~~ official.\n" ..
+			"• You can read about all powers now.\n" ..
+			"• Module became official.\n" ..
 			"• Module has been entirely rewritten."
 	},
 

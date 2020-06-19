@@ -103,6 +103,7 @@ translations.fr = {
 				"<font size='18' color='#087ECC'>Sujet dans le Forum</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>QUOI D'NEUF ?</p><N>\n\n" ..
+			"• You can read about powers now.\n" ..
 			"• Le module est devenu officiel.\n" ..
 			"• Le module a été complètement ré-écrit."
 	},

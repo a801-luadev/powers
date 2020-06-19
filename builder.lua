@@ -92,7 +92,9 @@
 	"commands/administrator/permban.lua",
 	"commands/administrator/promote.lua",
 	"commands/administrator/demote.lua",
+
 	"commands/administrator/givebadge.lua",
+	"commands/administrator/setdata.lua",
 
 	"events/eventFileLoaded.lua",
 	"events/eventFileSaved.lua",

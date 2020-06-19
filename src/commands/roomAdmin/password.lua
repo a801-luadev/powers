@@ -5,7 +5,7 @@ do
 		command = table_concat(command, ' ', 2)
 		setRoomPassword(command)
 
-		playerName = prettifyNickname(playerName, 10, nil, "/B><G", 'B')
+		playerName = cache.chatNickname
 
 		if command ~= '' then
 			messageRoomAdmins(format(getText.setPassword, playerName, command))

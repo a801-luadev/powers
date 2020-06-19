@@ -2,7 +2,8 @@ local displayPowerMenu
 do
 	local content = "<p align='center'><font size='3'>\n"
 	local unlockedPowerContent = content .. "<font size='14'>"
-	local lockedPowerContent = unlockedPowerContent .. "<BL><B>" .. getText.level
+	local lockedPowerContent = content .. "<font size='12'><BL><B>" .. getText.level ..
+		"</B><N><font size='10'>\n%s"
 	local callback = "powerInfo_%s_%s_%s"
 
 	displayPowerMenu = function(playerName, _cache)
@@ -28,13 +29,17 @@ do
 
 			sumX = x + ((p + 1) % 2)*249
 
-			interface:addTextArea((isLockedPower and format(lockedPowerContent, power.level)
-				or (unlockedPowerContent .. getText.powers[power.name])), playerName, sumX, y, 241,
-				30, -1, 0x1B2B31, 0, true)
+			if not isLockedPower then
+				interface:addTextArea(unlockedPowerContent .. getText.powers[power.name],
+					playerName, sumX, y, 241, 30, -1, 0x1B2B31, 0, true)
+			else
+				interface:addTextArea(format(lockedPowerContent, power.level,
+					getText.powers[power.name]), playerName, sumX, y - 5, 241, 50, -1, 0x1B2B31, 0,
+					true)
+			end
 
 			interface:addClickableImage(interfaceImages.rectangle, imageTargets.interfaceRectangle,
-				sumX - 2, y - 2, playerName, 245, 34, format(callback, power.name, sumX - 4, y - 5),
-				not isLockedPower)
+				sumX - 2, y - 2, playerName, 245, 34, format(callback, power.name, sumX - 4, y - 5))
 
 			interface:addImage(power.imageData.smallIcon, imageTargets.interfaceIcon, sumX, y,
 				playerName)

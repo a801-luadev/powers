@@ -103,6 +103,7 @@ translations.br = {
 				"<font size='18' color='#087ECC'>Tópico no Fórum</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>O QUE HÁ DE NOVO?</p><N>\n\n" ..
+			"• Você pode ler sobre todos os poderes agora.\n" ..
 			"• O Module se tornou oficial.\n" ..
 			"• O Module foi totalmente reescrito."
 	},
@@ -169,7 +170,7 @@ translations.br = {
 		"conseguir ver o jogo adequadamente. (Em 'Menu' → 'Opções', próximo a 'Lista de Salas')" ..
 		"</ROSE>",
 
-	ban = "%s <ROSE>você foi banido do #powers por %s <ROSE>por %d horas. Motivo: %s",
+	ban = "%s <ROSE>foi banido do #powers por %s <ROSE>por %d horas. Motivo: %s",
 	unban = "<ROSE>Seu banimento foi revogado por %s",
 	isBanned = "<ROSE>Você está banido do #powers até GMT+2 %s (%d horas restantes).",
 	permBan = "%s <ROSE>foi banido permanentemente do #powers por %s<ROSE>. Motivo: %s",
