@@ -19,7 +19,7 @@ eventRoundEnded = function()
 	removeTextArea(textAreaId.gravitationalAnomaly)
 
 	local alivePlayers = players.alive
-	local winners, winnerCount = { }, 0
+	local winners, winnerCount, winnerName = { }, 0
 
 	local cache
 	for playerName in next, players.currentRound do
@@ -37,6 +37,7 @@ eventRoundEnded = function()
 			if alivePlayers[playerName] then
 				winnerCount = winnerCount + 1
 				winners[winnerCount] = cache.chatNickname
+				winnerName = playerName
 
 				-- Ties won't give XP anymore.
 				playerData:set(playerName, "victories", 1, true)
@@ -59,11 +60,9 @@ eventRoundEnded = function()
 		chatMessage(format(getText.mentionWinner, table_concat(winners, "<FC>, ")))
 
 		if winnerCount == 1 then -- Only rounds with one winner give XP
-			winners = winners[1]
-
 			playerData
-				:set(winners, "xp", module.xp_on_victory, true)
-				:save(winners)
+				:set(winnerName, "xp", module.xp_on_victory, true)
+				:save(winnerName)
 		end
 	else
 		chatMessage(getText.noWinner)
