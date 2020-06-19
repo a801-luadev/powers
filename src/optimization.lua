@@ -6,6 +6,7 @@ local addShamanObject  = tfm.exec.addShamanObject
 local changePlayerSize = tfm.exec.changePlayerSize
 local displayParticle  = tfm.exec.displayParticle
 local explosion        = tfm.exec.explosion
+local freezePlayer     = tfm.exec.freezePlayer
 local giveCheese       = tfm.exec.giveCheese
 local killPlayer       = tfm.exec.killPlayer
 local linkMice         = tfm.exec.linkMice
