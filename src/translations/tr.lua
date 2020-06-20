@@ -8,8 +8,6 @@ translations.tr = {
 	mentionWinner = "<FC>%s<FC> raundu kazandı!",
 	noWinner = "<FC>Kimse raundu kazanamadı. :(",
 
-	minPlayers = "Oyunun başlaması için odada en az <B>2</B> kişi olması gerekiyor.",
-
 	powers = {
 		lightSpeed = "Işık Hızı",
 		laserBeam = "Lazer Işını",

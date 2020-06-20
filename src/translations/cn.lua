@@ -3,11 +3,10 @@ translations.cn = {
 	greeting = "<FC>歡迎來到 <B>#powers</B>!\n" ..
 		"\t• 按 <B>H鍵</B> 或輸入 <B>!help</B> 了解更多關於這小遊戲的資訊。\n" ..
 		"\t• 按 <B>O鍵</B> 或輸入 <B>!powers</B> 了解更多關於能力的資訊。",
+	kill = "<R>%s<FC> 殺死了 %s",
 
 	mentionWinner = "<FC>%s<FC> 勝出了回合!",
 	noWinner = "<FC>這回合沒有人勝出。 :(",
-
-	minPlayers = "房間裡最少需要 <B>2</B> 個玩家遊戲才會開始。",
 
 	powers = {
 		lightSpeed = "光速",
@@ -39,6 +38,11 @@ translations.cn = {
 		atomic = "隨機改變所有玩家的身體大小。",
 		judgmentDay = "復活所有死掉的敵人, 同時把他們都綁在一起。"
 	},
+	powerType = {
+		atk = "攻擊 (%d)",
+		def = "防禦",
+		divine = "神聖"
+	},
 
 	unlockPower = "<FC>[<J>•<FC>] 你解鎖了以下能力: %s",
 
@@ -54,7 +58,7 @@ translations.cn = {
 		[080] = "瘟疫大臣",
 		[090] = "饑荒之源",
 		[100] = "戰爭馭手",
-		[110] = "死亡神",
+		[110] = { "死亡神", "死亡女神" },
 		[120] = "無盡虛空"
 	},
 
@@ -83,6 +87,7 @@ translations.cn = {
 			"<p align='center'>你也可以 <FC>捐贈</FC> 任何金額 <a href='event:print_a801-luadev.github.io/?redirect=powers'><font color='#087ECC'>here</font></a> 來協助小遊戲的維護。所有籌得的捐款將會 被用作恆常的小遊戲更新及改善。</p>"
 		,
 		[4] = "<FC><p align='center'>新鮮事?</p><N>\n\n" ..
+			"• 現在你可以查看所有能力了。\n" ..
 			"• 小遊戲變成官方小遊戲了。\n" ..
 			"• 小遊戲被重新打造。"
 	},

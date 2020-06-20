@@ -8,8 +8,6 @@ translations.ro = {
 	mentionWinner = "<FC>%s<FC> a câștigat runda!",
 	noWinner = "<FC>Nimeni nu a câștigat runda. :(",
 
-	minPlayers = "Trebuie să fie cel puțin <B>2</B> jucători pe sală pentru ca jocul să înceapă.",
-
 	powers = {
 		lightSpeed = "Viteza Luminii",
 		laserBeam = "Rază Laser",

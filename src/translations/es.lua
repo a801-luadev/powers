@@ -8,8 +8,6 @@ translations.es = {
 	mentionWinner = "<FC>%s<FC> ganó la ronda!",
 	noWinner = "<FC>Nadie ganó la ronda. :(",
 
-	minPlayers = "Al menos <B>2</B> jugadores deben estar en la sala para que el juego comience.",
-
 	powers = {
 		lightSpeed = "Velocidad Luz",
 		laserBeam = "Rayo Láser",

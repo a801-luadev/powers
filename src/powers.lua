@@ -438,8 +438,8 @@ do
 		return true
 	end
 
-	powers.waterPump = Power
-		.new("waterPump", powerType.atk, 90, {
+	powers.waterSplash = Power
+		.new("waterSplash", powerType.atk, 90, {
 			smallIcon = "172cec7920e.png",
 			icon = "172ced1ac40.jpg",
 			iconWidth = 70,

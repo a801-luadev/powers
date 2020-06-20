@@ -187,9 +187,6 @@ translations.en = {
 	mentionWinner = "<FC>%s<FC> won the round!",
 	noWinner = "<FC>No one won the round. :(",
 
-	-- Lobby
-	minPlayers = "At least <B>2</B> players must be in the room for the game to start.",
-
 	-- Powers
 	powers = {
 		lightSpeed = "Light Speed",
@@ -205,7 +202,7 @@ translations.en = {
 		deathRay = "Death Ray",
 		atomic = "Atomic",
 		dayOfJudgement = "Day of Judgement",
-		waterPump = "Water Pump"
+		waterSplash = "Water Splash"
 	},
 	powersDescriptions = {
 		lightSpeed = "Moves your mouse in the speed of light, pushing all enemies around.",
@@ -221,7 +218,7 @@ translations.en = {
 		deathRay = "Toasts the enemies with the powerful and mysterious death ray.",
 		atomic = "Randomly changes all players' size.",
 		dayOfJudgement = "Revives all dead enemies, them all linked to each other.",
-		waterPump = "Summons some drops of water from Antarctica."
+		waterSplash = "Summons some drops of water from Antarctica."
 	},
 	powerType = {
 		atk = "ATTACK (%d)",
@@ -277,6 +274,7 @@ translations.en = {
 			"<a href='event:print_atelier801.com/topic?f=6&t=888676'><font size='18' color='#087ECC'>Thread on Forums</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>WHAT'S NEW?</p><N>\n\n" ..
+			"• New power <B>Water Splash</B>.\n" ..
 			"• You can read about all powers now.\n" ..
 			"• Module became official.\n" ..
 			"• Module has been entirely rewritten."
@@ -383,8 +381,6 @@ translations.br = {
 	mentionWinner = "<FC>%s<FC> venceu a rodada!",
 	noWinner = "<FC>Ninguém venceu a rodada. :(",
 
-	minPlayers = "Pelo menos <B>2</B> jogadores devem estar na sala para o jogo começar.",
-
 	powers = {
 		lightSpeed = "Velocidade da Luz",
 		laserBeam = "Raio Laser",
@@ -398,7 +394,8 @@ translations.br = {
 		gravitationalAnomaly = "Anomalia Gravitacional",
 		deathRay = "Raio da Morte",
 		atomic = "Atômico",
-		dayOfJudgement = "Dia do Julgamento"
+		dayOfJudgement = "Dia do Julgamento",
+		waterSplash = "Bomba d'água"
 	},
 	powersDescriptions = {
 		lightSpeed = "Move seu rato na velocidade da luz, empurrando todos seus inimigos em volta.",
@@ -413,7 +410,8 @@ translations.br = {
 		gravitationalAnomaly = "Inicia uma anomalia gravitacional.",
 		deathRay = "Torra seus inimigos com um poderoso e misterioso raio da morte.",
 		atomic = "Altera o tamanho dos jogadores aleatoriamente.",
-		dayOfJudgement = "Revive todos os inimigos mortos, todos presos uns aos outros."
+		dayOfJudgement = "Revive todos os inimigos mortos, todos presos uns aos outros.",
+		waterSplash = "Invoca algumas gotas d'água da Antártica."
 	},
 	powerType = {
 		atk = "ATAQUE (%d)",
@@ -465,6 +463,7 @@ translations.br = {
 			"<a href='event:print_atelier801.com/topic?f=6&t=888676'><font size='18' color='#087ECC'>Tópico no Fórum</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>O QUE HÁ DE NOVO?</p><N>\n\n" ..
+			"• Novo poder <B>Bomba d'água</B>.\n" ..
 			"• Você pode ler sobre todos os poderes agora.\n" ..
 			"• O Module se tornou oficial.\n" ..
 			"• O Module foi totalmente reescrito."
@@ -530,8 +529,6 @@ translations.es = {
 
 	mentionWinner = "<FC>%s<FC> ganó la ronda!",
 	noWinner = "<FC>Nadie ganó la ronda. :(",
-
-	minPlayers = "Al menos <B>2</B> jugadores deben estar en la sala para que el juego comience.",
 
 	powers = {
 		lightSpeed = "Velocidad Luz",
@@ -678,8 +675,6 @@ translations.fr = {
 	mentionWinner = "<FC>%s<FC> a gagné la manche !",
 	noWinner = "<FC>Personne n'a gagné la manche. :(",
 
-	minPlayers = "Au moins <B>2</B> joueurs doivent être dans le salon pour que le jeu démarre.",
-
 	powers = {
 		lightSpeed = "Vitesse Lumière",
 		laserBeam = "Rayon Laser",
@@ -815,7 +810,7 @@ translations.fr = {
 }
 
 --[[ translations/pl.lua ]]--
--- Translated by Michipol#0000
+-- Translated by Michipol#0000 + Coffe_bear#5753
 translations.pl = {
 	greeting = "<FC>Witaj w <B>#powers</B>!\n" ..
 		"\t• Naciśnij <B>H</B> albo wpisz <B>!help</B> aby przeczytać więcej o module.\n" ..
@@ -824,8 +819,6 @@ translations.pl = {
 
 	mentionWinner = "<FC>%s<FC> wygrywa rundę!",
 	noWinner = "<FC>Nikt nie wygrywa rundy. :(",
-
-	minPlayers = "Aby rozpocząć grę muszą być minimum <B>2</B> osoby w pokoju.",
 
 	powers = {
 		lightSpeed = "Prędkość światła",
@@ -840,7 +833,8 @@ translations.pl = {
 		gravitationalAnomaly = "Grawitacyjna Anomalia",
 		deathRay = "Promień śmierci",
 		atomic = "Atomic",
-		dayOfJudgement = "Dzień sądu"
+		dayOfJudgement = "Dzień sądu",
+		waterSplash = "Chlupnięcie Wodą"
 	},
 	powersDescriptions = {
 		lightSpeed = "Twoja mysz osiąga prędkość światła i popycha przy tym wszystkich wrogów.",
@@ -855,7 +849,8 @@ translations.pl = {
 		gravitationalAnomaly = "Rozpoczyna grawitacyjną anomalię.",
 		deathRay = "Zalewa wrogów potężnym i tajemniczym promienim śmierci.",
 		atomic = "Losowo zmienia rozmiar wszystkich graczy.",
-		dayOfJudgement = "Ożywia wszystkich martwych wrogów i łączy ich ze sobą."
+		dayOfJudgement = "Ożywia wszystkich martwych wrogów i łączy ich ze sobą.",
+		waterSplash = "Przywołuje kilka kropel wody z Antarktyki."
 	},
 	powerType = {
 		atk = "ATAK (%d)",
@@ -907,8 +902,9 @@ translations.pl = {
 			"<a href='event:print_atelier801.com/topic?f=6&t=888676'><font size='18' color='#087ECC'>Wątek na Forum</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>Co nowego?</p><N>\n\n" ..
+			"• Nowa moc <B>Chlupnięcie Wodą</B>.\n" ..
 			"• Teraz możesz przeczytać opis wszystkich mocy.\n" ..
-			"• Moduł ~~stał się~~ oficjalny.\n" ..
+			"• Moduł stał się oficjalny.\n" ..
 			"• Moduł został całkowicie napisany na nowo."
 	},
 
@@ -971,8 +967,6 @@ translations.ro = {
 
 	mentionWinner = "<FC>%s<FC> a câștigat runda!",
 	noWinner = "<FC>Nimeni nu a câștigat runda. :(",
-
-	minPlayers = "Trebuie să fie cel puțin <B>2</B> jucători pe sală pentru ca jocul să înceapă.",
 
 	powers = {
 		lightSpeed = "Viteza Luminii",
@@ -1119,8 +1113,6 @@ translations.tr = {
 	mentionWinner = "<FC>%s<FC> raundu kazandı!",
 	noWinner = "<FC>Kimse raundu kazanamadı. :(",
 
-	minPlayers = "Oyunun başlaması için odada en az <B>2</B> kişi olması gerekiyor.",
-
 	powers = {
 		lightSpeed = "Işık Hızı",
 		laserBeam = "Lazer Işını",
@@ -1261,11 +1253,10 @@ translations.cn = {
 	greeting = "<FC>歡迎來到 <B>#powers</B>!\n" ..
 		"\t• 按 <B>H鍵</B> 或輸入 <B>!help</B> 了解更多關於這小遊戲的資訊。\n" ..
 		"\t• 按 <B>O鍵</B> 或輸入 <B>!powers</B> 了解更多關於能力的資訊。",
+	kill = "<R>%s<FC> 殺死了 %s",
 
 	mentionWinner = "<FC>%s<FC> 勝出了回合!",
 	noWinner = "<FC>這回合沒有人勝出。 :(",
-
-	minPlayers = "房間裡最少需要 <B>2</B> 個玩家遊戲才會開始。",
 
 	powers = {
 		lightSpeed = "光速",
@@ -1297,6 +1288,11 @@ translations.cn = {
 		atomic = "隨機改變所有玩家的身體大小。",
 		judgmentDay = "復活所有死掉的敵人, 同時把他們都綁在一起。"
 	},
+	powerType = {
+		atk = "攻擊 (%d)",
+		def = "防禦",
+		divine = "神聖"
+	},
 
 	unlockPower = "<FC>[<J>•<FC>] 你解鎖了以下能力: %s",
 
@@ -1312,7 +1308,7 @@ translations.cn = {
 		[080] = "瘟疫大臣",
 		[090] = "饑荒之源",
 		[100] = "戰爭馭手",
-		[110] = "死亡神",
+		[110] = { "死亡神", "死亡女神" },
 		[120] = "無盡虛空"
 	},
 
@@ -1341,6 +1337,7 @@ translations.cn = {
 			"<p align='center'>你也可以 <FC>捐贈</FC> 任何金額 <a href='event:print_a801-luadev.github.io/?redirect=powers'><font color='#087ECC'>here</font></a> 來協助小遊戲的維護。所有籌得的捐款將會 被用作恆常的小遊戲更新及改善。</p>"
 		,
 		[4] = "<FC><p align='center'>新鮮事?</p><N>\n\n" ..
+			"• 現在你可以查看所有能力了。\n" ..
 			"• 小遊戲變成官方小遊戲了。\n" ..
 			"• 小遊戲被重新打造。"
 	},
@@ -1403,8 +1400,6 @@ translations.he = {
 
 	mentionWinner = "<FC>%s<FC> ניצחו את הסיבוב!",
 	noWinner = "<FC>אף אחד לא ניצח את הסיבוב. :(",
-
-	minPlayers = "לפחות <B>2</B> שחקנים צריכים להיות בחדר בשביל שהמשחק יתחיל.",
 
 	powers = {
 		lightSpeed = "מהירות האור",
@@ -3538,8 +3533,8 @@ do
 		return true
 	end
 
-	powers.waterPump = Power
-		.new("waterPump", powerType.atk, 90, {
+	powers.waterSplash = Power
+		.new("waterSplash", powerType.atk, 90, {
 			smallIcon = "172cec7920e.png",
 			icon = "172ced1ac40.jpg",
 			iconWidth = 70,

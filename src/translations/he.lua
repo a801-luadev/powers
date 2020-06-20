@@ -7,8 +7,6 @@ translations.he = {
 	mentionWinner = "<FC>%s<FC> ניצחו את הסיבוב!",
 	noWinner = "<FC>אף אחד לא ניצח את הסיבוב. :(",
 
-	minPlayers = "לפחות <B>2</B> שחקנים צריכים להיות בחדר בשביל שהמשחק יתחיל.",
-
 	powers = {
 		lightSpeed = "מהירות האור",
 		laserBeam = "קרן לייזר",

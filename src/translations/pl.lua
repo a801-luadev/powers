@@ -1,4 +1,4 @@
--- Translated by Michipol#0000
+-- Translated by Michipol#0000 + Coffe_bear#5753
 translations.pl = {
 	greeting = "<FC>Witaj w <B>#powers</B>!\n" ..
 		"\t• Naciśnij <B>H</B> albo wpisz <B>!help</B> aby przeczytać więcej o module.\n" ..
@@ -7,8 +7,6 @@ translations.pl = {
 
 	mentionWinner = "<FC>%s<FC> wygrywa rundę!",
 	noWinner = "<FC>Nikt nie wygrywa rundy. :(",
-
-	minPlayers = "Aby rozpocząć grę muszą być minimum <B>2</B> osoby w pokoju.",
 
 	powers = {
 		lightSpeed = "Prędkość światła",
@@ -23,7 +21,8 @@ translations.pl = {
 		gravitationalAnomaly = "Grawitacyjna Anomalia",
 		deathRay = "Promień śmierci",
 		atomic = "Atomic",
-		dayOfJudgement = "Dzień sądu"
+		dayOfJudgement = "Dzień sądu",
+		waterSplash = "Chlupnięcie Wodą"
 	},
 	powersDescriptions = {
 		lightSpeed = "Twoja mysz osiąga prędkość światła i popycha przy tym wszystkich wrogów.",
@@ -38,7 +37,8 @@ translations.pl = {
 		gravitationalAnomaly = "Rozpoczyna grawitacyjną anomalię.",
 		deathRay = "Zalewa wrogów potężnym i tajemniczym promienim śmierci.",
 		atomic = "Losowo zmienia rozmiar wszystkich graczy.",
-		dayOfJudgement = "Ożywia wszystkich martwych wrogów i łączy ich ze sobą."
+		dayOfJudgement = "Ożywia wszystkich martwych wrogów i łączy ich ze sobą.",
+		waterSplash = "Przywołuje kilka kropel wody z Antarktyki."
 	},
 	powerType = {
 		atk = "ATAK (%d)",
@@ -90,8 +90,9 @@ translations.pl = {
 			"<a href='event:print_atelier801.com/topic?f=6&t=888676'><font size='18' color='#087ECC'>Wątek na Forum</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>Co nowego?</p><N>\n\n" ..
+			"• Nowa moc <B>Chlupnięcie Wodą</B>.\n" ..
 			"• Teraz możesz przeczytać opis wszystkich mocy.\n" ..
-			"• Moduł ~~stał się~~ oficjalny.\n" ..
+			"• Moduł stał się oficjalny.\n" ..
 			"• Moduł został całkowicie napisany na nowo."
 	},
 

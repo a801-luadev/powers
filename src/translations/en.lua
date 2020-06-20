@@ -10,9 +10,6 @@ translations.en = {
 	mentionWinner = "<FC>%s<FC> won the round!",
 	noWinner = "<FC>No one won the round. :(",
 
-	-- Lobby
-	minPlayers = "At least <B>2</B> players must be in the room for the game to start.",
-
 	-- Powers
 	powers = {
 		lightSpeed = "Light Speed",
@@ -28,7 +25,7 @@ translations.en = {
 		deathRay = "Death Ray",
 		atomic = "Atomic",
 		dayOfJudgement = "Day of Judgement",
-		waterPump = "Water Pump"
+		waterSplash = "Water Splash"
 	},
 	powersDescriptions = {
 		lightSpeed = "Moves your mouse in the speed of light, pushing all enemies around.",
@@ -44,7 +41,7 @@ translations.en = {
 		deathRay = "Toasts the enemies with the powerful and mysterious death ray.",
 		atomic = "Randomly changes all players' size.",
 		dayOfJudgement = "Revives all dead enemies, them all linked to each other.",
-		waterPump = "Summons some drops of water from Antarctica."
+		waterSplash = "Summons some drops of water from Antarctica."
 	},
 	powerType = {
 		atk = "ATTACK (%d)",
@@ -100,6 +97,7 @@ translations.en = {
 			"<a href='event:print_atelier801.com/topic?f=6&t=888676'><font size='18' color='#087ECC'>Thread on Forums</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>WHAT'S NEW?</p><N>\n\n" ..
+			"• New power <B>Water Splash</B>.\n" ..
 			"• You can read about all powers now.\n" ..
 			"• Module became official.\n" ..
 			"• Module has been entirely rewritten."

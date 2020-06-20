@@ -8,8 +8,6 @@ translations.br = {
 	mentionWinner = "<FC>%s<FC> venceu a rodada!",
 	noWinner = "<FC>Ninguém venceu a rodada. :(",
 
-	minPlayers = "Pelo menos <B>2</B> jogadores devem estar na sala para o jogo começar.",
-
 	powers = {
 		lightSpeed = "Velocidade da Luz",
 		laserBeam = "Raio Laser",
@@ -23,7 +21,8 @@ translations.br = {
 		gravitationalAnomaly = "Anomalia Gravitacional",
 		deathRay = "Raio da Morte",
 		atomic = "Atômico",
-		dayOfJudgement = "Dia do Julgamento"
+		dayOfJudgement = "Dia do Julgamento",
+		waterSplash = "Bomba d'água"
 	},
 	powersDescriptions = {
 		lightSpeed = "Move seu rato na velocidade da luz, empurrando todos seus inimigos em volta.",
@@ -38,7 +37,8 @@ translations.br = {
 		gravitationalAnomaly = "Inicia uma anomalia gravitacional.",
 		deathRay = "Torra seus inimigos com um poderoso e misterioso raio da morte.",
 		atomic = "Altera o tamanho dos jogadores aleatoriamente.",
-		dayOfJudgement = "Revive todos os inimigos mortos, todos presos uns aos outros."
+		dayOfJudgement = "Revive todos os inimigos mortos, todos presos uns aos outros.",
+		waterSplash = "Invoca algumas gotas d'água da Antártica."
 	},
 	powerType = {
 		atk = "ATAQUE (%d)",
@@ -90,6 +90,7 @@ translations.br = {
 			"<a href='event:print_atelier801.com/topic?f=6&t=888676'><font size='18' color='#087ECC'>Tópico no Fórum</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>O QUE HÁ DE NOVO?</p><N>\n\n" ..
+			"• Novo poder <B>Bomba d'água</B>.\n" ..
 			"• Você pode ler sobre todos os poderes agora.\n" ..
 			"• O Module se tornou oficial.\n" ..
 			"• O Module foi totalmente reescrito."
