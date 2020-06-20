@@ -122,7 +122,7 @@ translations.pl = {
 	leaderboard = "Tabela wyników",
 	leaderboardIsLoading = "<BL>[<VI>•<BL>] Tabela się wciąż ładuje. Spróbuj ponownie za kilka sekund.",
 
-	addMap = "<BV>[<FC>•<BV>] Mapa <J>@%s</J> została dodana do kolejki.",
+	addMap = "<BV>[<FC>•<BV>] Mapa <J>@%s</J> Została dodana do kolejki.",
 	remMap = "<BV>[<FC>•<BV>] Mapa <J>@%s</J> Została usunięta z kolejki.",
 	listMaps = "<BV>[<FC>•<BV>] Mapy (<J>#%d</J>): %s",
 
@@ -137,10 +137,10 @@ translations.pl = {
 	playerLoseRole = "<FC>%s <FC>traci rolę <font color='#%x'>%s</font>!",
 
 	enableReviewMode = "<BV>[<FC>•<BV>] <FC>Tryb podglądu map<BV> jest włączony. Następne rundy <B>nie</B> będą liczone do statystyk i mapy będą tylko do testu modułu. Wszystkie moce są włączone i bardziej prawdopodobne!",
-	disableReviewMode = "<BV>[<FC>•<BV>]<FC>Tryb podglądu map<BV> został wyłączony i wszystko wróci do normalnośći przy następnej rundzie!",
+	disableReviewMode = "<BV>[<FC>•<BV>]<FC>Tryb podglądu map<BV> został wyłączony i wszystko wróci do normalności przy następnej rundzie!",
 
 	getBadge = "<FC>%s<FC> odblokował nową #powers odznakę!",
 
 	setPassword = "<BL>[<VI>•<BL>] %s <BL>ustawił nowe hasło na %q.",
-	removePassword = "<BL>[<VI>•<BL>] %s <BL>usunął haslo z pokoju."
+	removePassword = "<BL>[<VI>•<BL>] %s <BL>usunął hasło z pokoju."
 }
