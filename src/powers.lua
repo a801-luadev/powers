@@ -180,6 +180,7 @@ do
 			iconWidth = 67,
 			iconHeight = 80
 		})
+		:setUseLimit(10)
 		:setUseCooldown(2.5)
 		:bindKeyboard(keyboard.shift)
 		:setEffect(function(playerName, x, y, isFacingRight)
@@ -274,6 +275,7 @@ do
 			iconWidth = 72,
 			iconHeight = 80
 		})
+		:setUseLimit(10)
 		:setUseCooldown(1.5)
 		:bindKeyboard(keyboard.up, keyboard.down)
 		:setKeySequence({
@@ -317,7 +319,7 @@ do
 			seconds = 10
 		})
 		:setUseCooldown(25)
-		:setProbability(40)
+		:setProbability(15)
 		:bindChatMessage("^A+T+O+M+I+C+$")
 		:setEffect(function(self)
 			resetPlayersDefaultSize = true
@@ -401,7 +403,7 @@ do
 		})
 		:setDamage(20)
 		:setSelfDamage(8)
-		:setUseLimit(10)
+		:setUseLimit(6)
 		:setUseCooldown(8)
 		:bindKeyboard(keyboard.down)
 		:setKeySequence({ { keyboard.down, keyboard.down } })
@@ -539,7 +541,7 @@ do
 			minDeadMice = 2
 		})
 		:setUseCooldown(45)
-		:setProbability(40)
+		:setProbability(20)
 		:bindChatMessage("^R+A+I+S+E+ T+H+E+ D+E+A+D+$")
 		:setEffect(function(self)
 			if players._count.dead < self.minDeadMice then return end
@@ -680,7 +682,7 @@ do
 			despawnLen = 0
 		})
 		:setUseCooldown(25)
-		:setProbability(60)
+		:setProbability(50)
 		:bindChatMessage("^A+N+O+M+A+L+Y+$")
 		:setEffect(function(self)
 			canTriggerPowers = false

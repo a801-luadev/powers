@@ -41,6 +41,10 @@ eventRoundEnded = function()
 				:set(playerName, "rounds", 1, true)
 				:save(playerName)
 
+				if playerData:get(playerName, "rounds") == 1100 then
+					giveBadge(playerName, "superPlayer", cache)
+				end
+
 			-- Checks player level
 			checkPlayerLevel(playerName, cache)
 		end

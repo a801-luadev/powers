@@ -150,7 +150,7 @@ local generateBadgesList = function(playerName, _cache)
 	(_cache or playerCache[playerName]).badges = playerBadges
 end
 
-local giveBadge = function(playerName, badge, _cache, _forceSave)
+local giveBadge = function(playerName, badge, _cache)
 	badge = badges[badge]
 	if not badge then return end
 
@@ -159,8 +159,8 @@ local giveBadge = function(playerName, badge, _cache, _forceSave)
 	if badge == playerBadges then return end
 
 	playerData
-		:set(playerName, "badges", badge, nil, _forceSave)
-		:save(playerName, _forceSave)
+		:set(playerName, "badges", badge, nil, true)
+		:save(playerName, true)
 
 	_cache = _cache or playerCache[playerName]
 	generateBadgesList(playerName, _cache)

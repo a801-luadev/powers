@@ -21,7 +21,8 @@ translations.ro = {
 		gravitationalAnomaly = "Anomalie Gravitațională",
 		deathRay = "Raza Morții",
 		atomic = "Atomic",
-		dayOfJudgement = "Ziua Judecății"
+		dayOfJudgement = "Ziua Judecății",
+		waterSplash = "Eclaboussure d'eau"
 	},
 	powersDescriptions = {
 		lightSpeed = "Moves your mouse in the light speed, pushing all enemies around.",
@@ -36,7 +37,8 @@ translations.ro = {
 		gravitationalAnomaly = "Pornește o anomalie gravitațională.",
 		deathRay = "Prăjește inamicii cu o puternică și misterioasă rază a morții.",
 		atomic = "Schimbă mărimea jucătorilor într-un mod aleator.",
-		dayOfJudgement = "Reînvie toți inamicii morți și îi leagă unul de celălalt."
+		dayOfJudgement = "Reînvie toți inamicii morți și îi leagă unul de celălalt.",
+		waterSplash = "Invoque des gouttes d'eau de l'Antarctique."
 	},
 	powerType = {
 		atk = "ATAC (%d)",
@@ -88,6 +90,7 @@ translations.ro = {
 			"<a href='event:print_atelier801.com/topic?f=6&t=888676'><font size='18' color='#087ECC'>Thread pe Forum</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>Ce este nou?</p><N>\n\n" ..
+			"• Nouă putere <B>Explozie de apă</B>.\n" ..
 			"• Acum poți citi despre toate puterile.\n" ..
 			"• Modulul a devenit oficial.\n" ..
 			"• Modulul a fost rescris în întregime."
