@@ -89,11 +89,12 @@ translations.ro = {
 			"<p align='center'>Poți de asemenea să <FC>donezi</FC> orice sumă la <a href='event:print_a801-luadev.github.io/?redirect=powers'><font color='#087ECC'>aici</font></a> pentru a ajuta la menținerea modulului. Toate fondurile obținute prin link vor fi investite în asigurarea de update-uri constante ale modulului și îmbunătățiri generale.\n\n" ..
 			"<a href='event:print_atelier801.com/topic?f=6&t=888676'><font size='18' color='#087ECC'>Thread pe Forum</font></a></p>"
 		,
-		[4] = "<FC><p align='center'>Ce este nou?</p><N>\n\n" ..
-			"• Nouă putere <B>Explozie de apă</B>.\n" ..
-			"• Acum poți citi despre toate puterile.\n" ..
-			"• Modulul a devenit oficial.\n" ..
-			"• Modulul a fost rescris în întregime."
+		[4] = { "<FC><p align='center'>Ce este nou?</p><N>\n",
+			"• Modulul a fost rescris în întregime.",
+			"• Modulul a devenit oficial.",
+			"• Acum poți citi despre toate puterile.",
+			"• Nouă putere <B>Explozie de apă</B>.",
+		}
 	},
 
 	commandDescriptions = {

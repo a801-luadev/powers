@@ -74,7 +74,11 @@ eventNewPlayer = function(playerName)
 	end
 
 	if isReviewMode then
-		chatMessage(getText.enableReviewMode, playerName)
+		if isFreeMode then
+			chatMessage(getText.freeMode, playerName)
+		else
+			chatMessage(getText.enableReviewMode, playerName)
+		end
 	end
 
 	lowerSyncDelay(playerName)

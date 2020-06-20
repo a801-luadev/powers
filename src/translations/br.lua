@@ -2,8 +2,15 @@
 translations.br = {
 	greeting = "<FC>Bem-vindo ao <B>#powers</B>!\n" ..
 		"\t• Pressione <B>H</B> ou digite <B>!help</B> para saber mais sobre o module.\n" ..
-		"\t• Pressione <B>O</B> ou digite <B>!powers</B> para saber mais sobre os poderes.",
+		"\t• Pressione <B>O</B> ou digite <B>!powers</B> para saber mais sobre os poderes.\n" ..
+		"\t• Digite <B>!modes</B> para saber mais sobre outros modos de jogo.",
 	kill = "<R>%s<FC> matou %s",
+
+	gameModes = "<font size='10'><FC>[<J>•</J>] Modos de jogo:\n" ..
+		"\t • Módulo lagado? Tente a versão mais leve na /sala #powers0lagmode\n" ..
+		"\t • Quer subir de nível mais rápido? Tente o modo noob (apenas para níveis baixos) na /sala #powers0noobmode\n" ..
+		"\t • Muito pro? Desafie-se no modo pro (apenas níveis altos) na /sala #powers0promode\n" ..
+		"\t • Não liga para o perfil e quer usar todos os poderes? Tente o modo livre na sala /sala #powers0freemode</FC></font>",
 
 	mentionWinner = "<FC>%s<FC> venceu a rodada!",
 	noWinner = "<FC>Ninguém venceu a rodada. :(",
@@ -89,11 +96,15 @@ translations.br = {
 			"<p align='center'>Você também pode <FC>doar</FC> qualquer quantia <a href='event:print_a801-luadev.github.io/?redirect=powers'><font color='#087ECC'>aqui</font></a> para ajudar a manter o module. Todos os fundos arrecadados através desse link serão investidos em atualizações constantes no module e em melhorias gerais.\n\n" ..
 			"<a href='event:print_atelier801.com/topic?f=6&t=888676'><font size='18' color='#087ECC'>Tópico no Fórum</font></a></p>"
 		,
-		[4] = "<FC><p align='center'>O QUE HÁ DE NOVO?</p><N>\n\n" ..
-			"• Novo poder <B>Bomba d'água</B>.\n" ..
-			"• Você pode ler sobre todos os poderes agora.\n" ..
-			"• O Module se tornou oficial.\n" ..
-			"• O Module foi totalmente reescrito."
+		[4] = { "<FC><p align='center'>O QUE HÁ DE NOVO?</p><N>\n",
+			"• O Module foi totalmente reescrito.",
+			"• O Module se tornou oficial.",
+			"• Você pode ler sobre todos os poderes agora.",
+			"• Novo poder <B>Bomba d'água</B>.",
+			"• Três novas medalhas.",
+			"• Novos modos: <B>#powers0lagmode</B>, <B>#powers0freemode</B>, <B>#powers0noobmode</B>, <B>#powers0promode</B>.",
+			"• Novo comando <B>!modes</B>.",
+		}
 	},
 
 	commandDescriptions = {
@@ -101,6 +112,7 @@ translations.br = {
 		powers = "Abre um menu que lista todos os poderes e suas informações.",
 		profile = "Abre o seu perfil ou o de alguém.",
 		leaderboard = "Abre o ranking global.",
+		modes = "Mostra os modos de jogo.",
 
 		pw = "Protege sua sala com uma senha. Deixe vazio para remover."
 	},
@@ -126,7 +138,7 @@ translations.br = {
 	remMap = "<BV>[<FC>•<BV>] O mapa <J>@%s</J> foi removido da lisa local de mapas.",
 	listMaps = "<BV>[<FC>•<BV>] Mapas (<J>#%d</J>): %s",
 
-	enableParticles = "<ROSE>NÃO se esqueça de HABILITAR os efeitos especiais/partículas para conseguir ver o jogo adequadamente. (Em 'Menu' → 'Opções', próximo a 'Lista de Salas')</ROSE>",
+	enableParticles = "<ROSE>NÃO se esqueça de ATIVAR os efeitos especiais/partículas para conseguir ver o jogo adequadamente. (Em 'Menu' → 'Opções', próximo a 'Lista de Salas')</ROSE>",
 
 	ban = "%s <ROSE>foi banido do #powers por %s <ROSE>por %d horas. Motivo: %s",
 	unban = "<ROSE>Seu banimento foi revogado por %s",
@@ -138,6 +150,7 @@ translations.br = {
 
 	enableReviewMode = "<BV>[<FC>•<BV>] O <FC>Modo de Review de Mapas<BV> está ativado. As próximas rodadas <B>não</B> contarão estatísticas e os mapas que aparecerem estão em teste para a rotação de mapas do module. Todos os poderes foram ativados e poderes divinos são mais propensos a acontecer!",
 	disableReviewMode = "<BV>[<FC>•<BV>] O <FC>Modo de Review de Mapas<BV> foi desativado e tudo voltará ao normal na próxima rodada!",
+	freeMode = "<BV>[<FC>•<BV>] Estatísticas <B>não</B> contarão neste modo de jogo. Todos os poderes foram ativados e poderes divinos são mais propensos a acontecer!",
 
 	getBadge = "<FC>%s<FC> acaba de desbloquear uma nova medalha #powers!",
 

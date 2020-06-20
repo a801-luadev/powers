@@ -2,7 +2,7 @@ do
 	-- Enables/disables the review mode
 	commands["review"] = function(playerName)
 		if not hasPermission(playerName, permissions.enableReviewMode)
-			or nextMapToLoad then return end -- Can't change state when !npp is pending
+			or nextMapToLoad or isFreeMode then return end -- Can't change state when !npp is active
 
 		isReviewMode = not isReviewMode
 		if isReviewMode then

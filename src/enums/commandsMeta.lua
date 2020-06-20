@@ -15,6 +15,9 @@ local commandsMeta = {
 		name = "leaderboard",
 		hotkey = "L"
 	},
+	{
+		name = "modes"
+	},
 
 	{
 		name = "pw",

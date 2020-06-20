@@ -89,11 +89,12 @@ translations.pl = {
 			"<p align='center'>Możesz też <FC>wpłacić</FC> dowolną kwotę <a href='event:print_a801-luadev.github.io/?redirect=powers'><font color='#087ECC'>tutaj</font></a> aby pomóc utrzymać moduł. Wszystkie fundusze zostaną przekazane na nowe aktualizacje i dalsze rozwijanie się modułu.\n\n" ..
 			"<a href='event:print_atelier801.com/topic?f=6&t=888676'><font size='18' color='#087ECC'>Wątek na Forum</font></a></p>"
 		,
-		[4] = "<FC><p align='center'>Co nowego?</p><N>\n\n" ..
-			"• Nowa moc <B>Chlupnięcie Wodą</B>.\n" ..
-			"• Teraz możesz przeczytać opis wszystkich mocy.\n" ..
-			"• Moduł stał się oficjalny.\n" ..
-			"• Moduł został całkowicie napisany na nowo."
+		[4] = { "<FC><p align='center'>Co nowego?</p><N>\n",
+			"• Moduł został całkowicie napisany na nowo.",
+			"• Moduł stał się oficjalny.",
+			"• Teraz możesz przeczytać opis wszystkich mocy.",
+			"• Nowa moc <B>Chlupnięcie Wodą</B>.",
+		}
 	},
 
 	commandDescriptions = {

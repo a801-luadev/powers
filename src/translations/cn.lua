@@ -86,10 +86,11 @@ translations.cn = {
 			"• 你可以在我們的 <a href='event:print_atelier801.com/topic?f=5&t=918371'><font color='#087ECC'>論壇帖子 <FC>提交你的地圖<N>論壇帖子</font></a>.\n\n" ..
 			"<p align='center'>你也可以 <FC>捐贈</FC> 任何金額 <a href='event:print_a801-luadev.github.io/?redirect=powers'><font color='#087ECC'>here</font></a> 來協助小遊戲的維護。所有籌得的捐款將會 被用作恆常的小遊戲更新及改善。</p>"
 		,
-		[4] = "<FC><p align='center'>新鮮事?</p><N>\n\n" ..
-			"• 現在你可以查看所有能力了。\n" ..
-			"• 小遊戲變成官方小遊戲了。\n" ..
-			"• 小遊戲被重新打造。"
+		[4] = { "<FC><p align='center'>新鮮事?</p><N>\n",
+			"• 小遊戲被重新打造。",
+			"• 小遊戲變成官方小遊戲了。",
+			"• 現在你可以查看所有能力了。",
+		}
 	},
 
 	commandDescriptions = {

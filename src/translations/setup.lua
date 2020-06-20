@@ -32,5 +32,14 @@ do
 		end
 	end
 
+	-- Fix news
+	local newsContent = getText.helpContent[4]
+	local news, index = { newsContent[1] }, 1
+	for i = #newsContent, 2, -1 do
+		index = index + 1
+		news[index] = newsContent[i]
+	end
+	getText.helpContent[4] = table_concat(news, '\n')
+
 	translations = nil
 end

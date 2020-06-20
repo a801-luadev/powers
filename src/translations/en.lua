@@ -3,8 +3,15 @@ translations.en = {
 	-- Main messages
 	greeting = "<FC>Welcome to <B>#powers</B>!\n" ..
 		"\t• Press <B>H</B> or type <B>!help</B> to learn more about the module.\n" ..
-		"\t• Press <B>O</B> or type <B>!powers</B> to learn more about the powers.",
+		"\t• Press <B>O</B> or type <B>!powers</B> to learn more about the powers.\n" ..
+		"\t• Type <B>!modes</B> to learn more about other game modes.",
 	kill = "<R>%s<FC> killed %s",
+
+	gameModes = "<font size='10'><FC>[<J>•</J>] New game modes:\n" ..
+		"\t • Laggy module? Try a lighter version at /room #powers0lagmode\n" ..
+		"\t • Want to upgrade faster? Try the noob mode (low levels only) at /room #powers0noobmode\n" ..
+		"\t • Too pro? Challenge yourself in the pro mode (high levels only) at /room #powers0promode\n" ..
+		"\t • Doesn't care about the stats and wants to try all powers? Try the free mode at /room #powers0freemode</FC></font>",
 
 	-- Victory
 	mentionWinner = "<FC>%s<FC> won the round!",
@@ -96,11 +103,15 @@ translations.en = {
 			"<p align='center'>You can also <FC>donate</FC> any amount <a href='event:print_a801-luadev.github.io/?redirect=powers'><font color='#087ECC'>here</font></a> to help maintaining the module. All funds obtained through the link are going to be invested in constant module updates and general improvements.\n\n" ..
 			"<a href='event:print_atelier801.com/topic?f=6&t=888676'><font size='18' color='#087ECC'>Thread on Forums</font></a></p>"
 		,
-		[4] = "<FC><p align='center'>WHAT'S NEW?</p><N>\n\n" ..
-			"• New power <B>Water Splash</B>.\n" ..
-			"• You can read about all powers now.\n" ..
-			"• Module became official.\n" ..
-			"• Module has been entirely rewritten."
+		[4] = { "<FC><p align='center'>WHAT'S NEW?</p><N>\n",
+			"• Module has been entirely rewritten.",
+			"• Module became official.",
+			"• You can read about all powers now.",
+			"• New power <B>Water Splash</B>.",
+			"• Three new badges.",
+			"• New room modes: <B>#powers0lagmode</B>, <B>#powers0freemode</B>, <B>#powers0noobmode</B>, <B>#powers0promode</B>.",
+			"• New command <B>!modes</B>.",
+		}
 	},
 
 	-- Commands
@@ -109,6 +120,7 @@ translations.en = {
 		powers = "Opens a menu that lists all powers and their info.",
 		profile = "Opens your or someone's profile.",
 		leaderboard = "Opens the global leaderboard.",
+		modes = "Shows the game modes.",
 
 		pw = "Protects the room with a password. Send empty to remove it.",
 
@@ -184,6 +196,7 @@ translations.en = {
 	-- Review
 	enableReviewMode = "<BV>[<FC>•<BV>] The <FC>Map Review Mode<BV> is enabled. Next rounds will <B>not</B> count stats and the maps that appear are in test for the map rotation of the module. All powers have been enabled and divine powers are more likely to happen!",
 	disableReviewMode = "<BV>[<FC>•<BV>] The <FC>Map Review Mode<BV> has been disabled and everything will be back to normal in the next round!",
+	freeMode = "<BV>[<FC>•<BV>] Stats <B>won't</B> count in this game mode. All powers have been enabled and divine powers are more likely to happen!",
 
 	-- Badges
 	getBadge = "<FC>%s<FC> just unlocked a new #powers badge!",

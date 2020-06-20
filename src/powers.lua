@@ -483,7 +483,7 @@ do
 		local xDirection = .1 * direction
 
 		size = size * 3
-		for i = 0, size do
+		for i = 0, size, (isLowQuality and 2 or 1) do
 			displayParticle(9, xPos, y + yPos, xSpeed, -ySpeed)
 
 			i = i + 1
@@ -497,7 +497,7 @@ do
 		end
 
 		xSpeed = direction*(size/2 - 1) + direction
-		for i = 1, 2 do
+		for i = 1, (isLowQuality and 1 or 2) do
 			displayParticle(13, x, y, xSpeed)
 		end
 	end
@@ -684,8 +684,12 @@ do
 		:setUseCooldown(25)
 		:setProbability(50)
 		:bindChatMessage("^A+N+O+M+A+L+Y+$")
-		:setEffect(function(self)
+		:setEffect(function(self, playerName)
 			canTriggerPowers = false
 			timer:start(anomaly, 500, 1/self.opacityFrame, self, (isLowQuality and 1 or 3))
+
+			if not isReviewMode then
+				giveBadge(playerName, "anomaly")
+			end
 		end)
 end

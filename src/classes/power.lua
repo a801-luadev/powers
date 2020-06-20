@@ -280,7 +280,7 @@ do
 		end
 
 		if self.effect then
-			self.effect(self, ...)
+			self.effect(self, playerName, ...)
 		end
 
 		return true

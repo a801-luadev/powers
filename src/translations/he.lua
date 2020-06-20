@@ -86,10 +86,10 @@ translations.he = {
 			"<p align='center'>אתם יכולים גם <FC>לתרום</FC> כל כמות <a href='event:print_a801-luadev.github.io/?redirect=powers'><font color='#087ECC'>כאן</font></a> על מנת לתחזק את המשחק. כל הכספים המושגים דרך הקישור יהיו מושקעים בעדכוני משחק רציפים ושיפורים כלליים.\n\n" ..
 			"<a href='event:print_atelier801.com/topic?f=6&t=888676'><font size='18' color='#087ECC'>אשכול בפורומים</font></a></p>"
 		,
-		[4] = "<FC><p align='center'>מה חדש?</p><N>\n\n" ..
-			"• You can read about powers now.\n" ..
-			"•המודול הפך לרשמי.\n" ..
-			"•המודול נכתב מחדש לגמרי."
+		[4] = { "<FC><p align='center'>מה חדש?</p><N>\n",
+			"•המודול נכתב מחדש לגמרי.",
+			"•המודול הפך לרשמי.",
+		}
 	},
 
 	commandDescriptions = {

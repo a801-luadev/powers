@@ -87,10 +87,11 @@ translations.fr = {
 			"<p align='center'>Vous pouvez aussi <FC>donner</FC> n'importe quel somme d'argent <a href='event:print_a801-luadev.github.io/?redirect=powers'><font color='#087ECC'>ici</font></a> pour aider à maintenir le module. Tous les fonts obtenus à travers ce lien seront utilisés dans les mise à jours et l'amélioration.\n\n" ..
 			"<a href='event:print_atelier801.com/topic?f=6&t=888676'><font size='18' color='#087ECC'>Sujet dans le Forum</font></a></p>"
 		,
-		[4] = "<FC><p align='center'>QUOI D'NEUF ?</p><N>\n\n" ..
-			"• Vous pouvez lire à propos de tous les pouvoirs maintenant.\n" ..
-			"• Le module est devenu officiel.\n" ..
-			"• Le module a été complètement ré-écrit."
+		[4] = { "<FC><p align='center'>QUOI D'NEUF ?</p><N>\n",
+			"• Le module a été complètement ré-écrit.",
+			"• Le module est devenu officiel.",
+			"• Vous pouvez lire à propos de tous les pouvoirs maintenant.",
+		}
 	},
 
 	commandDescriptions = {

@@ -18,7 +18,7 @@ local givePlayerKill = function(killerName, killedName, killedCache)
 	playerData.xp = playerData.xp + module.xp_on_kill
 
 	local cache = playerCache[killerName]
-	if playerData.kills >= 666 then
+	if playerData.kills == 666 then
 		giveBadge(killerName, "killer", cache)
 	end
 

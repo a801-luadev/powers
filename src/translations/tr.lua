@@ -87,10 +87,11 @@ translations.tr = {
 			"<p align='center'>Ayrıca istediğiniz miktarda  <FC>bağışta</FC> bulunabilirsiniz. <a href='event:print_a801-luadev.github.io/?redirect=powers'><font color='#087ECC'>Bu linkten</font></a> Bu modülün sürdürülebilmesi için yardımlarınıza açığız. Toplanınan tüm para sürekli gelecek olan güncellemeler ve modülün genel iyileştirmeleri için harcanacaktır.\n\n" ..
 			"<a href='event:print_atelier801.com/topic?f=6&t=888676'><font size='18' color='#087ECC'>Forum Konusu</font></a></p>"
 		,
-		[4] = "<FC><p align='center'>HABERLER</p><N>\n\n" ..
-			"• Artık oyundaki tüm güçler hakkında bilgi sahibi olabilirsiniz.\n" ..
-			"• Modülümüz artık resmî.\n" ..
-			"• Modülümüz baştan sona tekrar yazıldı."
+		[4] = { "<FC><p align='center'>HABERLER</p><N>\n" ..
+			"• Modülümüz baştan sona tekrar yazıldı.",
+			"• Modülümüz artık resmî.",
+			"• Artık oyundaki tüm güçler hakkında bilgi sahibi olabilirsiniz.",
+		}
 	},
 
 	commandDescriptions = {

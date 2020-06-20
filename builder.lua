@@ -81,6 +81,7 @@
 	"commands/powers.lua",
 	"commands/profile.lua",
 	"commands/leaderboard.lua",
+	"commands/modes.lua",
 
 	"commands/roomAdmin/password.lua",
 
@@ -123,7 +124,7 @@
 
 	"events/eventChatCommand.lua",
 
-	"roomAdmins.lua",
+	"roomSettings.lua",
 
 	"init.lua"
 }
