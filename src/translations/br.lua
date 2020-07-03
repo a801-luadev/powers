@@ -6,7 +6,7 @@ translations.br = {
 		"\t• Digite <B>!modes</B> para saber mais sobre outros modos de jogo.",
 	kill = "<R>%s<FC> matou %s",
 
-	gameModes = "<font size='10'><FC>[<J>•</J>] Modos de jogo:\n" ..
+	gameModes = "<font size='-2'><FC>[<J>•</J>] Modos de jogo:\n" ..
 		"\t • Módulo lagado? Tente a versão mais leve na /sala #powers0lagmode\n" ..
 		"\t • Quer subir de nível mais rápido? Tente o modo noob (apenas para níveis baixos) na /sala #powers0noobmode\n" ..
 		"\t • Muito pro? Desafie-se no modo pro (apenas níveis altos) na /sala #powers0promode\n" ..

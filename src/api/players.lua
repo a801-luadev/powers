@@ -166,4 +166,5 @@ local giveBadge = function(playerName, badge, _cache)
 	generateBadgesList(playerName, _cache)
 
 	chatMessage(format(getText.getBadge, _cache.chatNickname))
+	return true
 end

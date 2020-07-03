@@ -70,7 +70,7 @@ do
 		end
 
 		return format(nicknameFormat, (nicknameColor or 'V'), nickname, (discriminatorColor or 'G'),
-			(discriminatorSize or 10), discriminator)
+			(discriminatorSize or -2), discriminator)
 	end
 end
 

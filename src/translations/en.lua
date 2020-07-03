@@ -7,7 +7,7 @@ translations.en = {
 		"\t• Type <B>!modes</B> to learn more about other game modes.",
 	kill = "<R>%s<FC> killed %s",
 
-	gameModes = "<font size='10'><FC>[<J>•</J>] New game modes:\n" ..
+	gameModes = "<font size='-2'><FC>[<J>•</J>] New game modes:\n" ..
 		"\t • Laggy module? Try a lighter version at /room #powers0lagmode\n" ..
 		"\t • Want to upgrade faster? Try the noob mode (low levels only) at /room #powers0noobmode\n" ..
 		"\t • Too pro? Challenge yourself in the pro mode (high levels only) at /room #powers0promode\n" ..

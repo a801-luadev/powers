@@ -561,6 +561,8 @@ do
 
 				linkMice((player or firstPlayer), lastPlayer, true)
 			end
+
+			setGameTime(60)
 		end)
 end
 
