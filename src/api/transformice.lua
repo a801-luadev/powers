@@ -1,10 +1,13 @@
 do
 	local link = linkMice
 	linkMice = function(p1, p2, linked)
-		if linked then
-			playerCache[p1].soulMate = p2
-		else
-			playerCache[p1].soulMate = nil
+		local cache = playerCache[p1]
+		if cache then
+			if linked then
+				cache.soulMate = p2
+			else
+				cache.soulMate = nil
+			end
 		end
 
 		return link(p1, p2, linked)

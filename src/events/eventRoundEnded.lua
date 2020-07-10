@@ -23,7 +23,7 @@ eventRoundEnded = function()
 			end
 
 			if cache.soulMate then
-				linkMice(name, cache.soulMate, false)
+				linkMice(playerName, cache.soulMate, false)
 			end
 
 			if alivePlayers[playerName] then
