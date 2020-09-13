@@ -1,6 +1,6 @@
 local readLeaderboardData = function(data)
 	local total
-	data, total = str_split(data, ' ', true, tonumber)
+	data, total = str_split(gsub(data, "([Hh])ttp", "%1:ttp"), ' ', true, tonumber)
 
 	local community, id, nickname, discriminator, rounds, victories, kills, xp
 
@@ -91,7 +91,7 @@ do
 		local nickname, discriminator, community
 
 		for playerName in next, players.room do
-			player = tfm.get.room.playerList[playerName]
+			player = room.playerList[playerName]
 			quickPlayerData = playerData[playerName]
 
 			nickname, discriminator = getNicknameAndDiscriminator(playerName)
@@ -139,22 +139,28 @@ do
 	local dataFormat = "%d %d %s %d %d %d %d %d"
 	writeLeaderboardData = function()
 		local registers, totalRegisters = sortLeaderboard()
-		totalRegisters = min(totalRegisters, module.max_leaderboard_rows)
 
-		local data, register = { }
+		local data, counter, tmpWritten, register = { }, 0, { }
 		for i = 1, totalRegisters do
 			register = registers[i]
 
-			data[i] = format(dataFormat,
-				register.community,
-				register.id,
-				register.nickname,
-				register.discriminator,
-				register.rounds,
-				register.victories,
-				register.kills,
-				register.xp
-			)
+			if not tmpWritten[register.nickname] then
+				tmpWritten[register.nickname] = true
+
+				counter = counter + 1
+				data[counter] = format(dataFormat,
+					register.community,
+					register.id,
+					register.nickname,
+					register.discriminator,
+					register.rounds,
+					register.victories,
+					register.kills,
+					register.xp
+				)
+			end
+
+			if counter == module.max_leaderboard_rows then break end
 		end
 
 		saveFile(table_concat(data, ' '), module.leaderboard_file)

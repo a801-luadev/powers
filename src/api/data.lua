@@ -106,7 +106,7 @@ local parseDataFile = function(data)
 	local fileHasChanged = false
 
 	local time, banTime = time()
-	for playerName, data in next, tfm.get.room.playerList do
+	for playerName, data in next, room.playerList do
 		banTime = bannedPlayers[data.id]
 		if banTime then
 			if time > banTime then

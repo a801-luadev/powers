@@ -1,11 +1,11 @@
 -- Translated by Danielthemouse#6206
 translations.he = {
-	greeting = "<FC>ברוכים הבאים אל <B>#powers</B>! לחצו <B>H</B> או כתבו <B>!help</B> כדי ללמוד יותר.",
+	greeting = "<FC>ברוכים הבאים אל <B>#powers</B>!\n" ..
+		"\t• לחצו <B>H</B> או רשמו <B>!help</B> כדי ללמוד עוד על המודול.\n" ..
+		"\t• לחצו <B>O</B> או רשמו <B>!powers</B> כדי ללמוד עוד על הכוחות.",
 
 	mentionWinner = "<FC>%s<FC> ניצחו את הסיבוב!",
 	noWinner = "<FC>אף אחד לא ניצח את הסיבוב. :(",
-
-	minPlayers = "לפחות <B>2</B> שחקנים צריכים להיות בחדר בשביל שהמשחק יתחיל.",
 
 	powers = {
 		lightSpeed = "מהירות האור",
@@ -72,36 +72,24 @@ translations.he = {
 	helpContent = {
 		[1] = "<FC><p align='center'>#POWERS!</p>\n\n" ..
 			"<J>המטרה שלכם במשחק היא לשרוד את ההתקפות של האויב.\n\n" ..
-			"<N>ישנו מגוון של כוחות <font size='12'>- אשר נפתחים על ידי " ..
-				"עלייה לרמות גבוהות יותר -</font> לתקוף ולהגן.\n" ..
-			"רשמו <FC><B>!powers</B><N> כדי ללמוד יותר על הכוחות שפתחתם עד עכשיו!" ..
-				"\n\n" ..
+			"<N>ישנו מגוון של כוחות <font size='12'>- אשר נפתחים על ידי עלייה לרמות גבוהות יותר -</font>לתקוף ולהגן.\n" ..
+			"רשמו <FC><B>!powers</B><N> כדי ללמוד יותר על הכוחות שפתחתם עד עכשיו!\n\n" ..
 			"%s\n\n" ..
 			"המשחק פותח על ידי %s"
 		,
 		[2] = "<FC><p align='center'>פקודות כלליות</p><N>\n\n<font size='12'>",
 		[3] = "<FC><p align='center'>תרמו<N>\n\n" ..
-			"אנחנו אוהבים קוד פתוח <font color='#E91E63'>♥</font>! אתם יכולים לצפות ולשנות " ..
-				"את קוד המשחק ב- <a href='event:print_" ..
-				"github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n\n" ..
-			"תחזוק המשחק הוא התנדבותי בלבד, אז כל עזרה בנוגע " ..
-				"<V>לקוד<N>, <V>תיקוני באגים ודיווחים<N>, <V>הצעות ושיפור" ..
-				" תכונות<N>, <V>והכנת מפות <N>מבורכת ומאוד מוערכת.\n" ..
-			"<p align='left'>• אתם יכולים <FC>לדווח על באגים <N>או <FC>להציע דברים <N>ב- " ..
-				"<a href='event:print_discord.gg/quch83R'><font color='#087ECC'>" ..
-				"Discord</font></a> ו/או ב- <a href='event:print_" ..
-				"github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n" ..
-			"• אתם יכולים <FC>להגיש מפות <N> <a href='event:print_" ..
-				"atelier801.com/topic?f=5&t=918371'><font color='#087ECC'>באשכול הגשת " ..
-				"המפות בפורומים</font></a>.\n\n" ..
-			"<p align='center'>אתם יכולים גם <FC>לתרום</FC> כל כמות <a href='event:print_" ..
-				"a801-luadev.github.io/?redirect=powers'><font color='#087ECC'>כאן</font></a>" ..
-				" על מנת לתחזק את המשחק. כל הכספים המושגים דרך הקישור" ..
-				" יהיו מושקעים בעדכוני משחק רציפים ושיפורים כלליים.</p>"
+			"אנחנו אוהבים קוד פתוח <font color='#E91E63'>♥</font>! אתם יכולים לצפות ולשנות את קוד המשחק ב- <a href='event:print_github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n\n" ..
+			"תחזוק המשחק הוא התנדבותי בלבד, אז כל עזרה בנוגע <V>לקוד<N>, <V>תיקוני באגים ודיווחים<N>, <V>הצעות ושיפור תכונות<N>, <V>והכנת מפות <N>מבורכת ומאוד מוערכת.\n" ..
+			"<p align='left'>• אתם יכולים <FC>לדווח על באגים <N>או <FC>להציע דברים <N>ב- <a href='event:print_discord.gg/quch83R'><font color='#087ECC'>Discord</font></a> ו/או ב- <a href='event:print_github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n" ..
+			"• אתם יכולים <FC>להגיש מפות <N> <a href='event:print_atelier801.com/topic?f=6&t=888677'><font color='#087ECC'>באשכול הגשת המפות בפורומים</font></a>.\n\n" ..
+			"<p align='center'>אתם יכולים גם <FC>לתרום</FC> כל כמות <a href='event:print_a801-luadev.github.io/?redirect=powers'><font color='#087ECC'>כאן</font></a> על מנת לתחזק את המשחק. כל הכספים המושגים דרך הקישור יהיו מושקעים בעדכוני משחק רציפים ושיפורים כלליים.\n\n" ..
+			"<a href='event:print_atelier801.com/topic?f=6&t=888676'><font size='18' color='#087ECC'>אשכול בפורומים</font></a></p>"
 		,
-		[4] = "<FC><p align='center'>מה חדש?</p><N>\n\n" ..
-			"• המודול הפך לרשמי.\n" ..
-			"• המודול נכתב מחדש לגמרי."
+		[4] = { "<FC><p align='center'>מה חדש?</p><N>\n",
+			"•המודול נכתב מחדש לגמרי.",
+			"•המודול הפך לרשמי.",
+		}
 	},
 
 	commandDescriptions = {
@@ -110,39 +98,12 @@ translations.he = {
 		profile = "פותח את הפרופיל שלך או של אדם אחר.",
 		leaderboard = "פותח את טבלת המובילים העולמית.",
 
-		pw = "מגן על החדר עם סיסמה. שלחו ריק כדי להסירה.",
-
-		mapEditQueue = "מנהל את סיבוב המפה של המשחק.",
-		mapSaveQueue = "שובר את סיבוב המפה של המשחק.",
-		review = "מפעיל את מצב הסיקור.",
-		np = "טוען מפה חדשה.",
-		npp = "קובע את המפה הבאה שתיטען.",
-
-		msg = "שולח הודעה לחדר.",
-		ban = "מרחיק שחקן מהמשחק.",
-		unban = "מבטל הרחקה של שחקן מהמשחק.",
-		permban = "מרחיק שחקן מהמשחק לתמיד.",
-
-		promote = "מקדם שחקן לתפקיד ספציפי או נותן לו הרשאה ספציפית.",
-		demote = "מדיח שחקן מתפקיד ספציפי או מסיר מהם תפקיד ספציפי."
+		pw = "מגן על החדר עם סיסמה. שלחו ריק כדי להסירה."
 	},
 	commandsParameters = {
 		profile = "[שם_השחקן] ",
 
-		pw = "[סיסמה] ",
-
-		mapEditQueue = "[add|rem]<R>*</R> [@map ...]<R>*</R> ",
-		mapSaveQueue = "[save]<R>*</R> ",
-		np = "[@map]<R>*</R> ",
-		npp = "[@map]<R>*</R> ",
-
-		msg = "[הודעה]<R>*</R> ",
-		ban = "[שם_השחקן]<R>*</R> [זמן_ההרחקה] [סיבה] ",
-		unban = "[שם_השחקן]<R>*</R> ",
-
-		permban = "[שם_השחקן]<R>*</R> [סיבה] ",
-		promote = "[שם_השחקן]<R>*</R> [שם_ההרשאה|שם_התפקיד ...]<R>*</R> ",
-		demote = "[שם_השחקן]<R>*</R> [שם_ההרשאה|שם_התפקיד ...]<R>*</R> "
+		pw = "[סיסמה] "
 	},
 	["or"] = "או",
 
@@ -155,33 +116,24 @@ translations.he = {
 	},
 
 	leaderboard = "טבלת המובילים",
-	leaderboardIsLoading = "<BL>[<VI>•<BL>] טבלת המובילים עדיין טוענת. נסה שוב בעוד " ..
-		"כמה שניות.",
+	leaderboardIsLoading = "<BL>[<VI>•<BL>] טבלת המובילים עדיין טוענת. נסה שוב בעוד כמה שניות.",
 
 	addMap = "<BV>[<FC>•<BV>] המפה <J>@%s</J> נוספה לתור המפות המקומי.",
 	remMap = "<BV>[<FC>•<BV>] המפה <J>@%s</J> הוסרה מתור המפות המקומי.",
 	listMaps = "<BV>[<FC>•<BV>] המפות (<J>#%d</J>): %s",
 
-	enableParticles = "<ROSE>אל תשכחו לסמן 'הפעל אפקטים' בהגדרות בשביל " ..
-		"לראות את המשחק בצורה הרגילה. ('תפריט' ← 'אפשרויות', ליד 'רשימת החדרים')</ROSE>",
+	enableParticles = "<ROSE>אל תשכחו לסמן 'הפעל אפקטים' בהגדרות בשביל לראות את המשחק בצורה הרגילה. ('תפריט' ← 'אפשרויות', ליד 'רשימת החדרים')</ROSE>",
 
 	ban = "%s <ROSE>הורחק מ- #powers על ידי %s <ROSE>ל- %d שעות. סיבה: %s",
 	unban = "<ROSE>הורחקת על ידי %s",
 	isBanned = "<ROSE>אתה מורחק מ- #powers עד GMT+2 %s (%d שעות נשארו).",
 	permBan = "%s <ROSE>הורחק לצמיתות מ- #powers על ידי %s<ROSE>. סיבה: %s",
-	cantPermUnban = "<BL>[<VI>•<BL>] אתם לא יכולים להסיר הרחקה לשחקן שהורחק לצמיתות.",
 
-	playerGetPermissions = "<BL>[<VI>•<BL>] ל- %s <BL>יש עכשיו את ההרשאות הבאות: <B>%s</B>",
-	playerLosePermissions = "<BL>[<VI>•<BL>] ל- %s <BL>הוסרו ההרשאות הבאות: " ..
-		"<B>%s</B>",
 	playerGetRole = "<FC>%s <FC>קודמו לדרגת <font color='#%x'>%s</font>!",
 	playerLoseRole = "<FC>%s <FC>הם לא <font color='#%x'>%s</font> יותר.",
 
-	enableReviewMode = "<BV>[<FC>•<BV>] <FC>מצב סיקור המפות<BV> לא דלוק. סיבובים הבאים " ..
-		"<B>לא</B> יחשיבו נתונים והמפות שיופיעו הן במצב בדיקה לסיבוב המפה " ..
-		"של המודול. כל הכוחות הופעלו ויש סיכוי גדול יותר שכוחות אלוהיות יופיעו!",
-	disableReviewMode = "<BV>[<FC>•<BV>] <FC>מצב סקירת המפות<BV> כובה " ..
-		"והכול יחזור לקדמותו בסיבוב הבא!",
+	enableReviewMode = "<BV>[<FC>•<BV>] <FC>מצב סיקור המפות<BV> לא דלוק. סיבובים הבאים <B>לא</B> יחשיבו נתונים והמפות שיופיעו הן במצב בדיקה לסיבוב המפה של המודול. כל הכוחות הופעלו ויש סיכוי גדול יותר שכוחות אלוהיות יופיעו!",
+	disableReviewMode = "<BV>[<FC>•<BV>] <FC>מצב סקירת המפות<BV> כובה והכול יחזור לקדמותו בסיבוב הבא!",
 
 	getBadge = "<FC>%s<FC> פתח תג #powers חדש!",
 

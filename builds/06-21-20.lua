@@ -186,7 +186,7 @@ translations.en = {
 		"\t• Type <B>!modes</B> to learn more about other game modes.",
 	kill = "<R>%s<FC> killed %s",
 
-	gameModes = "<font size='-2'><FC>[<J>•</J>] New game modes:\n" ..
+	gameModes = "<font size='10'><FC>[<J>•</J>] New game modes:\n" ..
 		"\t • Laggy module? Try a lighter version at /room #powers0lagmode\n" ..
 		"\t • Want to upgrade faster? Try the noob mode (low levels only) at /room #powers0noobmode\n" ..
 		"\t • Too pro? Challenge yourself in the pro mode (high levels only) at /room #powers0promode\n" ..
@@ -394,7 +394,7 @@ translations.br = {
 		"\t• Digite <B>!modes</B> para saber mais sobre outros modos de jogo.",
 	kill = "<R>%s<FC> matou %s",
 
-	gameModes = "<font size='-2'><FC>[<J>•</J>] Modos de jogo:\n" ..
+	gameModes = "<font size='10'><FC>[<J>•</J>] Modos de jogo:\n" ..
 		"\t • Módulo lagado? Tente a versão mais leve na /sala #powers0lagmode\n" ..
 		"\t • Quer subir de nível mais rápido? Tente o modo noob (apenas para níveis baixos) na /sala #powers0noobmode\n" ..
 		"\t • Muito pro? Desafie-se no modo pro (apenas níveis altos) na /sala #powers0promode\n" ..
@@ -2196,13 +2196,10 @@ end
 do
 	local link = linkMice
 	linkMice = function(p1, p2, linked)
-		local cache = playerCache[p1]
-		if cache then
-			if linked then
-				cache.soulMate = p2
-			else
-				cache.soulMate = nil
-			end
+		if linked then
+			playerCache[p1].soulMate = p2
+		else
+			playerCache[p1].soulMate = nil
 		end
 
 		return link(p1, p2, linked)
@@ -2268,7 +2265,7 @@ do
 		end
 
 		return format(nicknameFormat, (nicknameColor or 'V'), nickname, (discriminatorColor or 'G'),
-			(discriminatorSize or -2), discriminator)
+			(discriminatorSize or 10), discriminator)
 	end
 end
 
@@ -3729,8 +3726,6 @@ do
 
 				linkMice((player or firstPlayer), lastPlayer, true)
 			end
-
-			setGameTime(60)
 		end)
 end
 
@@ -5602,7 +5597,7 @@ eventNewPlayer = function(playerName)
 		leaderboardPage = 1,
 
 		-- Misc
-		chatNickname = prettifyNickname(playerName, nil, nil, "/B><G", 'B')
+		chatNickname = prettifyNickname(playerName, 10, nil, "/B><G", 'B')
 	}
 
 	players_insert("lobby", playerName)
@@ -5777,7 +5772,7 @@ eventRoundEnded = function()
 			end
 
 			if cache.soulMate then
-				linkMice(playerName, cache.soulMate, false)
+				linkMice(name, cache.soulMate, false)
 			end
 
 			if alivePlayers[playerName] then

@@ -215,7 +215,7 @@ do
 		end
 
 		if not (_ignorePosition or _x) then
-			local playerData = tfm.get.room.playerList[playerName]
+			local playerData = room.playerList[playerName]
 			_x, _y = playerData.x, playerData.y
 		end
 
@@ -235,20 +235,29 @@ do
 		return true
 	end
 
-	Power.checkTriggerPossibility = function(self)
+	local happyMsg, sadMsg = "<BL>[<VI>•<BL>] :)", "<BL>[<VI>•<BL>] :("
+	Power.checkTriggerPossibility = function(self, _playerName)
 		if self.triggerPossibility then
 			local possibility = self.triggerPossibility
+
 			if isCurrentMapOnReviewMode then
 				possibility = 5
 			end
+
 			if random(possibility) ~= random(possibility) then
+				if _playerName then
+					chatMessage(sadMsg, _playerName)
+				end
 				return false
+			end
+			if _playerName then
+				chatMessage(happyMsg, _playerName)
 			end
 		end
 		return true
 	end
 
-	local canTriggerDivine = function(self, _time)
+	local canTriggerDivine = function(self, playerName, _time)
 		local powerData = powers[self.name]
 		if powerData.useLimit == 0 then return end -- x < 0 means infinity
 
@@ -256,7 +265,7 @@ do
 		if powerData.useCooldown > _time then return end
 		powerData.useCooldown = _time + 5000 -- Wait a bit before trying again if on failure
 
-		if not self:checkTriggerPossibility() then return end
+		if not self:checkTriggerPossibility(playerName) then return end
 
 		powerData.useCooldown = _time + self.defaultUseCooldown
 		powerData.useLimit = powerData.useLimit - 1
@@ -265,13 +274,13 @@ do
 	end
 
 	-- It has weird arguments because of @trigger that uses the same parameters of @triggerRegular
-	Power.triggerDivine = function(self, _, _, _time, _, _, _, ...)
-		if not canTriggerDivine(self, _time) then
+	Power.triggerDivine = function(self, playerName, _, _time, _, _, _, ...)
+		if not canTriggerDivine(self, playerName, _time) then
 			return false
 		end
 
 		if self.effect then
-			self.effect(self, ...)
+			self.effect(self, playerName, ...)
 		end
 
 		return true

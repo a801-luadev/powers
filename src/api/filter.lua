@@ -4,7 +4,7 @@ local getPlayersOnFilter = function(except, filter, ...)
 	local player
 	for playerName in next, players.alive do
 		if playerName ~= except then
-			player = tfm.get.room.playerList[playerName]
+			player = room.playerList[playerName]
 			if filter(player.x, player.y, ...) then
 				data[playerName] = playerCache[playerName]
 			end

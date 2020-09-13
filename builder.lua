@@ -6,6 +6,10 @@
 	"translations/br.lua",
 	"translations/es.lua",
 	"translations/fr.lua",
+	"translations/pl.lua",
+	"translations/ro.lua",
+	"translations/tr.lua",
+	"translations/cn.lua",
 	"translations/he.lua", -- RTL is broken
 
 	"enums/powers.lua",
@@ -77,6 +81,7 @@
 	"commands/powers.lua",
 	"commands/profile.lua",
 	"commands/leaderboard.lua",
+	"commands/modes.lua",
 
 	"commands/roomAdmin/password.lua",
 
@@ -92,7 +97,9 @@
 	"commands/administrator/permban.lua",
 	"commands/administrator/promote.lua",
 	"commands/administrator/demote.lua",
+
 	"commands/administrator/givebadge.lua",
+	"commands/administrator/setdata.lua",
 
 	"events/eventFileLoaded.lua",
 	"events/eventFileSaved.lua",
@@ -117,7 +124,7 @@
 
 	"events/eventChatCommand.lua",
 
-	"roomAdmins.lua",
+	"roomSettings.lua",
 
 	"init.lua"
 }

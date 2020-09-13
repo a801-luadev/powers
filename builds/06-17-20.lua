@@ -35,6 +35,8 @@ local loadPlayerData = system.loadPlayerData
 local saveFile       = system.saveFile
 local savePlayerData = system.savePlayerData
 
+local room = tfm.get.room
+
 -- Enums
 local enum_emote        = tfm.enum.emote
 local enum_particle     = tfm.enum.particle
@@ -51,7 +53,6 @@ local sin    = math.sin
 
 -- String
 local byte   = string.byte
-local char   = string.char
 local find   = string.find
 local format = string.format
 local gmatch = string.gmatch
@@ -79,7 +80,6 @@ local time = os.time
 
 -- Others
 local next         = next
-local rawset       = rawset
 local setmetatable = setmetatable
 local tonumber     = tonumber
 local type         = type
@@ -156,7 +156,7 @@ local roomAdmins = {
 }
 
 -- Important settings
-local isOfficialRoom = byte(tfm.get.room.name, 2) ~= 3
+local isOfficialRoom = byte(room.name, 2) ~= 3
 
 local canSaveData = false
 local canTriggerPowers = false
@@ -179,7 +179,9 @@ local Power
 local translations, getText = { }
 translations.en = {
 	-- Main messages
-	greeting = "<FC>Welcome to <B>#powers</B>! Press <B>H</B> or type <B>!help</B> to learn more.",
+	greeting = "<FC>Welcome to <B>#powers</B>!\n" ..
+		"\t• Press <B>H</B> or type <B>!help</B> to learn more about the module.\n" ..
+		"\t• Press <B>O</B> or type <B>!powers</B> to learn more about the powers.",
 
 	-- Victory
 	mentionWinner = "<FC>%s<FC> won the round!",
@@ -277,12 +279,14 @@ translations.en = {
 				"Discord</font></a> and/or on <a href='event:print_" ..
 				"github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n" ..
 			"• You can <FC>submit maps <N>in our <a href='event:print_" ..
-				"atelier801.com/topic?f=5&t=918371'><font color='#087ECC'>Map Submissions " ..
+				"atelier801.com/topic?f=6&t=888677'><font color='#087ECC'>Map Submissions " ..
 				"Thread on Forums</font></a>.\n\n" ..
 			"<p align='center'>You can also <FC>donate</FC> any amount <a href='event:print_" ..
 				"a801-luadev.github.io/?redirect=powers'><font color='#087ECC'>here</font></a>" ..
 				" to help maintaining the module. All funds obtained through the link are going" ..
-				" to be invested in constant module updates and general improvements.</p>"
+				" to be invested in constant module updates and general improvements.\n\n" ..
+			"<a href='event:print_atelier801.com/topic?f=6&t=888676'>" ..
+				"<font size='18' color='#087ECC'>Thread on Forums</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>WHAT'S NEW?</p><N>\n\n" ..
 			"• Module ~~became~~ official.\n" ..
@@ -387,8 +391,9 @@ translations.en = {
 --[[ translations/br.lua ]]--
 -- Translated by Natsmiro#0000
 translations.br = {
-	greeting = "<FC>Bem-vindo ao <B>#powers</B>! Pressione <B>H</B> ou digite <B>!help</B> para " ..
-		"saber mais.",
+	greeting = "<FC>Bem-vindo ao <B>#powers</B>!\n" ..
+		"\t• Pressione <B>H</B> ou digite <B>!help</B> para saber mais sobre o module.\n" ..
+		"\t• Pressione <B>O</B> ou digite <B>!powers</B> para saber mais sobre os poderes.",
 
 	mentionWinner = "<FC>%s<FC> venceu a rodada!",
 	noWinner = "<FC>Ninguém venceu a rodada. :(",
@@ -478,13 +483,15 @@ translations.br = {
 				"Discord</font></a> e/ou no <a href='event:print_" ..
 				"github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n" ..
 			"• Você pode <FC>enviar mapas <N>no nosso <a href='event:print_" ..
-				"atelier801.com/topic?f=5&t=918371'><font color='#087ECC'>Tópico de envio de "..
+				"atelier801.com/topic?f=6&t=888677'><font color='#087ECC'>Tópico de envio de "..
 				"mapas no Fórum</font></a>.\n\n" ..
 			"<p align='center'>Você também pode <FC>doar</FC> qualquer quantia " ..
 				"<a href='event:print_a801-luadev.github.io/?redirect=powers'>" ..
 				"<font color='#087ECC'>aqui</font></a> para ajudar a manter o Module. Todos os " ..
 				"fundos arrecadados através desse link serão investidos em atualizações " ..
-				"constantes no Module e em melhorias gerais.</p>"
+				"constantes no Module e em melhorias gerais.\n\n" ..
+			"<a href='event:print_atelier801.com/topic?f=6&t=888676'>" ..
+				"<font size='18' color='#087ECC'>Tópico no Fórum</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>O QUE HÁ DE NOVO?</p><N>\n\n" ..
 			"• O Module se tornou oficial.\n" ..
@@ -578,12 +585,14 @@ translations.br = {
 	setPassword = "<BL>[<VI>•<BL>] %s <BL>definiu a senha da sala para %q.",
 	removePassword = "<BL>[<VI>•<BL>] %s <BL>removeu a senha da sala."
 }
+translations.pt = translations.br
 
 --[[ translations/es.lua ]]--
 -- Translated by Tocutoeltuco#0000
 translations.es = {
-	greeting = "<FC>¡Bienvenido a <B>#powers</B>! Presiona <B>H</B> o escribe <B>!help</B> para " ..
-		"saber más.",
+	greeting = "<FC>¡Bienvenido a <B>#powers</B>!\n" ..
+		"\t• Presiona <B>H</B> o escribe <B>!help</B> para saber más sobre el módulo.\n" ..
+		"\t• Presiona <B>O</B> o escribe <B>!powers</B> para saber más sobre los poderes.",
 
 	mentionWinner = "<FC>%s<FC> ganó la ronda!",
 	noWinner = "<FC>Nadie ganó la ronda. :(",
@@ -673,13 +682,15 @@ translations.es = {
 				"Discord</font></a> y/o en <a href='event:print_" ..
 				"github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n" ..
 			"• Puedes <FC>enviar mapas <N>en nusetro <a href='event:print_" ..
-				"atelier801.com/topic?f=5&t=918371'><font color='#087ECC'>Hilo de Envíos de " ..
+				"atelier801.com/topic?f=6&t=888677'><font color='#087ECC'>Hilo de Envíos de " ..
 				"Mapas en los Foros</font></a>.\n\n" ..
 			"<p align='center'>También podes <FC>donar</FC> cualquier cantidad " ..
 				"<a href='event:print_a801-luadev.github.io/?redirect=powers'>" ..
 				"<font color='#087ECC'>aquí</font></a> para ayudar el mantenimiento del módulo. " ..
 				"Todas las donaciones obtenidas a través del link serán invertidas en " ..
-				"actualizaciones y mejoras constantes del módulo.</p>"
+				"actualizaciones y mejoras constantes del módulo.\n\n" ..
+			"<a href='event:print_atelier801.com/topic?f=6&t=888676'>" ..
+				"<font size='18' color='#087ECC'>Hilo en los Foros</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>¿QUÉ HAY DE NUEVO?</p><N>\n\n" ..
 			"• El módulo se volvió oficial.\n" ..
@@ -775,7 +786,11 @@ translations.es = {
 --[[ translations/fr.lua ]]--
 -- Translated by Jaker#9310
 translations.fr = {
-	greeting = "<FC>Bienvenue dans <B>#powers</B> ! Appuyez sur <B>H</B> ou écrivez <B>!help</B> pour en apprendre plus.",
+	greeting = "<FC>Bienvenue dans <B>#powers</B>!\n" ..
+		"\t• Appuyez sur <B>H</B> ou écrivez <B>!help</B> pour en connaître plus à propos du " ..
+			"module.\n" ..
+		"\t• Appuyez sur <B>O</B> ou écrivez <B>!powers</B> pour en connaître plus à propos des " ..
+			"pouvoirs.",
 
 	mentionWinner = "<FC>%s<FC> a gagné la manche !",
 	noWinner = "<FC>Personne n'a gagné la manche. :(",
@@ -863,13 +878,15 @@ translations.fr = {
 				"Discord</font></a> and/ou sur <a href='event:print_" ..
 				"github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n" ..
 			"• Vous pouvez <FC>proposer vos cartes <N>dans notre <a href='event:print_" ..
-				"atelier801.com/topic?f=5&t=918371'><font color='#087ECC'>Map Submissions " ..
+				"atelier801.com/topic?f=6&t=888677'><font color='#087ECC'>Map Submissions " ..
 				"Sujet dans le Forum</font></a>.\n\n" ..
 			"<p align='center'>Vous pouvez aussi <FC>donner</FC> n'importe quel somme d'argent " ..
 				"<a href='event:print_a801-luadev.github.io/?redirect=powers'>" ..
 				"<font color='#087ECC'>ici</font></a> pour aider à maintenir le module. Tous les" ..
 				" fonts obtenus à travers ce lien seront utilisés dans les mise à jours et " ..
-				"l'amélioration.</p>"
+				"l'amélioration.\n\n" ..
+			"<a href='event:print_atelier801.com/topic?f=6&t=888676'>" ..
+				"<font size='18' color='#087ECC'>Sujet dans le Forum</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>QUOI D'NEUF ?</p><N>\n\n" ..
 			"• Le module est devenu officiel.\n" ..
@@ -944,7 +961,8 @@ translations.fr = {
 	unban = "<ROSE>Votre bannissement a été supprimé par %s",
 	isBanned = "<ROSE>Vous êtes banni de #powers jusqu'à GMT+2 %s (%d heures restantes).",
 	permBan = "%s <ROSE>a été banni de #powers définitivement par %s<ROSE>. Raison: %s",
-	cantPermUnban = "<BL>[<VI>•<BL>] Vous ne pouvez pas supprimé le bannissement d'un joueur banni définitevement.",
+	cantPermUnban = "<BL>[<VI>•<BL>] Vous ne pouvez pas supprimé le bannissement d'un joueur " ..
+		"banni définitevement.",
 
 	playerGetPermissions = "<BL>[<VI>•<BL>] %s <BL>a maintenant les permissions suivantes : <B>%s</B>",
 	playerLosePermissions = "<BL>[<VI>•<BL>] %s <BL>n'a plus les permissions suivantes : " ..
@@ -968,7 +986,9 @@ translations.fr = {
 --[[ translations/he.lua ]]--
 -- Translated by Danielthemouse#6206
 translations.he = {
-	greeting = "<FC>ברוכים הבאים אל <B>#powers</B>! לחצו <B>H</B> או כתבו <B>!help</B> כדי ללמוד יותר.",
+	greeting = "<FC>ברוכים הבאים אל <B>#powers</B>!\n" ..
+		"\t• לחצו <B>H</B> או רשמו <B>!help</B> כדי ללמוד עוד על המודול.\n" ..
+		"\t• לחצו <B>O</B> או רשמו <B>!powers</B> כדי ללמוד עוד על הכוחות.",
 
 	mentionWinner = "<FC>%s<FC> ניצחו את הסיבוב!",
 	noWinner = "<FC>אף אחד לא ניצח את הסיבוב. :(",
@@ -1060,12 +1080,14 @@ translations.he = {
 				"Discord</font></a> ו/או ב- <a href='event:print_" ..
 				"github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n" ..
 			"• אתם יכולים <FC>להגיש מפות <N> <a href='event:print_" ..
-				"atelier801.com/topic?f=5&t=918371'><font color='#087ECC'>באשכול הגשת " ..
+				"atelier801.com/topic?f=6&t=888677'><font color='#087ECC'>באשכול הגשת " ..
 				"המפות בפורומים</font></a>.\n\n" ..
 			"<p align='center'>אתם יכולים גם <FC>לתרום</FC> כל כמות <a href='event:print_" ..
 				"a801-luadev.github.io/?redirect=powers'><font color='#087ECC'>כאן</font></a>" ..
 				" על מנת לתחזק את המשחק. כל הכספים המושגים דרך הקישור" ..
-				" יהיו מושקעים בעדכוני משחק רציפים ושיפורים כלליים.</p>"
+				" יהיו מושקעים בעדכוני משחק רציפים ושיפורים כלליים.\n\n" ..
+			"<a href='event:print_atelier801.com/topic?f=6&t=888676'>" ..
+				"<font size='18' color='#087ECC'>אשכול בפורומים</font></a></p>"
 		,
 		[4] = "<FC><p align='center'>מה חדש?</p><N>\n\n" ..
 			"• המודול הפך לרשמי.\n" ..
@@ -1706,19 +1728,6 @@ local clamp = function(value, min, max)
 end
 
 --[[ api/string.lua ]]--
-local str_getBytes = function(str)
-	local len = #str
-	if len > 8000 then -- avoids 'string slice too long'
-		local out = { }
-		for i = 1, len do
-			out[i] = byte(str, i, i)
-		end
-		return out
-	else
-		return { byte(str, 1, -1) }
-	end
-end
-
 local str_split = function(str, pattern, raw, f)
 	local out, counter = { }, 0
 
@@ -1753,26 +1762,6 @@ table_add = function(src, tbl, deep)
 	end
 end
 
-local table_addArray = function(src, add)
-	local len = #src
-	for i = 1, #add do
-		src[len + i] = add[i]
-	end
-end
-
-local table_arrayRange = function(arr, i, j)
-	i = i or 1
-	j = j or #arr
-	if i > j then return { } end
-
-	local newArray, counter = { }, 0
-	for v = i, j do
-		counter = counter + 1
-		newArray[counter] = arr[v]
-	end
-	return newArray
-end
-
 local table_copy = function(list)
 	local out = { }
 	for k, v in next, list do
@@ -1799,13 +1788,6 @@ local table_set = function(tbl)
 		out[tbl[i]] = i
 	end
 	return out
-end
-
-local table_writeBytes = function(bytes)
-	for i = 1, #bytes do
-		bytes[i] = char(bytes[i])
-	end
-	return table_concat(bytes)
 end
 
 --[[ api/transformice.lua ]]--
@@ -1894,7 +1876,7 @@ end
 
 local validateNicknameAndGetID = function(str)
 	local targetPlayer = strToNickname(str, true)
-	local targetPlayerId = tfm.get.room.playerList[targetPlayer]
+	local targetPlayerId = room.playerList[targetPlayer]
 	targetPlayerId = targetPlayerId and targetPlayerId.id
 	if targetPlayerId == 0 then
 		targetPlayerId = nil
@@ -1904,7 +1886,7 @@ local validateNicknameAndGetID = function(str)
 end
 
 local messagePlayersWithPrivilege = function(message)
-	for playerName, data in next, tfm.get.room.playerList do
+	for playerName, data in next, room.playerList do
 		if playersWithPrivileges[data.id] then
 			chatMessage(message, playerName)
 		end
@@ -1912,7 +1894,7 @@ local messagePlayersWithPrivilege = function(message)
 end
 
 local messageRoomAdmins = function(message)
-	for playerName in next, tfm.get.room.playerList do
+	for playerName in next, room.playerList do
 		if roomAdmins[playerName] then
 			chatMessage(message, playerName)
 		end
@@ -1994,7 +1976,7 @@ local players_lobby = function(playerName)
 end
 
 local isValidPlayer = function(playerName)
-	playerName = tfm.get.room.playerList[playerName]
+	playerName = room.playerList[playerName]
 	local isBanned = bannedPlayers[playerName.id]
 	return playerName.id > 0 -- Is not souris
 		and not isBanned -- Is not banned
@@ -2009,7 +1991,7 @@ local playerCanTriggerEvent = function(playerName, cache)
 	local time = time()
 	if cache.powerCooldown > time then return end
 
-	if canTriggerPowers and not (tfm.get.room.playerList[playerName].isDead
+	if canTriggerPowers and not (room.playerList[playerName].isDead
 		or cache.isInterfaceOpen) then
 		return time, cache
 	end
@@ -2122,7 +2104,7 @@ end
 
 --[[ api/permissions.lua ]]--
 local hasPermission = function(playerName, permission, _playerId, _playerPermissions)
-	_playerId = _playerPermissions or _playerId or tfm.get.room.playerList[playerName].id
+	_playerId = _playerPermissions or _playerId or room.playerList[playerName].id
 	_playerPermissions = _playerPermissions or playersWithPrivileges[_playerId]
 
 	-- p & t > 0
@@ -2130,7 +2112,7 @@ local hasPermission = function(playerName, permission, _playerId, _playerPermiss
 end
 
 local addPermission = function(playerName, permission, _playerId)
-	_playerId = _playerId or tfm.get.room.playerList[playerName].id
+	_playerId = _playerId or room.playerList[playerName].id
 
 	local oldPerms = playersWithPrivileges[_playerId]
 	if not oldPerms then
@@ -2146,7 +2128,7 @@ local addPermission = function(playerName, permission, _playerId)
 end
 
 local removePermission = function(playerName, permission, _playerId)
-	_playerId = _playerId or tfm.get.room.playerList[playerName].id
+	_playerId = _playerId or room.playerList[playerName].id
 
 	local oldPerms = playersWithPrivileges[_playerId]
 	-- t & ~p
@@ -2163,7 +2145,7 @@ local getPlayersOnFilter = function(except, filter, ...)
 	local player
 	for playerName in next, players.alive do
 		if playerName ~= except then
-			player = tfm.get.room.playerList[playerName]
+			player = room.playerList[playerName]
 			if filter(player.x, player.y, ...) then
 				data[playerName] = playerCache[playerName]
 			end
@@ -2249,21 +2231,6 @@ end
 
 --[[ translations/setup.lua ]]--
 do
-table.merge = function(this,src)
-	for k, v in next, src do
-		if this[k] then
-			if type(v) == "table" then
-				this[k] = table.turnTable(this[k])
-				table.merge(this[k], v)
-			else
-				this[k] = this[k] or v
-			end
-		else
-			this[k] = v
-		end
-	end
-end
-
 	local merge
 	merge = function(src, aux, ignoredIndexes)
 		for k, v in next, aux do
@@ -2278,7 +2245,7 @@ end
 		return src
 	end
 
-	getText = translations[tfm.get.room.community]
+	getText = translations[room.community]
 	if getText then
 		if getText ~= translations.en then
 			merge(getText, translations.en, {
@@ -2701,7 +2668,7 @@ do
 		end
 
 		if not (_ignorePosition or _x) then
-			local playerData = tfm.get.room.playerList[playerName]
+			local playerData = room.playerList[playerName]
 			_x, _y = playerData.x, playerData.y
 		end
 
@@ -3092,7 +3059,7 @@ do
 			seconds = 10
 		})
 		:setUseCooldown(25)
-		:setProbability(60)
+		:setProbability(40)
 		:bindChatMessage("^A+T+O+M+I+C+$")
 		:setEffect(function(self)
 			resetPlayersDefaultSize = true
@@ -3135,7 +3102,7 @@ do
 			iconHeight = 80
 		})
 		:setDamage(20)
-		:setSelfDamage(5)
+		:setSelfDamage(8)
 		:setUseLimit(6)
 		:setUseCooldown(6)
 		:bindKeyboard(keyboard.ctrl)
@@ -3175,7 +3142,7 @@ do
 			iconHeight = 80
 		})
 		:setDamage(20)
-		:setSelfDamage(5)
+		:setSelfDamage(8)
 		:setUseLimit(10)
 		:setUseCooldown(8)
 		:bindKeyboard(keyboard.down)
@@ -3266,7 +3233,7 @@ do
 			minDeadMice = 2
 		})
 		:setUseCooldown(45)
-		:setProbability(25)
+		:setProbability(40)
 		:bindChatMessage("^R+A+I+S+E+ T+H+E+ D+E+A+D+$")
 		:setEffect(function(self)
 			if players._count.dead < self.minDeadMice then return end
@@ -3643,7 +3610,7 @@ local parseDataFile = function(data)
 	local fileHasChanged = false
 
 	local time, banTime = time()
-	for playerName, data in next, tfm.get.room.playerList do
+	for playerName, data in next, room.playerList do
 		banTime = bannedPlayers[data.id]
 		if banTime then
 			if time > banTime then
@@ -3758,7 +3725,7 @@ do
 		local nickname, discriminator, community
 
 		for playerName in next, players.room do
-			player = tfm.get.room.playerList[playerName]
+			player = room.playerList[playerName]
 			quickPlayerData = playerData[playerName]
 
 			nickname, discriminator = getNicknameAndDiscriminator(playerName)
@@ -4288,7 +4255,8 @@ do
 		return x, y
 	end
 
-	local body = "<p align='center'><font size='16'>%s</font></p>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n%s"
+	local body = "<p align='center'><font size='16'><V><B>%s</B></V></font></p>" ..
+		"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n%s"
 
 	displayPowerInfo = function(playerName, _cache)
 		_cache = _cache or playerCache[playerName]
@@ -4337,7 +4305,7 @@ do
 		-- Level Title
 		interface:addTextArea(format(levelNameFormat, 14,
 			getText.levelName[targetCacheData.levelIndex]
-				[tfm.get.room.playerList[targetPlayer].gender%2 + 1]), playerName, x, y, 280, 20, 1,
+				[room.playerList[targetPlayer].gender%2 + 1]), playerName, x, y, 280, 20, 1,
 			1, 0, true)
 
 		-- Width = currentExp*240 / totalExp
@@ -4582,7 +4550,7 @@ do
 	textAreaCallbacks["leaderboardRight"] = function(playerName, cache)
 		-- leaderboardRight
 		cache.leaderboardPage = cache.leaderboardPage + 1
-		if cache.leaderboardPage >= leaderboard.total_pages then
+		if cache.leaderboardPage > leaderboard.total_pages then
 			cache.leaderboardPage = 1
 		end
 
@@ -4614,15 +4582,11 @@ end
 
 --[[ keyboardCallbacks/P.lua ]]--
 do
-	keyboardCallbacks[keyboard.P] = function(playerName, cache, _, targetPlayer)
+	keyboardCallbacks[keyboard.P] = function(playerName, cache)
 		if cache.isProfileOpen then
 			textAreaCallbacks["closeInterface"](playerName, cache)
 		else
-			targetPlayer = targetPlayer or playerName
-			if playerCache[targetPlayer] and
-				not bannedPlayers[tfm.get.room.playerList[targetPlayer].id] then
-				displayProfile(playerName, targetPlayer, cache)
-			end
+			displayProfile(playerName, playerName, cache)
 		end
 	end
 end
@@ -4656,7 +4620,10 @@ end
 do
 	commands["profile"] = function(playerName, command)
 		command[2] = command[2] and strToNickname(command[2]) or playerName
-		keyboardCallbacks[keyboard.P](playerName, playerCache[playerName], nil, command[2])
+		if playerCache[command[2]] and
+			not bannedPlayers[room.playerList[command[2]].id] then
+			displayProfile(playerName, command[2], cache)
+		end
 	end
 end
 
@@ -4856,11 +4823,9 @@ do
 		command = table_concat(command, ' ', 4)
 
 		if not isPermanent then
-			chatMessage(format(getText.ban, prettyTargetPlayer, prettyPlayer, banTime, command),
-				targetPlayer)
+			chatMessage(format(getText.ban, prettyTargetPlayer, prettyPlayer, banTime, command))
 		else
-			chatMessage(format(getText.permBan, prettyTargetPlayer, prettyPlayer, command),
-				targetPlayer)
+			chatMessage(format(getText.permBan, prettyTargetPlayer, prettyPlayer, command))
 		end
 
 		buildAndSaveDataFile()
@@ -5223,7 +5188,7 @@ eventNewGame = function()
 	for playerName in next, players.alive do
 		cache = playerCache[playerName]
 		cache.health = 100
-		cache.isFacingRight = not tfm.get.room.mirroredMap
+		cache.isFacingRight = not room.mirroredMap
 		cache.extraHealth = 0
 		cache.powerCooldown = 0
 		cache.soulMate = nil
@@ -5242,7 +5207,7 @@ eventNewGame = function()
 		end
 	end
 
-	canSaveData = (isOfficialRoom and tfm.get.room.uniquePlayers >= module.min_players
+	canSaveData = (isOfficialRoom and room.uniquePlayers >= module.min_players
 		and not isReviewMode)
 	-- Adds extra XP
 	if canSaveData then
@@ -5410,7 +5375,7 @@ eventMouse = function(playerName, x, y)
 	local time, cache = playerCanTriggerEvent(playerName)
 	if not time then return end
 
-	local playerX, playerY = tfm.get.room.playerList[playerName]
+	local playerX, playerY = room.playerList[playerName]
 	playerX, playerY = playerX.x, playerX.y
 
 	local playerPowers = cache.powers
@@ -5450,7 +5415,7 @@ eventEmotePlayed = function(playerName, id)
 	local time, cache = playerCanTriggerEvent(playerName)
 	if not time then return end
 
-	local playerX, playerY = tfm.get.room.playerList[playerName]
+	local playerX, playerY = room.playerList[playerName]
 	playerX, playerY = playerX.x, playerX.y
 
 	local playerPowers = cache.powers
@@ -5480,9 +5445,9 @@ end
 
 --[[ roomAdmins.lua ]]--
 if isOfficialRoom then
-	local _, roomQuery = find(tfm.get.room.name, "^%*?.?.?%-?#powers%d+()")
+	local _, roomQuery = find(room.name, "^%*?.?.?%-?#powers%d+()")
 	if roomQuery then
-		roomQuery = sub(tfm.get.room.name, roomQuery)
+		roomQuery = sub(room.name, roomQuery)
 
 		for playerName in gmatch(roomQuery, "%+?%a[%w_][%w_][%w_]*#%d%d%d%d") do
 			roomAdmins[strToNickname(playerName)] = true
@@ -5500,7 +5465,7 @@ loadFile(module.leaderboard_file)
 
 module.max_player_xp = lvlToXp(module.max_player_level)
 
-for playerName in next, tfm.get.room.playerList do
+for playerName in next, room.playerList do
 	eventNewPlayer(playerName)
 	setPlayerScore(playerName, 0)
 end

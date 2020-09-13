@@ -19,9 +19,7 @@ local module = {
 	max_player_level = 129,
 	max_player_xp = nil,
 
-	max_leaderboard_rows = 100,
-
-	lobbyMap = 1995971
+	max_leaderboard_rows = 100
 }
 
 -- Important tables
@@ -68,17 +66,17 @@ local roomAdmins = {
 }
 
 -- Important settings
-local isOfficialRoom = byte(tfm.get.room.name, 2) ~= 3
+local isOfficialRoom = byte(room.name, 2) ~= 3
 
 local canSaveData = false
 local canTriggerPowers = false
-local isLowQuality = false -- Unused yet
+local isLowQuality = false -- Rooms #powers0lag
 
 local totalCurrentMaps, currentMap, nextMapLoadTentatives, mapHashes = 0, 0, 0
 local nextMapToLoad
 
-local hasTriggeredRoundEnd, isLobby, inLobby = false, false, false
-local isReviewMode, isCurrentMapOnReviewMode = false, false
+local hasTriggeredRoundEnd = false
+local isReviewMode, isCurrentMapOnReviewMode, isFreeMode = false, false, false
 local minPlayersForNextRound = 1
 
 local isSaveDataFileScheduled = false
@@ -86,3 +84,5 @@ local isSaveDataFileScheduled = false
 local resetPlayersDefaultSize = false
 
 local Power
+
+local isNoobMode, isProMode = false, false

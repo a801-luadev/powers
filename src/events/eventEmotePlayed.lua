@@ -2,7 +2,7 @@ eventEmotePlayed = function(playerName, id)
 	local time, cache = playerCanTriggerEvent(playerName)
 	if not time then return end
 
-	local playerX, playerY = tfm.get.room.playerList[playerName]
+	local playerX, playerY = room.playerList[playerName]
 	playerX, playerY = playerX.x, playerX.y
 
 	local playerPowers = cache.powers

@@ -10,10 +10,10 @@ do
 		local targetPlayerId, targetPlayer = validateNicknameAndGetID(command[2])
 		if not targetPlayerId then return end
 
-		local prettyTargetPlayer = prettifyNickname(targetPlayer, 10, nil, "/B><G", 'B')
+		local prettyTargetPlayer = playerCache[targetPlayer].chatNickname
 
-		messagePlayersWithPrivilege(format(internalMessageFormat, prettifyNickname(playerName, 10,
-			nil, "/B><G", 'B'), command[1], table_concat(command, ' ', 2)))
+		messagePlayersWithPrivilege(format(internalMessageFormat,
+			playerCache[playerName].chatNickname, command[1], table_concat(command, ' ', 2)))
 
 		local saveDataFile = false
 

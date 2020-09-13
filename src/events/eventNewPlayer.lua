@@ -50,7 +50,10 @@ eventNewPlayer = function(playerName)
 
 		-- Leaderboard interface
 		isLeaderboardOpen = false,
-		leaderboardPage = 1
+		leaderboardPage = 1,
+
+		-- Misc
+		chatNickname = prettifyNickname(playerName, nil, nil, "/B><G", 'B')
 	}
 
 	players_insert("lobby", playerName)
@@ -71,7 +74,11 @@ eventNewPlayer = function(playerName)
 	end
 
 	if isReviewMode then
-		chatMessage(getText.enableReviewMode, playerName)
+		if isFreeMode then
+			chatMessage(getText.freeMode, playerName)
+		else
+			chatMessage(getText.enableReviewMode, playerName)
+		end
 	end
 
 	lowerSyncDelay(playerName)

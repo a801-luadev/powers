@@ -12,7 +12,7 @@ eventPlayerDied = function(playerName)
 	local cache = playerCache[playerName]
 	if cache and cache.lastDamageBy then
 		if cache.lastDamageTime > time() then
-			givePlayerKill(cache.lastDamageBy)
+			givePlayerKill(cache.lastDamageBy, playerName, cache)
 			playerData:save(cache.lastDamageBy)
 		else
 			cache.lastDamageBy = nil

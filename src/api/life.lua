@@ -12,10 +12,19 @@ local addHealth = function(playerName, cache, hp)
 	updateLifeBar(playerName, cache)
 end
 
-local givePlayerKill = function(playerName)
-	playerData
-		:set(playerName, "kills", 1, true)
-		:set(playerName, "xp", module.xp_on_kill, true)
+local givePlayerKill = function(killerName, killedName, killedCache)
+	local playerData = playerData.playerData[killerName]
+	playerData.kills = playerData.kills + 1
+	playerData.xp = playerData.xp + module.xp_on_kill
+
+	local cache = playerCache[killerName]
+	if playerData.kills == 666 then
+		giveBadge(killerName, "killer", cache)
+	end
+
+	local msg = format(getText.kill, cache.chatNickname, killedCache.chatNickname)
+	chatMessage(msg, killerName)
+	chatMessage(msg, killedName)
 end
 
 local damagePlayer = function(playerName, damage, cache, _attackerName, _time)
@@ -44,7 +53,7 @@ local damagePlayersWithAction = function(except, damage, action, filter, x, y, .
 		if (not action and true or action(name))
 			and damagePlayer(name, damage, cache, except, time) then -- Has died
 			hasKilled = true
-			givePlayerKill(except)
+			givePlayerKill(except, name, cache)
 		end
 	end
 	if hasKilled then

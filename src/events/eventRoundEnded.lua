@@ -1,13 +1,5 @@
 eventRoundEnded = function()
-	isLobby = (not isReviewMode and players._count.room <= 1)
-
-	hasTriggeredRoundEnd = not isLobby
-
-	if isLobby then
-		setGameTime(5)
-		return
-	end
-
+	hasTriggeredRoundEnd = true
 	canTriggerPowers = false
 
 	-- Clears all current timers
@@ -18,45 +10,56 @@ eventRoundEnded = function()
 	-- Resets divine powers
 	removeTextArea(textAreaId.gravitationalAnomaly)
 
-	local alivePlayers, lobbyPlayers = players.alive, players.lobby
-	local winners, winnerCount = { }, 0
+	local alivePlayers = players.alive
+	local winners, winnerCount, winnerName = { }, 0
 
 	local cache
-	for name in next, players.currentRound do
+	for playerName in next, players.currentRound do
 		-- Only players that played in this round
-		cache = playerCache[name]
+		cache = playerCache[playerName]
+		if cache then
+			if resetPlayersDefaultSize then
+				changePlayerSize(playerName, 1)
+			end
 
-		if resetPlayersDefaultSize then
-			changePlayerSize(name, 1)
-		end
+			if cache.soulMate then
+				linkMice(playerName, cache.soulMate, false)
+			end
 
-		if cache.soulMate then
-			linkMice(name, cache.soulMate, false)
-		end
+			if alivePlayers[playerName] then
+				winnerCount = winnerCount + 1
+				winners[winnerCount] = cache.chatNickname
+				winnerName = playerName
 
-		if alivePlayers[name] then
-			winnerCount = winnerCount + 1
-			winners[winnerCount] = prettifyNickname(name, 10, nil, "/B><G", 'B')
+				-- Ties won't give XP anymore.
+				playerData:set(playerName, "victories", 1, true)
 
+				giveCheese(playerName)
+				playerVictory(playerName)
+			end
 			playerData
-				:set(name, "xp", module.xp_on_victory, true)
-				:set(name, "victories", 1, true)
+				:set(playerName, "rounds", 1, true)
+				:save(playerName)
 
-			giveCheese(name)
-			playerVictory(name)
+				if playerData:get(playerName, "rounds") == 1100 then
+					giveBadge(playerName, "superPlayer", cache)
+				end
+
+			-- Checks player level
+			checkPlayerLevel(playerName, cache)
 		end
-		playerData
-			:set(name, "rounds", 1, true)
-			:save(name)
-
-		-- Checks player level
-		checkPlayerLevel(name, cache)
 	end
 	resetPlayersDefaultSize = false
 
 	-- Announce winner
 	if winnerCount > 0 then
 		chatMessage(format(getText.mentionWinner, table_concat(winners, "<FC>, ")))
+
+		if winnerCount == 1 then -- Only rounds with one winner give XP
+			playerData
+				:set(winnerName, "xp", module.xp_on_victory, true)
+				:save(winnerName)
+		end
 	else
 		chatMessage(getText.noWinner)
 	end

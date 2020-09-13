@@ -10,23 +10,14 @@ eventNewGame = function()
 	nextMapLoadTentatives = 0
 	hasTriggeredRoundEnd = false
 	isCurrentMapOnReviewMode = isReviewMode
-	minPlayersForNextRound = (isReviewMode and 0 or 1)
+	minPlayersForNextRound = ((isReviewMode or players._count.currentRound <= 1) and 0 or 1)
 	nextMapToLoad = nil
-
-	if isLobby then
-		setGameTime(5)
-		setMapName(getText.minPlayers .. "<")
-
-		inLobby = true
-		return
-	end
-	inLobby = false
 
 	if currentMap == 0 then return end
 
 	setNextMapIndex()
 
-	timer:start(enablePowersTrigger, 3000, 1)
+	timer:start(enablePowersTrigger, 6000, 1)
 
 	-- Resets powers
 	for name, obj in next, powers do
@@ -44,7 +35,7 @@ eventNewGame = function()
 	for playerName in next, players.alive do
 		cache = playerCache[playerName]
 		cache.health = 100
-		cache.isFacingRight = not tfm.get.room.mirroredMap
+		cache.isFacingRight = not room.mirroredMap
 		cache.extraHealth = 0
 		cache.powerCooldown = 0
 		cache.soulMate = nil
@@ -63,7 +54,7 @@ eventNewGame = function()
 		end
 	end
 
-	canSaveData = (isOfficialRoom and tfm.get.room.uniquePlayers >= module.min_players
+	canSaveData = (isOfficialRoom and room.uniquePlayers >= module.min_players
 		and not isReviewMode)
 	-- Adds extra XP
 	if canSaveData then

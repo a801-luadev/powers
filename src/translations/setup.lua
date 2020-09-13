@@ -1,19 +1,4 @@
 do
-table.merge = function(this,src)
-	for k, v in next, src do
-		if this[k] then
-			if type(v) == "table" then
-				this[k] = table.turnTable(this[k])
-				table.merge(this[k], v)
-			else
-				this[k] = this[k] or v
-			end
-		else
-			this[k] = v
-		end
-	end
-end
-
 	local merge
 	merge = function(src, aux, ignoredIndexes)
 		for k, v in next, aux do
@@ -28,7 +13,7 @@ end
 		return src
 	end
 
-	getText = translations[tfm.get.room.community]
+	getText = translations[room.community]
 	if getText then
 		if getText ~= translations.en then
 			merge(getText, translations.en, {
@@ -46,6 +31,15 @@ end
 			levelName[k] = { v, v }
 		end
 	end
+
+	-- Fix news
+	local newsContent = getText.helpContent[4]
+	local news, index = { newsContent[1] }, 1
+	for i = #newsContent, 2, -1 do
+		index = index + 1
+		news[index] = newsContent[i]
+	end
+	getText.helpContent[4] = table_concat(news, '\n')
 
 	translations = nil
 end

@@ -2196,13 +2196,10 @@ end
 do
 	local link = linkMice
 	linkMice = function(p1, p2, linked)
-		local cache = playerCache[p1]
-		if cache then
-			if linked then
-				cache.soulMate = p2
-			else
-				cache.soulMate = nil
-			end
+		if linked then
+			playerCache[p1].soulMate = p2
+		else
+			playerCache[p1].soulMate = nil
 		end
 
 		return link(p1, p2, linked)
@@ -5777,7 +5774,7 @@ eventRoundEnded = function()
 			end
 
 			if cache.soulMate then
-				linkMice(playerName, cache.soulMate, false)
+				linkMice(name, cache.soulMate, false)
 			end
 
 			if alivePlayers[playerName] then

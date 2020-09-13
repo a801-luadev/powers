@@ -180,6 +180,7 @@ do
 			iconWidth = 67,
 			iconHeight = 80
 		})
+		:setUseLimit(10)
 		:setUseCooldown(2.5)
 		:bindKeyboard(keyboard.shift)
 		:setEffect(function(playerName, x, y, isFacingRight)
@@ -274,6 +275,7 @@ do
 			iconWidth = 72,
 			iconHeight = 80
 		})
+		:setUseLimit(10)
 		:setUseCooldown(1.5)
 		:bindKeyboard(keyboard.up, keyboard.down)
 		:setKeySequence({
@@ -317,7 +319,7 @@ do
 			seconds = 10
 		})
 		:setUseCooldown(25)
-		:setProbability(60)
+		:setProbability(15)
 		:bindChatMessage("^A+T+O+M+I+C+$")
 		:setEffect(function(self)
 			resetPlayersDefaultSize = true
@@ -360,7 +362,7 @@ do
 			iconHeight = 80
 		})
 		:setDamage(20)
-		:setSelfDamage(5)
+		:setSelfDamage(8)
 		:setUseLimit(6)
 		:setUseCooldown(6)
 		:bindKeyboard(keyboard.ctrl)
@@ -400,8 +402,8 @@ do
 			iconHeight = 80
 		})
 		:setDamage(20)
-		:setSelfDamage(5)
-		:setUseLimit(10)
+		:setSelfDamage(8)
+		:setUseLimit(6)
 		:setUseCooldown(8)
 		:bindKeyboard(keyboard.down)
 		:setKeySequence({ { keyboard.down, keyboard.down } })
@@ -420,10 +422,57 @@ do
 		end)
 end
 
+-- Level 90
+do
+	local circle = function(x, y, dimension)
+		local xCos, ySin
+		for i = 90, 110, (isLowQuality and 1.75 or 1) do
+			xCos = cos(i)
+			ySin = sin(i)
+
+			displayParticle(14, x + xCos*dimension, y + ySin*dimension, xCos * -5, ySin * -5)
+		end
+	end
+
+	local freeze = function(playerName)
+		freezePlayer(playerName)
+		timer:start(freezePlayer, 1500, 1, playerName, false)
+		return true
+	end
+
+	powers.waterSplash = Power
+		.new("waterSplash", powerType.atk, 90, {
+			smallIcon = "172cec7920e.png",
+			icon = "172ced1ac40.jpg",
+			iconWidth = 70,
+			iconHeight = 70
+		})
+		:setDamage(20)
+		:setSelfDamage(15)
+		:setUseLimit(1)
+		:setUseCooldown(20)
+		:bindKeyboard(0, 2, 3)
+		:setKeySequence({
+			{ keyboard.right, keyboard.left, keyboard.down, keyboard.right },
+			{ keyboard.left, keyboard.right, keyboard.down, keyboard.left }
+		})
+		:setEffect(function(playerName, x, y, _, self)
+			local dimension = 60
+
+			-- Particles
+			circle(x, y, dimension)
+
+			-- Damage
+			self:damagePlayers(playerName, { freeze, pythagoras, x, y, dimension },
+				damagePlayersWithAction)
+			return false
+		end)
+end
+
 -- Level 100
 do
-	local ray = function(x, y, width, height, direction)
-		width = width * direction
+	local ray = function(x, y, arcWidth, arcHeight, size, direction)
+		arcWidth = arcWidth * direction
 
 		local ySin = 0
 		local xPos = x
@@ -433,21 +482,22 @@ do
 
 		local xDirection = .1 * direction
 
-		for i = 0, 12 do
+		size = size * 3
+		for i = 0, size, (isLowQuality and 2 or 1) do
 			displayParticle(9, xPos, y + yPos, xSpeed, -ySpeed)
 
 			i = i + 1
 			ySin = sin(i)
-			xPos = x + i*width
-			yPos = ySin*height
+			xPos = x + i*arcWidth
+			yPos = ySin*arcHeight
 			xSpeed = i * xDirection
 			ySpeed = ySin * .55
 
 			displayParticle(2, xPos, y - yPos, xSpeed, ySpeed)
 		end
 
-		xSpeed = width/2 + direction
-		for i = 1, 2 do
+		xSpeed = direction*(size/2 - 1) + direction
+		for i = 1, (isLowQuality and 1 or 2) do
 			displayParticle(13, x, y, xSpeed)
 		end
 	end
@@ -460,9 +510,9 @@ do
 			iconHeight = 28
 		})
 		:setDamage(30)
-		:setSelfDamage(15)
+		:setSelfDamage(20)
 		:setUseLimit(1)
-		:setUseCooldown(10)
+		:setUseCooldown(20)
 		:bindKeyboard(0, 1, 2, 3)
 		:setKeySequence({
 			{ keyboard.left, keyboard.up, keyboard.right, keyboard.down },
@@ -470,10 +520,10 @@ do
 		})
 		:setEffect(function(_, x, y, isFacingRight)
 			-- Particles
-			ray(x, y, 10, 8, (isFacingRight and 1 or -1))
+			ray(x, y, 10, 8, 6, (isFacingRight and 1 or -1))
 
 			-- Damage
-			return inRectangle, x, y - 40, 170, 80, isFacingRight
+			return inRectangle, x, y - 40, 250, 80, isFacingRight
 		end)
 end
 
@@ -491,7 +541,7 @@ do
 			minDeadMice = 2
 		})
 		:setUseCooldown(45)
-		:setProbability(25)
+		:setProbability(20)
 		:bindChatMessage("^R+A+I+S+E+ T+H+E+ D+E+A+D+$")
 		:setEffect(function(self)
 			if players._count.dead < self.minDeadMice then return end
@@ -511,6 +561,8 @@ do
 
 				linkMice((player or firstPlayer), lastPlayer, true)
 			end
+
+			setGameTime(60)
 		end)
 end
 
@@ -632,10 +684,14 @@ do
 			despawnLen = 0
 		})
 		:setUseCooldown(25)
-		:setProbability(60)
+		:setProbability(50)
 		:bindChatMessage("^A+N+O+M+A+L+Y+$")
-		:setEffect(function(self)
+		:setEffect(function(self, playerName)
 			canTriggerPowers = false
 			timer:start(anomaly, 500, 1/self.opacityFrame, self, (isLowQuality and 1 or 3))
+
+			if not isReviewMode then
+				giveBadge(playerName, "anomaly")
+			end
 		end)
 end

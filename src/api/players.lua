@@ -42,7 +42,7 @@ local players_lobby = function(playerName)
 end
 
 local isValidPlayer = function(playerName)
-	playerName = tfm.get.room.playerList[playerName]
+	playerName = room.playerList[playerName]
 	local isBanned = bannedPlayers[playerName.id]
 	return playerName.id > 0 -- Is not souris
 		and not isBanned -- Is not banned
@@ -57,7 +57,7 @@ local playerCanTriggerEvent = function(playerName, cache)
 	local time = time()
 	if cache.powerCooldown > time then return end
 
-	if canTriggerPowers and not (tfm.get.room.playerList[playerName].isDead
+	if canTriggerPowers and not (room.playerList[playerName].isDead
 		or cache.isInterfaceOpen) then
 		return time, cache
 	end
@@ -107,15 +107,14 @@ local checkPlayerLevel = function(playerName, cache)
 	local newLevel = setPlayerLevel(playerName, cache)
 	if not newLevel then return end
 
-	chatMessage(format(getText.newLevel, prettifyNickname(playerName, 10, nil, "/B><G", 'B'),
-		newLevel))
+	chatMessage(format(getText.newLevel, cache.chatNickname, newLevel))
 
 	-- Checks unlocked powers
 	local powerNames = getText.powers
 	local nameByLevel = Power.__nameByLevel
 
 	local levelNames, counter, storedNames = { }, 0
-	for lvl = cache.roundLevel, newLevel do -- Checks all new levels, it can be more than one.
+	for lvl = cache.roundLevel + 1, newLevel do -- Checks all new levels, it can be more than one.
 		storedNames = nameByLevel[lvl]
 		if storedNames then
 			for i = 1, #storedNames do
@@ -151,7 +150,7 @@ local generateBadgesList = function(playerName, _cache)
 	(_cache or playerCache[playerName]).badges = playerBadges
 end
 
-local giveBadge = function(playerName, badge, _cache, _forceSave)
+local giveBadge = function(playerName, badge, _cache)
 	badge = badges[badge]
 	if not badge then return end
 
@@ -160,10 +159,12 @@ local giveBadge = function(playerName, badge, _cache, _forceSave)
 	if badge == playerBadges then return end
 
 	playerData
-		:set(playerName, "badges", badge, nil, _forceSave)
-		:save(playerName, _forceSave)
+		:set(playerName, "badges", badge, nil, true)
+		:save(playerName, true)
 
-	generateBadgesList(playerName, (_cache or playerCache[playerName]))
+	_cache = _cache or playerCache[playerName]
+	generateBadgesList(playerName, _cache)
 
-	chatMessage(format(getText.getBadge, prettifyNickname(playerName, 10, nil, "/B><G", 'B')))
+	chatMessage(format(getText.getBadge, _cache.chatNickname))
+	return true
 end

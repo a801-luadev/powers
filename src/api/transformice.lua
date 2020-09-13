@@ -1,10 +1,13 @@
 do
 	local link = linkMice
 	linkMice = function(p1, p2, linked)
-		if linked then
-			playerCache[p1].soulMate = p2
-		else
-			playerCache[p1].soulMate = nil
+		local cache = playerCache[p1]
+		if cache then
+			if linked then
+				cache.soulMate = p2
+			else
+				cache.soulMate = nil
+			end
 		end
 
 		return link(p1, p2, linked)
@@ -37,13 +40,6 @@ local setNextMapIndex = function()
 end
 
 local nextMap = function()
-	if isLobby then
-		if not inLobby then
-			newGame(module.lobbyMap)
-		end
-		return
-	end
-
 	nextMapLoadTentatives = nextMapLoadTentatives + 1
 	if nextMapLoadTentatives == 4 then
 		nextMapLoadTentatives = 0
@@ -77,13 +73,13 @@ do
 		end
 
 		return format(nicknameFormat, (nicknameColor or 'V'), nickname, (discriminatorColor or 'G'),
-			(discriminatorSize or 10), discriminator)
+			(discriminatorSize or -2), discriminator)
 	end
 end
 
 local validateNicknameAndGetID = function(str)
 	local targetPlayer = strToNickname(str, true)
-	local targetPlayerId = tfm.get.room.playerList[targetPlayer]
+	local targetPlayerId = room.playerList[targetPlayer]
 	targetPlayerId = targetPlayerId and targetPlayerId.id
 	if targetPlayerId == 0 then
 		targetPlayerId = nil
@@ -93,7 +89,7 @@ local validateNicknameAndGetID = function(str)
 end
 
 local messagePlayersWithPrivilege = function(message)
-	for playerName, data in next, tfm.get.room.playerList do
+	for playerName, data in next, room.playerList do
 		if playersWithPrivileges[data.id] then
 			chatMessage(message, playerName)
 		end
@@ -101,7 +97,7 @@ local messagePlayersWithPrivilege = function(message)
 end
 
 local messageRoomAdmins = function(message)
-	for playerName in next, tfm.get.room.playerList do
+	for playerName in next, room.playerList do
 		if roomAdmins[playerName] then
 			chatMessage(message, playerName)
 		end
