@@ -10,6 +10,7 @@
 	"translations/ro.lua",
 	"translations/tr.lua",
 	"translations/cn.lua",
+	"translations/id.lua",
 	"translations/he.lua", -- RTL is broken
 
 	"enums/powers.lua",
