@@ -70,9 +70,9 @@ local table_remove = table.remove
 local table_sort   = table.sort
 
 -- Bit32
-local band   = bit32.band
-local bor    = bit32.bor
-local bnot   = bit32.bnot
+local band = bit32.band
+local bor  = bit32.bor
+local bnot = bit32.bnot
 
 -- OS
 local date = os.date
