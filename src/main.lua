@@ -1,5 +1,5 @@
 local module = {
-	author = "Bolodefchoco#0000",
+	author = "Bolodefchoco#0015",
 	author_id = 7903955,
 
 	id = "pw",
