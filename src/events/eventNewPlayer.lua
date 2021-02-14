@@ -7,6 +7,7 @@ eventNewPlayer = function(playerName)
 		roundLevel = nil, -- Level on round start
 		levelIndex = nil, -- ex: 10, 20, 30
 		levelColor = nil,
+		extraXp = 0,
 
 		-- Round life
 		health = 0,

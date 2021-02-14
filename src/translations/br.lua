@@ -92,7 +92,7 @@ translations.br = {
 			"Nós amamos Código Aberto <font color='#E91E63'>♥</font>! Você pode visualizar e modificar o código desse module em <a href='event:print_github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n\n" ..
 			"Manter o module é estritamente voluntário, então qualquer ajuda a respeito do <V>Código<N>, <V>correção de bugs e reportes<N>, <V>sugestões e melhoria de funcionalidades<N>, <V>criação de mapas <N>é bem-vinda e muito apreciada.\n" ..
 			"<p align='left'>• Você pode <FC>relatar bugs <N>ou <FC>fazer uma sugestão <N>no <a href='event:print_discord.gg/quch83R'><font color='#087ECC'>Discord</font></a> e/ou no <a href='event:print_github.com/a801-luadev/powers'><font color='#087ECC'>Github</font></a>.\n" ..
-			"• Você pode <FC>enviar mapas <N>no nosso <a href='event:print_atelier801.com/topic?f=6&t=888677'><font color='#087ECC'>Tópico de envio demapas no Fórum</font></a>.\n\n" ..
+			"• Você pode <FC>enviar mapas <N>no nosso <a href='event:print_atelier801.com/topic?f=6&t=888677'><font color='#087ECC'>Tópico de envio de mapas no Fórum</font></a>.\n\n" ..
 			"<p align='center'>Você também pode <FC>doar</FC> qualquer quantia <a href='event:print_a801-luadev.github.io/?redirect=powers'><font color='#087ECC'>aqui</font></a> para ajudar a manter o module. Todos os fundos arrecadados através desse link serão investidos em atualizações constantes no module e em melhorias gerais.\n\n" ..
 			"<a href='event:print_atelier801.com/topic?f=6&t=888676'><font size='18' color='#087ECC'>Tópico no Fórum</font></a></p>"
 		,
@@ -104,6 +104,7 @@ translations.br = {
 			"• Três novas medalhas.",
 			"• Novos modos: <B>#powers0lagmode</B>, <B>#powers0freemode</B>, <B>#powers0noobmode</B>, <B>#powers0promode</B>.",
 			"• Novo comando <B>!modes</B>.",
+			"• Jogadores com nível menor que 35 receberão XP extra.",
 		}
 	},
 

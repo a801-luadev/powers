@@ -25,7 +25,7 @@ do
 		local power, isLockedPower, sumX
 		for p = 1, totalPowers do
 			power = powersSortedByLevel[p]
-			isLockedPower = (power.level > playerLevel)
+			isLockedPower = (not isReviewMode and (power.level > playerLevel))
 
 			sumX = x + ((p + 1) % 2)*249
 
@@ -38,6 +38,7 @@ do
 					true)
 			end
 
+			--(isLockedPower and interface.addImage or interface.addClickableImage)(interface,
 			interface:addClickableImage(interfaceImages.rectangle, imageTargets.interfaceRectangle,
 				sumX - 2, y - 2, playerName, 245, 34, format(callback, power.name, sumX - 4, y - 5))
 

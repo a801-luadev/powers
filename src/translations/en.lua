@@ -111,6 +111,7 @@ translations.en = {
 			"• Three new badges.",
 			"• New room modes: <B>#powers0lagmode</B>, <B>#powers0freemode</B>, <B>#powers0noobmode</B>, <B>#powers0promode</B>.",
 			"• New command <B>!modes</B>.",
+			"• Players with level lower than 35 will receive extra XP.",
 		}
 	},
 

@@ -76,7 +76,8 @@ end
 
 local giveExperience = function()
 	for playerName in next, players.alive do
-		playerData:set(playerName, "xp", module.extra_xp_in_round, true)
+		playerData:set(playerName, "xp", module.extra_xp_in_round + playerCache[playerName].extraXp,
+			true)
 	end
 end
 
@@ -87,6 +88,10 @@ local setPlayerLevel = function(playerName, cache)
 	cache.nextLevelXp = needingXp
 
 	if level == cache.roundLevel then return end
+
+	if level <= module.is_noob_until_level then
+		cache.extraXp = module.extra_xp_for_noob
+	end
 
 	local levelIndex = level - level%10
 	local levelColor = levelColors[levelIndex]

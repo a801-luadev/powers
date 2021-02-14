@@ -4,7 +4,11 @@ eventPlayerDataLoaded = function(playerName, data)
 	local cache = playerCache[playerName]
 	local playerLevel = setPlayerLevel(playerName, cache)
 
-	if (isNoobMode and playerLevel >= 28) or (isProMode and playerLevel <= 34) then return end
+	if (isNoobMode and playerLevel >= 28) or (isProMode and playerLevel <= module.is_noob_until_level) then return end
+
+	if playerLevel <= module.is_noob_until_level then
+		cache.extraXp = module.extra_xp_for_noob
+	end
 
 	local badgesGenerated = false
 	if playerData:get(playerName, "kills") >= 666 then
