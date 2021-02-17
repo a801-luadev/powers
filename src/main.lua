@@ -15,7 +15,7 @@ local module = {
 	extra_xp_in_round = 10,
 	xp_on_victory = 40,
 	xp_on_kill = 15,
-	extra_xp_for_noob = 250,
+	extra_xp_for_noob = 50,
 
 	is_noob_until_level = 34,
 

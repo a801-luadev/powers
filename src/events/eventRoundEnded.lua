@@ -34,6 +34,10 @@ eventRoundEnded = function()
 				-- Ties won't give XP anymore.
 				playerData:set(playerName, "victories", 1, true)
 
+				if playerData:get(playerName, "victories") == 2000 then
+					giveBadge(playerName, "victorious", cache)
+				end
+
 				giveCheese(playerName)
 				playerVictory(playerName)
 			end

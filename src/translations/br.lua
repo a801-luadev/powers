@@ -105,6 +105,7 @@ translations.br = {
 			"• Novos modos: <B>#powers0lagmode</B>, <B>#powers0freemode</B>, <B>#powers0noobmode</B>, <B>#powers0promode</B>.",
 			"• Novo comando <B>!modes</B>.",
 			"• Jogadores com nível menor que 35 receberão XP extra.",
+			"• Duas novas medalhas! 2000 vitórias / usar um poder divino."
 		}
 	},
 

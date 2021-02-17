@@ -281,6 +281,7 @@ do
 
 		if self.effect then
 			self.effect(self, playerName, ...)
+			giveBadge(playerName, "divine")
 		end
 
 		return true
