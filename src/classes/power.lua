@@ -281,7 +281,9 @@ do
 
 		if self.effect then
 			self.effect(self, playerName, ...)
-			giveBadge(playerName, "divine")
+			if not isReviewMode then
+				giveBadge(playerName, "divine")
+			end
 		end
 
 		return true

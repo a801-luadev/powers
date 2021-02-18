@@ -22,6 +22,13 @@ local givePlayerKill = function(killerName, killedName, killedCache)
 		giveBadge(killerName, "killer", cache)
 	end
 
+	if cache.spawnHearts then
+		local killedData = room.playerList[killedName]
+		addBonus(0, killedData.x, killedData.y,
+			addImage(interfaceImages.heartToken, imageTargets.tokenIcon, killedData.x - 15,
+				killedData.y - 15, killerName), 0, false, killerName)
+	end
+
 	local msg = format(getText.kill, cache.chatNickname, killedCache.chatNickname)
 	chatMessage(msg, killerName)
 	chatMessage(msg, killedName)

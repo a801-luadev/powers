@@ -25,6 +25,8 @@ eventNewPlayer = function(playerName)
 		lastDamageBy = nil,
 		lastDamageTime = nil,
 
+		spawnHearts = false,
+
 		-- General Interface
 		isInterfaceOpen = false,
 

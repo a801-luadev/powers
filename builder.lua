@@ -125,6 +125,8 @@
 
 	"events/eventChatCommand.lua",
 
+	"events/eventPlayerBonusGrabbed.lua",
+
 	"roomSettings.lua",
 
 	"init.lua"

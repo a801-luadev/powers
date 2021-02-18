@@ -15,7 +15,7 @@ do
 		-- Build interface
 		local x, y = 253, 65
 		local interface = prettyUI
-			.new(x, y, 503, 278, playerName, '', _cache)
+			.new(x, y, 503, 338, playerName, '', _cache)
 			:setCloseButton(4)
 
 		x = x + 7
@@ -116,12 +116,8 @@ do
 		return x, y
 	end
 
-	local getTriggerPossibilityStr = function(triggerPossibility)
-		return
-	end
-
-	local displayPowerTriggerPossibility = function(playerName, power, interface, x, y, isEmotePw)
-		if power.triggerPossibility and (isEmotePw or power.type == powerType.divine) then
+	local displayPowerTriggerPossibility = function(playerName, power, interface, x, y, isEmotePow)
+		if power.triggerPossibility and (not power.triggererEmote or isEmotePow) then
 			y = y + 30
 
 			interface:addImage(interfaceImages.explodingBomb, imageTargets.interfaceIcon, x + 2, y,
@@ -195,7 +191,7 @@ do
 	end
 
 	local body = "<p align='center'><font size='16'><V><B>%s</B></V></font></p>" ..
-		"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n%s"
+		"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n%s"
 
 	displayPowerInfo = function(playerName, _cache)
 		_cache = _cache or playerCache[playerName]
@@ -203,7 +199,7 @@ do
 
 		local x, y, width = 38, 65, 183
 		local interface = prettyUI
-			.new(x, y, width, 279, playerName, format(body, getText.powers[power.name],
+			.new(x, y, width, 338, playerName, format(body, getText.powers[power.name],
 				getText.powersDescriptions[power.name]), _cache)
 
 		-- Icons

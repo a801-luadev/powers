@@ -17,6 +17,7 @@ local respawnPlayer    = tfm.exec.respawnPlayer
 local setGameTime      = tfm.exec.setGameTime
 local setPlayerScore   = tfm.exec.setPlayerScore
 
+local addBonus       = tfm.exec.addBonus
 local addImage       = tfm.exec.addImage
 local addTextArea    = ui.addTextArea
 local removeImage    = tfm.exec.removeImage
@@ -50,6 +51,7 @@ local min    = math.min
 local rad    = math.rad
 local random = math.random
 local sin    = math.sin
+local pi     = math.pi
 
 -- String
 local byte   = string.byte

@@ -16,6 +16,7 @@ local interfaceImages = {
 
 	-- 30x30
 	xButton = "17280a523f6.png",
+	heartToken = "177ae37b108.png",
 
 	-- 70x70
 	rightArrow = "1729bab289f.png",
@@ -46,7 +47,8 @@ local imageTargets = {
 	interfaceBackground = ":0",
 	interfaceTextAreaBackground = "&0",
 	interfaceRectangle = ":10",
-	interfaceIcon = ":50"
+	interfaceIcon = ":50",
+	tokenIcon = "!0"
 }
 
 local interfaceBackground = {
@@ -55,13 +57,14 @@ local interfaceBackground = {
 		[30] = "17256d5e4ac.png"
 	},
 	[183] = {
-		[279] = "17256d61391.png"
+		[338] = "177b28caf88.png"
 	},
 	[280] = {
 		[330] = "1726737b74f.png"
 	},
 	[503] = {
-		[278] = "17201a440b4.png"
+		[278] = "177b28c8f4a.png",
+		[338] = "177b263ffb8.png"
 	},
 	[700] = {
 		[330] = "1728a8497f2.png"

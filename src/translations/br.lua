@@ -29,7 +29,8 @@ translations.br = {
 		deathRay = "Raio da Morte",
 		atomic = "Atômico",
 		dayOfJudgement = "Dia do Julgamento",
-		waterSplash = "Bomba d'água"
+		waterSplash = "Bomba d'água",
+		soulSucker = "Sugador de Almas"
 	},
 	powersDescriptions = {
 		lightSpeed = "Move seu rato na velocidade da luz, empurrando todos seus inimigos em volta.",
@@ -45,7 +46,8 @@ translations.br = {
 		deathRay = "Torra seus inimigos com um poderoso e misterioso raio da morte.",
 		atomic = "Altera o tamanho dos jogadores aleatoriamente.",
 		dayOfJudgement = "Revive todos os inimigos mortos, todos presos uns aos outros.",
-		waterSplash = "Invoca algumas gotas d'água da Antártica."
+		waterSplash = "Invoca algumas gotas d'água da Antártica.",
+		soulSucker = "Rouba 5 HP dos inimigos que você matar."
 	},
 	powerType = {
 		atk = "ATAQUE (%d)",
@@ -105,7 +107,8 @@ translations.br = {
 			"• Novos modos: <B>#powers0lagmode</B>, <B>#powers0freemode</B>, <B>#powers0noobmode</B>, <B>#powers0promode</B>.",
 			"• Novo comando <B>!modes</B>.",
 			"• Jogadores com nível menor que 35 receberão XP extra.",
-			"• Duas novas medalhas! 2000 vitórias / usar um poder divino."
+			"• Duas novas medalhas! 2000 vitórias / usar um poder divino.",
+			"• Novo poder <B>Sugador de Almas</B>.",
 		}
 	},
 

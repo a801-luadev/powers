@@ -32,7 +32,8 @@ translations.en = {
 		deathRay = "Death Ray",
 		atomic = "Atomic",
 		dayOfJudgement = "Day of Judgement",
-		waterSplash = "Water Splash"
+		waterSplash = "Water Splash",
+		soulSucker = "Soul Sucker"
 	},
 	powersDescriptions = {
 		lightSpeed = "Moves your mouse in the speed of light, pushing all enemies around.",
@@ -48,7 +49,8 @@ translations.en = {
 		deathRay = "Toasts the enemies with the powerful and mysterious death ray.",
 		atomic = "Randomly changes all players' size.",
 		dayOfJudgement = "Revives all dead enemies, them all linked to each other.",
-		waterSplash = "Summons some drops of water from Antarctica."
+		waterSplash = "Summons some drops of water from Antarctica.",
+		soulSucker = "Steals 5 HP from enemies you kill."
 	},
 	powerType = {
 		atk = "ATTACK (%d)",
@@ -112,7 +114,8 @@ translations.en = {
 			"• New room modes: <B>#powers0lagmode</B>, <B>#powers0freemode</B>, <B>#powers0noobmode</B>, <B>#powers0promode</B>.",
 			"• New command <B>!modes</B>.",
 			"• Players with level lower than 35 will receive extra XP.",
-			"• Two new badges! 2000 victories / use a divine power."
+			"• Two new badges! 2000 victories / use a divine power.",
+			"• New power <B>Soul Sucker</B>.",
 		}
 	},
 

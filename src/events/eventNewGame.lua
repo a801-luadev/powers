@@ -42,6 +42,7 @@ eventNewGame = function()
 		cache.roundLevel = cache.level
 		cache.lastDamageBy = nil
 		cache.lastDamageTime = nil
+		cache.spawnHearts = false
 
 		updateLifeBar(playerName, cache)
 
