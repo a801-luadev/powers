@@ -17,6 +17,10 @@ eventPlayerDataLoaded = function(playerName, data)
 	if playerData:get(playerName, "victories") >= 2000 then
 		badgesGenerated = giveBadge(playerName, "victorious", cache)
 	end
+	if playerData:get(playerName, "rounds") >= 1100 then
+		badgesGenerated = giveBadge(playerName, "superPlayer", cache)
+	end
+
 	if not badgesGenerated then
 		generateBadgesList(playerName, cache)
 	end

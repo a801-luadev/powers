@@ -450,7 +450,7 @@ do
 		:setProbability(10)
 		:bindKeyboard(keyboard.left, keyboard.up, keyboard.right, keyboard.dowm)
 		:setKeySequence({
-			{ keyboard.right, keyboard.up, keyboard.right, keyboard.down, keyboard.left  },
+			{ keyboard.right, keyboard.up, keyboard.right, keyboard.down, keyboard.left },
 			{ keyboard.left, keyboard.up, keyboard.left, keyboard.down, keyboard.right }
 		})
 		:setEffect(function(playerName, x, y, _, _, cache)
