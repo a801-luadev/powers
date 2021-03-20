@@ -5,6 +5,7 @@ local badges = {
 	anomaly     = 2 ^ 03, -- Summon the anomaly
 	victorious  = 2 ^ 04, -- == 2000 victories
 	divine      = 2 ^ 05, -- Summon a divine power
+	mapper      = 2 ^ 06, -- Mapper (3 maps)
 }
 
 local badgesOrder = {
@@ -13,7 +14,8 @@ local badgesOrder = {
 	[3] = "anomaly",
 	[4] = "superPlayer",
 	[5] = "killer",
-	[6] = "victorious"
+	[6] = "victorious",
+	[7] = "mapper"
 }
 
 local badgeImages = {
@@ -22,5 +24,6 @@ local badgeImages = {
 	anomaly = "172d414212d.png",
 	superPlayer = "172d284bb80.png",
 	killer = "172d281b9b8.png",
-	victorious = "177adbf2359.png"
+	victorious = "17851f296e1.png",
+	mapper = "17851e709bc.png"
 }
