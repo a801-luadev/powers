@@ -20,3 +20,7 @@ local roleColors = {
 	moderator     = 0xE9E654,
 	administrator = 0xB69EFD
 }
+
+local systemColors = {
+	moderation = 0xFCB8A4
+}

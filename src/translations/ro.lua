@@ -129,10 +129,10 @@ translations.ro = {
 
 	enableParticles = "<ROSE>NU uita să ACTIVEZI efectele speciale/particulele pentru a vedea modulul cum trebuie. (În 'Meniu' → 'Opțiuni', lângă 'Lista sălilor')</ROSE>",
 
-	ban = "%s <ROSE>a fost banat de pe #powers de către %s <ROSE>pentru %d ore. Motiv: %s",
-	unban = "<ROSE>Ai fost debanat de către %s",
-	isBanned = "<ROSE>Ești banat de pe #powers până la GMT+2 %s (încă %d ore).",
-	permBan = "%s <ROSE>a fost banat permanent de pe #powers de către %s<ROSE>. Motiv: %s",
+	ban = "%%s <font color='#%x'>a fost banat de pe #powers de către %%s <font color='#%x'>pentru %%d ore. Motiv: %%s",
+	unban = "<font color='#%x'>Ai fost debanat de către %%s",
+	isBanned = "<font color='#%x'>Ești banat de pe #powers până la GMT+2 %%s (încă %%d ore).",
+	permBan = "%%s <font color='#%x'>a fost banat permanent de pe #powers de către %%s<font color='#%x'>. Motiv: %%s",
 
 	playerGetRole = "<FC>%s <FC>a fost promovat la <font color='#%x'>%s</font>!",
 	playerLoseRole = "<FC>%s <FC>nu mai este <font color='#%x'>%s</font>.",

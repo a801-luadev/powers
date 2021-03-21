@@ -126,10 +126,10 @@ translations.tr = {
 
 	enableParticles = "<ROSE>Özel efektleri/parçacıkları aktive etmeyi unutmayın. Modülü daha iyi görebilmeniz için bunu yapmanız gereklidir. (‘Menü’den → ‘Ayarlar’, ’Oda Listesi’nin yanında)</ROSE>",
 
-	ban = "%s <ROSE>isimli kullanıcı #powers modülünden uzaklaştırılmıştır. Cezalandıran: %s <ROSE>Süre: %d saat. Sebep: %s",
-	unban = "<ROSE>%s uzaklaştırma cezanızı kaldırdı.",
-	isBanned = "<ROSE> #powers modülünden şu kadar süre için uzaklaştırıldınız: Fransa saati ile %s (%d saat kaldı).",
-	permBan = "%s <ROSE> isimli kullanıcı #powers modülünden kalıcı olarak uzaklaştırılmıştır. Cezalandıran: %s<ROSE>. Sebep: %s",
+	ban = "%%s <font color='#%x'>isimli kullanıcı #powers modülünden uzaklaştırılmıştır. Cezalandıran: %%s <font color='#%x'>Süre: %%d saat. Sebep: %%s",
+	unban = "<font color='#%x'>%%s uzaklaştırma cezanızı kaldırdı.",
+	isBanned = "<font color='#%x'> #powers modülünden şu kadar süre için uzaklaştırıldınız: Fransa saati ile %%s (%%d saat kaldı).",
+	permBan = "%%s <font color='#%x'> isimli kullanıcı #powers modülünden kalıcı olarak uzaklaştırılmıştır. Cezalandıran: %%s<font color='#%x'>. Sebep: %%s",
 
 	playerGetRole = "<FC>%s <FC>isimli kullanıcı artık <font color='#%x'>%s</font>!",
 	playerLoseRole = "<FC>%s <FC>isimli kullanıcı artık <font color='#%x'>%s</font> değil.",

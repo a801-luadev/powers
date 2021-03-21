@@ -152,10 +152,10 @@ translations.id = {
 	enableParticles = "<ROSE>JANGAN LUPA untuk AKTIFKAN efek/partikel khusus agar dapat melihat modul dengan benar. (Di 'Menu' → 'Opsi', di samping 'Daftar Kamar')</ROSE>",
 
 	-- Ban
-	ban = "%s <ROSE>telah di ban dari #powers oleh %s <ROSE>selama %d hours. Alasan: %s",
-	unban = "<ROSE>Anda telah di unban oleh %s",
-	isBanned = "<ROSE>Anda di ban dari #powers hingga GMT+2 %s (%d jam lagi).", -- @Translator notes: keep GMT+2
-	permBan = "%s <ROSE>telah di ban permanen dari #powers oleh %s<ROSE>. Alasan: %s",
+	ban = "%%s <font color='#%x'>telah di ban dari #powers oleh %%s <font color='#%x'>selama %%d hours. Alasan: %%s",
+	unban = "<font color='#%x'>Anda telah di unban oleh %%s",
+	isBanned = "<font color='#%x'>Anda di ban dari #powers hingga GMT+2 %%s (%%d jam lagi).",
+	permBan = "%%s <font color='#%x'>telah di ban permanen dari #powers oleh %%s<font color='#%x'>. Alasan: %%s",
 
 	-- Promotion
 	playerGetRole = "<FC>%s <FC>telah di promosikan ke <font color='#%x'>%s</font>!",

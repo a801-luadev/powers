@@ -125,10 +125,10 @@ translations.cn = {
 
 	enableParticles = "<ROSE>別忘記啟用特別效果/粒子模式來使遊戲外觀更好。 (在 '房間列表' 旁邊的 '菜單' → '效果')</ROSE>",
 
-	ban = "%s <ROSE>被 %s <ROSE>從 #power 封禁 %d 小時。原因: %s",
-	unban = "<ROSE>你已經被 %s 解除封禁。",
-	isBanned = "<ROSE>你已經從 #power 被封禁直到 GMT+2 %s (剩餘 %d 小時)。",
-	permBan = "%s <ROSE>已經從 #power 被 %s <ROSE>永久封禁。原因: %s",
+	ban = "%%s <font color='#%x'>被 %%s <font color='#%x'>從 #power 封禁 %%d 小時。原因: %%s",
+	unban = "<font color='#%x'>你已經被 %%s 解除封禁。",
+	isBanned = "<font color='#%x'>你已經從 #power 被封禁直到 GMT+2 %%s (剩餘 %%d 小時)。",
+	permBan = "%%s <font color='#%x'>已經從 #power 被 %%s <font color='#%x'>永久封禁。原因: %%s",
 
 	playerGetRole = "<FC>%s <FC>被晉升至 <font color='#%x'>%s</font>!",
 	playerLoseRole = "<FC>%s <FC>不再是 <font color='#%x'>%s</font> 了。",

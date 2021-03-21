@@ -41,5 +41,11 @@ do
 	end
 	getText.helpContent[4] = table_concat(news, '\n')
 
+	-- Color system mensages
+	getText.ban = format(getText.ban, systemColors.moderation, systemColors.moderation)
+	getText.unban = format(getText.unban, systemColors.moderation)
+	getText.isBanned = format(getText.isBanned, systemColors.moderation)
+	getText.permBan = format(getText.permBan, systemColors.moderation, systemColors.moderation)
+
 	translations = nil
 end

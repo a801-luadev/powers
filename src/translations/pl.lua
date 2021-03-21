@@ -129,10 +129,10 @@ translations.pl = {
 
 	enableParticles = "<ROSE>NIE zapomnij o WŁĄCZENIU efektów cząsteczkowych aby wyświetlać moduł prawidłowo. (W \"Menu\" → \"Opcje\", obok \"Lista Room'ów\")</ROSE>",
 
-	ban = "%s <ROSE>został zbanowany z #powers przez %s <ROSE>na %d godzin. Powód: %s",
-	unban = "<ROSE>Zostałeś odbanowany przez %s",
-	isBanned = "<ROSE>Zostałeś zbanowany z #powers do GMT+2 %s (%d godzin do końca).",
-	permBan = "%s <ROSE>został zbanowany na stałe z #powers przez %s<ROSE>. Powód: %s",
+	ban = "%%s <font color='#%x'>został zbanowany z #powers przez %%s <font color='#%x'>na %%d godzin. Powód: %%s",
+	unban = "<font color='#%x'>Zostałeś odbanowany przez %%s",
+	isBanned = "<font color='#%x'>Zostałeś zbanowany z #powers do GMT+2 %%s (%%d godzin do końca).",
+	permBan = "%%s <font color='#%x'>został zbanowany na stałe z #powers przez %%s<font color='#%x'>. Powód: %%s",
 
 	playerGetRole = "<FC>%s <FC>zyskuje rolę <font color='#%x'>%s</font>!",
 	playerLoseRole = "<FC>%s <FC>traci rolę <font color='#%x'>%s</font>!",

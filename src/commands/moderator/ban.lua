@@ -18,7 +18,7 @@ do
 		end
 		bannedPlayers[targetPlayerId] = time() + banTime * 60 * 60 * 1000 -- banTime in hours
 
-		local prettyTargetPlayer = prettifyNickname(targetPlayer, nil, nil, nil, "ROSE")
+		local prettyTargetPlayer = prettifyNickname(targetPlayer, nil, nil, nil, 'V')
 		local prettyPlayer = prettifyNickname(playerName, nil, nil, nil, moderatorColor)
 		command = table_concat(command, ' ', 4)
 

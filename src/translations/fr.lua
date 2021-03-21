@@ -126,10 +126,10 @@ translations.fr = {
 
 	enableParticles = "<ROSE>N'OUBLIEZ PAS D'ACTIVER les effets/particules spéciales pour voir le jeu normalement. (Dans 'Menu' → 'Options', à côté de 'Liste de salon')</ROSE>",
 
-	ban = "%s <ROSE>a été banni de #powers par %s <ROSE>pendant %d heures. Raison: %s",
-	unban = "<ROSE>Votre bannissement a été supprimé par %s",
-	isBanned = "<ROSE>Vous êtes banni de #powers jusqu'à GMT+2 %s (%d heures restantes).",
-	permBan = "%s <ROSE>a été banni de #powers définitivement par %s<ROSE>. Raison: %s",
+	ban = "%%s <font color='#%x'>a été banni de #powers par %%s <font color='#%x'>pendant %%d heures. Raison: %%s",
+	unban = "<font color='#%x'>Votre bannissement a été supprimé par %%s",
+	isBanned = "<font color='#%x'>Vous êtes banni de #powers jusqu'à GMT+2 %%s (%%d heures restantes).",
+	permBan = "%%s <font color='#%x'>a été banni de #powers définitivement par %%s<font color='#%x'>. Raison: %%s",
 
 	playerGetRole = "<FC>%s <FC>a été promu(e) vers <font color='#%x'>%s</font>!",
 	playerLoseRole = "<FC>%s <FC>n'est plus <font color='#%x'>%s</font>.",

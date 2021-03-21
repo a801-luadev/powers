@@ -124,10 +124,10 @@ translations.he = {
 
 	enableParticles = "<ROSE>אל תשכחו לסמן 'הפעל אפקטים' בהגדרות בשביל לראות את המשחק בצורה הרגילה. ('תפריט' ← 'אפשרויות', ליד 'רשימת החדרים')</ROSE>",
 
-	ban = "%s <ROSE>הורחק מ- #powers על ידי %s <ROSE>ל- %d שעות. סיבה: %s",
-	unban = "<ROSE>הורחקת על ידי %s",
-	isBanned = "<ROSE>אתה מורחק מ- #powers עד GMT+2 %s (%d שעות נשארו).",
-	permBan = "%s <ROSE>הורחק לצמיתות מ- #powers על ידי %s<ROSE>. סיבה: %s",
+	ban = "%%s <font color='#%x'>הורחק מ- #powers על ידי %%s <font color='#%x'>ל- %%d שעות. סיבה: %%s",
+	unban = "<font color='#%x'>הורחקת על ידי %%s",
+	isBanned = "<font color='#%x'>אתה מורחק מ- #powers עד GMT+2 %%s (%%d שעות נשארו).",
+	permBan = "%%s <font color='#%x'>הורחק לצמיתות מ- #powers על ידי %%s<font color='#%x'>. סיבה: %%s",
 
 	playerGetRole = "<FC>%s <FC>קודמו לדרגת <font color='#%x'>%s</font>!",
 	playerLoseRole = "<FC>%s <FC>הם לא <font color='#%x'>%s</font> יותר.",

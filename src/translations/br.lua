@@ -109,6 +109,7 @@ translations.br = {
 			"• Jogadores com nível menor que 35 receberão XP extra.",
 			"• Duas novas medalhas! 2000 vitórias / usar um poder divino.",
 			"• Novo poder <B>Sugador de Almas</B>.",
+			"• Nova medalha para mappers. Se você tem três ou mais mapas no #powers, entre em contato com o desenvolvedor do módulo para obtê-la."
 		}
 	},
 
@@ -145,10 +146,10 @@ translations.br = {
 
 	enableParticles = "<ROSE>NÃO se esqueça de ATIVAR os efeitos especiais/partículas para conseguir ver o jogo adequadamente. (Em 'Menu' → 'Opções', próximo a 'Lista de Salas')</ROSE>",
 
-	ban = "%s <ROSE>foi banido do #powers por %s <ROSE>por %d horas. Motivo: %s",
-	unban = "<ROSE>Seu banimento foi revogado por %s",
-	isBanned = "<ROSE>Você está banido do #powers até GMT+2 %s (%d horas restantes).",
-	permBan = "%s <ROSE>foi banido permanentemente do #powers por %s<ROSE>. Motivo: %s",
+	ban = "%%s <font color='#%x'>foi banido do #powers por %%s <font color='#%x'>por %%d horas. Motivo: %%s",
+	unban = "<font color='#%x'>Seu banimento foi revogado por %%s",
+	isBanned = "<font color='#%x'>Você está banido do #powers até GMT+2 %%s (%%d horas restantes).",
+	permBan = "%%s <font color='#%x'>foi banido permanentemente do #powers por %%s<font color='#%x'>. Motivo: %%s",
 
 	playerGetRole = "<FC>%s <FC>foi promovido para <font color='#%x'>%s</font>!",
 	playerLoseRole = "<FC>%s <FC>não é mais <font color='#%x'>%s</font>.",

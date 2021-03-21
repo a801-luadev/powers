@@ -116,6 +116,7 @@ translations.en = {
 			"• Players with level lower than 35 will receive extra XP.",
 			"• Two new badges! 2000 victories / use a divine power.",
 			"• New power <B>Soul Sucker</B>.",
+			"• New badge for mappers. If you have 3 or more maps in #powers, contact the module developer ingame to obtain it."
 		}
 	},
 
@@ -185,10 +186,10 @@ translations.en = {
 	enableParticles = "<ROSE>Do NOT forget to ENABLE the special effects/particles in order to see the module properly. (In 'Menu' → 'Options', next to the 'Room List')</ROSE>",
 
 	-- Ban
-	ban = "%s <ROSE>has been banned from #powers by %s <ROSE>for %d hours. Reason: %s",
-	unban = "<ROSE>You have been unbanned by %s",
-	isBanned = "<ROSE>You are banned from #powers until GMT+2 %s (%d hours to go).", -- @Translator notes: keep GMT+2
-	permBan = "%s <ROSE>has been banned permanently from #powers by %s<ROSE>. Reason: %s",
+	ban = "%%s <font color='#%x'>has been banned from #powers by %%s <font color='#%x'>for %%d hours. Reason: %%s",
+	unban = "<font color='#%x'>You have been unbanned by %%s",
+	isBanned = "<font color='#%x'>You are banned from #powers until GMT+2 %%s (%%d hours to go).", -- @Translator notes: keep GMT+2
+	permBan = "%%s <font color='#%x'>has been banned permanently from #powers by %%s<font color='#%x'>. Reason: %%s",
 	cantPermUnban = "<BL>[<VI>•<BL>] You cannot unban a user that is banned permanently.", -- @Translator notes: remove this line
 	resetData = "<BL>[<VI>•<BL>] Data of %s<BL> has been set to {%d,%d,%d,%d}", -- @Translator notes: remove this line
 
