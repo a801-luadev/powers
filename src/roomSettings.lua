@@ -1,4 +1,4 @@
-if isOfficialRoom then
+if not room.isTribeHouse then
 	local _, roomQuery = find(room.name, "^%*?.?.?%-?#powers%d+()")
 	if roomQuery then
 		roomQuery = sub(room.name, roomQuery)
