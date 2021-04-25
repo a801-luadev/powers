@@ -127,6 +127,7 @@ translations.en = {
 		profile = "Opens your or someone's profile.",
 		leaderboard = "Opens the global leaderboard.",
 		modes = "Shows the game modes.",
+		perms = "Shows your special permissions in the module, if any.",
 
 		pw = "Protects the room with a password. Send empty to remove it.",
 

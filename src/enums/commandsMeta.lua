@@ -18,6 +18,9 @@ local commandsMeta = {
 	{
 		name = "modes"
 	},
+	{
+		name = "perms"
+	},
 
 	{
 		name = "pw",

@@ -83,6 +83,7 @@
 	"commands/profile.lua",
 	"commands/leaderboard.lua",
 	"commands/modes.lua",
+	"commands/perms.lua",
 
 	"commands/roomAdmin/password.lua",
 

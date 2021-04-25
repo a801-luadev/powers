@@ -69,7 +69,7 @@ local roomAdmins = {
 }
 
 -- Important settings
-local isOfficialRoom = not room.isTribeHouse and find(room.name, "[^@][^#]*#powers[0-9]?$")
+local isOfficialRoom = not room.isTribeHouse and find(room.name, "^[^@][^#]*#powers%d?$")
 
 local canSaveData = false
 local canTriggerPowers = false

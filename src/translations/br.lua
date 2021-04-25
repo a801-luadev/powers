@@ -119,6 +119,7 @@ translations.br = {
 		profile = "Abre o seu perfil ou o de alguém.",
 		leaderboard = "Abre o ranking global.",
 		modes = "Mostra os modos de jogo.",
+		perms = "Mostra suas permissões especiais no módulo, se houverem.",
 
 		pw = "Protege sua sala com uma senha. Deixe vazio para remover."
 	},
@@ -141,7 +142,7 @@ translations.br = {
 	leaderboardIsLoading = "<BL>[<VI>•<BL>] O ranking ainda está carregando. Tente novamente em alguns segundos.",
 
 	addMap = "<BV>[<FC>•<BV>] O mapa <J>@%s</J> foi adicionado à lista local de mapas.",
-	remMap = "<BV>[<FC>•<BV>] O mapa <J>@%s</J> foi removido da lisa local de mapas.",
+	remMap = "<BV>[<FC>•<BV>] O mapa <J>@%s</J> foi removido da lista local de mapas.",
 	listMaps = "<BV>[<FC>•<BV>] Mapas (<J>#%d</J>): %s",
 
 	enableParticles = "<ROSE>NÃO se esqueça de ATIVAR os efeitos especiais/partículas para conseguir ver o jogo adequadamente. (Em 'Menu' → 'Opções', próximo a 'Lista de Salas')</ROSE>",
