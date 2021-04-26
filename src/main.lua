@@ -19,7 +19,7 @@ local module = {
 
 	is_noob_until_level = 34,
 
-	max_player_level = 129,
+	max_player_level = 139,
 	max_player_xp = nil,
 
 	max_leaderboard_rows = 100

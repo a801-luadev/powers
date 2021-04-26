@@ -108,7 +108,7 @@ local module = {
 
 	is_noob_until_level = 34,
 
-	max_player_level = 129,
+	max_player_level = 139,
 	max_player_xp = nil,
 
 	max_leaderboard_rows = 100
@@ -257,7 +257,8 @@ translations.en = {
 		[090] = { "The Famine Horseman", "The Famine Horsewoman" },
 		[100] = { "The War Horseman", "The War Horsewoman" },
 		[110] = { "The Death Horseman", "The Death Horsewoman" },
-		[120] = "The Void"
+		[120] = "The Void",
+		[130] = "Quantum"
 	},
 
 	newLevel = "<FC>%s<FC> just reached level <B>%d</B>!",
@@ -1793,7 +1794,8 @@ local levelColors = {
 	[090] = 0x1C1313,
 	[100] = 0x7C1C29,
 	[110] = 0xD7ECFF,
-	[120] = 0x8B658B
+	[120] = 0x8B658B,
+	[130] = 0x4F2995
 }
 
 local roleColors = {
@@ -2898,19 +2900,28 @@ do
 		return src
 	end
 
+	local levelName
 	getText = translations[room.community]
+
 	if getText then
 		if getText ~= translations.en then
 			merge(getText, translations.en, {
 				["levelName"] = true
 			})
+
+			levelName = getText.levelName
+			for level, name in next, translations.en.levelName do
+				if not levelName[level] then
+					levelName[level] = name
+				end
+			end
 		end
 	else
 		getText = translations.en
 	end
 
 	-- All level names are tables
-	local levelName = getText.levelName
+	levelName = levelName or getText.levelName
 	for k, v in next, levelName do
 		if type(v) == "string" then
 			levelName[k] = { v, v }

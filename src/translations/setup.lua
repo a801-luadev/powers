@@ -13,19 +13,28 @@ do
 		return src
 	end
 
+	local levelName
 	getText = translations[room.community]
+
 	if getText then
 		if getText ~= translations.en then
 			merge(getText, translations.en, {
 				["levelName"] = true
 			})
+
+			levelName = getText.levelName
+			for level, name in next, translations.en.levelName do
+				if not levelName[level] then
+					levelName[level] = name
+				end
+			end
 		end
 	else
 		getText = translations.en
 	end
 
 	-- All level names are tables
-	local levelName = getText.levelName
+	levelName = levelName or getText.levelName
 	for k, v in next, levelName do
 		if type(v) == "string" then
 			levelName[k] = { v, v }

@@ -75,7 +75,8 @@ translations.en = {
 		[090] = { "The Famine Horseman", "The Famine Horsewoman" },
 		[100] = { "The War Horseman", "The War Horsewoman" },
 		[110] = { "The Death Horseman", "The Death Horsewoman" },
-		[120] = "The Void"
+		[120] = "The Void",
+		[130] = "Quantum"
 	},
 
 	newLevel = "<FC>%s<FC> just reached level <B>%d</B>!",

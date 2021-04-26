@@ -11,7 +11,8 @@ local levelColors = {
 	[090] = 0x1C1313,
 	[100] = 0x7C1C29,
 	[110] = 0xD7ECFF,
-	[120] = 0x8B658B
+	[120] = 0x8B658B,
+	[130] = 0x4F2995
 }
 
 local roleColors = {

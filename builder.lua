@@ -47,21 +47,21 @@
 	"classes/timer.lua",
 	"classes/power.lua",
 
-	"powers/atk/laserBeam.lua",
-	"powers/def/lightSpeed.lua",
-	"powers/atk/lightning.lua",
-	"powers/def/doubleJump.lua",
-	"powers/def/helix.lua",
-	"powers/atk/dome.lua",
-	"powers/def/wormHole.lua",
-	"powers/divine/atomic.lua",
-	"powers/atk/superNova.lua",
-	"powers/atk/meteorSmash.lua",
-	"powers/def/soulSucker.lua",
-	"powers/atk/waterSplash.lua",
-	"powers/atk/deathRay.lua",
-	"powers/divine/dayOfJudgement.lua",
-	"powers/divine/anomaly.lua",
+	"powers/atk/laserBeam.lua", -- lv 0
+	"powers/def/lightSpeed.lua", -- lv 3
+	"powers/atk/lightning.lua", -- lv 15
+	"powers/def/doubleJump.lua", -- lv 20
+	"powers/def/helix.lua", -- lv 28
+	"powers/atk/dome.lua", -- lv 35
+	"powers/def/wormHole.lua", -- lv 42
+	"powers/divine/atomic.lua", -- lv 50
+	"powers/atk/superNova.lua", -- lv 60
+	"powers/atk/meteorSmash.lua", -- lv 70
+	"powers/def/soulSucker.lua", -- lv 80
+	"powers/atk/waterSplash.lua", -- lv 90
+	"powers/atk/deathRay.lua", -- lv 100
+	"powers/divine/dayOfJudgement.lua", -- lv 110
+	"powers/divine/anomaly.lua", -- lv 120
 
 	"sortedPowers.lua",
 
