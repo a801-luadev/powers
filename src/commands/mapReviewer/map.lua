@@ -12,6 +12,10 @@ do
 			local permission = subCommandPermission[command[2]]
 			if not permission or hasPermission(playerName, permission) then
 				subCommand[command[2]](playerName, command)
+
+				if permission then
+					logCommandUsage(playerName, command)
+				end
 			end
 		end
 	end

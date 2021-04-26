@@ -4,7 +4,7 @@ do
 
 	commands["perms"] = function(playerName, command)
 		if not ((hasPermission(playerName, permissions.promoteUser) or
-			hasPermission(playerName, permissions.demoteUser)) and room.playerList[command[2]]) then
+			hasPermission(playerName, permissions.demoteUser)) and playerCache[command[2]]) then
 			command[2] = playerName
 		end
 
@@ -16,7 +16,7 @@ do
 			end
 		end
 
-		chatMessage(format(internalMessageFormat, playerName, table_concat(perms, '\n')),
-			playerName)
+		chatMessage(format(internalMessageFormat, playerCache[command[2]].chatNickname,
+			table_concat(perms, '\n')), playerName)
 	end
 end

@@ -32,6 +32,7 @@
 	"api/table.lua",
 
 	"api/transformice.lua",
+	"api/log.lua",
 	"api/xp.lua",
 	"api/players.lua",
 	"api/permissions.lua",
@@ -100,8 +101,8 @@
 	"commands/administrator/promote.lua",
 	"commands/administrator/demote.lua",
 
-	"commands/administrator/givebadge.lua",
-	"commands/administrator/setdata.lua",
+	"commands/owner/givebadge.lua",
+	"commands/owner/setdata.lua",
 
 	"events/eventFileLoaded.lua",
 	"events/eventFileSaved.lua",

@@ -20,6 +20,11 @@ local roleColors = {
 	moderator     = 0xE9E654,
 	administrator = 0xB69EFD
 }
+do
+	for name, color in next, roleColors do
+		roleColors["str_" .. name] = format("font color='#%x'", color)
+	end
+end
 
 local systemColors = {
 	moderation = 0xFCB8A4

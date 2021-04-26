@@ -5,5 +5,6 @@ do
 			and isCurrentMapOnReviewMode) then return end
 
 		newGame(command[2])
+		logCommandUsage(playerName, command)
 	end
 end

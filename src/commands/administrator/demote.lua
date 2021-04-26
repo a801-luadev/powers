@@ -1,6 +1,4 @@
 do
-	local internalMessageFormat = "<BL>[<VI>•<BL>] %s <BL>[%s] → %s"
-
 	-- Removes specific permissions from a player
 	commands["demote"] = function(playerName, command)
 		-- !demote name permissions
@@ -12,8 +10,7 @@ do
 
 		local prettyTargetPlayer = playerCache[targetPlayer].chatNickname
 
-		messagePlayersWithPrivilege(format(internalMessageFormat,
-			playerCache[playerName].chatNickname, command[1], table_concat(command, ' ', 2)))
+		logCommandUsage(playerName, command)
 
 		local saveDataFile = false
 

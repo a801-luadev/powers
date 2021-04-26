@@ -327,7 +327,10 @@ translations.en = {
 		permban = "Bans permanently a player from the game.", -- @Translator notes: remove this line
 
 		promote = "Promotes a player to a specific role or gives them specific permissions.", -- @Translator notes: remove this line
-		demote = "Demotes a player from a specific role or removes specific permissions from them." -- @Translator notes: remove this line
+		demote = "Demotes a player from a specific role or removes specific permissions from them.", -- @Translator notes: remove this line
+
+		givebadge = "Gives a badge to a player.", -- @Translator notes: remove this line
+		setdata = "Sets the data of a player.", -- @Translator notes: remove this line
 	},
 	commandsParameters = {
 		profile = "[player_name] ",
@@ -345,7 +348,10 @@ translations.en = {
 
 		permban = "[player_name]<R>*</R> [reason] ", -- @Translator notes: remove this line
 		promote = "[player_name]<R>*</R> [permission_name|role_name ...]<R>*</R> ", -- @Translator notes: remove this line
-		demote = "[player_name]<R>*</R> [permission_name|role_name ...]<R>*</R> " -- @Translator notes: remove this line
+		demote = "[player_name]<R>*</R> [permission_name|role_name ...]<R>*</R> ", -- @Translator notes: remove this line
+
+		givebadge = "[player_name]<R>*</R> [badge_name]<R>*</R> ", -- @Translator notes: remove this line
+		setdata = "[player_name]<R>*</R> [total_rounds]<R>*</R> [total_victories]<R>*</R> [total_kills]<R>*</R> [total_xp]<R>*</R> " -- @Translator notes: remove this line
 	},
 	["or"] = "or",
 
@@ -376,7 +382,7 @@ translations.en = {
 	isBanned = "<font color='#%x'>You are banned from #powers until GMT+2 %%s (%%d hours to go).", -- @Translator notes: keep GMT+2
 	permBan = "%%s <font color='#%x'>has been banned permanently from #powers by %%s<font color='#%x'>. Reason: %%s",
 	cantPermUnban = "<BL>[<VI>•<BL>] You cannot unban a user that is banned permanently.", -- @Translator notes: remove this line
-	resetData = "<BL>[<VI>•<BL>] Data of %s<BL> has been set to {%d,%d,%d,%d}", -- @Translator notes: remove this line
+	resetData = "<BL>[<VI>•<BL>] Data of %s<BL> has been set to {rounds=%d,victories=%d,kills=%d,xp=%d}", -- @Translator notes: remove this line
 
 	-- Promotion
 	playerGetPermissions = "<BL>[<VI>•<BL>] %s <BL>has now the following permissions: <B>%s</B>", -- @Translator notes: remove this line
@@ -1798,6 +1804,11 @@ local roleColors = {
 	moderator     = 0xE9E654,
 	administrator = 0xB69EFD
 }
+do
+	for name, color in next, roleColors do
+		roleColors["str_" .. name] = format("font color='#%x'", color)
+	end
+end
 
 local systemColors = {
 	moderation = 0xFCB8A4
@@ -2508,6 +2519,18 @@ local messageRoomAdmins = function(message)
 		if roomAdmins[playerName] then
 			chatMessage(message, playerName)
 		end
+	end
+end
+
+--[[ api/log.lua ]]--
+local logCommandUsage
+do
+	local internalMessageFormat = "<BL>[<VI>•<BL>] %s <BL>[%s] → %s"
+
+	logCommandUsage = function(playerName, command)
+		messagePlayersWithPrivilege(format(internalMessageFormat,
+			playerCache[playerName].chatNickname, command[1],
+			table_concat(command, ' ', 2, min(#command, 5))))
 	end
 end
 
@@ -4239,6 +4262,15 @@ local commandsMeta = {
 	{
 		name = "demote",
 		permission = permissions.demoteUser
+	},
+
+	{
+		name = "givebadge",
+		isModuleOwner = true
+	},
+	{
+		name = "setdata",
+		isModuleOwner = true
 	}
 }
 
@@ -4291,13 +4323,15 @@ end
 -- Commands
 local generateCommandHelp = function(playerId, playerName)
 	local playerPermissions = playersWithPrivileges[playerId] or 0
+	local isModuleOwner = playerName == module.author
 
 	local commands, totalCommands = { }, 0
 	for cmd = 1, #commandsMeta do
 		cmd = commandsMeta[cmd]
 
 		if (not cmd.permission or hasPermission(nil, cmd.permission, nil, playerPermissions))
-			and (not cmd.isRoomAdmin or roomAdmins[playerName]) then
+			and (not cmd.isRoomAdmin or roomAdmins[playerName])
+			and (not cmd.isModuleOwner or isModuleOwner) then
 			totalCommands = totalCommands + 1
 			commands[totalCommands] = helpCommands[cmd.index]
 		end
@@ -5416,7 +5450,7 @@ do
 
 	commands["perms"] = function(playerName, command)
 		if not ((hasPermission(playerName, permissions.promoteUser) or
-			hasPermission(playerName, permissions.demoteUser)) and room.playerList[command[2]]) then
+			hasPermission(playerName, permissions.demoteUser)) and playerCache[command[2]]) then
 			command[2] = playerName
 		end
 
@@ -5428,8 +5462,8 @@ do
 			end
 		end
 
-		chatMessage(format(internalMessageFormat, playerName, table_concat(perms, '\n')),
-			playerName)
+		chatMessage(format(internalMessageFormat, playerCache[command[2]].chatNickname,
+			table_concat(perms, '\n')), playerName)
 	end
 end
 
@@ -5466,6 +5500,10 @@ do
 			local permission = subCommandPermission[command[2]]
 			if not permission or hasPermission(playerName, permission) then
 				subCommand[command[2]](playerName, command)
+
+				if permission then
+					logCommandUsage(playerName, command)
+				end
 			end
 		end
 	end
@@ -5546,7 +5584,7 @@ end
 --[[ commands/mapReviewer/review.lua ]]--
 do
 	-- Enables/disables the review mode
-	commands["review"] = function(playerName)
+	commands["review"] = function(playerName, command)
 		if not hasPermission(playerName, permissions.enableReviewMode)
 			or nextMapToLoad or isFreeMode then return end -- Can't change state when !npp is active
 
@@ -5556,6 +5594,8 @@ do
 		else
 			chatMessage(getText.disableReviewMode)
 		end
+
+		logCommandUsage(playerName, command)
 	end
 end
 
@@ -5567,6 +5607,7 @@ do
 			and isCurrentMapOnReviewMode) then return end
 
 		newGame(command[2])
+		logCommandUsage(playerName, command)
 	end
 end
 
@@ -5578,30 +5619,24 @@ do
 			and isReviewMode) then return end
 
 		nextMapToLoad = command[2]
+		logCommandUsage(playerName, command)
 	end
 end
 
 --[[ commands/moderator/msg.lua ]]--
 do
-	local msgFormat = "<FC><B>[#powers]</B> "
-	local internalMessageFormat = "<BL>[<VI>•<BL>] %s <BL>[%s] → %s"
-
 	-- Sends an official message in the chat
 	commands["msg"] = function(playerName, command)
 		if not hasPermission(playerName, permissions.sendRoomMessage) then return end
 
-		chatMessage(msgFormat .. table_concat(command, ' ', 2))
+		chatMessage("<FC><B>[#powers]</B> " .. table_concat(command, ' ', 2))
 
-		messagePlayersWithPrivilege(format(internalMessageFormat,
-			playerCache[playerName].chatNickname, command[1],
-			table_concat(command, ' ', 2, min(#command, 5))))
+		logCommandUsage(playerName, command)
 	end
 end
 
 --[[ commands/moderator/ban.lua ]]--
 do
-	local moderatorColor = format("font color='#%x'", roleColors.moderator)
-
 	-- Bans a player temporarily
 	commands["ban"] = function(playerName, command, isPermanent)
 		-- !ban name time? reason?
@@ -5620,7 +5655,7 @@ do
 		bannedPlayers[targetPlayerId] = time() + banTime * 60 * 60 * 1000 -- banTime in hours
 
 		local prettyTargetPlayer = prettifyNickname(targetPlayer, nil, nil, nil, 'V')
-		local prettyPlayer = prettifyNickname(playerName, nil, nil, nil, moderatorColor)
+		local prettyPlayer = prettifyNickname(playerName, nil, nil, nil, roleColors.str_moderator)
 		command = table_concat(command, ' ', 4)
 
 		if not isPermanent then
@@ -5635,8 +5670,6 @@ end
 
 --[[ commands/moderator/unban.lua ]]--
 do
-	local moderatorColor = format("font color='#%x'", roleColors.moderator)
-
 	-- Unbans a player
 	commands["unban"] = function(playerName, command)
 		-- !unban name
@@ -5656,7 +5689,9 @@ do
 
 		bannedPlayers[targetPlayerId] = nil
 		chatMessage(format(getText.unban, prettifyNickname(playerName, nil, nil, nil,
-			moderatorColor)), targetPlayer)
+			roleColors.str_moderator)), targetPlayer)
+
+		logCommandUsage(playerName, command)
 
 		buildAndSaveDataFile()
 	end
@@ -5669,6 +5704,8 @@ do
 		-- !permban name reason?
 		if not (command[2] and hasPermission(playerName, permissions.permBanUser)) then return end
 
+		logCommandUsage(playerName, command)
+
 		table_insert(command, 3, 0)
 		commands["ban"](playerName, command, true)
 	end
@@ -5676,8 +5713,6 @@ end
 
 --[[ commands/administrator/promote.lua ]]--
 do
-	local internalMessageFormat = "<BL>[<VI>•<BL>] %s <BL>[%s] → %s"
-
 	-- Adds specific permissions to a player
 	commands["promote"] = function(playerName, command)
 		-- !promote name permissions
@@ -5689,8 +5724,7 @@ do
 
 		local prettyTargetPlayer = playerCache[targetPlayer].chatNickname
 
-		messagePlayersWithPrivilege(format(internalMessageFormat,
-			playerCache[playerName].chatNickname, command[1], table_concat(command, ' ', 2)))
+		logCommandUsage(playerName, command)
 
 		local saveDataFile = false
 
@@ -5731,8 +5765,6 @@ end
 
 --[[ commands/administrator/demote.lua ]]--
 do
-	local internalMessageFormat = "<BL>[<VI>•<BL>] %s <BL>[%s] → %s"
-
 	-- Removes specific permissions from a player
 	commands["demote"] = function(playerName, command)
 		-- !demote name permissions
@@ -5744,8 +5776,7 @@ do
 
 		local prettyTargetPlayer = playerCache[targetPlayer].chatNickname
 
-		messagePlayersWithPrivilege(format(internalMessageFormat,
-			playerCache[playerName].chatNickname, command[1], table_concat(command, ' ', 2)))
+		logCommandUsage(playerName, command)
 
 		local saveDataFile = false
 
@@ -5784,11 +5815,17 @@ do
 	end
 end
 
---[[ commands/administrator/givebadge.lua ]]--
+--[[ commands/owner/givebadge.lua ]]--
 do
 	-- Gives a badge to someone
 	commands["givebadge"] = function(playerName, command)
+		-- !givebadge name badge_name
 		if playerName ~= module.author then return end
+
+		if not command[2] then
+			return chatMessage("<BL>[<VI>•<BL>] Available badges: <V>" ..
+				table_concat(badgesOrder, "</V> | <V>"), playerName)
+		end
 
 		local _, targetPlayer = validateNicknameAndGetID(command[2])
 		local cache = playerCache[targetPlayer]
@@ -5798,11 +5835,12 @@ do
 	end
 end
 
---[[ commands/administrator/setdata.lua ]]--
+--[[ commands/owner/setdata.lua ]]--
 do
 	-- Sets the data of a player
 	commands["setdata"] = function(playerName, command)
-		if playerName ~= module.author then return end
+		-- !setdata name rounds victories kills xp
+		if playerName ~= module.author or not command[2] then return end
 
 		local _, targetPlayer = validateNicknameAndGetID(command[2])
 		local targetData = playerData.playerData[targetPlayer]

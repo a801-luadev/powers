@@ -5,5 +5,6 @@ do
 			and isReviewMode) then return end
 
 		nextMapToLoad = command[2]
+		logCommandUsage(playerName, command)
 	end
 end

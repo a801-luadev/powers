@@ -1,7 +1,8 @@
 do
 	-- Sets the data of a player
 	commands["setdata"] = function(playerName, command)
-		if playerName ~= module.author then return end
+		-- !setdata name rounds victories kills xp
+		if playerName ~= module.author or not command[2] then return end
 
 		local _, targetPlayer = validateNicknameAndGetID(command[2])
 		local targetData = playerData.playerData[targetPlayer]

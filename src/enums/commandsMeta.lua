@@ -74,6 +74,15 @@ local commandsMeta = {
 	{
 		name = "demote",
 		permission = permissions.demoteUser
+	},
+
+	{
+		name = "givebadge",
+		isModuleOwner = true
+	},
+	{
+		name = "setdata",
+		isModuleOwner = true
 	}
 }
 

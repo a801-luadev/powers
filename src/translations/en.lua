@@ -143,7 +143,10 @@ translations.en = {
 		permban = "Bans permanently a player from the game.", -- @Translator notes: remove this line
 
 		promote = "Promotes a player to a specific role or gives them specific permissions.", -- @Translator notes: remove this line
-		demote = "Demotes a player from a specific role or removes specific permissions from them." -- @Translator notes: remove this line
+		demote = "Demotes a player from a specific role or removes specific permissions from them.", -- @Translator notes: remove this line
+
+		givebadge = "Gives a badge to a player.", -- @Translator notes: remove this line
+		setdata = "Sets the data of a player.", -- @Translator notes: remove this line
 	},
 	commandsParameters = {
 		profile = "[player_name] ",
@@ -161,7 +164,10 @@ translations.en = {
 
 		permban = "[player_name]<R>*</R> [reason] ", -- @Translator notes: remove this line
 		promote = "[player_name]<R>*</R> [permission_name|role_name ...]<R>*</R> ", -- @Translator notes: remove this line
-		demote = "[player_name]<R>*</R> [permission_name|role_name ...]<R>*</R> " -- @Translator notes: remove this line
+		demote = "[player_name]<R>*</R> [permission_name|role_name ...]<R>*</R> ", -- @Translator notes: remove this line
+
+		givebadge = "[player_name]<R>*</R> [badge_name]<R>*</R> ", -- @Translator notes: remove this line
+		setdata = "[player_name]<R>*</R> [total_rounds]<R>*</R> [total_victories]<R>*</R> [total_kills]<R>*</R> [total_xp]<R>*</R> " -- @Translator notes: remove this line
 	},
 	["or"] = "or",
 
@@ -192,7 +198,7 @@ translations.en = {
 	isBanned = "<font color='#%x'>You are banned from #powers until GMT+2 %%s (%%d hours to go).", -- @Translator notes: keep GMT+2
 	permBan = "%%s <font color='#%x'>has been banned permanently from #powers by %%s<font color='#%x'>. Reason: %%s",
 	cantPermUnban = "<BL>[<VI>•<BL>] You cannot unban a user that is banned permanently.", -- @Translator notes: remove this line
-	resetData = "<BL>[<VI>•<BL>] Data of %s<BL> has been set to {%d,%d,%d,%d}", -- @Translator notes: remove this line
+	resetData = "<BL>[<VI>•<BL>] Data of %s<BL> has been set to {rounds=%d,victories=%d,kills=%d,xp=%d}", -- @Translator notes: remove this line
 
 	-- Promotion
 	playerGetPermissions = "<BL>[<VI>•<BL>] %s <BL>has now the following permissions: <B>%s</B>", -- @Translator notes: remove this line
