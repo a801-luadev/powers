@@ -9,7 +9,7 @@ module.max_player_xp = lvlToXp(module.max_player_level)
 
 for playerName in next, room.playerList do
 	eventNewPlayer(playerName)
-	setPlayerScore(playerName, 0)
+	tfm.exec.setPlayerScore(playerName, 0)
 end
 
 system.disableChatCommandDisplay()
