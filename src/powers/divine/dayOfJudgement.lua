@@ -2,7 +2,7 @@
 do
 	powers.dayOfJudgement = Power
 		.new("dayOfJudgement", powerType.divine, 110, {
-			smallIcon = "172499dd0d6.png", -- 172499df39f
+			smallIcon = "172499dd0d6.png",
 			icon = "172baf80263.jpg",
 			iconWidth = 77,
 			iconHeight = 80

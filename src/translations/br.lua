@@ -70,7 +70,8 @@ translations.br = {
 		[090] = { "O Cavaleiro da Fome", "A Cavaleira da Fome" },
 		[100] = { "O Cavaleiro da Guerra", "A Cavaleira da Guerra" },
 		[110] = { "O Cavaleiro da Morte", "A Cavaleira da Morte" },
-		[120] = "O Vazio"
+		[120] = "O Vazio",
+		[130] = "Atemporal"
 	},
 
 	newLevel = "<FC>%s<FC> acaba de atingir o nível <B>%d</B>!",

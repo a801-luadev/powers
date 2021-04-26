@@ -62,6 +62,7 @@
 	"powers/atk/deathRay.lua", -- lv 100
 	"powers/divine/dayOfJudgement.lua", -- lv 110
 	"powers/divine/anomaly.lua", -- lv 120
+	"powers/divine/temporalDisturbance.lua", -- lv 130
 
 	"sortedPowers.lua",
 

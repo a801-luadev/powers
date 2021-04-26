@@ -215,7 +215,8 @@ translations.en = {
 		atomic = "Atomic",
 		dayOfJudgement = "Day of Judgement",
 		waterSplash = "Water Splash",
-		soulSucker = "Soul Sucker"
+		soulSucker = "Soul Sucker",
+		temporalDisturbance = "Temporal Disturbance"
 	},
 	powersDescriptions = {
 		lightSpeed = "Moves your mouse in the speed of light, pushing all enemies around.",
@@ -232,7 +233,8 @@ translations.en = {
 		atomic = "Randomly changes all players' size.",
 		dayOfJudgement = "Revives all dead enemies, them all linked to each other.",
 		waterSplash = "Summons some drops of water from Antarctica.",
-		soulSucker = "Steals 5 HP from enemies you kill."
+		soulSucker = "Steals 5 HP from enemies you kill.",
+		temporalDisturbance = "?!"
 	},
 	powerType = {
 		atk = "ATTACK (%d)",
@@ -258,7 +260,7 @@ translations.en = {
 		[100] = { "The War Horseman", "The War Horsewoman" },
 		[110] = { "The Death Horseman", "The Death Horsewoman" },
 		[120] = "The Void",
-		[130] = "Quantum"
+		[130] = "Atemporal"
 	},
 
 	newLevel = "<FC>%s<FC> just reached level <B>%d</B>!",
@@ -475,7 +477,8 @@ translations.br = {
 		[090] = { "O Cavaleiro da Fome", "A Cavaleira da Fome" },
 		[100] = { "O Cavaleiro da Guerra", "A Cavaleira da Guerra" },
 		[110] = { "O Cavaleiro da Morte", "A Cavaleira da Morte" },
-		[120] = "O Vazio"
+		[120] = "O Vazio",
+		[130] = "Atemporal"
 	},
 
 	newLevel = "<FC>%s<FC> acaba de atingir o nível <B>%d</B>!",
@@ -4016,7 +4019,7 @@ end
 do
 	powers.dayOfJudgement = Power
 		.new("dayOfJudgement", powerType.divine, 110, {
-			smallIcon = "172499dd0d6.png", -- 172499df39f
+			smallIcon = "172499dd0d6.png",
 			icon = "172baf80263.jpg",
 			iconWidth = 77,
 			iconHeight = 80
@@ -4179,6 +4182,26 @@ do
 			if not isReviewMode then
 				giveBadge(playerName, "anomaly")
 			end
+		end)
+end
+
+--[[ powers/divine/temporalDisturbance.lua ]]--
+-- Level 130
+do
+	powers.temporalDisturbance = Power
+		.new("temporalDisturbance", powerType.divine, 130, {
+			smallIcon = "1790bf78277.png",
+			icon = "1790bf78277.png",
+			iconWidth = 30,
+			iconHeight = 30
+		}, {
+
+		})
+		:setUseCooldown(50)
+		:setProbability(18)
+		:bindChatMessage("^C+H+R+O+N+O+S+ +A+T+E+M+P+O+R+A+L+$")
+		:setEffect(function(self)
+
 		end)
 end
 

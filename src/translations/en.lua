@@ -33,7 +33,8 @@ translations.en = {
 		atomic = "Atomic",
 		dayOfJudgement = "Day of Judgement",
 		waterSplash = "Water Splash",
-		soulSucker = "Soul Sucker"
+		soulSucker = "Soul Sucker",
+		temporalDisturbance = "Temporal Disturbance"
 	},
 	powersDescriptions = {
 		lightSpeed = "Moves your mouse in the speed of light, pushing all enemies around.",
@@ -50,7 +51,8 @@ translations.en = {
 		atomic = "Randomly changes all players' size.",
 		dayOfJudgement = "Revives all dead enemies, them all linked to each other.",
 		waterSplash = "Summons some drops of water from Antarctica.",
-		soulSucker = "Steals 5 HP from enemies you kill."
+		soulSucker = "Steals 5 HP from enemies you kill.",
+		temporalDisturbance = "?!"
 	},
 	powerType = {
 		atk = "ATTACK (%d)",
@@ -76,7 +78,7 @@ translations.en = {
 		[100] = { "The War Horseman", "The War Horsewoman" },
 		[110] = { "The Death Horseman", "The Death Horsewoman" },
 		[120] = "The Void",
-		[130] = "Quantum"
+		[130] = "Atemporal"
 	},
 
 	newLevel = "<FC>%s<FC> just reached level <B>%d</B>!",
