@@ -47,7 +47,22 @@
 	"classes/timer.lua",
 	"classes/power.lua",
 
-	"powers.lua",
+	"powers/atk/laserBeam.lua",
+	"powers/def/lightSpeed.lua",
+	"powers/atk/lightning.lua",
+	"powers/def/doubleJump.lua",
+	"powers/def/helix.lua",
+	"powers/atk/dome.lua",
+	"powers/def/wormHole.lua",
+	"powers/divine/atomic.lua",
+	"powers/atk/superNova.lua",
+	"powers/atk/meteorSmash.lua",
+	"powers/def/soulSucker.lua",
+	"powers/atk/waterSplash.lua",
+	"powers/atk/deathRay.lua",
+	"powers/divine/dayOfJudgement.lua",
+	"powers/divine/anomaly.lua",
+
 	"sortedPowers.lua",
 
 	"textAreaCallbacks/callbacks.lua",

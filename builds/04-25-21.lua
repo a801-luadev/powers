@@ -3419,7 +3419,7 @@ do
 	end
 end
 
---[[ powers.lua ]]--
+--[[ powers/atk/laserBeam.lua ]]--
 -- Level 0
 do
 	local beam = function(x, y, direction)
@@ -3458,6 +3458,7 @@ do
 		end)
 end
 
+--[[ powers/def/lightSpeed.lua ]]--
 -- Level 3
 do
 	local wind = function(x, y, direction)
@@ -3495,6 +3496,7 @@ do
 		end)
 end
 
+--[[ powers/atk/lightning.lua ]]--
 -- Level 15
 do
 	local particles = { 2, 11 }
@@ -3539,6 +3541,7 @@ do
 		end)
 end
 
+--[[ powers/def/doubleJump.lua ]]--
 -- Level 20
 do
 	local particles = { 2, 11, 2 }
@@ -3569,6 +3572,7 @@ do
 		end)
 end
 
+--[[ powers/def/helix.lua ]]--
 -- Level 28
 do
 	local particles = { 2, 0, 0, 2 }
@@ -3616,6 +3620,7 @@ do
 		end)
 end
 
+--[[ powers/atk/dome.lua ]]--
 -- Level 35
 do
 	local circle = function(x, y, dimension)
@@ -3670,6 +3675,7 @@ do
 		end)
 end
 
+--[[ powers/def/wormHole.lua ]]--
 -- Level 42
 do
 	local particles = { 0, 4, 11 }
@@ -3716,6 +3722,7 @@ do
 		end)
 end
 
+--[[ powers/divine/atomic.lua ]]--
 -- Level 50
 do
 	local changeSize = function(self, timer)
@@ -3749,6 +3756,7 @@ do
 		end)
 end
 
+--[[ powers/atk/superNova.lua ]]--
 -- Level 60
 do
 	local auxSpeedRad = rad(18)
@@ -3802,6 +3810,7 @@ do
 		end)
 end
 
+--[[ powers/atk/meteorSmash.lua ]]--
 -- Level 70
 do
 	local smashDamage = function(playerName)
@@ -3844,6 +3853,7 @@ do
 		end)
 end
 
+--[[ powers/def/soulSucker.lua ]]--
 -- Level 80
 do
 	local heart = function(x, y, dimension)
@@ -3883,6 +3893,7 @@ do
 		end)
 end
 
+--[[ powers/atk/waterSplash.lua ]]--
 -- Level 90
 do
 	local circle = function(x, y, dimension)
@@ -3930,6 +3941,7 @@ do
 		end)
 end
 
+--[[ powers/atk/deathRay.lua ]]--
 -- Level 100
 do
 	local ray = function(x, y, arcWidth, arcHeight, size, direction)
@@ -3988,6 +4000,7 @@ do
 		end)
 end
 
+--[[ powers/divine/dayOfJudgement.lua ]]--
 -- Level 110
 do
 	powers.dayOfJudgement = Power
@@ -4027,6 +4040,7 @@ do
 		end)
 end
 
+--[[ powers/divine/anomaly.lua ]]--
 -- Level 120
 do
 	local anomaly = function(self, newItems, timer)
