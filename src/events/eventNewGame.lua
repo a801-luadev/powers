@@ -23,6 +23,10 @@ eventNewGame = function()
 	for name, obj in next, powers do
 		if obj.type == powerType.divine then
 			obj:reset()
+
+			if obj.breakProcess then
+				obj:breakProcess()
+			end
 		end
 	end
 

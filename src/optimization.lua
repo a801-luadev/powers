@@ -12,9 +12,11 @@ local killPlayer       = tfm.exec.killPlayer -- medium usage
 local linkMice         = tfm.exec.linkMice -- low usage (1 power)
 local movePlayer       = tfm.exec.movePlayer -- high usage
 local playerVictory    = tfm.exec.playerVictory -- low usage (1x map x alive players)
+local removeCheese     = tfm.exec.removeCheese -- low-to-medium usage
 local removeObject     = tfm.exec.removeObject -- low-to-medium usage (2 powers)
 local respawnPlayer    = tfm.exec.respawnPlayer -- low usage (1 power)
 local setGameTime      = tfm.exec.setGameTime -- low usage
+local setWorldGravity  = tfm.exec.setWorldGravity -- low usage
 
 local addBonus       = tfm.exec.addBonus -- low usage (1 power on players death)
 local addImage       = tfm.exec.addImage -- high usage
@@ -38,7 +40,6 @@ local room = tfm.get.room -- high usage
 
 -- Enums
 local enum_emote        = tfm.enum.emote -- low usage
-local enum_particle     = tfm.enum.particle -- low usage
 local enum_shamanObject = tfm.enum.shamanObject -- low usage
 
 -- Mathematics

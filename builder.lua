@@ -43,9 +43,16 @@
 
 	"translations/setup.lua",
 
+	"textAreaCallbacks/callbacks.lua",
+	"keyboardCallbacks/callbacks.lua",
+	"commands/commands.lua",
+
 	"classes/keySequence.lua",
 	"classes/timer.lua",
 	"classes/power.lua",
+
+	"classes/prettyUI.lua",
+	"textAreaCallbacks/closeInterface.lua",
 
 	"powers/atk/laserBeam.lua", -- lv 0
 	"powers/def/lightSpeed.lua", -- lv 3
@@ -66,18 +73,10 @@
 
 	"sortedPowers.lua",
 
-	"textAreaCallbacks/callbacks.lua",
-	"keyboardCallbacks/callbacks.lua",
-	"commands/commands.lua",
-
 	"enums/commandsMeta.lua",
 	"api/data.lua",
 
 	"leaderboard.lua",
-
-	"classes/prettyUI.lua",
-
-	"textAreaCallbacks/closeInterface.lua",
 
 	"interfaces/help.lua",
 	"interfaces/powers.lua",
@@ -89,6 +88,8 @@
 	"textAreaCallbacks/print.lua",
 	"textAreaCallbacks/leaderboardLeft.lua",
 	"textAreaCallbacks/leaderboardRight.lua",
+
+	"textAreaCallbacks/temporalDisturbance.lua",
 
 	"keyboardCallbacks/H.lua",
 	"keyboardCallbacks/O.lua",

@@ -1,6 +1,7 @@
 local textAreaId = {
 	lifeBar = 10,
 	gravitationalAnomaly = 50,
+	temporalDisturbance = 70,
 	interface = 100,
 }
 
@@ -53,6 +54,9 @@ local imageTargets = {
 
 local interfaceBackground = {
 	-- x+8, y+10
+	[40] = {
+		[40] = "179116efb76.png"
+	},
 	[120] = {
 		[30] = "17256d5e4ac.png"
 	},

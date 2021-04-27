@@ -95,11 +95,11 @@ do
 				97 -- Energy orb
 			},
 			availablePlusIds = {
-				enum_particle.plus1,
-				enum_particle.plus10,
-				enum_particle.plus12,
-				enum_particle.plus14,
-				enum_particle.plus16
+				tfm.enum.particle.plus1,
+				tfm.enum.particle.plus10,
+				tfm.enum.particle.plus12,
+				tfm.enum.particle.plus14,
+				tfm.enum.particle.plus16
 			},
 			availableHealthPoints = {
 				[1] = 1,

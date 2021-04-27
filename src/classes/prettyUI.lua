@@ -131,12 +131,17 @@ do
 	end
 
 	local callback = "<textformat leftmargin='1' rightmargin='1'><a href='event:%s'>%s"
+	prettyUI.rawAddClickableTextArea = function(callbackName, playerName, x, y, w, h, _self, _f,
+		_id)
+		(_f or _self.addTextArea)((_id or _self), format(callback, callbackName, rep('\n', h / 10)),
+			playerName, x - 5, y - 5, w + 5, h + 5, 1, 1, 0, true)
+	end
+
 	prettyUI.addClickableImage = function(self, image, target, x, y, playerName, w, h, callbackName,
-		callbackCondition)
-		self:addImage(image, target, x, y, playerName)
+		callbackCondition, ...)
+		self:addImage(image, target, x, y, playerName, ...)
 		if callbackCondition == nil or callbackCondition then
-			self:addTextArea(format(callback, callbackName, rep('\n', h / 10)), playerName, x - 5,
-				y - 5, w + 5, h + 5, 1, 1, 0, true)
+			self.rawAddClickableTextArea(callbackName, playerName, x, y, w, h, self)
 		end
 		return self
 	end

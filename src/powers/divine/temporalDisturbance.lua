@@ -1,5 +1,74 @@
 -- Level 130
 do
+	local extractAllPlayerInfo = function(self, timer)
+		local players, index, tmpCache = { }, 0
+		for p, v in next, room.playerList do
+			tmpCache = playerCache[p]
+			if tmpCache then
+				index = index + 1
+				players[index] = {
+					playerName = p,
+					isDead = v.isDead,
+					hasCheese = v.hasCheese,
+					x = v.x,
+					y = v.y,
+					vx = v.vx,
+					vy = v.vy,
+					cache = tmpCache,
+					health = tmpCache.health
+				}
+			end
+		end
+
+		self.extractedData[#self.extractedData + 1] = players
+	end
+
+	local updateHoldingTime = function(self, timer)
+		if (timer.times+1) % self.extractionInterval == 0 then
+			extractAllPlayerInfo(self, timer)
+		end
+
+		if timer.times > 0 then
+			self:updateTriggerImage()
+		else
+			self:breakProcess()
+		end
+	end
+
+	local changeMapState = function(self, timer)
+		local mapData = self.extractedData[timer.times + 1]
+
+		canTriggerPowers = timer.times == 0
+		local velocityMultiplier = canTriggerPowers and 1 or 0
+
+		local tmpPlayerName
+		for p = 1, #mapData do
+			p = mapData[p]
+
+			tmpPlayerName = p.playerName
+			if p.isDead then
+				killPlayer(tmpPlayerName)
+			else
+				respawnPlayer(tmpPlayerName)
+				freezePlayer(tmpPlayerName, not canTriggerPowers)
+				addHealth(tmpPlayerName, p.cache, p.health - p.cache.health)
+
+				if p.hasCheese then
+					giveCheese(tmpPlayerName)
+				else
+					removeCheese(tmpPlayerName)
+				end
+
+				movePlayer(tmpPlayerName, p.x, p.y, false, p.vx * velocityMultiplier,
+					p.vy * velocityMultiplier, false)
+			end
+		end
+
+		if canTriggerPowers then
+			setWorldGravity()
+		end
+	end
+
 	powers.temporalDisturbance = Power
 		.new("temporalDisturbance", powerType.divine, 130, {
 			smallIcon = "1790bf78277.png",
@@ -7,12 +76,62 @@ do
 			iconWidth = 30,
 			iconHeight = 30
 		}, {
+			holdingMaxTime = 20,
 
+			extractionInterval = 2,
+
+			breakProcess = function(self)
+				if self.updateTimer then
+					timer:delete(self.updateTimer)
+					self.updateTimer = nil
+				end
+
+				if self.triggerImage then
+					removeTextArea(textAreaId.temporalDisturbance)
+					removeImage(self.triggerImage)
+					self.triggerImage = nil
+				end
+			end,
+
+			updateTriggerImage = function(self, opacity)
+				if self.triggerImage then
+					removeImage(self.triggerImage)
+				end
+
+				self.triggerImage = addImage(self.imageData.smallIcon, imageTargets.interfaceIcon,
+					770, 370, self.playerName, nil, nil, nil, opacity)
+			end,
+
+			backInTime = function(self)
+				local dataLen = #self.extractedData
+				if dataLen == 0 then return end
+				self:breakProcess()
+
+				canTriggerPowers = false
+
+				-- Don't let people move
+				setWorldGravity(0, 0)
+				timer:start(changeMapState, 0, dataLen, self)
+			end,
+
+			triggerImage = nil
+		}, {
+			playerName = false,
+			updateTimer = false,
+
+			extractedData = { }
 		})
-		:setUseCooldown(50)
-		:setProbability(18)
-		:bindChatMessage("^C+H+R+O+N+O+S+ +A+T+E+M+P+O+R+A+L+$")
-		:setEffect(function(self)
+		--:setUseCooldown(50)
+		--:setProbability(18)
+		:bindChatMessage('OI')--("^L+O+R+D+ +O+F+ +T+I+M+E+$")
+		:setEffect(function(self, playerName)
+			self.playerName = playerName
 
+			prettyUI.rawAddClickableTextArea("temporalDisturbance", playerName, 800-30, 400-30, 30,
+				30, nil, addTextArea, textAreaId.temporalDisturbance)
+
+			self:updateTriggerImage()
+
+			self.updateTimer = timer:start(updateHoldingTime, 1000, self.holdingMaxTime, self)
 		end)
 end
