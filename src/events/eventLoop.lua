@@ -1,4 +1,5 @@
 eventLoop = function(currentTime, remainingTime)
+	unrefreshableTimer.remainingMapTime = remainingTime
 	unrefreshableTimer:loop()
 	if remainingTime < 500 or players._count.alive <= minPlayersForNextRound then
 		if not hasTriggeredRoundEnd then

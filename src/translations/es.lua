@@ -21,7 +21,7 @@ translations.es = {
 		gravitationalAnomaly = "Anomalía Gravitacional",
 		deathRay = "Rayo de la Muerte",
 		atomic = "Atómico",
-		judgmentDay = "Día del Juicio"
+		dayOfJudgement = "Día del Juicio"
 	},
 	powersDescriptions = {
 		lightSpeed = "Mueve tu ratón a la velocidad de la luz, empujando todos los enemigos cerca.",
@@ -36,7 +36,7 @@ translations.es = {
 		gravitationalAnomaly = "Inicia una anomalía gravitacional.",
 		deathRay = "Rostiza los enemigos con el poderoso y misterioso rayo de la muerte.",
 		atomic = "Cambia los tamaños de los jugadores al azar.",
-		judgmentDay = "Revive todos los enemigos muertos, enlazados entre ellos."
+		dayOfJudgement = "Revive todos los enemigos muertos, enlazados entre ellos."
 	},
 	powerType = {
 		atk = "ATAQUE (%d)",

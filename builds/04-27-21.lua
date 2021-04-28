@@ -234,8 +234,8 @@ translations.en = {
 		atomic = "Randomly changes all players' size.",
 		dayOfJudgement = "Revives all dead enemies, them all linked to each other.",
 		waterSplash = "Summons some drops of water from Antarctica.",
-		soulSucker = "Steals 5 HP from enemies you kill.",
-		temporalDisturbance = "?!"
+		soulSucker = "Steals 5 HP from enemies that you kill.",
+		temporalDisturbance = "Sends you back in time to undo what has been done."
 	},
 	powerType = {
 		atk = "ATTACK (%d)",
@@ -261,7 +261,7 @@ translations.en = {
 		[100] = { "The War Horseman", "The War Horsewoman" },
 		[110] = { "The Death Horseman", "The Death Horsewoman" },
 		[120] = "The Void",
-		[130] = "Atemporal"
+		[130] = "Time Lord"
 	},
 
 	newLevel = "<FC>%s<FC> just reached level <B>%d</B>!",
@@ -438,7 +438,8 @@ translations.br = {
 		atomic = "Atômico",
 		dayOfJudgement = "Dia do Julgamento",
 		waterSplash = "Bomba d'água",
-		soulSucker = "Sugador de Almas"
+		soulSucker = "Sugador de Almas",
+		temporalDisturbance = "Distúrbio Temporal"
 	},
 	powersDescriptions = {
 		lightSpeed = "Move seu rato na velocidade da luz, empurrando todos seus inimigos em volta.",
@@ -455,7 +456,8 @@ translations.br = {
 		atomic = "Altera o tamanho dos jogadores aleatoriamente.",
 		dayOfJudgement = "Revive todos os inimigos mortos, todos presos uns aos outros.",
 		waterSplash = "Invoca algumas gotas d'água da Antártica.",
-		soulSucker = "Rouba 5 HP dos inimigos que você matar."
+		soulSucker = "Rouba 5 HP dos inimigos que você matar.",
+		temporalDisturbance = "Te envia de volta no tempo para desfazer o que foi feito."
 	},
 	powerType = {
 		atk = "ATAQUE (%d)",
@@ -479,7 +481,7 @@ translations.br = {
 		[100] = { "O Cavaleiro da Guerra", "A Cavaleira da Guerra" },
 		[110] = { "O Cavaleiro da Morte", "A Cavaleira da Morte" },
 		[120] = "O Vazio",
-		[130] = "Atemporal"
+		[130] = "Senhor do Tempo"
 	},
 
 	newLevel = "<FC>%s<FC> acaba de atingir o nível <B>%d</B>!",
@@ -599,7 +601,7 @@ translations.es = {
 		gravitationalAnomaly = "Anomalía Gravitacional",
 		deathRay = "Rayo de la Muerte",
 		atomic = "Atómico",
-		judgmentDay = "Día del Juicio"
+		dayOfJudgement = "Día del Juicio"
 	},
 	powersDescriptions = {
 		lightSpeed = "Mueve tu ratón a la velocidad de la luz, empujando todos los enemigos cerca.",
@@ -614,7 +616,7 @@ translations.es = {
 		gravitationalAnomaly = "Inicia una anomalía gravitacional.",
 		deathRay = "Rostiza los enemigos con el poderoso y misterioso rayo de la muerte.",
 		atomic = "Cambia los tamaños de los jugadores al azar.",
-		judgmentDay = "Revive todos los enemigos muertos, enlazados entre ellos."
+		dayOfJudgement = "Revive todos los enemigos muertos, enlazados entre ellos."
 	},
 	powerType = {
 		atk = "ATAQUE (%d)",
@@ -1335,7 +1337,7 @@ translations.cn = {
 		gravitationalAnomaly = "重力異象",
 		deathRay = "死亡射線",
 		atomic = "原子",
-		judgmentDay = "審判之日"
+		dayOfJudgement = "審判之日"
 	},
 	powersDescriptions = {
 		lightSpeed = "你會以光速移動, 推開附近的所有敵人。",
@@ -1350,7 +1352,7 @@ translations.cn = {
 		gravitationalAnomaly = "使重力開始變得異常。",
 		deathRay = "使用強大而且神秘的死亡光束把敵人烤焦。",
 		atomic = "隨機改變所有玩家的身體大小。",
-		judgmentDay = "復活所有死掉的敵人, 同時把他們都綁在一起。"
+		dayOfJudgement = "復活所有死掉的敵人, 同時把他們都綁在一起。"
 	},
 	powerType = {
 		atk = "攻擊 (%d)",
@@ -3098,6 +3100,8 @@ do
 	unrefreshableTimer.deleteQueue = { }
 	unrefreshableTimer.countDeleteQueue = 0
 
+	unrefreshableTimer.remainingMapTime = 0
+
 	unrefreshableTimer.start = function(self, callback, ms, times, ...)
 		self.id = self.id + 1
 
@@ -4410,7 +4414,9 @@ end
 -- Level 130
 do
 	local extractAllPlayerInfo = function(self, timer)
-		local players, index, tmpCache = { }, 0
+		local players, index, tmpCache = {
+			_remainingTime = unrefreshableTimer.remainingMapTime/1000 + 3
+		}, 0
 		for p, v in next, room.playerList do
 			tmpCache = playerCache[p]
 			if tmpCache then
@@ -4433,12 +4439,13 @@ do
 	end
 
 	local updateHoldingTime = function(self, timer)
-		if (timer.times+1) % self.extractionInterval == 0 then
+		local lastTime = timer.times + 1
+		if lastTime % self.extractionInterval == 0 then
 			extractAllPlayerInfo(self, timer)
 		end
 
 		if timer.times > 0 then
-			self:updateTriggerImage()
+			self:updateTriggerImage(lastTime / self.holdingMaxTime)
 		else
 			self:breakProcess()
 		end
@@ -4468,11 +4475,12 @@ do
 					removeCheese(tmpPlayerName)
 				end
 
-				movePlayer(tmpPlayerName, p.x, p.y, false, p.vx * velocityMultiplier,
-					p.vy * velocityMultiplier, false)
+				movePlayer(tmpPlayerName, p.x, p.y, false, 1 + p.vx*velocityMultiplier,
+					1 + p.vy*velocityMultiplier, false)
 			end
 		end
 
+		setGameTime(mapData._remainingTime)
 		if canTriggerPowers then
 			setWorldGravity()
 		end
@@ -4480,14 +4488,14 @@ do
 
 	powers.temporalDisturbance = Power
 		.new("temporalDisturbance", powerType.divine, 130, {
-			smallIcon = "1790bf78277.png",
-			icon = "1790bf78277.png",
-			iconWidth = 30,
-			iconHeight = 30
+			smallIcon = "179164a4cae.png",
+			icon = "1791664ddd4.png",
+			iconWidth = 110,
+			iconHeight = 99
 		}, {
 			holdingMaxTime = 20,
 
-			extractionInterval = 2,
+			extractionInterval = 1,
 
 			breakProcess = function(self)
 				if self.updateTimer then
@@ -4530,13 +4538,13 @@ do
 
 			extractedData = { }
 		})
-		--:setUseCooldown(50)
-		--:setProbability(18)
-		:bindChatMessage('OI')--("^L+O+R+D+ +O+F+ +T+I+M+E+$")
+		:setUseCooldown(50)
+		:setProbability(30)
+		:bindChatMessage("^T+I+M+E+ L+O+R+D+$")
 		:setEffect(function(self, playerName)
 			self.playerName = playerName
 
-			prettyUI.rawAddClickableTextArea("temporalDisturbance", playerName, 800-30, 400-30, 30,
+			prettyUI.rawAddClickableTextArea("temporalDisturbance", playerName, 770, 370, 30,
 				30, nil, addTextArea, textAreaId.temporalDisturbance)
 
 			self:updateTriggerImage()
@@ -6360,6 +6368,7 @@ end
 
 --[[ events/eventLoop.lua ]]--
 eventLoop = function(currentTime, remainingTime)
+	unrefreshableTimer.remainingMapTime = remainingTime
 	unrefreshableTimer:loop()
 	if remainingTime < 500 or players._count.alive <= minPlayersForNextRound then
 		if not hasTriggeredRoundEnd then

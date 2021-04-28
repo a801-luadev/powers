@@ -116,7 +116,7 @@ do
 			despawnLen = 0
 		})
 		:setUseCooldown(25)
-		:setProbability(50)
+		:setProbability(45)
 		:bindChatMessage("^A+N+O+M+A+L+Y+$")
 		:setEffect(function(self, playerName)
 			canTriggerPowers = false

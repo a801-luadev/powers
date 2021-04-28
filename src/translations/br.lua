@@ -30,7 +30,8 @@ translations.br = {
 		atomic = "Atômico",
 		dayOfJudgement = "Dia do Julgamento",
 		waterSplash = "Bomba d'água",
-		soulSucker = "Sugador de Almas"
+		soulSucker = "Sugador de Almas",
+		temporalDisturbance = "Distúrbio Temporal"
 	},
 	powersDescriptions = {
 		lightSpeed = "Move seu rato na velocidade da luz, empurrando todos seus inimigos em volta.",
@@ -47,7 +48,8 @@ translations.br = {
 		atomic = "Altera o tamanho dos jogadores aleatoriamente.",
 		dayOfJudgement = "Revive todos os inimigos mortos, todos presos uns aos outros.",
 		waterSplash = "Invoca algumas gotas d'água da Antártica.",
-		soulSucker = "Rouba 5 HP dos inimigos que você matar."
+		soulSucker = "Rouba 5 HP dos inimigos que você matar.",
+		temporalDisturbance = "Te envia de volta no tempo para desfazer o que foi feito."
 	},
 	powerType = {
 		atk = "ATAQUE (%d)",
@@ -71,7 +73,7 @@ translations.br = {
 		[100] = { "O Cavaleiro da Guerra", "A Cavaleira da Guerra" },
 		[110] = { "O Cavaleiro da Morte", "A Cavaleira da Morte" },
 		[120] = "O Vazio",
-		[130] = "Atemporal"
+		[130] = { "Senhor do Tempo", "Senhora do Tempo" }
 	},
 
 	newLevel = "<FC>%s<FC> acaba de atingir o nível <B>%d</B>!",
@@ -110,7 +112,9 @@ translations.br = {
 			"• Jogadores com nível menor que 35 receberão XP extra.",
 			"• Duas novas medalhas! 2000 vitórias / usar um poder divino.",
 			"• Novo poder <B>Sugador de Almas</B>.",
-			"• Nova medalha para mappers. Se você tem três ou mais mapas no #powers, entre em contato com o desenvolvedor do módulo para obtê-la."
+			"• Nova medalha para mappers. Se você tem três ou mais mapas no #powers, entre em contato com o desenvolvedor do módulo para obtê-la.",
+			"• Novo nível <I>(Senhor do Tempo)</I>.",
+			"• Novo poder <B>Distúrbio Temporal</B>."
 		}
 	},
 

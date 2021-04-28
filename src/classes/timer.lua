@@ -63,6 +63,8 @@ do
 	unrefreshableTimer.deleteQueue = { }
 	unrefreshableTimer.countDeleteQueue = 0
 
+	unrefreshableTimer.remainingMapTime = 0
+
 	unrefreshableTimer.start = function(self, callback, ms, times, ...)
 		self.id = self.id + 1
 

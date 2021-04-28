@@ -21,7 +21,7 @@ translations.cn = {
 		gravitationalAnomaly = "重力異象",
 		deathRay = "死亡射線",
 		atomic = "原子",
-		judgmentDay = "審判之日"
+		dayOfJudgement = "審判之日"
 	},
 	powersDescriptions = {
 		lightSpeed = "你會以光速移動, 推開附近的所有敵人。",
@@ -36,7 +36,7 @@ translations.cn = {
 		gravitationalAnomaly = "使重力開始變得異常。",
 		deathRay = "使用強大而且神秘的死亡光束把敵人烤焦。",
 		atomic = "隨機改變所有玩家的身體大小。",
-		judgmentDay = "復活所有死掉的敵人, 同時把他們都綁在一起。"
+		dayOfJudgement = "復活所有死掉的敵人, 同時把他們都綁在一起。"
 	},
 	powerType = {
 		atk = "攻擊 (%d)",

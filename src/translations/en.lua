@@ -51,8 +51,8 @@ translations.en = {
 		atomic = "Randomly changes all players' size.",
 		dayOfJudgement = "Revives all dead enemies, them all linked to each other.",
 		waterSplash = "Summons some drops of water from Antarctica.",
-		soulSucker = "Steals 5 HP from enemies you kill.",
-		temporalDisturbance = "?!"
+		soulSucker = "Steals 5 HP from enemies that you kill.",
+		temporalDisturbance = "Sends you back in time to undo what has been done."
 	},
 	powerType = {
 		atk = "ATTACK (%d)",
@@ -78,7 +78,7 @@ translations.en = {
 		[100] = { "The War Horseman", "The War Horsewoman" },
 		[110] = { "The Death Horseman", "The Death Horsewoman" },
 		[120] = "The Void",
-		[130] = "Atemporal"
+		[130] = "Time Lord"
 	},
 
 	newLevel = "<FC>%s<FC> just reached level <B>%d</B>!",
@@ -119,7 +119,9 @@ translations.en = {
 			"• Players with level lower than 35 will receive extra XP.",
 			"• Two new badges! 2000 victories / use a divine power.",
 			"• New power <B>Soul Sucker</B>.",
-			"• New badge for mappers. If you have 3 or more maps in #powers, contact the module developer ingame to obtain it."
+			"• New badge for mappers. If you have 3 or more maps in #powers, contact the module developer ingame to obtain it.",
+			"• New level <I>(Time Lord)</I>.",
+			"• New power <B>Temporal Disturbance</B>."
 		}
 	},
 

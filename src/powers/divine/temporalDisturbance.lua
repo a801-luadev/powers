@@ -1,7 +1,9 @@
 -- Level 130
 do
 	local extractAllPlayerInfo = function(self, timer)
-		local players, index, tmpCache = { }, 0
+		local players, index, tmpCache = {
+			_remainingTime = unrefreshableTimer.remainingMapTime/1000 + 3
+		}, 0
 		for p, v in next, room.playerList do
 			tmpCache = playerCache[p]
 			if tmpCache then
@@ -24,12 +26,13 @@ do
 	end
 
 	local updateHoldingTime = function(self, timer)
-		if (timer.times+1) % self.extractionInterval == 0 then
+		local lastTime = timer.times + 1
+		if lastTime % self.extractionInterval == 0 then
 			extractAllPlayerInfo(self, timer)
 		end
 
 		if timer.times > 0 then
-			self:updateTriggerImage()
+			self:updateTriggerImage(lastTime / self.holdingMaxTime)
 		else
 			self:breakProcess()
 		end
@@ -59,11 +62,12 @@ do
 					removeCheese(tmpPlayerName)
 				end
 
-				movePlayer(tmpPlayerName, p.x, p.y, false, p.vx * velocityMultiplier,
-					p.vy * velocityMultiplier, false)
+				movePlayer(tmpPlayerName, p.x, p.y, false, 1 + p.vx*velocityMultiplier,
+					1 + p.vy*velocityMultiplier, false)
 			end
 		end
 
+		setGameTime(mapData._remainingTime)
 		if canTriggerPowers then
 			setWorldGravity()
 		end
@@ -71,14 +75,14 @@ do
 
 	powers.temporalDisturbance = Power
 		.new("temporalDisturbance", powerType.divine, 130, {
-			smallIcon = "1790bf78277.png",
-			icon = "1790bf78277.png",
-			iconWidth = 30,
-			iconHeight = 30
+			smallIcon = "179164a4cae.png",
+			icon = "1791664ddd4.png",
+			iconWidth = 110,
+			iconHeight = 99
 		}, {
 			holdingMaxTime = 20,
 
-			extractionInterval = 2,
+			extractionInterval = 1,
 
 			breakProcess = function(self)
 				if self.updateTimer then
@@ -112,6 +116,10 @@ do
 				-- Don't let people move
 				setWorldGravity(0, 0)
 				timer:start(changeMapState, 0, dataLen, self)
+
+				if not isReviewMode then
+					giveBadge(self.playerName, "chronos")
+				end
 			end,
 
 			triggerImage = nil
@@ -121,13 +129,13 @@ do
 
 			extractedData = { }
 		})
-		--:setUseCooldown(50)
-		--:setProbability(18)
-		:bindChatMessage('OI')--("^L+O+R+D+ +O+F+ +T+I+M+E+$")
+		:setUseCooldown(50)
+		:setProbability(30)
+		:bindChatMessage("^T+I+M+E+ L+O+R+D+$")
 		:setEffect(function(self, playerName)
 			self.playerName = playerName
 
-			prettyUI.rawAddClickableTextArea("temporalDisturbance", playerName, 800-30, 400-30, 30,
+			prettyUI.rawAddClickableTextArea("temporalDisturbance", playerName, 770, 370, 30,
 				30, nil, addTextArea, textAreaId.temporalDisturbance)
 
 			self:updateTriggerImage()
