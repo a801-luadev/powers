@@ -5,7 +5,7 @@ flagCodesSet = table_set(flagCodes)
 loadFile(module.data_file) -- Maps, banned players, players with privilege, etc
 loadFile(module.leaderboard_file)
 
-module.max_player_xp = lvlToXp(module.max_player_level)
+module.max_player_xp = lvlToXp(module.max_player_level_interface)
 
 for playerName in next, room.playerList do
 	eventNewPlayer(playerName)
