@@ -1,4 +1,4 @@
- local tree = {
+local tree = {
 	"optimization.lua",
 	"main.lua",
 

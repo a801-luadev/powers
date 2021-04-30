@@ -41,7 +41,6 @@ local room = tfm.get.room -- high usage
 
 -- Enums
 local enum_emote        = tfm.enum.emote -- low usage
-local enum_shamanObject = tfm.enum.shamanObject -- low usage
 
 -- Mathematics
 local ceil   = math.ceil -- low-to-medium usage
@@ -112,7 +111,9 @@ local module = {
 	max_player_level = 139,
 	max_player_xp = nil,
 
-	max_leaderboard_rows = 100
+	max_leaderboard_rows = 100,
+
+	new_game_cooldown = 0
 }
 
 -- Important tables
@@ -179,6 +180,8 @@ local resetPlayersDefaultSize = false
 local Power
 
 local isNoobMode, isProMode = false, false
+
+local logProcessError
 
 --[[ translations/en.lua ]]--
 local translations, getText = { }
@@ -2435,13 +2438,17 @@ end
 --[[ api/transformice.lua ]]--
 do
 	local link = linkMice
-	linkMice = function(p1, p2, linked)
-		local cache = playerCache[p1]
-		if cache then
+	linkMice = function(p1, p2, linked, _cache)
+		_cache = _cache or playerCache[p1]
+		if _cache then
 			if linked then
-				cache.soulMate = p2
+				_cache.soulMate = p2
 			else
-				cache.soulMate = nil
+				if _cache.soulMate and _cache.soulMate ~= p2 then
+					logProcessError("LK_M", "<N>[<V>%s <N>| <V>%s <N>| <V>%s<N>]", tostring(p1),
+						tostring(_cache.soulMate), tostring(p2))
+				end
+				_cache.soulMate = nil
 			end
 		end
 
@@ -2540,15 +2547,15 @@ local messageRoomAdmins = function(message)
 end
 
 --[[ api/log.lua ]]--
-local logCommandUsage
-do
-	local internalMessageFormat = "<BL>[<VI>•<BL>] %s <BL>[%s] → %s"
+local logCommandUsage = function(playerName, command)
+	messagePlayersWithPrivilege(format("<BL>[<VI>•<BL>] %s <BL>[%s] → %s",
+		playerCache[playerName].chatNickname, command[1],
+		table_concat(command, ' ', 2, min(#command, 5))))
+end
 
-	logCommandUsage = function(playerName, command)
-		messagePlayersWithPrivilege(format(internalMessageFormat,
-			playerCache[playerName].chatNickname, command[1],
-			table_concat(command, ' ', 2, min(#command, 5))))
-	end
+logProcessError = function(id, message, ...)
+	chatMessage(format("<ROSE><B>/c %s #powers glitch → %s</B> %s\n<S>%s", module.author, id,
+		format(message, ...), debug.traceback()))
 end
 
 --[[ api/xp.lua ]]--
@@ -3395,7 +3402,6 @@ do
 		return true
 	end
 
-	local happyMsg, sadMsg = "<BL>[<VI>•<BL>] :)", "<BL>[<VI>•<BL>] :("
 	Power.checkTriggerPossibility = function(self, _playerName)
 		if self.triggerPossibility then
 			local possibility = self.triggerPossibility
@@ -3406,12 +3412,12 @@ do
 
 			if random(possibility) ~= random(possibility) then
 				if _playerName then
-					chatMessage(sadMsg, _playerName)
+					chatMessage("<BL>[<VI>•<BL>] :(", _playerName)
 				end
 				return false
 			end
 			if _playerName then
-				chatMessage(happyMsg, _playerName)
+				chatMessage("<BL>[<VI>•<BL>] :)", _playerName)
 			end
 		end
 		return true
@@ -4258,28 +4264,50 @@ do
 		}, {
 			seconds = 10,
 			playerHealthPoints = 35,
-			minDeadMice = 2
+			minDeadMice = 2,
+
+			triggered = false,
+			breakProcess = function(self)
+				if not self.triggered then return end
+
+				for playerName, cache in next, playerCache do
+					if not cache.soulMate then
+						for _playerName, _cache in next, playerCache do
+							if playerName ~= _playerName then
+								linkMice(playerName, _playerName, false, cache)
+							end
+						end
+					else
+						linkMice(playerName, cache.soulMate, false, cache)
+					end
+				end
+
+				self.triggered = false
+			end
 		})
 		:setUseCooldown(45)
 		:setProbability(20)
 		:bindChatMessage("^R+A+I+S+E+ T+H+E+ D+E+A+D+$")
 		:setEffect(function(self)
 			if players._count.dead < self.minDeadMice then return end
+			self.triggered = true
+
 			local deadMice = players.dead
 
 			-- Respawns dead mice
 			local firstPlayer = next(deadMice, nil)
-			local player = firstPlayer
+			local player, tmpPlayerCache = firstPlayer, playerCache[firstPlayer]
 			local lastName
 
 			while player do
 				respawnPlayer(player)
-				addHealth(player, playerCache[player], self.playerHealthPoints)
+				addHealth(player, tmpPlayerCache, self.playerHealthPoints)
 
 				lastPlayer = player
 				player = next(deadMice, player)
+				tmpPlayerCache = playerCache[player]
 
-				linkMice((player or firstPlayer), lastPlayer, true)
+				linkMice((player or firstPlayer), lastPlayer, true, tmpPlayerCache)
 			end
 
 			setGameTime(60)
@@ -4348,38 +4376,38 @@ do
 			iconHeight = 80
 		}, {
 			spawnableObjects = {
-				enum_shamanObject.littleBox,
-				enum_shamanObject.box,
-				enum_shamanObject.littleBoard,
-				enum_shamanObject.board,
-				enum_shamanObject.ball,
-				enum_shamanObject.trampoline,
-				enum_shamanObject.anvil,
-				enum_shamanObject.cannon,
-				enum_shamanObject.bomb,
-				enum_shamanObject.balloon,
-				enum_shamanObject.rune,
-				enum_shamanObject.chicken,
-				enum_shamanObject.snowBall,
-				enum_shamanObject.cupidonArrow,
-				enum_shamanObject.apple,
-				enum_shamanObject.sheep,
-				enum_shamanObject.littleBoardIce,
-				enum_shamanObject.littleBoardChocolate,
-				enum_shamanObject.iceCube,
-				enum_shamanObject.cloud,
-				enum_shamanObject.bubble,
-				enum_shamanObject.tinyBoard,
-				enum_shamanObject.companionCube,
-				enum_shamanObject.stableRune,
-				enum_shamanObject.balloonFish,
-				enum_shamanObject.longBoard,
-				enum_shamanObject.triangle,
-				enum_shamanObject.sBoard,
-				enum_shamanObject.rock,
-				enum_shamanObject.pumpkinBall,
-				enum_shamanObject.tombstone,
-				enum_shamanObject.paperBall,
+				tfm.enum.shamanObject.littleBox,
+				tfm.enum.shamanObject.box,
+				tfm.enum.shamanObject.littleBoard,
+				tfm.enum.shamanObject.board,
+				tfm.enum.shamanObject.ball,
+				tfm.enum.shamanObject.trampoline,
+				tfm.enum.shamanObject.anvil,
+				tfm.enum.shamanObject.cannon,
+				tfm.enum.shamanObject.bomb,
+				tfm.enum.shamanObject.balloon,
+				tfm.enum.shamanObject.rune,
+				tfm.enum.shamanObject.chicken,
+				tfm.enum.shamanObject.snowBall,
+				tfm.enum.shamanObject.cupidonArrow,
+				tfm.enum.shamanObject.apple,
+				tfm.enum.shamanObject.sheep,
+				tfm.enum.shamanObject.littleBoardIce,
+				tfm.enum.shamanObject.littleBoardChocolate,
+				tfm.enum.shamanObject.iceCube,
+				tfm.enum.shamanObject.cloud,
+				tfm.enum.shamanObject.bubble,
+				tfm.enum.shamanObject.tinyBoard,
+				tfm.enum.shamanObject.companionCube,
+				tfm.enum.shamanObject.stableRune,
+				tfm.enum.shamanObject.balloonFish,
+				tfm.enum.shamanObject.longBoard,
+				tfm.enum.shamanObject.triangle,
+				tfm.enum.shamanObject.sBoard,
+				tfm.enum.shamanObject.rock,
+				tfm.enum.shamanObject.pumpkinBall,
+				tfm.enum.shamanObject.tombstone,
+				tfm.enum.shamanObject.paperBall,
 				96, -- Mouse cube
 				97 -- Energy orb
 			},
@@ -6253,6 +6281,7 @@ eventNewGame = function()
 	nextMapToLoad = nil
 
 	if currentMap == 0 then return end
+	module.new_game_cooldown = time() + 4000
 
 	setNextMapIndex()
 
@@ -6332,7 +6361,7 @@ eventRoundEnded = function()
 			end
 
 			if cache.soulMate then
-				linkMice(playerName, cache.soulMate, false)
+				linkMice(playerName, cache.soulMate, false, cache)
 			end
 
 			if alivePlayers[playerName] then
@@ -6383,6 +6412,12 @@ eventLoop = function(currentTime, remainingTime)
 	unrefreshableTimer.remainingMapTime = remainingTime
 	unrefreshableTimer:loop()
 	if remainingTime < 500 or players._count.alive <= minPlayersForNextRound then
+		if module.new_game_cooldown > time() then -- glitching?!
+			logProcessError("EVT_L", "<N>[<V>%s <N>| <V>%s <N>| <V>%s <N>| <V>%s <N>| <V>%s<N>]",
+				module.author, currentTime, remainingTime, players._count.alive,
+				players._count.dead, players._count.currentRound, debug.traceback())
+		end
+
 		if not hasTriggeredRoundEnd then
 			eventRoundEnded()
 		end

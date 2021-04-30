@@ -40,7 +40,6 @@ local room = tfm.get.room -- high usage
 
 -- Enums
 local enum_emote        = tfm.enum.emote -- low usage
-local enum_shamanObject = tfm.enum.shamanObject -- low usage
 
 -- Mathematics
 local ceil   = math.ceil -- low-to-medium usage

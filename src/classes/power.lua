@@ -235,7 +235,6 @@ do
 		return true
 	end
 
-	local happyMsg, sadMsg = "<BL>[<VI>•<BL>] :)", "<BL>[<VI>•<BL>] :("
 	Power.checkTriggerPossibility = function(self, _playerName)
 		if self.triggerPossibility then
 			local possibility = self.triggerPossibility
@@ -246,12 +245,12 @@ do
 
 			if random(possibility) ~= random(possibility) then
 				if _playerName then
-					chatMessage(sadMsg, _playerName)
+					chatMessage("<BL>[<VI>•<BL>] :(", _playerName)
 				end
 				return false
 			end
 			if _playerName then
-				chatMessage(happyMsg, _playerName)
+				chatMessage("<BL>[<VI>•<BL>] :)", _playerName)
 			end
 		end
 		return true

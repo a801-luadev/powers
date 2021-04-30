@@ -91,39 +91,41 @@ do
 		local nickname, discriminator, community
 
 		for playerName in next, players.room do
-			player = room.playerList[playerName]
-			quickPlayerData = playerData[playerName]
+			if playerName ~= module.author then -- I don't want to be in the leaderboard
+				player = room.playerList[playerName]
+				quickPlayerData = playerData[playerName]
 
-			nickname, discriminator = getNicknameAndDiscriminator(playerName)
-			community = flagCodesSet[player.community] or flagCodesSet.xx
+				nickname, discriminator = getNicknameAndDiscriminator(playerName)
+				community = flagCodesSet[player.community] or flagCodesSet.xx
 
-			playerPosition = l_sets[player.id]
-			if playerPosition then -- Already exists, just updates the register
-				playerPosition = l_registers[playerPosition]
+				playerPosition = l_sets[player.id]
+				if playerPosition then -- Already exists, just updates the register
+					playerPosition = l_registers[playerPosition]
 
-				-- Player may have changed their community since the last cycle
-				playerPosition.community = community
-				-- Player may have changed their nickname
-				playerPosition.nickname = nickname
-				playerPosition.discriminator = discriminator
+					-- Player may have changed their community since the last cycle
+					playerPosition.community = community
+					-- Player may have changed their nickname
+					playerPosition.nickname = nickname
+					playerPosition.discriminator = discriminator
 
-				playerPosition.rounds = quickPlayerData.rounds
-				playerPosition.victories = quickPlayerData.victories
-				playerPosition.kills = quickPlayerData.kills
-				playerPosition.xp = quickPlayerData.xp
-			else
-				registersLen = registersLen + 1
-				l_registers[registersLen] = {
-					community     = community,
-					id            = player.id,
-					nickname      = nickname,
-					discriminator = discriminator,
-					rounds        = quickPlayerData.rounds,
-					victories     = quickPlayerData.victories,
-					kills         = quickPlayerData.kills,
-					xp            = quickPlayerData.xp
-				}
-				l_sets[player.id] = registersLen
+					playerPosition.rounds = quickPlayerData.rounds
+					playerPosition.victories = quickPlayerData.victories
+					playerPosition.kills = quickPlayerData.kills
+					playerPosition.xp = quickPlayerData.xp
+				else
+					registersLen = registersLen + 1
+					l_registers[registersLen] = {
+						community     = community,
+						id            = player.id,
+						nickname      = nickname,
+						discriminator = discriminator,
+						rounds        = quickPlayerData.rounds,
+						victories     = quickPlayerData.victories,
+						kills         = quickPlayerData.kills,
+						xp            = quickPlayerData.xp
+					}
+					l_sets[player.id] = registersLen
+				end
 			end
 		end
 

@@ -1,12 +1,16 @@
 do
 	local link = linkMice
-	linkMice = function(p1, p2, linked)
-		local cache = playerCache[p1]
-		if cache then
+	linkMice = function(p1, p2, linked, _cache)
+		_cache = _cache or playerCache[p1]
+		if _cache then
 			if linked then
-				cache.soulMate = p2
+				_cache.soulMate = p2
 			else
-				cache.soulMate = nil
+				if _cache.soulMate and _cache.soulMate ~= p2 then
+					logProcessError("LK_M", "<N>[<V>%s <N>| <V>%s <N>| <V>%s<N>]", tostring(p1),
+						tostring(_cache.soulMate), tostring(p2))
+				end
+				_cache.soulMate = nil
 			end
 		end
 

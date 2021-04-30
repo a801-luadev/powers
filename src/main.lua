@@ -22,7 +22,9 @@ local module = {
 	max_player_level = 139,
 	max_player_xp = nil,
 
-	max_leaderboard_rows = 100
+	max_leaderboard_rows = 100,
+
+	new_game_cooldown = 0
 }
 
 -- Important tables
@@ -89,3 +91,5 @@ local resetPlayersDefaultSize = false
 local Power
 
 local isNoobMode, isProMode = false, false
+
+local logProcessError

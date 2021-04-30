@@ -1,6 +1,7 @@
 do
-	local LAST_LOAD_TIME = time() - 62500
-	local LAST_SAVE_TIME = time() - 62500
+	-- Limited to 30s.
+	local LAST_LOAD_TIME = time() - 32500
+	local LAST_SAVE_TIME = time() - 32500
 
 	local load = loadFile
 	local save = saveFile
@@ -8,7 +9,7 @@ do
 	loadFile = function(fileId)
 		local time = time()
 
-		local callTime = max(0, 62500 + (LAST_LOAD_TIME - time))
+		local callTime = max(0, 32500 + (LAST_LOAD_TIME - time))
 		unrefreshableTimer:start(load, callTime, 1, fileId)
 
 		LAST_LOAD_TIME = time + callTime
@@ -17,7 +18,7 @@ do
 	saveFile = function(data, fileId)
 		local time = time()
 
-		local callTime = max(62500 + (LAST_SAVE_TIME - time), 0)
+		local callTime = max(32500 + (LAST_SAVE_TIME - time), 0)
 		unrefreshableTimer:start(save, callTime, 1, data, fileId)
 
 		LAST_SAVE_TIME = time + callTime
