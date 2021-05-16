@@ -14,7 +14,7 @@ eventNewGame = function()
 	nextMapToLoad = nil
 
 	if currentMap == 0 then return end
-	module.new_game_cooldown = time() + 4000
+	module.new_game_cooldown = time() + 10000
 
 	setNextMapIndex()
 

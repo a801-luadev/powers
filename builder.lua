@@ -102,6 +102,7 @@ local tree = {
 	"commands/leaderboard.lua",
 	"commands/modes.lua",
 	"commands/perms.lua",
+	"commands/round.lua",
 
 	"commands/roomAdmin/password.lua",
 

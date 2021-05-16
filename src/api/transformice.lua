@@ -18,14 +18,29 @@ do
 	end
 end
 
-local isMapCode = function(x)
-	if sub(x, 1, 1) == '@' then
-		x = sub(x, 2)
+local checkMinimalistMode = function(mapCode)
+	mapCode = tostring(mapCode) -- less expensive than sending disableMinimalistMode twice.
+
+	local firstCharacter = sub(mapCode, 1, 1)
+	local hasDecorations, skipChar = firstCharacter == '!', 2
+	if not hasDecorations then
+		hasDecorations = sub(mapCode, 2, 2) == '!'
+		skipChar = 3
 	end
 
-	local str = x
-	x = tonumber(x)
-	return (not not x and #str > 3), x
+	if hasDecorations then
+		mapCode = sub(mapCode, skipChar)
+	end
+
+	disableMinimalistMode(hasDecorations)
+
+	return mapCode ~= "nil" and mapCode or nil
+end
+
+local isMapCode = function(x)
+	local strX = sub(x, 1, 1) == '@' and sub(x, 2) or x
+	x = sub(strX, 1, 1) == '!' and sub(strX, 2) or strX
+	return (tonumber(x) and #strX > 3), strX
 end
 
 local enablePowersTrigger = function()
@@ -51,7 +66,7 @@ local nextMap = function()
 		setNextMapIndex()
 	end
 
-	newGame(nextMapToLoad or maps[currentMap])
+	newGame(checkMinimalistMode(nextMapToLoad or maps[currentMap]))
 end
 
 local strToNickname = function(str, checkDiscriminator)

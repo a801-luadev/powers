@@ -23,7 +23,7 @@ do
 			seconds = 10
 		})
 		:setUseCooldown(25)
-		:setProbability(15)
+		:setProbability(10)
 		:bindChatMessage("^A+T+O+M+I+C+$")
 		:setEffect(function(self)
 			resetPlayersDefaultSize = true

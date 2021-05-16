@@ -26,9 +26,6 @@ local removeImage    = tfm.exec.removeImage -- high usage
 local removeTextArea = ui.removeTextArea -- high usage
 local updateTextArea = ui.updateTextArea -- low-to-medium usage
 
-local lowerSyncDelay  = tfm.exec.lowerSyncDelay -- low usage (1x on new player)
-local setRoomPassword = tfm.exec.setRoomPassword -- low usage
-
 local chatMessage    = tfm.exec.chatMessage -- high usage
 local newGame        = tfm.exec.newGame -- low usage
 
@@ -36,6 +33,8 @@ local loadFile       = system.loadFile -- low-to-medium usage
 local loadPlayerData = system.loadPlayerData -- low usage
 local saveFile       = system.saveFile -- low-to-medium usage
 local savePlayerData = system.savePlayerData -- high usage
+
+local disableMinimalistMode = tfm.exec.disableMinimalistMode -- low-to-medium usage (1x on new game)
 
 local room = tfm.get.room -- high usage
 
@@ -2457,14 +2456,29 @@ do
 	end
 end
 
-local isMapCode = function(x)
-	if sub(x, 1, 1) == '@' then
-		x = sub(x, 2)
+local checkMinimalistMode = function(mapCode)
+	mapCode = tostring(mapCode) -- less expensive than sending disableMinimalistMode twice.
+
+	local firstCharacter = sub(mapCode, 1, 1)
+	local hasDecorations, skipChar = firstCharacter == '!', 2
+	if not hasDecorations then
+		hasDecorations = sub(mapCode, 2, 2) == '!'
+		skipChar = 3
 	end
 
-	local str = x
-	x = tonumber(x)
-	return (not not x and #str > 3), x
+	if hasDecorations then
+		mapCode = sub(mapCode, skipChar)
+	end
+
+	disableMinimalistMode(hasDecorations)
+
+	return mapCode ~= "nil" and mapCode or nil
+end
+
+local isMapCode = function(x)
+	local strX = sub(x, 1, 1) == '@' and sub(x, 2) or x
+	x = sub(strX, 1, 1) == '!' and sub(strX, 2) or strX
+	return (tonumber(x) and #strX > 3), strX
 end
 
 local enablePowersTrigger = function()
@@ -2490,7 +2504,7 @@ local nextMap = function()
 		setNextMapIndex()
 	end
 
-	newGame(nextMapToLoad or maps[currentMap])
+	newGame(checkMinimalistMode(nextMapToLoad or maps[currentMap]))
 end
 
 local strToNickname = function(str, checkDiscriminator)
@@ -2555,8 +2569,8 @@ local logCommandUsage = function(playerName, command)
 end
 
 logProcessError = function(id, message, ...)
-	chatMessage(format("<ROSE><B>/c %s #powers glitch → %s</B> %s\n<S>%s", module.author, id,
-		format(message, ...), debug.traceback()))
+	chatMessage(format("<ROSE><B>/c %s #powers glitch [%s] → %s</B> %s\n<S>%s", module.author,
+		room.name, id, format(message, ...), debug.traceback()))
 end
 
 --[[ api/xp.lua ]]--
@@ -4001,7 +4015,7 @@ do
 			seconds = 10
 		})
 		:setUseCooldown(25)
-		:setProbability(15)
+		:setProbability(10)
 		:bindChatMessage("^A+T+O+M+I+C+$")
 		:setEffect(function(self)
 			resetPlayersDefaultSize = true
@@ -4287,7 +4301,7 @@ do
 			end
 		})
 		:setUseCooldown(45)
-		:setProbability(20)
+		:setProbability(18)
 		:bindChatMessage("^R+A+I+S+E+ T+H+E+ D+E+A+D+$")
 		:setEffect(function(self)
 			if players._count.dead < self.minDeadMice then return end
@@ -4358,7 +4372,7 @@ do
 			explosion(expX, expY, random(-40, 40), expR)
 
 			-- Extra life
-			if random(8) == random(8) then
+			if random(6) == random(6) then
 				local rand
 				for name, cache in next, getPlayersOnFilter(nil, pythagoras, expX, expY, expR) do
 					rand = random(1, self.totalPlusIds)
@@ -4434,7 +4448,7 @@ do
 			despawnLen = 0
 		})
 		:setUseCooldown(25)
-		:setProbability(45)
+		:setProbability(30)
 		:bindChatMessage("^A+N+O+M+A+L+Y+$")
 		:setEffect(function(self, playerName)
 			canTriggerPowers = false
@@ -4578,8 +4592,8 @@ do
 
 			extractedData = { }
 		})
-		:setUseCooldown(50)
-		:setProbability(30)
+		:setUseCooldown(30)
+		:setProbability(28)
 		:bindChatMessage("^T+I+M+E+ L+O+R+D+$")
 		:setEffect(function(self, playerName)
 			self.playerName = playerName
@@ -4807,7 +4821,7 @@ local parseDataFile = function(data)
 	dataFileContent = data
 
 	-- Loads all maps
-	maps = str_split(tostring(data[1]), '@', true, tonumber)
+	maps = str_split(tostring(data[1]), '@', true)
 	mapHashes = table_set(maps)
 	table_shuffle(maps)
 	totalCurrentMaps = #maps
@@ -5707,7 +5721,7 @@ do
 		if not roomAdmins[playerName] then return end
 
 		command = table_concat(command, ' ', 2)
-		setRoomPassword(command)
+		tfm.exec.setRoomPassword(command)
 
 		playerName = playerCache[playerName].chatNickname
 
@@ -5746,8 +5760,6 @@ do
 		local validMaps, totalMaps, tmpMapCode, tmpIsMapCode = { }, 0
 		for i = 3, #subParameter do
 			tmpIsMapCode, tmpMapCode = isMapCode(subParameter[i])
-				print(tostring(tmpIsMapCode) .. " " ..  tostring(tmpMapCode))
-
 			if tmpIsMapCode then
 				totalMaps = totalMaps + 1
 				validMaps[totalMaps] = tmpMapCode
@@ -5842,7 +5854,7 @@ do
 		if not (command[2] and hasPermission(playerName, permissions.enableReviewMode)
 			and isCurrentMapOnReviewMode) then return end
 
-		newGame(command[2])
+		newGame(checkMinimalistMode(command[2]))
 		logCommandUsage(playerName, command)
 	end
 end
@@ -6203,7 +6215,7 @@ eventNewPlayer = function(playerName)
 		end
 	end
 
-	lowerSyncDelay(playerName)
+	tfm.exec.lowerSyncDelay(playerName)
 
 	-- May bind duplicates
 	for _, power in next, powers do
@@ -6419,9 +6431,10 @@ eventLoop = function(currentTime, remainingTime)
 	unrefreshableTimer:loop()
 	if remainingTime < 500 or players._count.alive <= minPlayersForNextRound then
 		if module.new_game_cooldown > time() then -- glitching?!
-			logProcessError("EVT_L", "<N>[<V>%s <N>| <V>%s <N>| <V>%s <N>| <V>%s <N>| <V>%s<N>]",
-				module.author, currentTime, remainingTime, players._count.alive,
-				players._count.dead, players._count.currentRound, debug.traceback())
+			logProcessError("EVT_L", "<N>[<V>%s <N>| <V>%s <N>| <V>%s <N>| <V>%s <N>| <V>%s " ..
+				"<N>| <V>%s<N>]",
+				currentTime, remainingTime, players._count.alive,
+				players._count.dead, minPlayersForNextRound, players._count.currentRound)
 		end
 
 		if not hasTriggeredRoundEnd then
@@ -6650,7 +6663,7 @@ tfm.exec.disablePhysicalConsumables()
 tfm.exec.disableDebugCommand()
 tfm.exec.disableMortCommand()
 
-setRoomPassword('') -- Disables PW if it is enabled by glitch
+tfm.exec.setRoomPassword('') -- Disables PW if it is enabled by glitch
 tfm.exec.setRoomMaxPlayers(module.max_players)
 
 math.randomseed(time())

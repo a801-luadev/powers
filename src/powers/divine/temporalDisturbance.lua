@@ -129,8 +129,8 @@ do
 
 			extractedData = { }
 		})
-		:setUseCooldown(50)
-		:setProbability(30)
+		:setUseCooldown(30)
+		:setProbability(28)
 		:bindChatMessage("^T+I+M+E+ L+O+R+D+$")
 		:setEffect(function(self, playerName)
 			self.playerName = playerName

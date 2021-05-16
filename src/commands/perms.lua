@@ -1,5 +1,4 @@
 do
-	local internalMessageFormat = "<BL>[<VI>•<BL>] <V>%s:\n%s"
 	local internalPermissionFormat = "\t<BL>%s <N>→ <V>0x%x"
 
 	commands["perms"] = function(playerName, command)
@@ -16,7 +15,7 @@ do
 			end
 		end
 
-		chatMessage(format(internalMessageFormat, playerCache[command[2]].chatNickname,
+		chatMessage(format("<BL>[<VI>•<BL>] <V>%s:\n%s", playerCache[command[2]].chatNickname,
 			table_concat(perms, '\n')), playerName)
 	end
 end

@@ -31,7 +31,7 @@ do
 			end
 		})
 		:setUseCooldown(45)
-		:setProbability(20)
+		:setProbability(18)
 		:bindChatMessage("^R+A+I+S+E+ T+H+E+ D+E+A+D+$")
 		:setEffect(function(self)
 			if players._count.dead < self.minDeadMice then return end

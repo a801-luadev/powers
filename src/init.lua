@@ -22,7 +22,7 @@ tfm.exec.disablePhysicalConsumables()
 tfm.exec.disableDebugCommand()
 tfm.exec.disableMortCommand()
 
-setRoomPassword('') -- Disables PW if it is enabled by glitch
+tfm.exec.setRoomPassword('') -- Disables PW if it is enabled by glitch
 tfm.exec.setRoomMaxPlayers(module.max_players)
 
 math.randomseed(time())

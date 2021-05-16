@@ -3,7 +3,7 @@ do
 		if not roomAdmins[playerName] then return end
 
 		command = table_concat(command, ' ', 2)
-		setRoomPassword(command)
+		tfm.exec.setRoomPassword(command)
 
 		playerName = playerCache[playerName].chatNickname
 

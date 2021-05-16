@@ -84,7 +84,7 @@ eventNewPlayer = function(playerName)
 		end
 	end
 
-	lowerSyncDelay(playerName)
+	tfm.exec.lowerSyncDelay(playerName)
 
 	-- May bind duplicates
 	for _, power in next, powers do

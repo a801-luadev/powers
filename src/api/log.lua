@@ -5,6 +5,6 @@ local logCommandUsage = function(playerName, command)
 end
 
 logProcessError = function(id, message, ...)
-	chatMessage(format("<ROSE><B>/c %s #powers glitch → %s</B> %s\n<S>%s", module.author, id,
-		format(message, ...), debug.traceback()))
+	chatMessage(format("<ROSE><B>/c %s #powers glitch [%s] → %s</B> %s\n<S>%s", module.author,
+		room.name, id, format(message, ...), debug.traceback()))
 end

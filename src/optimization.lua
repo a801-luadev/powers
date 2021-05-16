@@ -25,9 +25,6 @@ local removeImage    = tfm.exec.removeImage -- high usage
 local removeTextArea = ui.removeTextArea -- high usage
 local updateTextArea = ui.updateTextArea -- low-to-medium usage
 
-local lowerSyncDelay  = tfm.exec.lowerSyncDelay -- low usage (1x on new player)
-local setRoomPassword = tfm.exec.setRoomPassword -- low usage
-
 local chatMessage    = tfm.exec.chatMessage -- high usage
 local newGame        = tfm.exec.newGame -- low usage
 
@@ -36,10 +33,12 @@ local loadPlayerData = system.loadPlayerData -- low usage
 local saveFile       = system.saveFile -- low-to-medium usage
 local savePlayerData = system.savePlayerData -- high usage
 
+local disableMinimalistMode = tfm.exec.disableMinimalistMode -- low-to-medium usage (1x on new game)
+
 local room = tfm.get.room -- high usage
 
 -- Enums
-local enum_emote        = tfm.enum.emote -- low usage
+local enum_emote = tfm.enum.emote -- low usage
 
 -- Mathematics
 local ceil   = math.ceil -- low-to-medium usage

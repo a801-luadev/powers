@@ -86,7 +86,7 @@ local parseDataFile = function(data)
 	dataFileContent = data
 
 	-- Loads all maps
-	maps = str_split(tostring(data[1]), '@', true, tonumber)
+	maps = str_split(tostring(data[1]), '@', true)
 	mapHashes = table_set(maps)
 	table_shuffle(maps)
 	totalCurrentMaps = #maps

@@ -40,7 +40,7 @@ do
 			explosion(expX, expY, random(-40, 40), expR)
 
 			-- Extra life
-			if random(8) == random(8) then
+			if random(6) == random(6) then
 				local rand
 				for name, cache in next, getPlayersOnFilter(nil, pythagoras, expX, expY, expR) do
 					rand = random(1, self.totalPlusIds)
@@ -116,7 +116,7 @@ do
 			despawnLen = 0
 		})
 		:setUseCooldown(25)
-		:setProbability(45)
+		:setProbability(30)
 		:bindChatMessage("^A+N+O+M+A+L+Y+$")
 		:setEffect(function(self, playerName)
 			canTriggerPowers = false
