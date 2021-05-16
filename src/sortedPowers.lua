@@ -12,4 +12,6 @@ do
 			end
 		end
 	end
+
+	module.powers_total_pages = #powersSortedByLevel / 16
 end

@@ -30,7 +30,7 @@ do
 		local x, y, w = 100, 65, 503
 
 		prettyUI
-			.new(x, y, w, 278, playerName, contentFormat .. getPageContent(helpPage, _cache),
+			.new(x, y, w, 308, playerName, contentFormat .. getPageContent(helpPage, _cache),
 				_cache)
 			:setCloseButton()
 

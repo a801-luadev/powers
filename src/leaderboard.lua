@@ -62,7 +62,7 @@ local readLeaderboardData = function(data)
 
 	leaderboard.loaded = true
 	-- Remove from this function when hits max.
-	leaderboard.total_pages = ceil(totalRegisters / 17) -- 17 rows
+	module.leaderboard_total_pages = ceil(totalRegisters / 17) -- 17 rows
 end
 
 local sortLeaderboard

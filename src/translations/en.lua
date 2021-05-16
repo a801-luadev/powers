@@ -34,7 +34,7 @@ translations.en = {
 		dayOfJudgement = "Day of Judgement",
 		waterSplash = "Water Splash",
 		soulSucker = "Soul Sucker",
-		temporalDisturbance = "Temporal Disturbance"
+		temporalDisturbance = "Temporal Disturbance",
 	},
 	powersDescriptions = {
 		lightSpeed = "Moves your mouse in the speed of light, pushing all enemies around.",
@@ -52,7 +52,7 @@ translations.en = {
 		dayOfJudgement = "Revives all dead enemies, them all linked to each other.",
 		waterSplash = "Summons some drops of water from Antarctica.",
 		soulSucker = "Steals 5 HP from enemies that you kill.",
-		temporalDisturbance = "Sends you back in time to undo what has been done."
+		temporalDisturbance = "Sends you back in time to undo what has been done.",
 	},
 	powerType = {
 		atk = "ATTACK (%d)",

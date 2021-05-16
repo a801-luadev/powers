@@ -25,7 +25,10 @@ local module = {
 
 	max_leaderboard_rows = 100,
 
-	new_game_cooldown = 0
+	new_game_cooldown = 0,
+
+	leaderboard_total_pages = 0,
+	powers_total_pages = 0
 }
 
 -- Important tables
@@ -43,7 +46,6 @@ local dataFileContent = {
 
 local leaderboard = {
 	loaded = false,
-	total_pages = 0,
 
 	community = { },
 	id = { },

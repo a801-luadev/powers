@@ -1,3 +1,6 @@
+textAreaCallbacks["displayPowerMenu"] = displayPowerMenu
+textAreaCallbacks["displayLeaderboard"] = displayLeaderboard
+
 playersWithPrivileges[module.author_id] = rolePermissions.administrator
 
 flagCodesSet = table_set(flagCodes)

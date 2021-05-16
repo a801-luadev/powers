@@ -17,6 +17,9 @@ local interfaceImages = {
 
 	-- 30x30
 	xButton = "17280a523f6.png",
+	previousPageButton = "179768b03c6.png",
+	nextPageButton = "17976ba1905.png",
+
 	heartToken = "177ae37b108.png",
 
 	-- 70x70
@@ -67,7 +70,7 @@ local interfaceBackground = {
 		[330] = "1726737b74f.png"
 	},
 	[503] = {
-		[278] = "177b28c8f4a.png",
+		[308] = "177b28c8f4a.png",
 		[338] = "177b263ffb8.png"
 	},
 	[700] = {

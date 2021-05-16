@@ -86,8 +86,8 @@ local tree = {
 	"textAreaCallbacks/helpTab.lua",
 	"textAreaCallbacks/powerInfo.lua",
 	"textAreaCallbacks/print.lua",
-	"textAreaCallbacks/leaderboardLeft.lua",
-	"textAreaCallbacks/leaderboardRight.lua",
+	"textAreaCallbacks/previousPage.lua",
+	"textAreaCallbacks/nextPage.lua",
 
 	"textAreaCallbacks/temporalDisturbance.lua",
 

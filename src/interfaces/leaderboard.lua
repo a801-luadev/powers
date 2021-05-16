@@ -32,9 +32,9 @@ do
 			-- Add pagination buttons
 			h = iniY + (h - 50)/2
 			interface:addClickableImage(interfaceImages.leftArrow, imageTargets.interfaceIcon,
-				iniX - 50, h, playerName, 50, 50, "leaderboardLeft")
+				iniX - 50, h, playerName, 50, 50, "previousPage_leaderboard_displayLeaderboard")
 			interface:addClickableImage(interfaceImages.rightArrow, imageTargets.interfaceIcon,
-				iniX + w, h, playerName, 50, 50, "leaderboardRight")
+				iniX + w, h, playerName, 50, 50, "nextPage_leaderboard_displayLeaderboard")
 
 			iniX = x
 			iniY = y

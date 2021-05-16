@@ -46,6 +46,7 @@ eventNewPlayer = function(playerName)
 		isPowersOpen = false,
 		powerInfoIdSelected = nil,
 		powerInfoSelectionImageId = nil,
+		powersPage = 1,
 
 		-- Profile interface
 		isProfileOpen = false,

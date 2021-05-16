@@ -67,7 +67,9 @@ do
 			firstDeletableTextArea = nil,
 			lastDeletableTextArea = nil,
 			firstDeletableImage = nil,
-			lastDeletableImage = nil
+			lastDeletableImage = nil,
+
+			totalButtons = 0
 		}, prettyUI)
 
 		-- Sets new ID
@@ -87,6 +89,7 @@ do
 			imageInterface(self, x, y, w, h, playerName, _cache, text, ...)
 		else
 			-- Debug/development behavior, avoidable
+			error()
 			textareaInterface(self, x, y, w, h, playerName, _cache, text, ...)
 		end
 
@@ -146,9 +149,18 @@ do
 		return self
 	end
 
+	prettyUI.setButton = function(self, name, xAxis, callback, ...)
+		local button = self:addClickableImage(interfaceImages[name], imageTargets.interfaceIcon,
+			self.x + self.w - (xAxis or 12), self.y - 15 + (self.totalButtons * 28),
+			self.playerName, 30, 30, callback, nil, ...)
+
+		self.totalButtons = self.totalButtons + 1
+
+		return button
+	end
+
 	prettyUI.setCloseButton = function(self, xAxis)
-		return self:addClickableImage(interfaceImages.xButton, imageTargets.interfaceIcon,
-			self.x + self.w - (xAxis or 12), self.y - 15, self.playerName, 30, 30, "closeInterface")
+		return self:setButton("xButton", xAxis, "closeInterface")
 	end
 
 	prettyUI.markDeletableContent = function(self, bool)

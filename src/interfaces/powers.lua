@@ -6,24 +6,37 @@ do
 		"</B><N><font size='10'>\n%s"
 	local callback = "powerInfo_%s_%s_%s"
 
-	displayPowerMenu = function(playerName, _cache)
-		_cache = _cache or playerCache[playerName]
-		textAreaCallbacks["closeInterface"](playerName, _cache)
-		_cache.isPowersOpen = true
-		local playerLevel = _cache.level
-
+	displayPowerMenu = function(playerName, _cache, interface)
 		-- Build interface
 		local x, y = 253, 65
-		local interface = prettyUI
-			.new(x, y, 503, 338, playerName, '', _cache)
-			:setCloseButton(4)
+		if not interface then
+			_cache = _cache or playerCache[playerName]
+			textAreaCallbacks["closeInterface"](playerName, _cache)
+			_cache.isPowersOpen = true
+
+			interface = prettyUI
+				.new(x, y, 503, 338, playerName, '', _cache)
+				:setCloseButton(4)
+				:setButton("nextPageButton", 4, "nextPage_powers_displayPowerMenu")
+				:setButton("previousPageButton", 4, "previousPage_powers_displayPowerMenu")
+		end
+
+		local playerLevel = _cache.level
+
+		interface
+			:deleteDeletableContent()
+			:markDeletableContent(true)
 
 		x = x + 7
 		y = y + 7
 
-		local totalPowers = #powersSortedByLevel
+		local listEnd = 16 * _cache.powersPage
+		local listIni = listEnd - 15
+		listEnd = min(listEnd, #powersSortedByLevel)
+
 		local power, isLockedPower, sumX
-		for p = 1, totalPowers do
+
+		for p = listIni, listEnd do
 			power = powersSortedByLevel[p]
 			isLockedPower = (not isReviewMode and (power.level > playerLevel))
 
