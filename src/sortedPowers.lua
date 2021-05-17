@@ -13,5 +13,5 @@ do
 		end
 	end
 
-	module.powers_total_pages = #powersSortedByLevel / 16
+	module.powers_total_pages = ceil(#powersSortedByLevel / 16)
 end

@@ -13,6 +13,9 @@ eventNewPlayer = function(playerName)
 		health = 0,
 		extraHealth = 0, -- Health points that were accumulated and will be updated together
 
+		damageRate = 1,
+		hpRate = 1,
+
 		-- Round powers
 		powers = { }, -- All individual powers' data
 		powerCooldown = 0,

@@ -186,9 +186,10 @@ do
 		} or nil
 	end
 
-	Power.damagePlayers = function(self, playerName, args, _method)
+	Power.damagePlayers = function(self, playerName, args, _method, _cache)
 		if self.damage then
-			(_method or damagePlayers)(playerName, self.damage, unpack(args))
+			_cache = _cache or playerCache[playerName];
+			(_method or damagePlayers)(playerName, self.damage * _cache.damageRate, unpack(args))
 		end
 		return self
 	end
@@ -224,7 +225,7 @@ do
 				self.effect(playerName, _x, _y, _cache.isFacingRight, self, _cache, ...)
 			}
 			if args[1] then -- return false to perform the damage inside the effect
-				self:damagePlayers(playerName, args)
+				self:damagePlayers(playerName, args, nil, _cache)
 			end
 		end
 
@@ -293,6 +294,17 @@ do
 			return self:triggerDivine(...)
 		else
 			return self:triggerRegular(...)
+		end
+	end
+
+	Power.basicCircle = function(x, y, particleId, dimension, normalRate, lowQualityRate, force)
+		local xCos, ySin
+		for i = 90, 110, (isLowQuality and lowQualityRate or normalRate) do
+			xCos = cos(i)
+			ySin = sin(i)
+
+			displayParticle(particleId, x + xCos*dimension, y + ySin*dimension, xCos * force,
+				ySin * force)
 		end
 	end
 end

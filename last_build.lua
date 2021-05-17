@@ -223,6 +223,7 @@ translations.en = {
 		waterSplash = "Water Splash",
 		soulSucker = "Soul Sucker",
 		temporalDisturbance = "Temporal Disturbance",
+		emperor = "Emperor"
 	},
 	powersDescriptions = {
 		lightSpeed = "Moves your mouse in the speed of light, pushing all enemies around.",
@@ -239,8 +240,9 @@ translations.en = {
 		atomic = "Randomly changes all players' size.",
 		dayOfJudgement = "Revives all dead enemies, them all linked to each other.",
 		waterSplash = "Summons some drops of water from Antarctica.",
-		soulSucker = "Steals 5 HP from enemies that you kill.",
+		soulSucker = "Steals %d HP from enemies that you kill.",
 		temporalDisturbance = "Sends you back in time to undo what has been done.",
+		emperor = "Makes you %d%% stronger and %d%% more resistent for a few seconds."
 	},
 	powerType = {
 		atk = "ATTACK (%d)",
@@ -297,19 +299,13 @@ translations.en = {
 			"<a href='event:print_atelier801.com/topic?f=6&t=888676'><font size='18' color='#087ECC'>Thread on Forums</font></a></p>"
 		,
 		[4] = { "<FC><p align='center'>WHAT'S NEW?</p><N>\n",
-			"• Module has been entirely rewritten.",
-			"• Module became official.",
-			"• You can read about all powers now.",
-			"• New power <B>Water Splash</B>.",
-			"• Three new badges.",
-			"• New room modes: <B>#powers0lagmode</B>, <B>#powers0freemode</B>, <B>#powers0noobmode</B>, <B>#powers0promode</B>.",
-			"• New command <B>!modes</B>.",
 			"• Players with level lower than 35 will receive extra XP.",
 			"• Two new badges! 2000 victories / use a divine power.",
 			"• New power <B>Soul Sucker</B>.",
 			"• New badge for mappers. If you have 3 or more maps in #powers, contact the module developer ingame to obtain it.",
 			"• New level <I>(Time Lord)</I>.",
-			"• New power <B>Temporal Disturbance</B>."
+			"• New power <B>Temporal Disturbance</B>.",
+			"• New power <B>Emperor</B>."
 		}
 	},
 
@@ -446,7 +442,8 @@ translations.br = {
 		dayOfJudgement = "Dia do Julgamento",
 		waterSplash = "Bomba d'água",
 		soulSucker = "Sugador de Almas",
-		temporalDisturbance = "Distúrbio Temporal"
+		temporalDisturbance = "Distúrbio Temporal",
+		emperor = "Imperador"
 	},
 	powersDescriptions = {
 		lightSpeed = "Move seu rato na velocidade da luz, empurrando todos seus inimigos em volta.",
@@ -463,8 +460,9 @@ translations.br = {
 		atomic = "Altera o tamanho dos jogadores aleatoriamente.",
 		dayOfJudgement = "Revive todos os inimigos mortos, todos presos uns aos outros.",
 		waterSplash = "Invoca algumas gotas d'água da Antártica.",
-		soulSucker = "Rouba 5 HP dos inimigos que você matar.",
-		temporalDisturbance = "Te envia de volta no tempo para desfazer o que foi feito."
+		soulSucker = "Rouba %d HP dos inimigos que você matar.",
+		temporalDisturbance = "Te envia de volta no tempo para desfazer o que foi feito.",
+		emperor = "Torna você %d%% mais forte e %d%% mais resistente por alguns segundos."
 	},
 	powerType = {
 		atk = "ATAQUE (%d)",
@@ -517,19 +515,13 @@ translations.br = {
 			"<a href='event:print_atelier801.com/topic?f=6&t=888676'><font size='18' color='#087ECC'>Tópico no Fórum</font></a></p>"
 		,
 		[4] = { "<FC><p align='center'>O QUE HÁ DE NOVO?</p><N>\n",
-			"• O Module foi totalmente reescrito.",
-			"• O Module se tornou oficial.",
-			"• Você pode ler sobre todos os poderes agora.",
-			"• Novo poder <B>Bomba d'água</B>.",
-			"• Três novas medalhas.",
-			"• Novos modos: <B>#powers0lagmode</B>, <B>#powers0freemode</B>, <B>#powers0noobmode</B>, <B>#powers0promode</B>.",
-			"• Novo comando <B>!modes</B>.",
 			"• Jogadores com nível menor que 35 receberão XP extra.",
 			"• Duas novas medalhas! 2000 vitórias / usar um poder divino.",
 			"• Novo poder <B>Sugador de Almas</B>.",
 			"• Nova medalha para mappers. Se você tem três ou mais mapas no #powers, entre em contato com o desenvolvedor do módulo para obtê-la.",
 			"• Novo nível <I>(Senhor do Tempo)</I>.",
-			"• Novo poder <B>Distúrbio Temporal</B>."
+			"• Novo poder <B>Distúrbio Temporal</B>.",
+			"• Novo poder <B>Imperador</B>."
 		}
 	},
 
@@ -1951,7 +1943,8 @@ local keyboardImagesWidths = {
 
 --[[ enums/emotes.lua ]]--
 local emoteImages = {
-	[enum_emote.facepaw] = "1728baa8d88.png"
+	[enum_emote.angry] = "17978434026.png",
+	[enum_emote.facepaw] = "1728baa8d88.png",
 }
 
 --[[ enums/flags.lua ]]--
@@ -2891,7 +2884,7 @@ local givePlayerKill = function(killerName, killedName, killedCache)
 end
 
 local damagePlayer = function(playerName, damage, cache, _attackerName, _time)
-	cache.health = cache.health - damage
+	cache.health = cache.health - (damage * cache.hpRate)
 
 	if cache.health <= 0 then
 		cache.lastDamageBy = nil
@@ -2926,68 +2919,6 @@ end
 
 local damagePlayers = function(except, damage, filter, x, y, ...)
 	return damagePlayersWithAction(except, damage, nil, filter, x, y, ...)
-end
-
---[[ translations/setup.lua ]]--
-do
-	local merge
-	merge = function(src, aux, ignoredIndexes)
-		for k, v in next, aux do
-			if not ignoredIndexes[k] then
-				if type(v) == "table" then
-					src[k] = merge((type(src[k]) == "table" and src[k] or { }), v, ignoredIndexes)
-				else
-					src[k] = src[k] or v
-				end
-			end
-		end
-		return src
-	end
-
-	local levelName
-	getText = translations[room.community]
-
-	if getText then
-		if getText ~= translations.en then
-			merge(getText, translations.en, {
-				["levelName"] = true
-			})
-
-			levelName = getText.levelName
-			for level, name in next, translations.en.levelName do
-				if not levelName[level] then
-					levelName[level] = name
-				end
-			end
-		end
-	else
-		getText = translations.en
-	end
-
-	-- All level names are tables
-	levelName = levelName or getText.levelName
-	for k, v in next, levelName do
-		if type(v) == "string" then
-			levelName[k] = { v, v }
-		end
-	end
-
-	-- Fix news
-	local newsContent = getText.helpContent[4]
-	local news, index = { newsContent[1] }, 1
-	for i = #newsContent, 2, -1 do
-		index = index + 1
-		news[index] = newsContent[i]
-	end
-	getText.helpContent[4] = table_concat(news, '\n')
-
-	-- Color system mensages
-	getText.ban = format(getText.ban, systemColors.moderation, systemColors.moderation)
-	getText.unban = format(getText.unban, systemColors.moderation)
-	getText.isBanned = format(getText.isBanned, systemColors.moderation)
-	getText.permBan = format(getText.permBan, systemColors.moderation, systemColors.moderation)
-
-	translations = nil
 end
 
 --[[ textAreaCallbacks/callbacks.lua ]]--
@@ -3373,9 +3304,10 @@ do
 		} or nil
 	end
 
-	Power.damagePlayers = function(self, playerName, args, _method)
+	Power.damagePlayers = function(self, playerName, args, _method, _cache)
 		if self.damage then
-			(_method or damagePlayers)(playerName, self.damage, unpack(args))
+			_cache = _cache or playerCache[playerName];
+			(_method or damagePlayers)(playerName, self.damage * _cache.damageRate, unpack(args))
 		end
 		return self
 	end
@@ -3411,7 +3343,7 @@ do
 				self.effect(playerName, _x, _y, _cache.isFacingRight, self, _cache, ...)
 			}
 			if args[1] then -- return false to perform the damage inside the effect
-				self:damagePlayers(playerName, args)
+				self:damagePlayers(playerName, args, nil, _cache)
 			end
 		end
 
@@ -3480,6 +3412,17 @@ do
 			return self:triggerDivine(...)
 		else
 			return self:triggerRegular(...)
+		end
+	end
+
+	Power.basicCircle = function(x, y, particleId, dimension, normalRate, lowQualityRate, force)
+		local xCos, ySin
+		for i = 90, 110, (isLowQuality and lowQualityRate or normalRate) do
+			xCos = cos(i)
+			ySin = sin(i)
+
+			displayParticle(particleId, x + xCos*dimension, y + ySin*dimension, xCos * force,
+				ySin * force)
 		end
 	end
 end
@@ -3638,7 +3581,7 @@ do
 
 	prettyUI.setButton = function(self, name, xAxis, callback, ...)
 		local button = self:addClickableImage(interfaceImages[name], imageTargets.interfaceIcon,
-			self.x + self.w - (xAxis or 12), self.y - 15 + (self.totalButtons * 28),
+			self.x + self.w - (xAxis or 12), self.y - 15 + (self.totalButtons * 35),
 			self.playerName, 30, 30, callback, nil, ...)
 
 		self.totalButtons = self.totalButtons + 1
@@ -4040,6 +3983,54 @@ do
 		end)
 end
 
+--[[ powers/def/emperor.lua ]]--
+-- Level 55
+do
+	local undoEmperor = function(cache, mouseIcon)
+		removeImage(mouseIcon)
+
+		cache.hpRate = 1
+		cache.damageRate = 1
+	end
+
+	powers.emperor = Power
+		.new("emperor", powerType.def, 55, {
+			smallIcon = "1797826aaad.png",
+			icon = "1797830027f.png",
+			iconWidth = 52,
+			iconHeight = 55
+		}, {
+			mouseIcon = "17977e1c079.png",
+
+			hpRate = 0.75,
+			damageRate = 1.25,
+
+			seconds = 20 * 1000
+		})
+		:setUseLimit(1)
+		:setUseCooldown(20)
+		:setProbability(15)
+		:bindEmote(enum_emote.angry)
+		:bindKeyboard(keyboard.left, keyboard.up, keyboard.right, keyboard.down)
+		:setKeySequence({
+			{ keyboard.up, keyboard.left, keyboard.right, keyboard.up, keyboard.left, keyboard.up },
+			{
+				keyboard.down, keyboard.right, keyboard.left, keyboard.down, keyboard.right,
+				keyboard.down
+			}
+		})
+		:setEffect(function(playerName, x, y, _, self, cache)
+			cache.hpRate = self.hpRate
+			cache.damageRate = self.damageRate
+
+			-- Particles
+			Power.basicCircle(x, y, 13, 0, 1.8, 2.4, 7)
+
+			local mouseIcon = addImage(self.mouseIcon, "$" .. playerName, -15, -45)
+			timer:start(undoEmperor, self.seconds, 1, cache, mouseIcon)
+		end)
+end
+
 --[[ powers/atk/superNova.lua ]]--
 -- Level 60
 do
@@ -4122,14 +4113,14 @@ do
 		:setUseCooldown(8)
 		:bindKeyboard(keyboard.down)
 		:setKeySequence({ { keyboard.down, keyboard.down } })
-		:setEffect(function(playerName, x, y, _, self)
+		:setEffect(function(playerName, x, y, _, self, cache)
 			-- Super jump
 			movePlayer(playerName, 0, 0, true, 0, -110, true)
 			-- Super smash
 			timer:start(movePlayer, 500, 1, playerName, 0, 0, true, 0, 400, false)
 			-- Damage
 			timer:start(self.damagePlayers, 1000, 1, self, playerName, { smashDamage, inRectangle,
-				x - 100, y - 60, 200, 100, true }, damagePlayersWithAction)
+				x - 100, y - 60, 200, 100, true }, damagePlayersWithAction, cache)
 			-- Particles
 			timer:start(dust, 1000, 1, x, y)
 
@@ -4164,7 +4155,7 @@ do
 		:setUseLimit(1)
 		:setUseCooldown(25)
 		:setProbability(10)
-		:bindKeyboard(keyboard.left, keyboard.up, keyboard.right, keyboard.dowm)
+		:bindKeyboard(keyboard.left, keyboard.up, keyboard.right, keyboard.down)
 		:setKeySequence({
 			{ keyboard.right, keyboard.up, keyboard.right, keyboard.down, keyboard.left },
 			{ keyboard.left, keyboard.up, keyboard.left, keyboard.down, keyboard.right }
@@ -4180,16 +4171,6 @@ end
 --[[ powers/atk/waterSplash.lua ]]--
 -- Level 90
 do
-	local circle = function(x, y, dimension)
-		local xCos, ySin
-		for i = 90, 110, (isLowQuality and 1.75 or 1) do
-			xCos = cos(i)
-			ySin = sin(i)
-
-			displayParticle(14, x + xCos*dimension, y + ySin*dimension, xCos * -5, ySin * -5)
-		end
-	end
-
 	local freeze = function(playerName)
 		freezePlayer(playerName)
 		timer:start(freezePlayer, 1500, 1, playerName, false)
@@ -4212,15 +4193,15 @@ do
 			{ keyboard.right, keyboard.left, keyboard.down, keyboard.right },
 			{ keyboard.left, keyboard.right, keyboard.down, keyboard.left }
 		})
-		:setEffect(function(playerName, x, y, _, self)
+		:setEffect(function(playerName, x, y, _, self, cache)
 			local dimension = 60
 
 			-- Particles
-			circle(x, y, dimension)
+			Power.basicCircle(x, y, 14, dimension, 1, 1.75, -5)
 
 			-- Damage
 			self:damagePlayers(playerName, { freeze, pythagoras, x, y, dimension },
-				damagePlayersWithAction)
+				damagePlayersWithAction, cache)
 			return false
 		end)
 end
@@ -4640,7 +4621,75 @@ do
 		end
 	end
 
-	module.powers_total_pages = #powersSortedByLevel / 16
+	module.powers_total_pages = ceil(#powersSortedByLevel / 16)
+end
+
+--[[ translations/setup.lua ]]--
+do
+	local merge
+	merge = function(src, aux, ignoredIndexes)
+		for k, v in next, aux do
+			if not ignoredIndexes[k] then
+				if type(v) == "table" then
+					src[k] = merge((type(src[k]) == "table" and src[k] or { }), v, ignoredIndexes)
+				else
+					src[k] = src[k] or v
+				end
+			end
+		end
+		return src
+	end
+
+	local levelName
+	getText = translations[room.community]
+
+	if getText then
+		if getText ~= translations.en then
+			merge(getText, translations.en, {
+				["levelName"] = true
+			})
+
+			levelName = getText.levelName
+			for level, name in next, translations.en.levelName do
+				if not levelName[level] then
+					levelName[level] = name
+				end
+			end
+		end
+	else
+		getText = translations.en
+	end
+
+	-- All level names are tables
+	levelName = levelName or getText.levelName
+	for k, v in next, levelName do
+		if type(v) == "string" then
+			levelName[k] = { v, v }
+		end
+	end
+
+	-- Fix news
+	local newsContent = getText.helpContent[4]
+	local news, index = { newsContent[1] }, 1
+	for i = #newsContent, 2, -1 do
+		index = index + 1
+		news[index] = newsContent[i]
+	end
+	getText.helpContent[4] = table_concat(news, '\n')
+
+	-- Color system mensages
+	getText.ban = format(getText.ban, systemColors.moderation, systemColors.moderation)
+	getText.unban = format(getText.unban, systemColors.moderation)
+	getText.isBanned = format(getText.isBanned, systemColors.moderation)
+	getText.permBan = format(getText.permBan, systemColors.moderation, systemColors.moderation)
+
+	-- Powers
+	getText.powersDescriptions.soulSucker = format(getText.powersDescriptions.soulSucker,
+		powers.soulSucker.healthPoints)
+	getText.powersDescriptions.emperor = format(getText.powersDescriptions.emperor,
+		100 - powers.emperor.hpRate*100, powers.emperor.damageRate*100 - 100)
+
+	translations = nil
 end
 
 --[[ enums/commandsMeta.lua ]]--
@@ -5160,13 +5209,14 @@ do
 		local listIni = listEnd - 15
 		listEnd = min(listEnd, #powersSortedByLevel)
 
-		local power, isLockedPower, sumX
+		local tmpCount, power, isLockedPower, sumX = 0
 
 		for p = listIni, listEnd do
 			power = powersSortedByLevel[p]
 			isLockedPower = (not isReviewMode and (power.level > playerLevel))
 
-			sumX = x + ((p + 1) % 2)*249
+			tmpCount = tmpCount + 1
+			sumX = x + ((tmpCount + 1) % 2)*249
 
 			if not isLockedPower then
 				interface:addTextArea(unlockedPowerContent .. getText.powers[power.name],
@@ -6203,6 +6253,9 @@ eventNewPlayer = function(playerName)
 		health = 0,
 		extraHealth = 0, -- Health points that were accumulated and will be updated together
 
+		damageRate = 1,
+		hpRate = 1,
+
 		-- Round powers
 		powers = { }, -- All individual powers' data
 		powerCooldown = 0,
@@ -6384,15 +6437,24 @@ eventNewGame = function()
 	local currentTime, cache, playerPowers = time()
 	for playerName in next, players.alive do
 		cache = playerCache[playerName]
+
 		cache.health = 100
-		cache.isFacingRight = not room.mirroredMap
 		cache.extraHealth = 0
-		cache.powerCooldown = 0
-		cache.soulMate = nil
-		cache.roundLevel = cache.level
+
 		cache.lastDamageBy = nil
 		cache.lastDamageTime = nil
+
+		cache.isFacingRight = not room.mirroredMap
+
+		cache.powerCooldown = 0
+		cache.roundLevel = cache.level
+
+		cache.soulMate = nil
+
 		cache.spawnHearts = false
+
+		cache.damageRate = 1
+		cache.hpRate = 1
 
 		updateLifeBar(playerName, cache)
 

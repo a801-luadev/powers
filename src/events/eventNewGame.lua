@@ -39,15 +39,24 @@ eventNewGame = function()
 	local currentTime, cache, playerPowers = time()
 	for playerName in next, players.alive do
 		cache = playerCache[playerName]
+
 		cache.health = 100
-		cache.isFacingRight = not room.mirroredMap
 		cache.extraHealth = 0
-		cache.powerCooldown = 0
-		cache.soulMate = nil
-		cache.roundLevel = cache.level
+
 		cache.lastDamageBy = nil
 		cache.lastDamageTime = nil
+
+		cache.isFacingRight = not room.mirroredMap
+
+		cache.powerCooldown = 0
+		cache.roundLevel = cache.level
+
+		cache.soulMate = nil
+
 		cache.spawnHearts = false
+
+		cache.damageRate = 1
+		cache.hpRate = 1
 
 		updateLifeBar(playerName, cache)
 

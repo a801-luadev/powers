@@ -24,7 +24,7 @@ do
 		:setUseLimit(1)
 		:setUseCooldown(25)
 		:setProbability(10)
-		:bindKeyboard(keyboard.left, keyboard.up, keyboard.right, keyboard.dowm)
+		:bindKeyboard(keyboard.left, keyboard.up, keyboard.right, keyboard.down)
 		:setKeySequence({
 			{ keyboard.right, keyboard.up, keyboard.right, keyboard.down, keyboard.left },
 			{ keyboard.left, keyboard.up, keyboard.left, keyboard.down, keyboard.right }

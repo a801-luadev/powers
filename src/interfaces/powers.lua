@@ -34,13 +34,14 @@ do
 		local listIni = listEnd - 15
 		listEnd = min(listEnd, #powersSortedByLevel)
 
-		local power, isLockedPower, sumX
+		local tmpCount, power, isLockedPower, sumX = 0
 
 		for p = listIni, listEnd do
 			power = powersSortedByLevel[p]
 			isLockedPower = (not isReviewMode and (power.level > playerLevel))
 
-			sumX = x + ((p + 1) % 2)*249
+			tmpCount = tmpCount + 1
+			sumX = x + ((tmpCount + 1) % 2)*249
 
 			if not isLockedPower then
 				interface:addTextArea(unlockedPowerContent .. getText.powers[power.name],

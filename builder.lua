@@ -41,8 +41,6 @@ local tree = {
 	"interfaces/lifeBar.lua",
 	"api/life.lua",
 
-	"translations/setup.lua",
-
 	"textAreaCallbacks/callbacks.lua",
 	"keyboardCallbacks/callbacks.lua",
 	"commands/commands.lua",
@@ -62,6 +60,7 @@ local tree = {
 	"powers/atk/dome.lua", -- lv 35
 	"powers/def/wormHole.lua", -- lv 42
 	"powers/divine/atomic.lua", -- lv 50
+	"powers/def/emperor.lua", -- lv 50
 	"powers/atk/superNova.lua", -- lv 60
 	"powers/atk/meteorSmash.lua", -- lv 70
 	"powers/def/soulSucker.lua", -- lv 80
@@ -73,7 +72,9 @@ local tree = {
 
 	"sortedPowers.lua",
 
+	"translations/setup.lua",
 	"enums/commandsMeta.lua",
+
 	"api/data.lua",
 
 	"leaderboard.lua",

@@ -25,14 +25,14 @@ do
 		:setUseCooldown(8)
 		:bindKeyboard(keyboard.down)
 		:setKeySequence({ { keyboard.down, keyboard.down } })
-		:setEffect(function(playerName, x, y, _, self)
+		:setEffect(function(playerName, x, y, _, self, cache)
 			-- Super jump
 			movePlayer(playerName, 0, 0, true, 0, -110, true)
 			-- Super smash
 			timer:start(movePlayer, 500, 1, playerName, 0, 0, true, 0, 400, false)
 			-- Damage
 			timer:start(self.damagePlayers, 1000, 1, self, playerName, { smashDamage, inRectangle,
-				x - 100, y - 60, 200, 100, true }, damagePlayersWithAction)
+				x - 100, y - 60, 200, 100, true }, damagePlayersWithAction, cache)
 			-- Particles
 			timer:start(dust, 1000, 1, x, y)
 

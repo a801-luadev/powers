@@ -35,7 +35,7 @@ local givePlayerKill = function(killerName, killedName, killedCache)
 end
 
 local damagePlayer = function(playerName, damage, cache, _attackerName, _time)
-	cache.health = cache.health - damage
+	cache.health = cache.health - (damage * cache.hpRate)
 
 	if cache.health <= 0 then
 		cache.lastDamageBy = nil

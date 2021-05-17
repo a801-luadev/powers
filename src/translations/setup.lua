@@ -56,5 +56,11 @@ do
 	getText.isBanned = format(getText.isBanned, systemColors.moderation)
 	getText.permBan = format(getText.permBan, systemColors.moderation, systemColors.moderation)
 
+	-- Powers
+	getText.powersDescriptions.soulSucker = format(getText.powersDescriptions.soulSucker,
+		powers.soulSucker.healthPoints)
+	getText.powersDescriptions.emperor = format(getText.powersDescriptions.emperor,
+		100 - powers.emperor.hpRate*100, powers.emperor.damageRate*100 - 100)
+
 	translations = nil
 end

@@ -151,7 +151,7 @@ do
 
 	prettyUI.setButton = function(self, name, xAxis, callback, ...)
 		local button = self:addClickableImage(interfaceImages[name], imageTargets.interfaceIcon,
-			self.x + self.w - (xAxis or 12), self.y - 15 + (self.totalButtons * 28),
+			self.x + self.w - (xAxis or 12), self.y - 15 + (self.totalButtons * 35),
 			self.playerName, 30, 30, callback, nil, ...)
 
 		self.totalButtons = self.totalButtons + 1

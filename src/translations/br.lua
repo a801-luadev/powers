@@ -31,7 +31,8 @@ translations.br = {
 		dayOfJudgement = "Dia do Julgamento",
 		waterSplash = "Bomba d'água",
 		soulSucker = "Sugador de Almas",
-		temporalDisturbance = "Distúrbio Temporal"
+		temporalDisturbance = "Distúrbio Temporal",
+		emperor = "Imperador"
 	},
 	powersDescriptions = {
 		lightSpeed = "Move seu rato na velocidade da luz, empurrando todos seus inimigos em volta.",
@@ -48,8 +49,9 @@ translations.br = {
 		atomic = "Altera o tamanho dos jogadores aleatoriamente.",
 		dayOfJudgement = "Revive todos os inimigos mortos, todos presos uns aos outros.",
 		waterSplash = "Invoca algumas gotas d'água da Antártica.",
-		soulSucker = "Rouba 5 HP dos inimigos que você matar.",
-		temporalDisturbance = "Te envia de volta no tempo para desfazer o que foi feito."
+		soulSucker = "Rouba %d HP dos inimigos que você matar.",
+		temporalDisturbance = "Te envia de volta no tempo para desfazer o que foi feito.",
+		emperor = "Torna você %d%% mais forte e %d%% mais resistente por alguns segundos."
 	},
 	powerType = {
 		atk = "ATAQUE (%d)",
@@ -102,19 +104,13 @@ translations.br = {
 			"<a href='event:print_atelier801.com/topic?f=6&t=888676'><font size='18' color='#087ECC'>Tópico no Fórum</font></a></p>"
 		,
 		[4] = { "<FC><p align='center'>O QUE HÁ DE NOVO?</p><N>\n",
-			"• O Module foi totalmente reescrito.",
-			"• O Module se tornou oficial.",
-			"• Você pode ler sobre todos os poderes agora.",
-			"• Novo poder <B>Bomba d'água</B>.",
-			"• Três novas medalhas.",
-			"• Novos modos: <B>#powers0lagmode</B>, <B>#powers0freemode</B>, <B>#powers0noobmode</B>, <B>#powers0promode</B>.",
-			"• Novo comando <B>!modes</B>.",
 			"• Jogadores com nível menor que 35 receberão XP extra.",
 			"• Duas novas medalhas! 2000 vitórias / usar um poder divino.",
 			"• Novo poder <B>Sugador de Almas</B>.",
 			"• Nova medalha para mappers. Se você tem três ou mais mapas no #powers, entre em contato com o desenvolvedor do módulo para obtê-la.",
 			"• Novo nível <I>(Senhor do Tempo)</I>.",
-			"• Novo poder <B>Distúrbio Temporal</B>."
+			"• Novo poder <B>Distúrbio Temporal</B>.",
+			"• Novo poder <B>Imperador</B>."
 		}
 	},
 

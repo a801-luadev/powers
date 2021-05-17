@@ -35,6 +35,7 @@ translations.en = {
 		waterSplash = "Water Splash",
 		soulSucker = "Soul Sucker",
 		temporalDisturbance = "Temporal Disturbance",
+		emperor = "Emperor"
 	},
 	powersDescriptions = {
 		lightSpeed = "Moves your mouse in the speed of light, pushing all enemies around.",
@@ -51,8 +52,9 @@ translations.en = {
 		atomic = "Randomly changes all players' size.",
 		dayOfJudgement = "Revives all dead enemies, them all linked to each other.",
 		waterSplash = "Summons some drops of water from Antarctica.",
-		soulSucker = "Steals 5 HP from enemies that you kill.",
+		soulSucker = "Steals %d HP from enemies that you kill.",
 		temporalDisturbance = "Sends you back in time to undo what has been done.",
+		emperor = "Makes you %d%% stronger and %d%% more resistent for a few seconds."
 	},
 	powerType = {
 		atk = "ATTACK (%d)",
@@ -109,19 +111,13 @@ translations.en = {
 			"<a href='event:print_atelier801.com/topic?f=6&t=888676'><font size='18' color='#087ECC'>Thread on Forums</font></a></p>"
 		,
 		[4] = { "<FC><p align='center'>WHAT'S NEW?</p><N>\n",
-			"• Module has been entirely rewritten.",
-			"• Module became official.",
-			"• You can read about all powers now.",
-			"• New power <B>Water Splash</B>.",
-			"• Three new badges.",
-			"• New room modes: <B>#powers0lagmode</B>, <B>#powers0freemode</B>, <B>#powers0noobmode</B>, <B>#powers0promode</B>.",
-			"• New command <B>!modes</B>.",
 			"• Players with level lower than 35 will receive extra XP.",
 			"• Two new badges! 2000 victories / use a divine power.",
 			"• New power <B>Soul Sucker</B>.",
 			"• New badge for mappers. If you have 3 or more maps in #powers, contact the module developer ingame to obtain it.",
 			"• New level <I>(Time Lord)</I>.",
-			"• New power <B>Temporal Disturbance</B>."
+			"• New power <B>Temporal Disturbance</B>.",
+			"• New power <B>Emperor</B>."
 		}
 	},
 
