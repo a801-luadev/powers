@@ -38,9 +38,6 @@ local disableMinimalistMode = tfm.exec.disableMinimalistMode -- low-to-medium us
 
 local room = tfm.get.room -- high usage
 
--- Enums
-local enum_emote = tfm.enum.emote -- low usage
-
 -- Mathematics
 local ceil   = math.ceil -- low-to-medium usage
 local cos    = math.cos -- high usage
@@ -1943,8 +1940,8 @@ local keyboardImagesWidths = {
 
 --[[ enums/emotes.lua ]]--
 local emoteImages = {
-	[enum_emote.angry] = "17978434026.png",
-	[enum_emote.facepaw] = "1728baa8d88.png",
+	[tfm.enum.emote.angry] = "17978434026.png",
+	[tfm.enum.emote.facepaw] = "1728baa8d88.png",
 }
 
 --[[ enums/flags.lua ]]--
@@ -3888,7 +3885,7 @@ do
 		:setUseLimit(15)
 		:setUseCooldown(4)
 		:setProbability(3) -- For non-divine players, it only happens for emote triggerers
-		:bindEmote(enum_emote.facepaw)
+		:bindEmote(tfm.enum.emote.facepaw)
 		:bindChatMessage("^P+R+O+T+E+C+T+O+S+$")
 		:setEffect(function(_, x, y)
 			local dimension = 80
@@ -4010,7 +4007,7 @@ do
 		:setUseLimit(1)
 		:setUseCooldown(20)
 		:setProbability(15)
-		:bindEmote(enum_emote.angry)
+		:bindEmote(tfm.enum.emote.angry)
 		:bindKeyboard(keyboard.left, keyboard.up, keyboard.right, keyboard.down)
 		:setKeySequence({
 			{ keyboard.up, keyboard.left, keyboard.right, keyboard.up, keyboard.left, keyboard.up },

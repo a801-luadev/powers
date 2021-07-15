@@ -38,7 +38,7 @@ do
 		:setUseLimit(15)
 		:setUseCooldown(4)
 		:setProbability(3) -- For non-divine players, it only happens for emote triggerers
-		:bindEmote(enum_emote.facepaw)
+		:bindEmote(tfm.enum.emote.facepaw)
 		:bindChatMessage("^P+R+O+T+E+C+T+O+S+$")
 		:setEffect(function(_, x, y)
 			local dimension = 80

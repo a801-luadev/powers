@@ -37,9 +37,6 @@ local disableMinimalistMode = tfm.exec.disableMinimalistMode -- low-to-medium us
 
 local room = tfm.get.room -- high usage
 
--- Enums
-local enum_emote = tfm.enum.emote -- low usage
-
 -- Mathematics
 local ceil   = math.ceil -- low-to-medium usage
 local cos    = math.cos -- high usage

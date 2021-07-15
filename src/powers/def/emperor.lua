@@ -24,7 +24,7 @@ do
 		:setUseLimit(1)
 		:setUseCooldown(20)
 		:setProbability(15)
-		:bindEmote(enum_emote.angry)
+		:bindEmote(tfm.enum.emote.angry)
 		:bindKeyboard(keyboard.left, keyboard.up, keyboard.right, keyboard.down)
 		:setKeySequence({
 			{ keyboard.up, keyboard.left, keyboard.right, keyboard.up, keyboard.left, keyboard.up },
