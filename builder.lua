@@ -60,7 +60,7 @@ local tree = {
 	"powers/atk/dome.lua", -- lv 35
 	"powers/def/wormHole.lua", -- lv 42
 	"powers/divine/atomic.lua", -- lv 50
-	"powers/def/emperor.lua", -- lv 50
+	"powers/def/emperor.lua", -- lv 55
 	"powers/atk/superNova.lua", -- lv 60
 	"powers/atk/meteorSmash.lua", -- lv 70
 	"powers/def/soulSucker.lua", -- lv 80
@@ -122,6 +122,8 @@ local tree = {
 
 	"commands/owner/givebadge.lua",
 	"commands/owner/setdata.lua",
+	"commands/owner/status.lua",
+	"commands/owner/prob.lua",
 
 	"events/eventFileLoaded.lua",
 	"events/eventFileSaved.lua",

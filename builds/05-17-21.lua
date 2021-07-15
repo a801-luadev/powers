@@ -6218,6 +6218,33 @@ do
 	end
 end
 
+--[[ commands/owner/status.lua ]]--
+do
+	-- Enables/disables status in a room.
+	commands["status"] = function(playerName)
+		-- !status
+		if playerName ~= module.author then return end
+
+		isOfficialRoom = not isOfficialRoom
+
+		chatMessage("<BL>[<VI>•<BL>] Is Official Room: <V>" .. upper(tostring(isOfficialRoom)))
+	end
+end
+
+--[[ commands/owner/prob.lua ]]--
+do
+	-- Enables/disables higher chances of divine powers in a room.
+	commands["prob"] = function(playerName)
+		-- !prob
+		if playerName ~= module.author then return end
+
+		isCurrentMapOnReviewMode = not isCurrentMapOnReviewMode
+
+		chatMessage("<BL>[<VI>•<BL>] Is Current Map On Review Mode: <V>" ..
+			upper(tostring(isCurrentMapOnReviewMode)))
+	end
+end
+
 --[[ events/eventFileLoaded.lua ]]--
 eventFileLoaded = function(id, data)
 	if id == module.data_file then
