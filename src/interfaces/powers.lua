@@ -180,11 +180,12 @@ do
 
 			x = x + 25
 		end
-		if power.triggererKey then
+		if power.triggererKey or power.inInventory then
 			y = y + 25
 
-			interface:addImage(keyboardImages[power.triggererKey], imageTargets.interfaceIcon,
-				x - 10 + (w - (keyboardImagesWidths[power.triggererKey] or 25))/2, y, playerName)
+			local key = power.triggererKey or keyboard.G
+			interface:addImage(keyboardImages[key], imageTargets.interfaceIcon,
+				x - 10 + (w - (keyboardImagesWidths[key] or 25))/2, y, playerName)
 		end
 		if power.clickRange then
 			y = y + 25
@@ -192,8 +193,10 @@ do
 			interface:addImage(interfaceImages.mouseClick, imageTargets.interfaceIcon, x + 5, y,
 				playerName)
 
-			interface:addTextArea(power.clickRange .. "px", playerName, x + 25, y + 5, nil, nil, 1,
-				1, 0, true)
+			if power.clickRange > 0 then
+				interface:addTextArea(power.clickRange .. "px", playerName, x + 25, y + 5, nil, nil,
+					1, 1, 0, true)
+			end
 		end
 		if power.messagePattern then
 			y = y + 25

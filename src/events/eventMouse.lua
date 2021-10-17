@@ -5,16 +5,11 @@ eventMouse = function(playerName, x, y)
 	local playerX, playerY = room.playerList[playerName]
 	playerX, playerY = playerX.x, playerX.y
 
-	local playerPowers = cache.powers
-
-	local src = Power.__mouse
-	for power = 1, Power.__eventCount.__mouse do
-		power = src[power]
-
+	local power = Power.__mouse[cache.mouseSkill]
+	if cache.powers[power.name]
 		-- Not internal, must be explicit
-		if playerPowers[power.name] and pythagoras(playerX, playerY, x, y, power.clickRange)
-			and power:trigger(playerName, cache, time, x, y) then
-			return
-		end
+		and (power.clickRange == 0 or pythagoras(playerX, playerY, x, y, power.clickRange)) then
+
+		power:trigger(playerName, cache, time, playerX, playerY, nil, x, y)
 	end
 end

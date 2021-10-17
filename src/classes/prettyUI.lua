@@ -85,12 +85,14 @@ do
 
 		_cache.isInterfaceOpen = true
 
-		if interfaceBackground[w] and interfaceBackground[w][h] then
-			imageInterface(self, x, y, w, h, playerName, _cache, text, ...)
-		else
-			-- Debug/development behavior, avoidable
-			error()
-			textareaInterface(self, x, y, w, h, playerName, _cache, text, ...)
+		if w then
+			if interfaceBackground[w] and interfaceBackground[w][h] then
+				imageInterface(self, x, y, w, h, playerName, _cache, text, ...)
+			else
+				-- Debug/development behavior, avoidable
+				error()
+				textareaInterface(self, x, y, w, h, playerName, _cache, text, ...)
+			end
 		end
 
 		return self

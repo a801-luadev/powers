@@ -4,6 +4,7 @@ local keyboard = {
 	right = 2,
 	down = 3,
 
+	G = byte 'G',
 	H = byte 'H',
 	L = byte 'L',
 	O = byte 'O',
@@ -20,6 +21,7 @@ local keyboardImages = {
 	[keyboard.right] = "17254b90167.png",
 	[keyboard.down] = "17254b8e9f3.png",
 
+	[keyboard.G] = "17c8f58aeb3.png",
 	[keyboard.H] = "17254b85d4e.png",
 	[keyboard.L] = "17254b88c41.png",
 	[keyboard.O] = "17254b874be.png",

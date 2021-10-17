@@ -60,6 +60,8 @@ eventNewGame = function()
 
 		cache.roundKills = 0
 
+		cache.mouseSkill = 1
+
 		updateLifeBar(playerName, cache)
 
 		playerPowers = cache.powers

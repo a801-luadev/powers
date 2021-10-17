@@ -10,7 +10,11 @@ eventPlayerDied = function(playerName)
 	end
 
 	local cache = playerCache[playerName]
-	if cache and cache.lastDamageBy then
+	if cache then
+		cache.mouseSkill = 1
+
+		if not cache.lastDamageBy then return end
+
 		if cache.lastDamageTime > time() then
 			givePlayerKill(cache.lastDamageBy, playerName, cache)
 			playerData:save(cache.lastDamageBy)

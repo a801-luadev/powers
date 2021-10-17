@@ -58,6 +58,7 @@ local tree = {
 	"powers/def/doubleJump.lua", -- lv 20
 	"powers/def/helix.lua", -- lv 28
 	"powers/atk/dome.lua", -- lv 35
+	"powers/def/traveler.lua", -- lv 38
 	"powers/def/wormHole.lua", -- lv 42
 	"powers/divine/atomic.lua", -- lv 50
 	"powers/def/emperor.lua", -- lv 55
@@ -83,6 +84,7 @@ local tree = {
 	"interfaces/powers.lua",
 	"interfaces/profile.lua",
 	"interfaces/leaderboard.lua",
+	"interfaces/powersInventory.lua",
 
 	"textAreaCallbacks/helpTab.lua",
 	"textAreaCallbacks/powerInfo.lua",
@@ -90,8 +92,10 @@ local tree = {
 	"textAreaCallbacks/previousPage.lua",
 	"textAreaCallbacks/nextPage.lua",
 
+	"textAreaCallbacks/power.lua",
 	"textAreaCallbacks/temporalDisturbance.lua",
 
+	"keyboardCallbacks/G.lua",
 	"keyboardCallbacks/H.lua",
 	"keyboardCallbacks/O.lua",
 	"keyboardCallbacks/P.lua",
@@ -99,6 +103,7 @@ local tree = {
 
 	"commands/help.lua",
 	"commands/powers.lua",
+	"commands/i.lua",
 	"commands/profile.lua",
 	"commands/leaderboard.lua",
 	"commands/modes.lua",

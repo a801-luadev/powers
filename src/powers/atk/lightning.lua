@@ -31,13 +31,13 @@ do
 		:setUseLimit(10)
 		:setUseCooldown(5)
 		:bindMouse(150)
-		:setEffect(function(_, x, y)
+		:setEffect(function(_, _, _, _, _, _, clickX, clickY)
 			-- Particles
-			lightning(x, y)
+			lightning(clickX, clickY)
 
 			-- Damage
-			y = y + 100
-			explosion(x, y, 30, 60)
-			return pythagoras, x, y, 60
+			clickY = clickY + 100
+			explosion(clickX, clickY, 30, 60)
+			return pythagoras, clickX, clickY, 60
 		end)
 end

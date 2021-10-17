@@ -8,6 +8,10 @@ local commandsMeta = {
 		hotkey = "O"
 	},
 	{
+		name = "i",
+		hotkey = "G"
+	},
+	{
 		name = "profile",
 		hotkey = "P"
 	},

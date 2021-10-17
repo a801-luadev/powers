@@ -7,12 +7,14 @@ do
 	Power.__mouse       = { }
 	Power.__chatMessage = { }
 	Power.__emotePlayed = { }
+	Power.__inventory   = { }
 
 	Power.__eventCount  = {
 		__keyboard    = 0,
 		__mouse       = 0,
 		__chatMessage = 0,
-		__emotePlayed = 0
+		__emotePlayed = 0,
+		__inventory   = 0
 	}
 
 	Power.__nameByLevel = { }
@@ -22,6 +24,7 @@ do
 			name = name,
 			type = type,
 			level = level,
+			typeId = { },
 
 			effect = nil,
 
@@ -49,6 +52,8 @@ do
 			messagePattern = nil,
 
 			triggererEmote = nil,
+
+			inInventory = false,
 
 			imageData = imageData,
 			resetableData = resetableData
@@ -117,6 +122,7 @@ do
 		local power = Power[type]
 		count[type] = count[type] + 1
 		power[count[type]] = self
+		self.typeId[type] = count[type]
 	end
 
 	Power.bindChatMessage = function(self, message)
@@ -140,7 +146,7 @@ do
 	end
 
 	Power.bindMouse = function(self, range)
-		self.clickRange = range
+		self.clickRange = range or 0
 		self.bindControl = bindClick
 
 		setEventType(self, "__mouse")
@@ -152,6 +158,14 @@ do
 		self.triggererEmote = emoteId
 
 		setEventType(self, "__emotePlayed")
+
+		return self
+	end
+
+	Power.useInventory = function(self, emoteId)
+		self.inInventory = true
+
+		setEventType(self, "__inventory")
 
 		return self
 	end
@@ -200,20 +214,28 @@ do
 		return self
 	end
 
-	local canTriggerRegular = function(self, cache, _time)
+	Power.canTriggerRegular = function(self, cache, _time, _isCheck)
 		local playerPowerData = cache.powers[self.name]
-		if playerPowerData.remainingUses == 0 then return end -- x < 0 means infinity
+		if not playerPowerData or
+			playerPowerData.remainingUses == 0 then return end -- x < 0 means infinity
 
 		if cache.roundKills < self.oncePerNKills then return end -- allow once for every N kills
 
 		_time = _time or time()
 		if playerPowerData.cooldown > _time then return end
+
+		if _isCheck then
+			return true
+		end
+
 		playerPowerData.cooldown = _time + self.useCooldown
 		cache.powerCooldown = _time + 800 -- General cooldown
 
 		playerPowerData.remainingUses = playerPowerData.remainingUses - 1
 
-		cache.roundKills = 0
+		if self.oncePerNKills > 0 then
+			cache.roundKills = cache.roundKills - self.oncePerNKills
+		end
 
 		return true
 	end
@@ -221,7 +243,11 @@ do
 	Power.triggerRegular = function(self, playerName, _cache, _time, _x, _y, _ignorePosition, ...)
 		_cache = _cache or playerCache[playerName]
 
-		if not canTriggerRegular(self, _cache, _time) then
+		if self.bindControl == bindClick then -- before checking permission to avoid glitches
+			_cache.mouseSkill = 1
+		end
+
+		if not self:canTriggerRegular(_cache, _time) then
 			return false
 		end
 
