@@ -6,8 +6,8 @@ eventKeyboard = function(playerName, key, isDown, x, y)
 	elseif key == 2 then
 		cache.isFacingRight = true
 	elseif keyboardCallbacks[key] then
-		if playerCanTriggerCallback(playerName, cache) then
-			keyboardCallbacks[key](playerName, cache)
+		if playerCanTriggerCallback(playerName, cache, key == keyboard.G) then
+			keyboardCallbacks[key](playerName, cache, isDown)
 		end
 		return
 	end

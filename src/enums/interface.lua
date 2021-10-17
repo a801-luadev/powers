@@ -35,6 +35,7 @@ local interfaceImages = {
 	heart = "17254b649d2.png",
 	explodingBomb = "17254d637be.png",
 	megaphone = "1725980b66c.png",
+	tinySkull = "17c8b2c4e2d.png",
 
 	mouseClick = "172bb22eed4.png",
 

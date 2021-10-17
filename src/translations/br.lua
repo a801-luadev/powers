@@ -32,7 +32,8 @@ translations.br = {
 		waterSplash = "Bomba d'água",
 		soulSucker = "Sugador de Almas",
 		temporalDisturbance = "Distúrbio Temporal",
-		emperor = "Imperador"
+		emperor = "Imperador",
+		traveler = "Viajante"
 	},
 	powersDescriptions = {
 		lightSpeed = "Move seu rato na velocidade da luz, empurrando todos seus inimigos em volta.",
@@ -51,7 +52,8 @@ translations.br = {
 		waterSplash = "Invoca algumas gotas d'água da Antártica.",
 		soulSucker = "Rouba %d HP dos inimigos que você matar.",
 		temporalDisturbance = "Te envia de volta no tempo para desfazer o que foi feito.",
-		emperor = "Torna você %d%% mais forte e %d%% mais resistente por alguns segundos."
+		emperor = "Torna você %d%% mais forte e %d%% mais resistente por alguns segundos.",
+		traveler = "Teleporta você para qualquer ponto do mapa."
 	},
 	powerType = {
 		atk = "ATAQUE (%d)",
@@ -110,13 +112,17 @@ translations.br = {
 			"• Nova medalha para mappers. Se você tem três ou mais mapas no #powers, entre em contato com o desenvolvedor do módulo para obtê-la.",
 			"• Novo nível <I>(Senhor do Tempo)</I>.",
 			"• Novo poder <B>Distúrbio Temporal</B>.",
-			"• Novo poder <B>Imperador</B>."
+			"• Novo poder <B>Imperador</B>.",
+			"• Novo poder <B>Viajante</B>.</J>",
+			"• Os poderes <B>Imperador</B> e <B>Raio da Morte</B> agora precisam de duas kills cada para que fiquem disponíveis na partida.",
+			"<J>• Novo tipo de poder: <B>Super Poder</B>. Os Super Poderes podem ser disparados quando você matar jogadores o suficiente durante a partida (o número de kills necessárias pode ser encontrada no menu de poderes). Segure <B>G</B> para ver os Super Poderes disponíveis na sua partida.",
 		}
 	},
 
 	commandDescriptions = {
 		help = "Abre esse menu.",
 		powers = "Abre um menu que lista todos os poderes e suas informações.",
+		i = "Mostra os Super Poderes disponíveis na partida.",
 		profile = "Abre o seu perfil ou o de alguém.",
 		leaderboard = "Abre o ranking global.",
 		modes = "Mostra os modos de jogo.",

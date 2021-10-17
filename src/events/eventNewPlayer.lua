@@ -16,10 +16,13 @@ eventNewPlayer = function(playerName)
 		damageRate = 1,
 		hpRate = 1,
 
+		roundKills = 0,
+
 		-- Round powers
 		powers = { }, -- All individual powers' data
 		powerCooldown = 0,
 		keySequence = KeySequence.new(),
+		mouseSkill = 1,
 
 		-- Round misc
 		isFacingRight = true,
@@ -58,6 +61,9 @@ eventNewPlayer = function(playerName)
 		-- Leaderboard interface
 		isLeaderboardOpen = false,
 		leaderboardPage = 1,
+
+		-- Inventory interface
+		isInventoryOpen = false,
 
 		-- Misc
 		chatNickname = prettifyNickname(playerName, nil, nil, "/B><G", 'B')
@@ -99,6 +105,7 @@ eventNewPlayer = function(playerName)
 	for _, key in next, keyboard do
 		bindKeyboard(playerName, key, true, true)
 	end
+	bindKeyboard(playerName, keyboard.G, false, true)
 
 	loadPlayerData(playerName)
 

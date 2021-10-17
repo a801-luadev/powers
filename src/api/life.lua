@@ -22,6 +22,8 @@ local givePlayerKill = function(killerName, killedName, killedCache)
 		giveBadge(killerName, "killer", cache)
 	end
 
+	cache.roundKills = cache.roundKills + 1
+
 	if cache.spawnHearts then
 		local killedData = room.playerList[killedName]
 		addBonus(0, killedData.x, killedData.y,

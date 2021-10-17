@@ -24,5 +24,6 @@ do
 		cache.isPowersOpen = false
 		cache.isProfileOpen = false
 		cache.isLeaderboardOpen = false
+		cache.isInventoryOpen = false
 	end
 end

@@ -58,18 +58,20 @@ local playerCanTriggerEvent = function(playerName, cache)
 	if cache.powerCooldown > time then return end
 
 	if canTriggerPowers and not (room.playerList[playerName].isDead
-		or cache.isInterfaceOpen) then
+		or (cache.isInterfaceOpen and not cache.isInventoryOpen)) then
 		return time, cache
 	end
 end
 
-local playerCanTriggerCallback = function(playerName, cache)
+local playerCanTriggerCallback = function(playerName, cache, ignoreTime)
 	if players.lobby[playerName] then return end
 	cache = cache or playerCache[playerName]
 
-	local time = time()
-	if cache.interfaceActionCooldown > time then return end
-	cache.interfaceActionCooldown = time + 1000
+	if not ignoreTime then
+		local time = time()
+		if cache.interfaceActionCooldown > time then return end
+		cache.interfaceActionCooldown = time + 1000
+	end
 
 	return cache
 end

@@ -241,7 +241,7 @@ translations.en = {
 		soulSucker = "Steals %d HP from enemies that you kill.",
 		temporalDisturbance = "Sends you back in time to undo what has been done.",
 		emperor = "Makes you %d%% stronger and %d%% more resistent for a few seconds.",
-		traveler = "Teleports you to any point of the map.",
+		traveler = "",
 	},
 	powerType = {
 		atk = "ATTACK (%d)",
@@ -304,10 +304,7 @@ translations.en = {
 			"• New badge for mappers. If you have 3 or more maps in #powers, contact the module developer ingame to obtain it.",
 			"• New level <I>(Time Lord)</I>.",
 			"• New power <B>Temporal Disturbance</B>.",
-			"• New power <B>Emperor</B>.",
-			"• New power <B>Traveler</B>.</J>",
-			"• Powers <B>Emperor</B> and <B>Death Ray</B> now need two kills each to become available in the round.",
-			"<J>• New power type: <B>Super Power</B>. Super Powers can be triggered once you kill enough players during the round (number of kills can be found in the powers menu). Hold <B>G</B> to see the available Super Powers in your round.",
+			"• New power <B>Emperor</B>."
 		}
 	},
 
@@ -315,7 +312,6 @@ translations.en = {
 	commandDescriptions = {
 		help = "Opens this menu.",
 		powers = "Opens a menu that lists all powers and their info.",
-		i = "Displays the available Super Powers in the round.",
 		profile = "Opens your or someone's profile.",
 		leaderboard = "Opens the global leaderboard.",
 		modes = "Shows the game modes.",
@@ -446,8 +442,7 @@ translations.br = {
 		waterSplash = "Bomba d'água",
 		soulSucker = "Sugador de Almas",
 		temporalDisturbance = "Distúrbio Temporal",
-		emperor = "Imperador",
-		traveler = "Viajante"
+		emperor = "Imperador"
 	},
 	powersDescriptions = {
 		lightSpeed = "Move seu rato na velocidade da luz, empurrando todos seus inimigos em volta.",
@@ -466,8 +461,7 @@ translations.br = {
 		waterSplash = "Invoca algumas gotas d'água da Antártica.",
 		soulSucker = "Rouba %d HP dos inimigos que você matar.",
 		temporalDisturbance = "Te envia de volta no tempo para desfazer o que foi feito.",
-		emperor = "Torna você %d%% mais forte e %d%% mais resistente por alguns segundos.",
-		traveler = "Teleporta você para qualquer ponto do mapa."
+		emperor = "Torna você %d%% mais forte e %d%% mais resistente por alguns segundos."
 	},
 	powerType = {
 		atk = "ATAQUE (%d)",
@@ -526,17 +520,13 @@ translations.br = {
 			"• Nova medalha para mappers. Se você tem três ou mais mapas no #powers, entre em contato com o desenvolvedor do módulo para obtê-la.",
 			"• Novo nível <I>(Senhor do Tempo)</I>.",
 			"• Novo poder <B>Distúrbio Temporal</B>.",
-			"• Novo poder <B>Imperador</B>.",
-			"• Novo poder <B>Viajante</B>.</J>",
-			"• Os poderes <B>Imperador</B> e <B>Raio da Morte</B> agora precisam de duas kills cada para que fiquem disponíveis na partida.",
-			"<J>• Novo tipo de poder: <B>Super Poder</B>. Os Super Poderes podem ser disparados quando você matar jogadores o suficiente durante a partida (o número de kills necessárias pode ser encontrada no menu de poderes). Segure <B>G</B> para ver os Super Poderes disponíveis na sua partida.",
+			"• Novo poder <B>Imperador</B>."
 		}
 	},
 
 	commandDescriptions = {
 		help = "Abre esse menu.",
 		powers = "Abre um menu que lista todos os poderes e suas informações.",
-		i = "Mostra os Super Poderes disponíveis na partida.",
 		profile = "Abre o seu perfil ou o de alguém.",
 		leaderboard = "Abre o ranking global.",
 		modes = "Mostra os modos de jogo.",
@@ -1919,7 +1909,6 @@ local keyboard = {
 	right = 2,
 	down = 3,
 
-	G = byte 'G',
 	H = byte 'H',
 	L = byte 'L',
 	O = byte 'O',
@@ -1936,7 +1925,6 @@ local keyboardImages = {
 	[keyboard.right] = "17254b90167.png",
 	[keyboard.down] = "17254b8e9f3.png",
 
-	[keyboard.G] = "17c8f58aeb3.png",
 	[keyboard.H] = "17254b85d4e.png",
 	[keyboard.L] = "17254b88c41.png",
 	[keyboard.O] = "17254b874be.png",
@@ -2674,20 +2662,18 @@ local playerCanTriggerEvent = function(playerName, cache)
 	if cache.powerCooldown > time then return end
 
 	if canTriggerPowers and not (room.playerList[playerName].isDead
-		or (cache.isInterfaceOpen and not cache.isInventoryOpen)) then
+		or cache.isInterfaceOpen) then
 		return time, cache
 	end
 end
 
-local playerCanTriggerCallback = function(playerName, cache, ignoreTime)
+local playerCanTriggerCallback = function(playerName, cache)
 	if players.lobby[playerName] then return end
 	cache = cache or playerCache[playerName]
 
-	if not ignoreTime then
-		local time = time()
-		if cache.interfaceActionCooldown > time then return end
-		cache.interfaceActionCooldown = time + 1000
-	end
+	local time = time()
+	if cache.interfaceActionCooldown > time then return end
+	cache.interfaceActionCooldown = time + 1000
 
 	return cache
 end
@@ -3141,14 +3127,12 @@ do
 	Power.__mouse       = { }
 	Power.__chatMessage = { }
 	Power.__emotePlayed = { }
-	Power.__inventory   = { }
 
 	Power.__eventCount  = {
 		__keyboard    = 0,
 		__mouse       = 0,
 		__chatMessage = 0,
-		__emotePlayed = 0,
-		__inventory   = 0
+		__emotePlayed = 0
 	}
 
 	Power.__nameByLevel = { }
@@ -3158,7 +3142,6 @@ do
 			name = name,
 			type = type,
 			level = level,
-			typeId = { },
 
 			effect = nil,
 
@@ -3186,8 +3169,6 @@ do
 			messagePattern = nil,
 
 			triggererEmote = nil,
-
-			inInventory = false,
 
 			imageData = imageData,
 			resetableData = resetableData
@@ -3256,7 +3237,6 @@ do
 		local power = Power[type]
 		count[type] = count[type] + 1
 		power[count[type]] = self
-		self.typeId[type] = count[type]
 	end
 
 	Power.bindChatMessage = function(self, message)
@@ -3280,7 +3260,7 @@ do
 	end
 
 	Power.bindMouse = function(self, range)
-		self.clickRange = range or 0
+		self.clickRange = range
 		self.bindControl = bindClick
 
 		setEventType(self, "__mouse")
@@ -3292,14 +3272,6 @@ do
 		self.triggererEmote = emoteId
 
 		setEventType(self, "__emotePlayed")
-
-		return self
-	end
-
-	Power.useInventory = function(self, emoteId)
-		self.inInventory = true
-
-		setEventType(self, "__inventory")
 
 		return self
 	end
@@ -3348,28 +3320,20 @@ do
 		return self
 	end
 
-	Power.canTriggerRegular = function(self, cache, _time, _isCheck)
+	local canTriggerRegular = function(self, cache, _time)
 		local playerPowerData = cache.powers[self.name]
-		if not playerPowerData or
-			playerPowerData.remainingUses == 0 then return end -- x < 0 means infinity
+		if playerPowerData.remainingUses == 0 then return end -- x < 0 means infinity
 
 		if cache.roundKills < self.oncePerNKills then return end -- allow once for every N kills
 
 		_time = _time or time()
 		if playerPowerData.cooldown > _time then return end
-
-		if _isCheck then
-			return true
-		end
-
 		playerPowerData.cooldown = _time + self.useCooldown
 		cache.powerCooldown = _time + 800 -- General cooldown
 
 		playerPowerData.remainingUses = playerPowerData.remainingUses - 1
 
-		if self.oncePerNKills > 0 then
-			cache.roundKills = cache.roundKills - self.oncePerNKills
-		end
+		cache.roundKills = 0
 
 		return true
 	end
@@ -3377,11 +3341,7 @@ do
 	Power.triggerRegular = function(self, playerName, _cache, _time, _x, _y, _ignorePosition, ...)
 		_cache = _cache or playerCache[playerName]
 
-		if self.bindControl == bindClick then -- before checking permission to avoid glitches
-			_cache.mouseSkill = 1
-		end
-
-		if not self:canTriggerRegular(_cache, _time) then
+		if not canTriggerRegular(self, _cache, _time) then
 			return false
 		end
 
@@ -3567,14 +3527,12 @@ do
 
 		_cache.isInterfaceOpen = true
 
-		if w then
-			if interfaceBackground[w] and interfaceBackground[w][h] then
-				imageInterface(self, x, y, w, h, playerName, _cache, text, ...)
-			else
-				-- Debug/development behavior, avoidable
-				error()
-				textareaInterface(self, x, y, w, h, playerName, _cache, text, ...)
-			end
+		if interfaceBackground[w] and interfaceBackground[w][h] then
+			imageInterface(self, x, y, w, h, playerName, _cache, text, ...)
+		else
+			-- Debug/development behavior, avoidable
+			error()
+			textareaInterface(self, x, y, w, h, playerName, _cache, text, ...)
 		end
 
 		return self
@@ -3697,7 +3655,6 @@ do
 		cache.isPowersOpen = false
 		cache.isProfileOpen = false
 		cache.isLeaderboardOpen = false
-		cache.isInventoryOpen = false
 	end
 end
 
@@ -3812,14 +3769,14 @@ do
 		:setUseLimit(10)
 		:setUseCooldown(5)
 		:bindMouse(150)
-		:setEffect(function(_, _, _, _, _, _, clickX, clickY)
+		:setEffect(function(_, x, y)
 			-- Particles
-			lightning(clickX, clickY)
+			lightning(x, y)
 
 			-- Damage
-			clickY = clickY + 100
-			explosion(clickX, clickY, 30, 60)
-			return pythagoras, clickX, clickY, 60
+			y = y + 100
+			explosion(x, y, 30, 60)
+			return pythagoras, x, y, 60
 		end)
 end
 
@@ -3960,28 +3917,33 @@ end
 --[[ powers/def/traveler.lua ]]--
 -- Level 38
 do
+	local particles = { 2, 11, 2 }
+	local totalParticles = #particles
+
+	local spring = function(x, y)
+		for i = 1, 10, (isLowQuality and 2 or 1) do
+			displayParticle(particles[(i%totalParticles + 1)], x + cos(i)*10, y, 0, -i * .3)
+		end
+	end
+
 	powers.traveler = Power
 		.new("traveler", powerType.def, 38, {
-			smallIcon = "17c8b4783e3.png",
-			icon = "17c8eb1341c.png",
-			iconWidth = 80,
-			iconHeight = 80
-		}, {
-			inventoryItemClicked = function(self, cache)
-				cache.mouseSkill = self.typeId.__mouse
-			end
+			smallIcon = "17c8b4767ce.png",
+			icon = "172baf8852b.jpg",
+			iconWidth = 44,
+			iconHeight = 55
 		})
 		:setUseLimit(1)
 		:setUseCooldown(20)
 		:setUseOnceForNKills(5)
-		:bindMouse()
-		:useInventory()
-		:setEffect(function(playerName, playerX, playerY, _, _, _, clickX, clickY)
-			displayParticle(36, playerX, playerY)
+		:bindKeyboard(keyboard.up)
+		:setKeySequence({ { keyboard.up, keyboard.up } })
+		:setEffect(function(playerName, x, y)
+			-- Move player
+			movePlayer(playerName, 0, 0, true, 0, -80, false)
 
-			movePlayer(playerName, clickX, clickY)
-
-			displayParticle(37, clickX, clickY)
+			-- Particles
+			spring(x, y)
 		end)
 end
 
@@ -4788,10 +4750,6 @@ local commandsMeta = {
 		hotkey = "O"
 	},
 	{
-		name = "i",
-		hotkey = "G"
-	},
-	{
 		name = "profile",
 		hotkey = "P"
 	},
@@ -5444,12 +5402,11 @@ do
 
 			x = x + 25
 		end
-		if power.triggererKey or power.inInventory then
+		if power.triggererKey then
 			y = y + 25
 
-			local key = power.triggererKey or keyboard.G
-			interface:addImage(keyboardImages[key], imageTargets.interfaceIcon,
-				x - 10 + (w - (keyboardImagesWidths[key] or 25))/2, y, playerName)
+			interface:addImage(keyboardImages[power.triggererKey], imageTargets.interfaceIcon,
+				x - 10 + (w - (keyboardImagesWidths[power.triggererKey] or 25))/2, y, playerName)
 		end
 		if power.clickRange then
 			y = y + 25
@@ -5457,10 +5414,8 @@ do
 			interface:addImage(interfaceImages.mouseClick, imageTargets.interfaceIcon, x + 5, y,
 				playerName)
 
-			if power.clickRange > 0 then
-				interface:addTextArea(power.clickRange .. "px", playerName, x + 25, y + 5, nil, nil,
-					1, 1, 0, true)
-			end
+			interface:addTextArea(power.clickRange .. "px", playerName, x + 25, y + 5, nil, nil, 1,
+				1, 0, true)
 		end
 		if power.messagePattern then
 			y = y + 25
@@ -5732,41 +5687,6 @@ do
 	end
 end
 
---[[ interfaces/powersInventory.lua ]]--
-local displayPowersInventory
-do
-	displayPowersInventory = function(playerName, _cache)
-		_cache = _cache or playerCache[playerName]
-		textAreaCallbacks["closeInterface"](playerName, _cache)
-
-		_cache.isInventoryOpen = true
-
-		local x, y = 805, 35
-		local interface = prettyUI
-			.new(x, y, nil, nil, playerName, nil, _cache)
-
-		local roundKills = _cache.roundKills
-
-		local totalAvailablePowers = 0
-
-		local src, power, imageData = Power.__inventory
-		for powerId = 1, Power.__eventCount.__inventory do
-			power = src[powerId]
-
-			if power:canTriggerRegular(_cache, nil, true) then
-				totalAvailablePowers = totalAvailablePowers + 1
-
-				x = x - 35
-
-				imageData = power.imageData
-				interface:addClickableImage(imageData.smallIcon, imageTargets.interfaceIcon,
-					x, y, playerName, imageData.iconWidth, imageData.iconHeight,
-					"power_" .. powerId, nil, nil, nil, nil, .6)
-			end
-		end
-	end
-end
-
 --[[ textAreaCallbacks/helpTab.lua ]]--
 do
 	textAreaCallbacks["helpTab"] = function(playerName, cache, callback)
@@ -5830,32 +5750,11 @@ do
 	end
 end
 
---[[ textAreaCallbacks/power.lua ]]--
-do
-	textAreaCallbacks["power"] = function(playerName, cache, callback)
-		-- power_{powerInventoryId}
-		textAreaCallbacks["closeInterface"](playerName, cache)
-
-		Power.__inventory[callback[2] * 1]:inventoryItemClicked(cache)
-	end
-end
-
 --[[ textAreaCallbacks/temporalDisturbance.lua ]]--
 do
 	textAreaCallbacks["temporalDisturbance"] = function(playerName, cache, callback)
 		if playerName ~= powers.temporalDisturbance.playerName then return end
 		powers.temporalDisturbance:backInTime()
-	end
-end
-
---[[ keyboardCallbacks/G.lua ]]--
-do
-	keyboardCallbacks[keyboard.G] = function(playerName, cache, isDown)
-		if isDown then
-			displayPowersInventory(playerName, cache)
-		else
-			textAreaCallbacks["closeInterface"](playerName, cache)
-		end
 	end
 end
 
@@ -5914,13 +5813,6 @@ end
 do
 	commands["powers"] = function(playerName)
 		keyboardCallbacks[keyboard.O](playerName, playerCache[playerName])
-	end
-end
-
---[[ commands/i.lua ]]--
-do
-	commands["i"] = function(playerName)
-		keyboardCallbacks[keyboard.G](playerName, playerCache[playerName], true)
 	end
 end
 
@@ -6459,7 +6351,6 @@ eventNewPlayer = function(playerName)
 		powers = { }, -- All individual powers' data
 		powerCooldown = 0,
 		keySequence = KeySequence.new(),
-		mouseSkill = 1,
 
 		-- Round misc
 		isFacingRight = true,
@@ -6498,9 +6389,6 @@ eventNewPlayer = function(playerName)
 		-- Leaderboard interface
 		isLeaderboardOpen = false,
 		leaderboardPage = 1,
-
-		-- Inventory interface
-		isInventoryOpen = false,
 
 		-- Misc
 		chatNickname = prettifyNickname(playerName, nil, nil, "/B><G", 'B')
@@ -6542,7 +6430,6 @@ eventNewPlayer = function(playerName)
 	for _, key in next, keyboard do
 		bindKeyboard(playerName, key, true, true)
 	end
-	bindKeyboard(playerName, keyboard.G, false, true)
 
 	loadPlayerData(playerName)
 
@@ -6557,8 +6444,7 @@ eventPlayerDataLoaded = function(playerName, data)
 	local cache = playerCache[playerName]
 	local playerLevel = setPlayerLevel(playerName, cache)
 
-	if (isNoobMode and playerLevel >= 28)
-		or (isProMode and playerLevel <= module.is_noob_until_level) then return end
+	if (isNoobMode and playerLevel >= 28) or (isProMode and playerLevel <= module.is_noob_until_level) then return end
 
 	if playerLevel <= module.is_noob_until_level then
 		cache.extraXp = module.extra_xp_for_noob
@@ -6662,8 +6548,6 @@ eventNewGame = function()
 		cache.hpRate = 1
 
 		cache.roundKills = 0
-
-		cache.mouseSkill = 1
 
 		updateLifeBar(playerName, cache)
 
@@ -6789,11 +6673,7 @@ eventPlayerDied = function(playerName)
 	end
 
 	local cache = playerCache[playerName]
-	if cache then
-		cache.mouseSkill = 1
-
-		if not cache.lastDamageBy then return end
-
+	if cache and cache.lastDamageBy then
 		if cache.lastDamageTime > time() then
 			givePlayerKill(cache.lastDamageBy, playerName, cache)
 			playerData:save(cache.lastDamageBy)
@@ -6819,8 +6699,8 @@ eventKeyboard = function(playerName, key, isDown, x, y)
 	elseif key == 2 then
 		cache.isFacingRight = true
 	elseif keyboardCallbacks[key] then
-		if playerCanTriggerCallback(playerName, cache, key == keyboard.G) then
-			keyboardCallbacks[key](playerName, cache, isDown)
+		if playerCanTriggerCallback(playerName, cache) then
+			keyboardCallbacks[key](playerName, cache)
 		end
 		return
 	end
@@ -6866,12 +6746,17 @@ eventMouse = function(playerName, x, y)
 	local playerX, playerY = room.playerList[playerName]
 	playerX, playerY = playerX.x, playerX.y
 
-	local power = Power.__mouse[cache.mouseSkill]
-	if cache.powers[power.name]
-		-- Not internal, must be explicit
-		and (power.clickRange == 0 or pythagoras(playerX, playerY, x, y, power.clickRange)) then
+	local playerPowers = cache.powers
 
-		power:trigger(playerName, cache, time, playerX, playerY, nil, x, y)
+	local src = Power.__mouse
+	for power = 1, Power.__eventCount.__mouse do
+		power = src[power]
+
+		-- Not internal, must be explicit
+		if playerPowers[power.name] and pythagoras(playerX, playerY, x, y, power.clickRange)
+			and power:trigger(playerName, cache, time, x, y) then
+			return
+		end
 	end
 end
 

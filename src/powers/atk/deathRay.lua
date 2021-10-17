@@ -42,6 +42,7 @@ do
 		:setSelfDamage(20)
 		:setUseLimit(1)
 		:setUseCooldown(20)
+		:setUseOnceForNKills(2)
 		:bindKeyboard(keyboard.left, keyboard.up, keyboard.right, keyboard.down)
 		:setKeySequence({
 			{ keyboard.left, keyboard.up, keyboard.right, keyboard.down },

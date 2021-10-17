@@ -35,7 +35,8 @@ translations.en = {
 		waterSplash = "Water Splash",
 		soulSucker = "Soul Sucker",
 		temporalDisturbance = "Temporal Disturbance",
-		emperor = "Emperor"
+		emperor = "Emperor",
+		traveler = "Traveler"
 	},
 	powersDescriptions = {
 		lightSpeed = "Moves your mouse in the speed of light, pushing all enemies around.",
@@ -54,7 +55,8 @@ translations.en = {
 		waterSplash = "Summons some drops of water from Antarctica.",
 		soulSucker = "Steals %d HP from enemies that you kill.",
 		temporalDisturbance = "Sends you back in time to undo what has been done.",
-		emperor = "Makes you %d%% stronger and %d%% more resistent for a few seconds."
+		emperor = "Makes you %d%% stronger and %d%% more resistent for a few seconds.",
+		traveler = "Teleports you to any point of the map.",
 	},
 	powerType = {
 		atk = "ATTACK (%d)",
@@ -117,7 +119,10 @@ translations.en = {
 			"• New badge for mappers. If you have 3 or more maps in #powers, contact the module developer ingame to obtain it.",
 			"• New level <I>(Time Lord)</I>.",
 			"• New power <B>Temporal Disturbance</B>.",
-			"• New power <B>Emperor</B>."
+			"• New power <B>Emperor</B>.",
+			"• New power <B>Traveler</B>.</J>",
+			"• Powers <B>Emperor</B> and <B>Death Ray</B> now need two kills each to become available in the round.",
+			"<J>• New power type: <B>Super Power</B>. Super Powers can be triggered once you kill enough players during the round (number of kills can be found in the powers menu). Hold <B>G</B> to see the available Super Powers in your round.",
 		}
 	},
 
@@ -125,6 +130,7 @@ translations.en = {
 	commandDescriptions = {
 		help = "Opens this menu.",
 		powers = "Opens a menu that lists all powers and their info.",
+		i = "Displays the available Super Powers in the round.",
 		profile = "Opens your or someone's profile.",
 		leaderboard = "Opens the global leaderboard.",
 		modes = "Shows the game modes.",
