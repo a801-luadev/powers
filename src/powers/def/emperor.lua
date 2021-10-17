@@ -24,6 +24,7 @@ do
 		:setUseLimit(1)
 		:setUseCooldown(20)
 		:setProbability(15)
+		:setUseOnceForNKills(2)
 		:bindEmote(tfm.enum.emote.angry)
 		:bindKeyboard(keyboard.left, keyboard.up, keyboard.right, keyboard.down)
 		:setKeySequence({

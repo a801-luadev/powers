@@ -30,6 +30,7 @@ do
 			defaultUseCooldown = 1000,
 			useCooldown = 1000,
 			triggerPossibility = nil,
+			oncePerNKills = 0,
 
 			damage = nil,
 			selfDamage = nil,
@@ -92,6 +93,11 @@ do
 	Power.setUseCooldown = function(self, cooldown)
 		self.defaultUseCooldown = cooldown * 1000
 		self.useCooldown = self.defaultUseCooldown
+		return self
+	end
+
+	Power.setUseOnceForNKills = function(self, totalKills)
+		self.oncePerNKills = totalKills
 		return self
 	end
 
@@ -198,12 +204,16 @@ do
 		local playerPowerData = cache.powers[self.name]
 		if playerPowerData.remainingUses == 0 then return end -- x < 0 means infinity
 
+		if cache.roundKills < self.oncePerNKills then return end -- allow once for every N kills
+
 		_time = _time or time()
 		if playerPowerData.cooldown > _time then return end
 		playerPowerData.cooldown = _time + self.useCooldown
 		cache.powerCooldown = _time + 800 -- General cooldown
 
 		playerPowerData.remainingUses = playerPowerData.remainingUses - 1
+
+		cache.roundKills = 0
 
 		return true
 	end

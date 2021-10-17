@@ -58,6 +58,8 @@ eventNewGame = function()
 		cache.damageRate = 1
 		cache.hpRate = 1
 
+		cache.roundKills = 0
+
 		updateLifeBar(playerName, cache)
 
 		playerPowers = cache.powers

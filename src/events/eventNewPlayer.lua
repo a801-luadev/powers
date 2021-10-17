@@ -16,6 +16,8 @@ eventNewPlayer = function(playerName)
 		damageRate = 1,
 		hpRate = 1,
 
+		roundKills = 0,
+
 		-- Round powers
 		powers = { }, -- All individual powers' data
 		powerCooldown = 0,

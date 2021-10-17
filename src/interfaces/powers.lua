@@ -144,6 +144,20 @@ do
 		return x, y
 	end
 
+	local displayPowerRequiredKills = function(playerName, power, interface, x, y)
+		if power.oncePerNKills > 0 then
+			y = y + 25
+
+			interface:addImage(interfaceImages.tinySkull, imageTargets.interfaceIcon, x + 5, y + 5,
+				playerName)
+
+			interface:addTextArea(power.oncePerNKills, playerName, x + 25, y + 5, nil, nil, 1, 1, 0,
+				true)
+		end
+
+		return x, y
+	end
+
 	local displayTrigger = function(playerName, power, interface, x, y, w)
 		if power.keySequences then
 			x = x - 10
@@ -223,6 +237,8 @@ do
 		x, y = displayPowerTypeIcon(playerName, power, interface, x, y)
 
 		x, y = displayPowerTriggerPossibility(playerName, power, interface, x, y)
+
+		x, y = displayPowerRequiredKills(playerName, power, interface, x, y)
 
 		x, y = displayPowerSelfDamage(playerName, power, interface, x, y)
 
