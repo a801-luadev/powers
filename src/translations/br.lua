@@ -33,7 +33,8 @@ translations.br = {
 		soulSucker = "Sugador de Almas",
 		temporalDisturbance = "Distúrbio Temporal",
 		emperor = "Imperador",
-		traveler = "Viajante"
+		traveler = "Viajante",
+		suppressor = "Supressor"
 	},
 	powersDescriptions = {
 		lightSpeed = "Move seu rato na velocidade da luz, empurrando todos seus inimigos em volta.",
@@ -53,7 +54,8 @@ translations.br = {
 		soulSucker = "Rouba %d HP dos inimigos que você matar.",
 		temporalDisturbance = "Te envia de volta no tempo para desfazer o que foi feito.",
 		emperor = "Torna você %d%% mais forte e %d%% mais resistente por alguns segundos.",
-		traveler = "Teleporta você para qualquer ponto do mapa."
+		traveler = "Teleporta você para qualquer ponto do mapa.",
+		suppressor = "Suprime todos os poderes dos jogadores que estão próximos da poção por alguns segundos."
 	},
 	powerType = {
 		atk = "ATAQUE (%d)",
@@ -115,7 +117,8 @@ translations.br = {
 			"• Novo poder <B>Imperador</B>.",
 			"• Novo poder <B>Viajante</B>.</J>",
 			"• Os poderes <B>Imperador</B> e <B>Raio da Morte</B> agora precisam de duas kills cada para que fiquem disponíveis na partida.",
-			"<J>• Novo tipo de poder: <B>Super Poder</B>. Os Super Poderes podem ser disparados quando você matar jogadores o suficiente durante a partida (o número de kills necessárias pode ser encontrada no menu de poderes). Segure <B>G</B> para ver os Super Poderes disponíveis na sua partida.",
+			"• Novo tipo de poder: <B>Super Poder</B>. Os Super Poderes podem ser disparados quando você matar jogadores o suficiente durante a partida (o número de kills necessárias pode ser encontrada no menu de poderes). Segure <B>G</B> para ver os Super Poderes disponíveis na sua partida.",
+			"<J>• Novo poder <B>Supressor</B>.",
 		}
 	},
 

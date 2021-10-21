@@ -311,7 +311,7 @@ translations.en = {
 			"• New power <B>Traveler</B>.</J>",
 			"• Powers <B>Emperor</B> and <B>Death Ray</B> now need two kills each to become available in the round.",
 			"• New power type: <B>Super Power</B>. Super Powers can be triggered once you kill enough players during the round (number of kills can be found in the powers menu). Hold <B>G</B> to see the available Super Powers in your round.",
-			"<J>• New power <B>Supressor</B>.",
+			"<J>• New power <B>Supressor</B>.</J>",
 		}
 	},
 
@@ -536,7 +536,7 @@ translations.br = {
 			"• Novo poder <B>Viajante</B>.</J>",
 			"• Os poderes <B>Imperador</B> e <B>Raio da Morte</B> agora precisam de duas kills cada para que fiquem disponíveis na partida.",
 			"• Novo tipo de poder: <B>Super Poder</B>. Os Super Poderes podem ser disparados quando você matar jogadores o suficiente durante a partida (o número de kills necessárias pode ser encontrada no menu de poderes). Segure <B>G</B> para ver os Super Poderes disponíveis na sua partida.",
-			"<J>• Novo poder <B>Supressor</B>.",
+			"<J>• Novo poder <B>Supressor</B>.</J>",
 		}
 	},
 
@@ -5912,23 +5912,15 @@ do
 		-- power_{powerInventoryId}
 		textAreaCallbacks["closeInterface"](playerName, cache)
 
-		local power = Power.__inventory[callback[2] * 1]
-		if power and power.inventoryItemClicked and power:canTriggerRegular(cache, nil, true) then
-			power:inventoryItemClicked(cache)
-		else
-			commands["ban"](nil, playerName .. " 24 [auto] attempt to trigger unavailable power")
-		end
+		Power.__inventory[callback[2] * 1]:inventoryItemClicked(cache)
 	end
 end
 
 --[[ textAreaCallbacks/temporalDisturbance.lua ]]--
 do
 	textAreaCallbacks["temporalDisturbance"] = function(playerName, cache, callback)
-		if playerName == powers.temporalDisturbance.playerName then
-			powers.temporalDisturbance:backInTime()
-		else
-			commands["ban"](nil, playerName .. " 24 [auto] attempt to trigger unavailable power")
-		end
+		if playerName ~= powers.temporalDisturbance.playerName then return end
+		powers.temporalDisturbance:backInTime()
 	end
 end
 
@@ -6251,11 +6243,8 @@ do
 	-- Bans a player temporarily
 	commands["ban"] = function(playerName, command, isPermanent)
 		-- !ban name time? reason?
-		if not (command[2] and (not playerName or hasPermission(playerName, permissions.banUser))
+		if not (command[2] and hasPermission(playerName, permissions.banUser)
 			and dataFileContent[2]) then return end
-		if not playerName then
-			playerName = module.author
-		end
 
 		local targetPlayerId, targetPlayer = validateNicknameAndGetID(command[2])
 		if not targetPlayerId then return end

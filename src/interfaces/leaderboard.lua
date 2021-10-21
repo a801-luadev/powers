@@ -2,8 +2,6 @@ local displayLeaderboard
 do
 	local prettifiedNickname = "<J>#%03d     %s"
 	local midFontSize = "<font size='13'>"
-	local titleFormat = "<font size='32'>" .. getText.leaderboard
-	local dataFormat = midFontSize .. "<font face='courier new'><p align='center'>"
 
 	local dataNames = { "xp", "victories", "kills", "rounds" }
 	local dataIcons = { "star", "crown", "skull", "ground" }
@@ -26,7 +24,8 @@ do
 
 			local w, h = 700, 330
 			interface = prettyUI
-				.new(iniX, iniY, w, h, playerName, titleFormat, _cache)
+				.new(iniX, iniY, w, h, playerName, "<font size='32'>" .. getText.leaderboard,
+					_cache)
 				:setCloseButton()
 
 			-- Add pagination buttons
@@ -90,7 +89,8 @@ do
 		-- Inserts other data
 		x = x + 230
 		for i = 1, totalData do
-			interface:addTextArea(dataFormat .. table_concat(leaderboard[dataNames[i]], '\n',
+			interface:addTextArea(midFontSize .. "<font face='courier new'><p align='center'>"
+				.. table_concat(leaderboard[dataNames[i]], '\n',
 				listIni, listEnd), playerName, x + i*90, y + 1, 80, nil, 1, 1, 0, true)
 		end
 	end

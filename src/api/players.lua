@@ -57,7 +57,7 @@ local playerCanTriggerEvent = function(playerName, cache)
 	local time = time()
 	if cache.powerCooldown > time then return end
 
-	if canTriggerPowers and not (room.playerList[playerName].isDead
+	if (canTriggerPowers and cache.canTriggerPowers) and not (room.playerList[playerName].isDead
 		or (cache.isInterfaceOpen and not cache.isInventoryOpen)) then
 		return time, cache
 	end

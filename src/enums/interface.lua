@@ -21,6 +21,8 @@ local interfaceImages = {
 	nextPageButton = "17976ba1905.png",
 
 	heartToken = "177ae37b108.png",
+	supressionPotion = "16f06b13b74.png",
+	supressedCircle = "17ca0015323.png",
 
 	-- 70x70
 	rightArrow = "1729bab289f.png",

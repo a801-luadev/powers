@@ -2,10 +2,6 @@ local displayProfile
 do
 	local font = "<font size='%d'>"
 	local centerAndFont = "<p align='center'>" .. font
-	local nicknameFormat = centerAndFont .. "<font face='consolas,courier new,soopafresh'>%s"
-	local levelNameFormat = centerAndFont .. "%s"
-	local xpFormat = centerAndFont .. "<B>%d</B>\n</font>%d/%dxp"
-	local valueFormat = font .. "%s"
 	local dataNameFormat = "<font face='courier new'>%s"
 	local nicknameColorFormat = "font color='#%x'"
 
@@ -19,7 +15,7 @@ do
 		interface:addImage(interfaceImages.levelBar, imageTargets.levelBar, x, y, playerName)
 
 		-- Level Title
-		interface:addTextArea(format(levelNameFormat, 14,
+		interface:addTextArea(format(centerAndFont .. "%s", 14,
 			getText.levelName[targetCacheData.levelIndex]
 				[room.playerList[targetPlayer].gender%2 + 1]), playerName, x, y, 280, 20, 1,
 			1, 0, true)
@@ -36,9 +32,9 @@ do
 		-- Level value
 		y = y + 18
 
-		interface:addTextArea(format(xpFormat, 16, targetCacheData.level,
-			targetCacheData.currentLevelXp, targetCacheData.nextLevelXp), playerName, x, y, 280,
-			nil, 1, 1, 0, true)
+		interface:addTextArea(format(centerAndFont .. "<B>%d</B>\n</font>%d/%dxp", 16,
+			targetCacheData.level, targetCacheData.currentLevelXp, targetCacheData.nextLevelXp),
+			playerName, x, y, 280, nil, 1, 1, 0, true)
 
 		return x + 13, y + 65
 	end
@@ -62,7 +58,8 @@ do
 
 		local x, y = 260, 55
 		local interface = prettyUI
-			.new(x, y, 280, 330, playerName, format(nicknameFormat, 20,
+			.new(x, y, 280, 330, playerName,
+				format(centerAndFont .. "<font face='consolas,courier new,soopafresh'>%s", 20,
 				prettifyNickname(targetPlayer, 13, nil, nil, nicknameColor)), _cache)
 			:setCloseButton()
 
@@ -83,7 +80,7 @@ do
 			interface:addImage(interfaceImages[dataIcons[i]], imageTargets.interfaceIcon, sumX,
 				y + 5, playerName)
 
-			interface:addTextArea(format(valueFormat, 14, playerData:get(targetPlayer,
+			interface:addTextArea(format(font .. "%s", 14, playerData:get(targetPlayer,
 				dataNames[i])), playerName, sumX + 30, y + 8, nil, nil, 1, 1, 0, true)
 
 			if i % 2 == 0 then

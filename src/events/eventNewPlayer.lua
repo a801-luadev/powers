@@ -23,6 +23,7 @@ eventNewPlayer = function(playerName)
 		powerCooldown = 0,
 		keySequence = KeySequence.new(),
 		mouseSkill = 1,
+		canTriggerPowers = true,
 
 		-- Round misc
 		isFacingRight = true,
@@ -66,7 +67,8 @@ eventNewPlayer = function(playerName)
 		isInventoryOpen = false,
 
 		-- Misc
-		chatNickname = prettifyNickname(playerName, nil, nil, "/B><G", 'B')
+		chatNickname = prettifyNickname(playerName, nil, nil, "/B><G", 'B'),
+		tmpImage = nil
 	}
 
 	players_insert("lobby", playerName)
