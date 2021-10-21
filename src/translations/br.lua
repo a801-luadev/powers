@@ -118,7 +118,7 @@ translations.br = {
 			"• Novo poder <B>Viajante</B>.</J>",
 			"• Os poderes <B>Imperador</B> e <B>Raio da Morte</B> agora precisam de duas kills cada para que fiquem disponíveis na partida.",
 			"• Novo tipo de poder: <B>Super Poder</B>. Os Super Poderes podem ser disparados quando você matar jogadores o suficiente durante a partida (o número de kills necessárias pode ser encontrada no menu de poderes). Segure <B>G</B> para ver os Super Poderes disponíveis na sua partida.",
-			"<J>• Novo poder <B>Supressor</B>.</J>",
+			"<J>• Novo poder <B>Supressor</B>.",
 		}
 	},
 

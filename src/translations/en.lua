@@ -125,7 +125,7 @@ translations.en = {
 			"• New power <B>Traveler</B>.</J>",
 			"• Powers <B>Emperor</B> and <B>Death Ray</B> now need two kills each to become available in the round.",
 			"• New power type: <B>Super Power</B>. Super Powers can be triggered once you kill enough players during the round (number of kills can be found in the powers menu). Hold <B>G</B> to see the available Super Powers in your round.",
-			"<J>• New power <B>Supressor</B>.</J>",
+			"<J>• New power <B>Supressor</B>.",
 		}
 	},
 
