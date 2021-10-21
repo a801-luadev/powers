@@ -63,6 +63,7 @@ local tree = {
 	"powers/divine/atomic.lua", -- lv 50
 	"powers/def/emperor.lua", -- lv 55
 	"powers/atk/superNova.lua", -- lv 60
+	"powers/def/suppressor.lua", -- lv 66
 	"powers/atk/meteorSmash.lua", -- lv 70
 	"powers/def/soulSucker.lua", -- lv 80
 	"powers/atk/waterSplash.lua", -- lv 90

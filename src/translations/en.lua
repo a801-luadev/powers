@@ -36,7 +36,8 @@ translations.en = {
 		soulSucker = "Soul Sucker",
 		temporalDisturbance = "Temporal Disturbance",
 		emperor = "Emperor",
-		traveler = "Traveler"
+		traveler = "Traveler",
+		suppressor = "Suppressor"
 	},
 	powersDescriptions = {
 		lightSpeed = "Moves your mouse in the speed of light, pushing all enemies around.",
@@ -57,6 +58,7 @@ translations.en = {
 		temporalDisturbance = "Sends you back in time to undo what has been done.",
 		emperor = "Makes you %d%% stronger and %d%% more resistent for a few seconds.",
 		traveler = "Teleports you to any point of the map.",
+		suppressor = "Suppresses all the powers of the players that are near the potion for a few seconds."
 	},
 	powerType = {
 		atk = "ATTACK (%d)",
@@ -122,7 +124,8 @@ translations.en = {
 			"• New power <B>Emperor</B>.",
 			"• New power <B>Traveler</B>.</J>",
 			"• Powers <B>Emperor</B> and <B>Death Ray</B> now need two kills each to become available in the round.",
-			"<J>• New power type: <B>Super Power</B>. Super Powers can be triggered once you kill enough players during the round (number of kills can be found in the powers menu). Hold <B>G</B> to see the available Super Powers in your round.",
+			"• New power type: <B>Super Power</B>. Super Powers can be triggered once you kill enough players during the round (number of kills can be found in the powers menu). Hold <B>G</B> to see the available Super Powers in your round.",
+			"<J>• New power <B>Supressor</B>.</J>",
 		}
 	},
 

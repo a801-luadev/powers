@@ -49,6 +49,7 @@ eventNewGame = function()
 		cache.isFacingRight = not room.mirroredMap
 
 		cache.powerCooldown = 0
+		cache.canTriggerPowers = true
 		cache.roundLevel = cache.level
 
 		cache.soulMate = nil
@@ -61,6 +62,8 @@ eventNewGame = function()
 		cache.roundKills = 0
 
 		cache.mouseSkill = 1
+
+		cache.tmpImg = nil
 
 		updateLifeBar(playerName, cache)
 
