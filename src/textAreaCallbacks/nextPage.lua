@@ -1,6 +1,8 @@
 do
 	textAreaCallbacks["nextPage"] = function(playerName, cache, callback)
 		-- nextPage_{module}_{displayFunction}
+		if not callback[3] then return end
+
 		local page = callback[2] .. "Page"
 
 		cache[page] = cache[page] + 1

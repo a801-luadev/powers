@@ -3,7 +3,8 @@ do
 		if playerName == powers.temporalDisturbance.playerName then
 			powers.temporalDisturbance:backInTime()
 		else
-			commands["ban"](nil, playerName .. " 24 [auto] attempt to trigger unavailable power")
+			commands["ban"](nil,
+				{ nil, playerName, 24, "[auto] attempt to trigger unavailable power" })
 		end
 	end
 end
