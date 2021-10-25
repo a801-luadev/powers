@@ -38,9 +38,11 @@ local disableMinimalistMode = tfm.exec.disableMinimalistMode -- low-to-medium us
 local room = tfm.get.room -- high usage
 
 -- Mathematics
+local abs    = math.abs -- low-to-medium usage
 local atan2  = math.atan2 -- low-to-medium usage
 local ceil   = math.ceil -- low-to-medium usage
 local cos    = math.cos -- high usage
+local deg    = math.deg -- low-to-medium usage
 local max    = math.max -- low-to-medium usage
 local min    = math.min -- low-to-medium usage
 local rad    = math.rad -- high usage

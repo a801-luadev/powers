@@ -23,6 +23,8 @@ local interfaceImages = {
 	heartToken = "177ae37b108.png",
 	supressionPotion = "16f06b13b74.png",
 	supressedCircle = "17ca0015323.png",
+	bomb = "17cb40b0f23.png",
+	miniBomb = "17cb9876f51.png",
 
 	-- 70x70
 	rightArrow = "1729bab289f.png",

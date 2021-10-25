@@ -14,7 +14,7 @@ do
 
 		local totalAvailablePowers = 0
 
-		local src, power, imageData = Power.__inventory
+		local src, power = Power.__inventory
 		for powerId = 1, Power.__eventCount.__inventory do
 			power = src[powerId]
 
@@ -23,10 +23,8 @@ do
 
 				x = x - 35
 
-				imageData = power.imageData
-				interface:addClickableImage(imageData.smallIcon, imageTargets.interfaceIcon,
-					x, y, playerName, imageData.iconWidth, imageData.iconHeight,
-					"power_" .. powerId, nil, nil, nil, nil, .6)
+				interface:addClickableImage(power.imageData.smallIcon, imageTargets.interfaceIcon,
+					x, y, playerName, 30, 30, "power_" .. powerId, nil, nil, nil, nil, .6)
 			end
 		end
 	end

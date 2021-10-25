@@ -69,6 +69,7 @@ local tree = {
 	"powers/atk/waterSplash.lua", -- lv 90
 	"powers/atk/deathRay.lua", -- lv 100
 	"powers/divine/dayOfJudgement.lua", -- lv 110
+	"powers/atk/boom.lua", -- lv 116
 	"powers/divine/anomaly.lua", -- lv 120
 	"powers/divine/temporalDisturbance.lua", -- lv 130
 
