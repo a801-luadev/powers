@@ -4,7 +4,7 @@ do
 	local helpContent = getText.helpContent
 	do
 		-- Intro
-		helpContent[1] = format(getText.helpContent[1], getText.enableParticles,
+		helpContent[1] = format(getText.helpContent[1], getText.tips[2], getText.tips[1],
 			prettifyNickname(module.author, 11, nil, nil, "font color='#8FE2D1'"))
 	end
 

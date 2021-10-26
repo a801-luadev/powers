@@ -229,8 +229,8 @@ do
 			return true
 		end
 
-		playerPowerData.cooldown = _time + self.useCooldown
-		cache.powerCooldown = _time + 800 -- General cooldown
+		playerPowerData.cooldown = _time + (self.useCooldown * cache.cooldownRate)
+		cache.powerCooldown = _time + (800 * cache.cooldownRate) -- General cooldown
 
 		playerPowerData.remainingUses = playerPowerData.remainingUses - 1
 

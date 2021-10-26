@@ -76,6 +76,7 @@ translations.tr = {
 			"<N>Saldırmak ve savunma yapmak için türlü türlü güçler <font size='12'>- ki bu güçler yüksek seviyelere gelerek açılıyor -</font> elde edebilirsiniz.\n" ..
 			"Kilidini açtığınız güçler hakkında bilgi almak için sohbete <FC><B>!powers</B><N> yazabilirsiniz!\n\n" ..
 			"%s\n\n" ..
+			"%s\n\n" ..
 			"%s, bu modülün geliştiricisidir."
 		,
 		[2] = "<FC><p align='center'>GENEL KOMUTLAR</p><N>\n\n<font size='12'>",

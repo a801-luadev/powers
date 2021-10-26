@@ -78,6 +78,7 @@ translations.pl = {
 			"<N>Jest tutaj wiele mocy <font size='12'>- które są odblokowywane poprzez osiągnięcie wyższych poziomów -</font> do ataku i obrony.\n" ..
 			"Wpisz <FC><B>!powers</B><N> aby dowiedzieć się więcej o odblokowanych już mocach!\n\n" ..
 			"%s\n\n" ..
+			"%s\n\n" ..
 			"Ten moduł został stworzony przez %s"
 		,
 		[2] = "<FC><p align='center'>KOMENDY</p><N>\n\n<font size='12'>",

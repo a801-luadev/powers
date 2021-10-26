@@ -58,6 +58,7 @@ eventNewGame = function()
 
 		cache.damageRate = 1
 		cache.hpRate = 1
+		cache.cooldownRate = 1
 
 		cache.roundKills = 0
 
