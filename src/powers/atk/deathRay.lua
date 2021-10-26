@@ -39,7 +39,7 @@ do
 			iconHeight = 28
 		})
 		:setDamage(30)
-		:setSelfDamage(20)
+		:setSelfDamage(15)
 		:setUseLimit(1)
 		:setUseCooldown(20)
 		:setUseOnceForNKills(2)

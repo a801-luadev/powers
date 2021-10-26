@@ -34,7 +34,8 @@ translations.br = {
 		temporalDisturbance = "Distúrbio Temporal",
 		emperor = "Imperador",
 		traveler = "Viajante",
-		suppressor = "Supressor"
+		suppressor = "Supressor",
+		boom = "Boom"
 	},
 	powersDescriptions = {
 		lightSpeed = "Move seu rato na velocidade da luz, empurrando todos seus inimigos em volta.",
@@ -55,7 +56,8 @@ translations.br = {
 		temporalDisturbance = "Te envia de volta no tempo para desfazer o que foi feito.",
 		emperor = "Torna você %d%% mais forte e %d%% mais resistente por alguns segundos.",
 		traveler = "Teleporta você para qualquer ponto do mapa.",
-		suppressor = "Suprime todos os poderes dos jogadores que estão próximos da poção por alguns segundos."
+		suppressor = "Suprime todos os poderes dos jogadores que estão próximos da poção por alguns segundos.",
+		boom = "Lança uma bomba nuclear que explode em grande alcance, e deixa sobras explosivas."
 	},
 	powerType = {
 		atk = "ATAQUE (%d)",
@@ -118,7 +120,8 @@ translations.br = {
 			"• Novo poder <B>Viajante</B>.</J>",
 			"• Os poderes <B>Imperador</B> e <B>Raio da Morte</B> agora precisam de duas kills cada para que fiquem disponíveis na partida.",
 			"• Novo tipo de poder: <B>Super Poder</B>. Os Super Poderes podem ser disparados quando você matar jogadores o suficiente durante a partida (o número de kills necessárias pode ser encontrada no menu de poderes). Segure <B>G</B> para ver os Super Poderes disponíveis na sua partida.",
-			"<J>• Novo poder <B>Supressor</B>.",
+			"• Novo poder <B>Supressor</B>.",
+			"<J>• Novo poder <B>Boom</B>.",
 		}
 	},
 

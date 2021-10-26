@@ -54,11 +54,11 @@ do
 		:bindMouse()
 		:useInventory()
 		:setEffect(function(playerName, playerX, playerY, _, self, _, clickX, clickY)
-			local angle = atan2(clickY - playerY, clickX - playerX)
-			local xDirection, yDirection = cos(angle), sin(angle)
+			local angle, xDirection, yDirection =
+				Power.getDirectionByPosition(playerX, playerY, clickX, clickY)
 
 			-- Throw supression possion
-			local objectId = addShamanObject(89, playerX + (xDirection * 40),
+			local objectId = addShamanObject(8900, playerX + (xDirection * 40),
 				playerY + (yDirection * 40), angle, xDirection * 10, yDirection * 10)
 			addImage(interfaceImages.supressionPotion, "#" .. objectId, nil, nil, nil, nil, nil,
 				nil, nil, .5, .6)

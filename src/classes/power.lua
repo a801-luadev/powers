@@ -206,10 +206,11 @@ do
 		} or nil
 	end
 
-	Power.damagePlayers = function(self, playerName, args, _method, _cache)
+	Power.damagePlayers = function(self, playerName, args, _method, _cache, _damage)
 		if self.damage then
 			_cache = _cache or playerCache[playerName];
-			(_method or damagePlayers)(playerName, self.damage * _cache.damageRate, unpack(args))
+			(_method or damagePlayers)(playerName, (_damage or self.damage) * _cache.damageRate,
+				unpack(args))
 		end
 		return self
 	end
@@ -342,5 +343,12 @@ do
 			displayParticle(particleId, x + xCos*dimension, y + ySin*dimension, xCos * force,
 				ySin * force)
 		end
+	end
+
+	Power.getDirectionByPosition = function(playerX, playerY, clickX, clickY)
+		local angle = atan2(clickY - playerY, clickX - playerX)
+		local xDirection, yDirection = cos(angle), sin(angle)
+
+		return deg(angle) + 90, xDirection, yDirection
 	end
 end

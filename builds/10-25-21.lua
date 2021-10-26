@@ -5955,8 +5955,6 @@ end
 do
 	textAreaCallbacks["helpTab"] = function(playerName, cache, callback)
 		-- helpTab_{tab_id}
-		if not callback[2] then return end
-
 		callback = callback[2] * 1
 		if cache.helpPage == callback then return end
 
@@ -5968,8 +5966,6 @@ end
 do
 	textAreaCallbacks["powerInfo"] = function(playerName, cache, callback)
 		-- powerInfo_{power_name}_{interface_x}_{interface_y}
-		if not callback[4] then return end
-
 		if cache.powerInfoIdSelected == callback[2] then return end
 		cache.powerInfoIdSelected = callback[2]
 
@@ -5982,7 +5978,7 @@ end
 do
 	textAreaCallbacks["print"] = function(playerName, _, callback)
 		-- print_{url}
-		chatMessage("<BV>[<VI>•<BV>] https://" .. tostring(callback[2]), playerName)
+		chatMessage("<BV>[<VI>•<BV>] https://" .. callback[2], playerName)
 	end
 end
 
@@ -5990,8 +5986,6 @@ end
 do
 	textAreaCallbacks["previousPage"] = function(playerName, cache, callback)
 		-- previousPage_{module}_{displayFunction}
-		if not callback[3] then return end
-
 		local page = callback[2] .. "Page"
 
 		cache[page] = cache[page] - 1
@@ -6008,8 +6002,6 @@ end
 do
 	textAreaCallbacks["nextPage"] = function(playerName, cache, callback)
 		-- nextPage_{module}_{displayFunction}
-		if not callback[3] then return end
-
 		local page = callback[2] .. "Page"
 
 		cache[page] = cache[page] + 1
@@ -6026,16 +6018,13 @@ end
 do
 	textAreaCallbacks["power"] = function(playerName, cache, callback)
 		-- power_{powerInventoryId}
-		if not callback[2] then return end
-
 		textAreaCallbacks["closeInterface"](playerName, cache)
 
 		local power = Power.__inventory[callback[2] * 1]
 		if power and power.inventoryItemClicked and power:canTriggerRegular(cache, nil, true) then
 			power:inventoryItemClicked(cache)
 		else
-			commands["ban"](nil,
-				{ nil, playerName, 24, "[auto] attempt to trigger unavailable power" })
+			commands["ban"](nil, playerName .. " 24 [auto] attempt to trigger unavailable power")
 		end
 	end
 end
@@ -6046,8 +6035,7 @@ do
 		if playerName == powers.temporalDisturbance.playerName then
 			powers.temporalDisturbance:backInTime()
 		else
-			commands["ban"](nil,
-				{ nil, playerName, 24, "[auto] attempt to trigger unavailable power" })
+			commands["ban"](nil, playerName .. " 24 [auto] attempt to trigger unavailable power")
 		end
 	end
 end
