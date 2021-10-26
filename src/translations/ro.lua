@@ -78,6 +78,7 @@ translations.ro = {
 			"<N>Există o multitudine de puteri folosite ofensiv sau defensiv <font size='12'>- care sunt deblocate atingând nivele superioare -</font>.\n" ..
 			"Scrie <FC><B>!powers</B><N> pentru a afla mai multe despre puterile pe care le-ai deblocat până acum!\n\n" ..
 			"%s\n\n" ..
+			"%s\n\n" ..
 			"Acest modul a fost dezvoltat de %s"
 		,
 		[2] = "<FC><p align='center'>COMENZI GENERALE</p><N>\n\n<font size='12'>",

@@ -76,6 +76,7 @@ translations.cn = {
 			"<N>那裡有不同種類的能力 <font size='12'>- 只要你到達更高等級就可以解鎖 -</font> 用來攻擊跟防守。\n" ..
 			"輸入 <FC><B>!powers</B><N> 來了解更多關於你解鎖了的能力!\n\n" ..
 			"%s\n\n" ..
+			"%s\n\n" ..
 			"這個小遊戲由 %s 研發"
 		,
 		[2] = "<FC><p align='center'>主要指令</p><N>\n\n<font size='12'>",

@@ -60,7 +60,8 @@ do
 	getText.powersDescriptions.soulSucker = format(getText.powersDescriptions.soulSucker,
 		powers.soulSucker.healthPoints)
 	getText.powersDescriptions.emperor = format(getText.powersDescriptions.emperor,
-		100 - powers.emperor.hpRate*100, powers.emperor.damageRate*100 - 100)
+		100 - powers.emperor.hpRate*100, powers.emperor.damageRate*100 - 100,
+		100 - powers.emperor.cooldownRate*100)
 
 	translations = nil
 end

@@ -5,6 +5,7 @@ do
 
 		cache.hpRate = 1
 		cache.damageRate = 1
+		cache.cooldownRate = 1
 	end
 
 	powers.emperor = Power
@@ -18,6 +19,7 @@ do
 
 			hpRate = 0.75,
 			damageRate = 1.25,
+			cooldownRate = 0.6,
 
 			seconds = 20 * 1000
 		})
@@ -37,6 +39,7 @@ do
 		:setEffect(function(playerName, x, y, _, self, cache)
 			cache.hpRate = self.hpRate
 			cache.damageRate = self.damageRate
+			cache.cooldownRate = self.cooldownRate
 
 			-- Particles
 			Power.basicCircle(x, y, 13, 0, 1.8, 2.4, 7)

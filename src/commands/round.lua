@@ -5,13 +5,16 @@ do
 
 		if not (data and count) then return end
 
-		local names, index, tmpPlayerList = { }, 0
+		local names, index, tmpPlayerList, tmpPlayerCache = { }, 0
 		for name in next, data do
 			tmpPlayerList = room.playerList[name]
+			tmpPlayerCache = playerCache[name] or { }
 
 			index = index + 1
 			names[index] = name ..
-				(tmpPlayerList and format(" (%s,%s)", tmpPlayerList.x, tmpPlayerList.y) or '')
+				(tmpPlayerList and format(" (%s,%s) [%s %s/%s]", tmpPlayerList.x, tmpPlayerList.y,
+					tmpPlayerCache.level or '', tmpPlayerCache.health or '',
+					tmpPlayerCache.roundKills or '') or '')
 		end
 
 		chatMessage(format("<BL>[<VI>•<BL>] <V>Round %s <ROSE>(#%s):<BL>\n\t%s", command[2], count,

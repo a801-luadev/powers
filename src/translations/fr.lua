@@ -76,6 +76,7 @@ translations.fr = {
 			"<N>Il y a une variété de pouvoirs <font size='12'>- qui sont obtenus en atteignant de plus hauts niveaux -</font> pour attaquer et défendre.\n" ..
 			"Ecrivez <FC><B>!powers</B><N> pour en savoir plus à propos des pouvoirs que vous avez obtenu depuis !\n\n" ..
 			"%s\n\n" ..
+			"%s\n\n" ..
 			"Ce module a été développé par %s"
 		,
 		[2] = "<FC><p align='center'>COMMANDES</p><N>\n\n<font size='12'>",

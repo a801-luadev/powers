@@ -54,7 +54,7 @@ translations.br = {
 		waterSplash = "Invoca algumas gotas d'água da Antártica.",
 		soulSucker = "Rouba %d HP dos inimigos que você matar.",
 		temporalDisturbance = "Te envia de volta no tempo para desfazer o que foi feito.",
-		emperor = "Torna você %d%% mais forte e %d%% mais resistente por alguns segundos.",
+		emperor = "Torna você %d%% mais forte, %d%% mais resistente e %d%% mais ágil por alguns segundos.",
 		traveler = "Teleporta você para qualquer ponto do mapa.",
 		suppressor = "Suprime todos os poderes dos jogadores que estão próximos da poção por alguns segundos.",
 		boom = "Lança uma bomba nuclear que explode em grande alcance, e deixa sobras explosivas."
@@ -97,6 +97,7 @@ translations.br = {
 			"<J>O seu objetivo nesse module é sobreviver aos ataques de seus oponentes.\n\n" ..
 			"<N>Há uma variedade de poderes <font size='12'>- que são desbloqueados atingindo níveis mais altos -</font> para atacar e defender.\n" ..
 			"Digite <FC><B>!powers</B><N> para saber mais sobre os poderes que você desbloqueou até o momento!\n\n" ..
+			"%s\n\n" ..
 			"%s\n\n" ..
 			"Esse module foi desenvolvido por %s"
 		,
@@ -158,7 +159,10 @@ translations.br = {
 	remMap = "<BV>[<FC>•<BV>] O mapa <J>@%s</J> foi removido da lista local de mapas.",
 	listMaps = "<BV>[<FC>•<BV>] Mapas (<J>#%d</J>): %s",
 
-	enableParticles = "<ROSE>NÃO se esqueça de ATIVAR os efeitos especiais/partículas para conseguir ver o jogo adequadamente. (Em 'Menu' → 'Opções', próximo a 'Lista de Salas')</ROSE>",
+	tips = {
+		"<ROSE>NÃO se esqueça de ATIVAR os efeitos especiais/partículas para conseguir ver o jogo adequadamente. (Em 'Menu' → 'Opções', próximo a 'Lista de Salas')</ROSE>",
+		"<J>Novo tipo de poder: <B>Super Poder</B>. Os Super Poderes podem ser disparados quando você matar jogadores o suficiente durante a partida (o número de kills necessárias pode ser encontrada no menu de poderes). Segure <B>G</B> para ver os Super Poderes disponíveis na sua partida.</J>",
+	},
 
 	ban = "%%s <font color='#%x'>foi banido do #powers por %%s <font color='#%x'>por %%d horas. Motivo: %%s",
 	unban = "<font color='#%x'>Seu banimento foi revogado por %%s",

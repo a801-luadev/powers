@@ -57,7 +57,7 @@ translations.en = {
 		waterSplash = "Summons some drops of water from Antarctica.",
 		soulSucker = "Steals %d HP from enemies that you kill.",
 		temporalDisturbance = "Sends you back in time to undo what has been done.",
-		emperor = "Makes you %d%% stronger and %d%% more resistent for a few seconds.",
+		emperor = "Makes you %d%% stronger, %d%% more resistent and %d%% more agile for a few seconds.",
 		traveler = "Teleports you to any point of the map.",
 		suppressor = "Suppresses all the powers of the players that are near the potion for a few seconds.",
 		boom = "Launches a nuclear bomb that explodes in a wide range and expels explosive leftovers."
@@ -104,6 +104,7 @@ translations.en = {
 			"<J>Your goal in this module is to survive from opponents' attacks.\n\n" ..
 			"<N>There are a variety of powers <font size='12'>- which are unlocked by reaching higher levels -</font> to attack and defend.\n" ..
 			"Type <FC><B>!powers</B><N> to learn more about the powers you have unlocked so far!\n\n" ..
+			"%s\n\n" .. -- superPowers
 			"%s\n\n" .. -- enableParticles
 			"This module has been developed by %s"
 		,
@@ -203,7 +204,12 @@ translations.en = {
 	listMaps = "<BV>[<FC>•<BV>] Maps (<J>#%d</J>): %s",
 
 	-- Warning
-	enableParticles = "<ROSE>Do NOT forget to ENABLE the special effects/particles in order to see the module properly. (In 'Menu' → 'Options', next to the 'Room List')</ROSE>",
+	tips = {
+		-- enable particles
+		"<ROSE>Do NOT forget to ENABLE the special effects/particles in order to see the module properly. (In 'Menu' → 'Options', next to the 'Room List')</ROSE>",
+		-- super power
+		"<J>New power type: <B>Super Power</B>. Super Powers can be triggered once you kill enough players during the round (number of kills can be found in the powers menu). Hold <B>G</B> to see the available Super Powers in your round.</J>"
+	},
 
 	-- Ban
 	ban = "%%s <font color='#%x'>has been banned from #powers by %%s <font color='#%x'>for %%d hours. Reason: %%s",

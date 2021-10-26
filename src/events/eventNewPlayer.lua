@@ -15,6 +15,7 @@ eventNewPlayer = function(playerName)
 
 		damageRate = 1,
 		hpRate = 1,
+		cooldownRate = 1,
 
 		roundKills = 0,
 

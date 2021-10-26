@@ -90,6 +90,7 @@ translations.id = {
 			"<J>Tujuan Anda di modul ini adalah untuk bertahan dari serangan lawan.\n\n" ..
 			"<N>Ada berbagai macam kekuatan <font size='12'>- yang bisa didapatkan dengan meraih level yang lebih tinggi -</font> untuk menyerang dan bertahan.\n" ..
 			"Ketik <FC><B>!powers</B><N> untuk mempelajari lebih lanjut tentang kekuatan yang telah Anda dapatkan sejauh ini!\n\n" ..
+			"%s\n\n" ..
 			"%s\n\n" .. -- enableParticles
 			"Modul ini dikembangkan oleh %s"
 		,

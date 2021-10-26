@@ -245,7 +245,7 @@ translations.en = {
 		waterSplash = "Summons some drops of water from Antarctica.",
 		soulSucker = "Steals %d HP from enemies that you kill.",
 		temporalDisturbance = "Sends you back in time to undo what has been done.",
-		emperor = "Makes you %d%% stronger and %d%% more resistent for a few seconds.",
+		emperor = "Makes you %d%% stronger, %d%% more resistent and %d%% more agile for a few seconds.",
 		traveler = "Teleports you to any point of the map.",
 		suppressor = "Suppresses all the powers of the players that are near the potion for a few seconds.",
 		boom = "Launches a nuclear bomb that explodes in a wide range and expels explosive leftovers."
@@ -292,6 +292,7 @@ translations.en = {
 			"<J>Your goal in this module is to survive from opponents' attacks.\n\n" ..
 			"<N>There are a variety of powers <font size='12'>- which are unlocked by reaching higher levels -</font> to attack and defend.\n" ..
 			"Type <FC><B>!powers</B><N> to learn more about the powers you have unlocked so far!\n\n" ..
+			"%s\n\n" .. -- superPowers
 			"%s\n\n" .. -- enableParticles
 			"This module has been developed by %s"
 		,
@@ -391,7 +392,12 @@ translations.en = {
 	listMaps = "<BV>[<FC>•<BV>] Maps (<J>#%d</J>): %s",
 
 	-- Warning
-	enableParticles = "<ROSE>Do NOT forget to ENABLE the special effects/particles in order to see the module properly. (In 'Menu' → 'Options', next to the 'Room List')</ROSE>",
+	tips = {
+		-- enable particles
+		"<ROSE>Do NOT forget to ENABLE the special effects/particles in order to see the module properly. (In 'Menu' → 'Options', next to the 'Room List')</ROSE>",
+		-- super power
+		"<J>New power type: <B>Super Power</B>. Super Powers can be triggered once you kill enough players during the round (number of kills can be found in the powers menu). Hold <B>G</B> to see the available Super Powers in your round.</J>"
+	},
 
 	-- Ban
 	ban = "%%s <font color='#%x'>has been banned from #powers by %%s <font color='#%x'>for %%d hours. Reason: %%s",
@@ -477,7 +483,7 @@ translations.br = {
 		waterSplash = "Invoca algumas gotas d'água da Antártica.",
 		soulSucker = "Rouba %d HP dos inimigos que você matar.",
 		temporalDisturbance = "Te envia de volta no tempo para desfazer o que foi feito.",
-		emperor = "Torna você %d%% mais forte e %d%% mais resistente por alguns segundos.",
+		emperor = "Torna você %d%% mais forte, %d%% mais resistente e %d%% mais ágil por alguns segundos.",
 		traveler = "Teleporta você para qualquer ponto do mapa.",
 		suppressor = "Suprime todos os poderes dos jogadores que estão próximos da poção por alguns segundos.",
 		boom = "Lança uma bomba nuclear que explode em grande alcance, e deixa sobras explosivas."
@@ -520,6 +526,7 @@ translations.br = {
 			"<J>O seu objetivo nesse module é sobreviver aos ataques de seus oponentes.\n\n" ..
 			"<N>Há uma variedade de poderes <font size='12'>- que são desbloqueados atingindo níveis mais altos -</font> para atacar e defender.\n" ..
 			"Digite <FC><B>!powers</B><N> para saber mais sobre os poderes que você desbloqueou até o momento!\n\n" ..
+			"%s\n\n" ..
 			"%s\n\n" ..
 			"Esse module foi desenvolvido por %s"
 		,
@@ -581,7 +588,10 @@ translations.br = {
 	remMap = "<BV>[<FC>•<BV>] O mapa <J>@%s</J> foi removido da lista local de mapas.",
 	listMaps = "<BV>[<FC>•<BV>] Mapas (<J>#%d</J>): %s",
 
-	enableParticles = "<ROSE>NÃO se esqueça de ATIVAR os efeitos especiais/partículas para conseguir ver o jogo adequadamente. (Em 'Menu' → 'Opções', próximo a 'Lista de Salas')</ROSE>",
+	tips = {
+		"<ROSE>NÃO se esqueça de ATIVAR os efeitos especiais/partículas para conseguir ver o jogo adequadamente. (Em 'Menu' → 'Opções', próximo a 'Lista de Salas')</ROSE>",
+		"<J>Novo tipo de poder: <B>Super Poder</B>. Os Super Poderes podem ser disparados quando você matar jogadores o suficiente durante a partida (o número de kills necessárias pode ser encontrada no menu de poderes). Segure <B>G</B> para ver os Super Poderes disponíveis na sua partida.</J>",
+	},
 
 	ban = "%%s <font color='#%x'>foi banido do #powers por %%s <font color='#%x'>por %%d horas. Motivo: %%s",
 	unban = "<font color='#%x'>Seu banimento foi revogado por %%s",
@@ -680,6 +690,7 @@ translations.es = {
 			"<J>Tu objetivo en este módulo es sobrevivir de los ataques de tus oponentes.\n\n" ..
 			"<N>Hay una variedad de poderes <font size='12'>- los cuales se desbloquean alcanzando niveles más altos -</font> para atacar y defenderte.\n" ..
 			"Escribe <FC><B>!powers</B><N> para saber más sobre los poderes que desbloqueaste!\n\n" ..
+			"%s\n\n" ..
 			"%s\n\n" ..
 			"Este módulo fue desarrollado por %s"
 		,
@@ -826,6 +837,7 @@ translations.fr = {
 			"<J>Le but dans ce module est de survivre contre les attaques ennemies.\n\n" ..
 			"<N>Il y a une variété de pouvoirs <font size='12'>- qui sont obtenus en atteignant de plus hauts niveaux -</font> pour attaquer et défendre.\n" ..
 			"Ecrivez <FC><B>!powers</B><N> pour en savoir plus à propos des pouvoirs que vous avez obtenu depuis !\n\n" ..
+			"%s\n\n" ..
 			"%s\n\n" ..
 			"Ce module a été développé par %s"
 		,
@@ -974,6 +986,7 @@ translations.pl = {
 			"<J>Twoim celem w tym module jest przetrwać ataki przeciwników.\n\n" ..
 			"<N>Jest tutaj wiele mocy <font size='12'>- które są odblokowywane poprzez osiągnięcie wyższych poziomów -</font> do ataku i obrony.\n" ..
 			"Wpisz <FC><B>!powers</B><N> aby dowiedzieć się więcej o odblokowanych już mocach!\n\n" ..
+			"%s\n\n" ..
 			"%s\n\n" ..
 			"Ten moduł został stworzony przez %s"
 		,
@@ -1124,6 +1137,7 @@ translations.ro = {
 			"<N>Există o multitudine de puteri folosite ofensiv sau defensiv <font size='12'>- care sunt deblocate atingând nivele superioare -</font>.\n" ..
 			"Scrie <FC><B>!powers</B><N> pentru a afla mai multe despre puterile pe care le-ai deblocat până acum!\n\n" ..
 			"%s\n\n" ..
+			"%s\n\n" ..
 			"Acest modul a fost dezvoltat de %s"
 		,
 		[2] = "<FC><p align='center'>COMENZI GENERALE</p><N>\n\n<font size='12'>",
@@ -1271,6 +1285,7 @@ translations.tr = {
 			"<N>Saldırmak ve savunma yapmak için türlü türlü güçler <font size='12'>- ki bu güçler yüksek seviyelere gelerek açılıyor -</font> elde edebilirsiniz.\n" ..
 			"Kilidini açtığınız güçler hakkında bilgi almak için sohbete <FC><B>!powers</B><N> yazabilirsiniz!\n\n" ..
 			"%s\n\n" ..
+			"%s\n\n" ..
 			"%s, bu modülün geliştiricisidir."
 		,
 		[2] = "<FC><p align='center'>GENEL KOMUTLAR</p><N>\n\n<font size='12'>",
@@ -1416,6 +1431,7 @@ translations.cn = {
 			"<J>你在這遊戲的目標是從敵人的攻擊中生存下來。\n\n" ..
 			"<N>那裡有不同種類的能力 <font size='12'>- 只要你到達更高等級就可以解鎖 -</font> 用來攻擊跟防守。\n" ..
 			"輸入 <FC><B>!powers</B><N> 來了解更多關於你解鎖了的能力!\n\n" ..
+			"%s\n\n" ..
 			"%s\n\n" ..
 			"這個小遊戲由 %s 研發"
 		,
@@ -1576,6 +1592,7 @@ translations.id = {
 			"<J>Tujuan Anda di modul ini adalah untuk bertahan dari serangan lawan.\n\n" ..
 			"<N>Ada berbagai macam kekuatan <font size='12'>- yang bisa didapatkan dengan meraih level yang lebih tinggi -</font> untuk menyerang dan bertahan.\n" ..
 			"Ketik <FC><B>!powers</B><N> untuk mempelajari lebih lanjut tentang kekuatan yang telah Anda dapatkan sejauh ini!\n\n" ..
+			"%s\n\n" ..
 			"%s\n\n" .. -- enableParticles
 			"Modul ini dikembangkan oleh %s"
 		,
@@ -1737,6 +1754,7 @@ translations.he = {
 			"<J>המטרה שלכם במשחק היא לשרוד את ההתקפות של האויב.\n\n" ..
 			"<N>ישנו מגוון של כוחות <font size='12'>- אשר נפתחים על ידי עלייה לרמות גבוהות יותר -</font>לתקוף ולהגן.\n" ..
 			"רשמו <FC><B>!powers</B><N> כדי ללמוד יותר על הכוחות שפתחתם עד עכשיו!\n\n" ..
+			"%s\n\n" ..
 			"%s\n\n" ..
 			"המשחק פותח על ידי %s"
 		,
@@ -2513,7 +2531,7 @@ end
 local enablePowersTrigger = function()
 	canTriggerPowers = true
 	if currentMap == 2 then
-		chatMessage(getText.enableParticles)
+		chatMessage(table_random(getText.tips))
 	end
 end
 
@@ -3382,8 +3400,8 @@ do
 			return true
 		end
 
-		playerPowerData.cooldown = _time + self.useCooldown
-		cache.powerCooldown = _time + 800 -- General cooldown
+		playerPowerData.cooldown = _time + (self.useCooldown * cache.cooldownRate)
+		cache.powerCooldown = _time + (800 * cache.cooldownRate) -- General cooldown
 
 		playerPowerData.remainingUses = playerPowerData.remainingUses - 1
 
@@ -4101,6 +4119,7 @@ do
 
 		cache.hpRate = 1
 		cache.damageRate = 1
+		cache.cooldownRate = 1
 	end
 
 	powers.emperor = Power
@@ -4114,6 +4133,7 @@ do
 
 			hpRate = 0.75,
 			damageRate = 1.25,
+			cooldownRate = 0.6,
 
 			seconds = 20 * 1000
 		})
@@ -4133,6 +4153,7 @@ do
 		:setEffect(function(playerName, x, y, _, self, cache)
 			cache.hpRate = self.hpRate
 			cache.damageRate = self.damageRate
+			cache.cooldownRate = self.cooldownRate
 
 			-- Particles
 			Power.basicCircle(x, y, 13, 0, 1.8, 2.4, 7)
@@ -4961,7 +4982,8 @@ do
 	getText.powersDescriptions.soulSucker = format(getText.powersDescriptions.soulSucker,
 		powers.soulSucker.healthPoints)
 	getText.powersDescriptions.emperor = format(getText.powersDescriptions.emperor,
-		100 - powers.emperor.hpRate*100, powers.emperor.damageRate*100 - 100)
+		100 - powers.emperor.hpRate*100, powers.emperor.damageRate*100 - 100,
+		100 - powers.emperor.cooldownRate*100)
 
 	translations = nil
 end
@@ -5390,7 +5412,7 @@ do
 	local helpContent = getText.helpContent
 	do
 		-- Intro
-		helpContent[1] = format(getText.helpContent[1], getText.enableParticles,
+		helpContent[1] = format(getText.helpContent[1], getText.tips[2], getText.tips[1],
 			prettifyNickname(module.author, 11, nil, nil, "font color='#8FE2D1'"))
 	end
 
@@ -5955,8 +5977,6 @@ end
 do
 	textAreaCallbacks["helpTab"] = function(playerName, cache, callback)
 		-- helpTab_{tab_id}
-		if not callback[2] then return end
-
 		callback = callback[2] * 1
 		if cache.helpPage == callback then return end
 
@@ -5968,8 +5988,6 @@ end
 do
 	textAreaCallbacks["powerInfo"] = function(playerName, cache, callback)
 		-- powerInfo_{power_name}_{interface_x}_{interface_y}
-		if not callback[4] then return end
-
 		if cache.powerInfoIdSelected == callback[2] then return end
 		cache.powerInfoIdSelected = callback[2]
 
@@ -5982,7 +6000,7 @@ end
 do
 	textAreaCallbacks["print"] = function(playerName, _, callback)
 		-- print_{url}
-		chatMessage("<BV>[<VI>•<BV>] https://" .. tostring(callback[2]), playerName)
+		chatMessage("<BV>[<VI>•<BV>] https://" .. callback[2], playerName)
 	end
 end
 
@@ -5990,8 +6008,6 @@ end
 do
 	textAreaCallbacks["previousPage"] = function(playerName, cache, callback)
 		-- previousPage_{module}_{displayFunction}
-		if not callback[3] then return end
-
 		local page = callback[2] .. "Page"
 
 		cache[page] = cache[page] - 1
@@ -6008,8 +6024,6 @@ end
 do
 	textAreaCallbacks["nextPage"] = function(playerName, cache, callback)
 		-- nextPage_{module}_{displayFunction}
-		if not callback[3] then return end
-
 		local page = callback[2] .. "Page"
 
 		cache[page] = cache[page] + 1
@@ -6026,16 +6040,13 @@ end
 do
 	textAreaCallbacks["power"] = function(playerName, cache, callback)
 		-- power_{powerInventoryId}
-		if not callback[2] then return end
-
 		textAreaCallbacks["closeInterface"](playerName, cache)
 
 		local power = Power.__inventory[callback[2] * 1]
 		if power and power.inventoryItemClicked and power:canTriggerRegular(cache, nil, true) then
 			power:inventoryItemClicked(cache)
 		else
-			commands["ban"](nil,
-				{ nil, playerName, 24, "[auto] attempt to trigger unavailable power" })
+			commands["ban"](nil, playerName .. " 24 [auto] attempt to trigger unavailable power")
 		end
 	end
 end
@@ -6046,8 +6057,7 @@ do
 		if playerName == powers.temporalDisturbance.playerName then
 			powers.temporalDisturbance:backInTime()
 		else
-			commands["ban"](nil,
-				{ nil, playerName, 24, "[auto] attempt to trigger unavailable power" })
+			commands["ban"](nil, playerName .. " 24 [auto] attempt to trigger unavailable power")
 		end
 	end
 end
@@ -6185,13 +6195,16 @@ do
 
 		if not (data and count) then return end
 
-		local names, index, tmpPlayerList = { }, 0
+		local names, index, tmpPlayerList, tmpPlayerCache = { }, 0
 		for name in next, data do
 			tmpPlayerList = room.playerList[name]
+			tmpPlayerCache = playerCache[name] or { }
 
 			index = index + 1
 			names[index] = name ..
-				(tmpPlayerList and format(" (%s,%s)", tmpPlayerList.x, tmpPlayerList.y) or '')
+				(tmpPlayerList and format(" (%s,%s) [%s %s/%s]", tmpPlayerList.x, tmpPlayerList.y,
+					tmpPlayerCache.level or '', tmpPlayerCache.health or '',
+					tmpPlayerCache.roundKills or '') or '')
 		end
 
 		chatMessage(format("<BL>[<VI>•<BL>] <V>Round %s <ROSE>(#%s):<BL>\n\t%s", command[2], count,
@@ -6660,6 +6673,7 @@ eventNewPlayer = function(playerName)
 
 		damageRate = 1,
 		hpRate = 1,
+		cooldownRate = 1,
 
 		roundKills = 0,
 
@@ -6871,6 +6885,7 @@ eventNewGame = function()
 
 		cache.damageRate = 1
 		cache.hpRate = 1
+		cache.cooldownRate = 1
 
 		cache.roundKills = 0
 
